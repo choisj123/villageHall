@@ -43,3 +43,77 @@ mypage.addEventListener("click", function(){
     }
     
 });
+
+
+// 페이징용 js
+const postsList = document.querySelector('.posts-list');
+const pagination = document.querySelector('.pagination');
+let currentPage = 1;
+let totalPages = 1;
+const postsPerPage = 2;
+
+function showPage(pageNumber) {
+  const startIndex = (pageNumber - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const posts = postsList.children;
+
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    if (i >= startIndex && i < endIndex) {
+      post.style.display = 'table-row';
+    } else {
+      post.style.display = 'none';
+    }
+  }
+}
+
+function updatePagination() {
+  const newTotalPosts = postsList.children.length;
+  const newTotalPages = Math.ceil(newTotalPosts / postsPerPage);
+
+  if (newTotalPages > totalPages) {
+    for (let i = totalPages + 1; i <= newTotalPages; i++) {
+      const pageButton = document.createElement('button');
+      pageButton.classList.add('page-link');
+      pageButton.textContent = i;
+      pagination.appendChild(pageButton);
+    }
+  } else if (newTotalPages < totalPages) {
+    const pageLinks = pagination.querySelectorAll('button');
+    for (let i = totalPages - 1; i >= newTotalPages; i--) {
+      const pageButton = pageLinks[i];
+      pageButton.parentNode.removeChild(pageButton);
+    }
+  }
+
+  totalPages = newTotalPages;
+}
+
+function setActivePage() {
+  const pageLinks = pagination.querySelectorAll('button');
+  for (let i = 0; i < pageLinks.length; i++) {
+    const pageButton = pageLinks[i];
+    const pageNumber = parseInt(pageButton.textContent);
+    if (pageNumber === currentPage) {
+      pageButton.classList.add('active');
+    } else {
+      pageButton.classList.remove('active');
+    }
+  }
+}
+
+function showActivePage(event) {
+  const pageButton = event.target;
+  const pageNumber = parseInt(pageButton.textContent);
+  if (pageNumber !== currentPage) {
+    currentPage = pageNumber;
+    showPage(currentPage);
+    setActivePage();
+  }
+}
+
+pagination.addEventListener('click', showActivePage);
+
+showPage(currentPage);
+updatePagination();
+setActivePage();

@@ -140,7 +140,7 @@
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="posts-list">
                   <tr>
                     <td>1231</td>
                     <td><a href="#">여기는 데이터불러오는 걸로 수정필요</a></td>
@@ -207,9 +207,18 @@
                     <td>8</td>
                   </tr>
                 </tbody>
+              </tbody>
+              <!-- 페이징용 tfoot -->
+              <tfoot>
+                <tr>
+                  <td colspan="3">
+                    <div class="pagination">
+                      <button class="page-link">1</button>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
               </table>
-
-              <div id="pageNumbers"></div>
             </div>
 
             <div id="myComment" class="tabcontent">
@@ -374,6 +383,5 @@
     </footer>
 
     <script src="../js/my-page-myBoard.js"></script>
-    <script src="../js/my-page.js"></script>
   </body>
 </html>
