@@ -12,16 +12,10 @@ main {
     margin: auto;
 }
 
-.confirm{
-    color : green;
-    font-size: x-small;   
-}
-
-.error{
-    color: red;
-    font-size: x-small;
-}
   
+.confirm{ color : green;}
+
+.error{  color : red;  }  
 /************헤더 부분 시작***********/
 header {
     height: 130px;
