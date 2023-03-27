@@ -45,8 +45,28 @@ const checkObj = {
 const userEmail = document.getElementById("userEmail");
 
 
-//회원가입시 유효성검사
+/***********************이메일 확인 *********************/
+/*
+    1. 중복된 이메일인 경우
+    인증번호 발송 안함
 
+    2. 신규 이메일인 경우 
+    인증번호 발송
+
+*/
+
+/***********************이메일 인증 *********************/
+/*
+    1. 인증 번호 일치X
+    인증번호 재확인  --->빨간색 글자 
+
+    2. 인증 번호 일치O
+    인증번호가 확인되었습니다. ---> 초록색 글자 
+
+*/
+
+/***********************이메일 확인 *********************/
+// 이메일 중복 검사
 const emailMessage = document.getElementById("emailMessage");
 
 userEmail.addEventListener("input",function(){
@@ -96,7 +116,8 @@ userEmail.addEventListener("input",function(){
 })
 
 
-
+/*************** 인증번호 **************/
+// 이메일 중복 아닐 시 인증번호 보내기
 
 // 인증번호 보내기
 const emailCheckBtn = document.getElementById("email-check-btn");
@@ -106,7 +127,6 @@ const cMessage = document.getElementById("cMessage");
 let checkInterval; // setInterval을 저장할 변수
 let min = 4;
 let sec = 59;
-
 
 
 sendBtn.addEventListener("click", function(){
@@ -197,47 +217,9 @@ cBtn.addEventListener("click", function(){
 })
 
 
-// 비밀번호 유효성 검사
-const memberPw = document.getElementById("memberPw");
-const memberPwConfirm = document.getElementById("memberPwConfirm");
-const pwMessage = document.getElementById("pwMessage");
 
-memberPw.addEventListener("input", function(){
-	const regEx = /^(?=.*[a-zA-Z])(?=.*[!@#-_])(?=.*[0-9]).{6,30}$/;
-	
-	if(regEx.test(memberPw.value)){
-		pwMessage.innerText = "유효한 비밀번호 형식입니다.";
-		pwMessage.classList.add("confirm");
-		pwMessage.classList.remove("error");
-		
-		checkObj.memberPw = true;
-		
-		memberPwConfirm.addEventListener("input",function(){
-			if(memberPw.value === memberPwConfirm.value){
-				pwMessage.innerText = "사용할 수 있는 비밀번호입니다.";
-				pwMessage.classList.add("confirm");
-				pwMessage.classList.remove("error");
-				
-				checkObj.memberPwConfirm = true;
-				
-				
-			}else{
-				pwMessage.innerText = "비밀번호가 일치하지 않습니다.";
-				pwMessage.classList.add("error");
-				pwMessage.classList.remove("confirm");
-			}
-		})
-		
-	} else{
-		pwMessage.innerText = "잘못된 형식입니다.";
-		pwMessage.classList.add("error");
-		pwMessage.classList.remove("confirm");
-		
-	}
-	
-})
 
-// 닉네임
+/********* 닉네임 **************/
 const memberNickname = document.getElementById("memberNickname");
 const nicknameMessage = document.getElementById("nicknameMessage");
 
@@ -299,7 +281,8 @@ memberNickname.addEventListener("focusout", function(){
 
 
 
-// 핸드폰 번호
+/***********************핸드폰번호 확인 *********************/
+
 const memberTel = document.getElementById("memberTel");
 const telMessage = document.getElementById("telMessage");
 
@@ -328,26 +311,6 @@ memberTel.addEventListener("input", function(){
 
 
 
-/***********************이메일 확인 *********************/
-/*
-    1. 중복된 이메일인 경우
-    인증번호 발송 안함
-
-    2. 신규 이메일인 경우 
-    인증번호 발송
-
-*/
-
-
-/***********************이메일 인증 *********************/
-/*
-    1. 인증 번호 일치X
-    인증번호 재확인  --->빨간색 글자 
-
-    2. 인증 번호 일치O
-    인증번호가 확인되었습니다. ---> 초록색 글자 
-
-*/
 
 
 
@@ -436,7 +399,44 @@ document.getElementById("pw2").addEventListener("keyup",function(){
 
 
 
-/* 닉네임 */
+const memberPw = document.getElementById("memberPw");
+const memberPwConfirm = document.getElementById("memberPwConfirm");
+const pwMessage = document.getElementById("pwMessage");
+
+memberPw.addEventListener("input", function(){
+	const regEx = /^(?=.*[a-zA-Z])(?=.*[!@#-_])(?=.*[0-9]).{6,30}$/;
+	
+	if(regEx.test(memberPw.value)){
+		pwMessage.innerText = "유효한 비밀번호 형식입니다.";
+		pwMessage.classList.add("confirm");
+		pwMessage.classList.remove("error");
+		
+		checkObj.memberPw = true;
+		
+		memberPwConfirm.addEventListener("input",function(){
+			if(memberPw.value === memberPwConfirm.value){
+				pwMessage.innerText = "사용할 수 있는 비밀번호입니다.";
+				pwMessage.classList.add("confirm");
+				pwMessage.classList.remove("error");
+				
+				checkObj.userPwConfirm = true;
+				
+				
+			}else{
+				pwMessage.innerText = "비밀번호가 일치하지 않습니다.";
+				pwMessage.classList.add("error");
+				pwMessage.classList.remove("confirm");
+			}
+		})
+		
+	} else{
+		pwMessage.innerText = "잘못된 형식입니다.";
+		pwMessage.classList.add("error");
+		pwMessage.classList.remove("confirm");
+		
+	}
+	
+})
 
 
 /* 프로필 사진 */
