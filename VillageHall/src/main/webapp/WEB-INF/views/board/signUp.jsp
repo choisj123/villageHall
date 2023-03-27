@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>마을회관</title>
 
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/main.css"
+    href="${pageContext.request.contextPath}/resources/css/main.css"
     />
 
     <!-- fontawesome -->
@@ -34,7 +34,7 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-            
+          회원가입 게시판 확인
             
           </section>
         </section>
@@ -53,8 +53,6 @@
   
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
-  
-      <script src="/js/main-page.js"></script>
 
 </body>
 </html>
