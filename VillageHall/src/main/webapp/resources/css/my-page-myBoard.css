@@ -1,0 +1,86 @@
+.right-body > h3 {
+  padding: 5px 15px 15px 10px;
+
+  flex-basis: 15px;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid white;
+  background-color: white;
+  padding: 10px;
+}
+
+.tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 15px;
+  font-weight: normal;
+  color: black;
+}
+
+.tab button:hover {
+  background-color: #55710f;
+  color: white;
+  border-radius: 20px;
+}
+
+.tab button.active {
+  background-color: #55710f;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+}
+
+/*내글 목록 먼저 보이게*/
+#myContent {
+  display: block;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid white;
+  border-top: none;
+}
+
+.contentTable,
+.commentTable,
+.likeTable {
+  width: 100%;
+}
+
+.contentTable tr,
+.likeTable tr {
+  line-height: 2;
+}
+
+.contentTable td,
+.likeTable td {
+  text-align: center;
+}
+
+.contentTable td a,
+.commentTable td a,
+.likeTable td a {
+  text-decoration: none;
+  color: black;
+}
+
+.contentTable td a:hover,
+.commentTable td a:hover,
+.likeTable td a:hover {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.commentTable span:nth-of-type(2),
+.commentTable span:nth-of-type(3) {
+  font-size: smaller;
+  color: #aaa;
+}
