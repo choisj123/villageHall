@@ -12,7 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class leftBody_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
                  org.apache.jasper.runtime.JspSourceImports {
 
@@ -115,51 +115,47 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\n");
       out.write("\n");
-      out.write("<header>\n");
-      out.write("  <!-- 클릭시 메인으로 이동하는 로고 -->\n");
-      out.write("  <section>\n");
-      out.write("    <a href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${contextPath}", java.lang.String.class, (javax.servlet.jsp.PageContext)_jspx_page_context, null));
-      out.write("\">\n");
-      out.write("      <img src=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${contextPath}", java.lang.String.class, (javax.servlet.jsp.PageContext)_jspx_page_context, null));
-      out.write("/resources/images/logo.png\" id=\"home-logo\" />\n");
+      out.write("<!-- 왼쪽 네비 -->\n");
       out.write("\n");
-      out.write("    </a>\n");
-      out.write("  </section>\n");
+      out.write("<section class=\"left-body\">\n");
+      out.write("    <article>\n");
+      out.write("      <!-- 이미지 + 로그인 -->\n");
       out.write("\n");
-      out.write("  <section>\n");
-      out.write("    <article class=\"search-area\">\n");
-      out.write("      <!-- form 내부 input 태그 값을 서버 또는 페이지로 전달 -->\n");
-      out.write("      <form action=\"#\" name=\"search-form\">\n");
-      out.write("        <fieldset>\n");
-      out.write("          <input\n");
-      out.write("            type=\"search\"\n");
-      out.write("            id=\"query\"\n");
-      out.write("            name=\"query\"\n");
-      out.write("            autocomplete=\"off\"\n");
-      out.write("            placeholder=\"검색어를 입력해주세요\"\n");
-      out.write("          />\n");
-      out.write("\n");
-      out.write("          <!-- 검색버튼 -->\n");
-      out.write("          <button id=\"search-btn\" class=\"fa-solid fa-magnifying-glass\"></button>\n");
-      out.write("        </fieldset>\n");
-      out.write("      </form>\n");
+      out.write("      <img src=\"../src/profile.png\" /><br />\n");
+      out.write("      <a href=\"/html/sign-in-page.html\" id=\"body-login\"> 로그인</a>\n");
       out.write("    </article>\n");
-      out.write("  </section>\n");
-      out.write("\n");
-      out.write("  <!-- 로그인 / 회원가입 -->\n");
-      out.write("  <section class=\"login-signup-area\">\n");
-      out.write("    <div>\n");
-      out.write("      <!-- 자물쇠 아이콘 -->\n");
-      out.write("      <a href=\"/html/sign-in-page.html\" id=\"login\" class=\"fa-solid fa-lock\"\n");
-      out.write("        >&nbsp;로그인</a\n");
-      out.write("      >\n");
-      out.write("    </div>\n");
-      out.write("\n");
-      out.write("    <a href=\"/html/sign-up-page.html\" id=\"signup\">회원가입</a>\n");
-      out.write("  </section>\n");
-      out.write("</header>\n");
+      out.write("    <!-- 네비 (메뉴바)-->\n");
+      out.write("    <nav>\n");
+      out.write("      <ul>\n");
+      out.write("        <li>\n");
+      out.write("          <i class=\"fa-solid fa-house\" id=\"nav-home\"></i>\n");
+      out.write("          <a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${contextPath}", java.lang.String.class, (javax.servlet.jsp.PageContext)_jspx_page_context, null));
+      out.write("\">홈</a>\n");
+      out.write("        </li>\n");
+      out.write("        <li>\n");
+      out.write("          <i class=\"fa-regular fa-bell\" id=\"nav-notice\"></i>\n");
+      out.write("          <a href=\"#\"> 공지사항</a>\n");
+      out.write("        </li>\n");
+      out.write("        <li>\n");
+      out.write("          <i class=\"fa-solid fa-globe\" id=\"nav-all\"></i>\n");
+      out.write("          <a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${contextPath}", java.lang.String.class, (javax.servlet.jsp.PageContext)_jspx_page_context, null));
+      out.write("/board/allBoard\">전체글</a>\n");
+      out.write("        </li>\n");
+      out.write("        <li>\n");
+      out.write("          <i class=\"fa-solid fa-bookmark\" id=\"nav-popular\"></i>\n");
+      out.write("          <a href=\"#\">인기글</a>\n");
+      out.write("        </li>\n");
+      out.write("        <li>\n");
+      out.write("          <i class=\"fa-regular fa-circle-question\" id=\"nav-faq\"></i>\n");
+      out.write("          <a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${contextPath}", java.lang.String.class, (javax.servlet.jsp.PageContext)_jspx_page_context, null));
+      out.write("/board/FAQPage\">FAQ</a>\n");
+      out.write("        </li>\n");
+      out.write("      </ul>\n");
+      out.write("    </nav>\n");
+      out.write("  </section>");
     } catch (java.lang.Throwable t) {
       if (!(t instanceof javax.servlet.jsp.SkipPageException)){
         out = _jspx_out;
