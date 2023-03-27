@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
   <section>
     <a href="${contextPath}">
       <img src="${contextPath}/resources/images/logo.png" id="home-logo" />
+
     </a>
   </section>
 

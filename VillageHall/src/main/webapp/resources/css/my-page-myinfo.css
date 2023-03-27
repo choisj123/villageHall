@@ -1,0 +1,78 @@
+/* 메인 바디 */
+
+.right-body {
+  flex-basis: 71%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.right-body > h3 {
+  padding-left: 20px;
+
+  flex-basis: 15px;
+}
+
+.myPage-box {
+  display: flex;
+  flex-direction: column;
+
+  flex-basis: 85px;
+
+  width: 750px;
+  height: 500px;
+
+  padding-left: 100px;
+}
+
+.myPage-box > div:first-child {
+  flex-basis: 15%;
+
+  border: 1px solid #55710f;
+  font-weight: bold;
+
+  padding: 10px;
+}
+
+#myPage-content {
+  height: 700px;
+  flex-basis: 70%;
+
+  border: 1px solid #55710f;
+  text-align: center;
+  padding-top: 80px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 15px;
+}
+
+table input {
+  border-radius: 5px;
+  height: 25px;
+}
+
+table button {
+  border: 2px solid #55710f;
+  border-radius: 5px;
+  background-color: #55710f;
+  color: white;
+  padding: 3px 5px 3px 5px;
+}
+
+#updateMyInfo {
+  padding: 5px 40px 5px 40px;
+  border: 2px solid #55710f;
+  border-radius: 5px;
+  background-color: #55710f;
+  color: white;
+  font-size: 15px;
+}
+
+.myPage-box > div:last-child {
+  flex-basis: 15%;
+
+  border-top: 1px solid black;
+}
