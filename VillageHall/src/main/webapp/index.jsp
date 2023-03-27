@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마을회관</title>
 
     <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
 
@@ -52,7 +53,7 @@
           <article>
             <!-- 이미지 + 로그인 -->
 
-            <img src="../src/profile.png" /><br />
+            <img src="resources/images/profile.png" /><br />
             <a href="/html/sign-in-page.html" id="body-login"> 로그인</a>
           </article>
           <!-- 네비 (메뉴바)-->

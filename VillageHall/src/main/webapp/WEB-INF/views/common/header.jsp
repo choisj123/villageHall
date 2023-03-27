@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
   <!-- 클릭시 메인으로 이동하는 로고 -->
   <section>
     <a href="/html/main-page.html">
-      <img src="/src/logo.png" id="home-logo" />
+      <img src="resources/images/logo.png" id="home-logo" />
     </a>
   </section>
 
