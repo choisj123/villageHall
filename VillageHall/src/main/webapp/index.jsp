@@ -53,7 +53,7 @@
         <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
 
         <!-- 메인 콘텐츠 -->
-        <section class="right-body">
+        <section class="right-body"> 메인게시판확인
           <!-- 지도 부분 -->
           <section>
             <div>
