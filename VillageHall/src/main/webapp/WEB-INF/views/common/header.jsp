@@ -4,8 +4,8 @@ pageEncoding="UTF-8"%>
 <header>
   <!-- 클릭시 메인으로 이동하는 로고 -->
   <section>
-    <a href="/html/main-page.html">
-      <img src="/src/logo.png" id="home-logo" />
+    <a href="${contextPath}">
+      <img src="${contextPath}/resources/images/logo.png" id="home-logo" />
     </a>
   </section>
 
