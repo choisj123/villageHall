@@ -2,6 +2,7 @@ package com.kh.villagehall.user.model.service;
 
 import static com.kh.villagehall.common.JDBCTemplate.*; 
 
+
 import java.sql.Connection;
 
 import com.kh.villagehall.user.model.dao.UserDAO;
@@ -229,11 +230,6 @@ public class UserService {
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 }

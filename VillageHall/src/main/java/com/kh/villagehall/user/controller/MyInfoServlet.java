@@ -9,11 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/user/myInfo")
+@WebServlet("/mypage/myPage")
 public class MyInfoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/user/myInfo.jsp";
+		String path = "/WEB-INF/views/mypage/myPage.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String path = "/WEB-INF/views/mypage/myPage.jsp";
+		req.getRequestDispatcher(path).forward(req, resp);
+	
+	
+	}
+	
 }
+
+
