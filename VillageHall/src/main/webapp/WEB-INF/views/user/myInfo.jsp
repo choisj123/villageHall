@@ -1,9 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +34,7 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          전체게시판 확인
+          내정보수정 게시판 확인 
             
           </section>
         </section>
