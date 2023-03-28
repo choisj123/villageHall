@@ -35,21 +35,14 @@
   <section class="login-signup-area">
     <div>
       <!-- 자물쇠 아이콘 -->
-<<<<<<< HEAD
-      <a href="${pageContext.request.contextPath}/user/login" id="login" class="fa-solid fa-lock"
-=======
 
       <a href="${contextPath}/user/login" id="login" class="fa-solid fa-lock"
->>>>>>> 040e9c8af860ee46287f8705e2551b88e8166051
         >&nbsp;로그인</a
       >
     </div>
 
-<<<<<<< HEAD
-    <a href="${pageContext.request.contextPath}/user/signUp" id="signup">회원가입</a>
-=======
+
     <a href="${contextPath}/user/signUp" id="signup">회원가입</a>
 
->>>>>>> 040e9c8af860ee46287f8705e2551b88e8166051
   </section>
 </header>

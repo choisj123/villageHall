@@ -8,14 +8,10 @@
     <article>
       <!-- 이미지 + 로그인 -->
 
-<<<<<<< HEAD
+
       <img src="${pageContext.request.contextPath}/resources/images/profile.png" /><br />
       <a href="${pageContext.request.contextPath}/user/login" id="body-login"> 로그인</a>
-=======
-      <img src="${contextPath}/resources/images/profile.png" /><br />
-      <a href="${contextPath}/user/login" id="body-login"> 로그인</a>
 
->>>>>>> 040e9c8af860ee46287f8705e2551b88e8166051
     </article>
     <!-- 네비 (메뉴바)-->
     <nav>
