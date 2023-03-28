@@ -1,4 +1,4 @@
-package com.kh.villagehall.commet.model.vo;
+package com.kh.villagehall.comment.model.vo;
 
 public class Comment {
 
