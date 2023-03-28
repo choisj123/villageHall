@@ -34,7 +34,7 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          FAQ게시판 확인 
+          내정보수정 게시판 확인 
             
           </section>
         </section>
