@@ -37,44 +37,62 @@
   
           <!-- 메인 콘텐츠------------------------- -->
           <section class="right-body">
-
             <h2>마이페이지</h2>
             <hr>
           <!-- 탭 메뉴 -->
           <div class="tab">
-          	<a href="${contextPath}/mypage/myBoard"> 내 글</a>
+            <a href="${contextPath}/mypage/myBoard"> 내 글</a>
           	<a href="${contextPath}/mypage/myComment"> 내 댓글</a>
           	<a href="${contextPath}/mypage/myLike"> 내 좋아요</a>
 
-            <div id="myContent" class="tabContent">
-              <h3>내 글 목록</h3>
-              <table class="contentTable">
-                <thead>
+            <div id="myComment" class="tabContent">
+              <h3>내 댓글</h3>
+              <table class="commentTable">
+                <tbody>
                   <tr>
-                    <th>글번호</th>
-                    <th>제목</th>
-                    <th>작성일</th>
-                    <th>조회</th>
-                    <th>좋아요</th>
-                  </tr>
-                </thead>
-
-                <tbody id="myBoardList">
-                  
-                </tbody>
-
-<!-- 페이징용 tfoot -->
-                <tfoot>
-                  <tr>
-                    <td colspan="5">
-                      <div id="pagination"></div>
+                    <td>
+                      <a href="#">
+                        <span>반갑습니다</span><br />
+                        <span>2023.09.08</span><br />
+                        <span>오늘 가입했습니다~</span>
+                      </a>
+                      <hr />
                     </td>
                   </tr>
-                </tfoot>
+                  <tr>
+                    <td>
+                      <a href="#">
+                        <span>좋은정보 감사합니다</span><br />
+                        <span>2022.09.08</span><br />
+                        <span>강남역에 새로운 라멘집 오픈했어요!</span>
+                      </a>
+                      <hr />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">
+                        <span>아 우산 챙겨야겠네요 ㅠ</span><br />
+                        <span>2021.07.08</span><br />
+                        <span>오늘 하루종일 폭우래요 우산챙기세요</span>
+                      </a>
+                      <hr />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">
+                        <span>감사합니다 ~~</span><br />
+                        <span>2021.02.08</span><br />
+                        <span>무료나눔합니다(역삼역 근처에서!)</span>
+                      </a>
+                      <hr />
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
 
-            
           </div>
           </section>
           <!-- 메인 콘텐츠 종료-------------------------------------- -->
