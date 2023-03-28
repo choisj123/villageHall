@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 
-.right-body > h2 {
+.right-body > h3 {
   padding-left: 20px;
 
   flex-basis: 15px;
@@ -36,7 +36,7 @@
   padding: 10px;
 }
 
-#myPage-content {
+#box-body {
   height: 600px;
   flex-basis: 70%;
 
@@ -45,12 +45,12 @@
   padding-top: 150px;
 }
 
-#myPage-content > input {
+#box-body > input {
   border-radius: 5px;
   height: 23px;
 }
 
-#myPage-content > button {
+#box-body > button {
   text-decoration: none;
   border: 2px solid #55710f;
   border-radius: 5px;
