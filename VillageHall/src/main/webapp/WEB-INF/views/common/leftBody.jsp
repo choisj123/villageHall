@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
 
       <img src="${contextPath}/resources/images/profile.png" /><br />
       <a href="${contextPath}/user/login" id="body-login"> 로그인</a>
+
     </article>
     <!-- 네비 (메뉴바)-->
     <nav>

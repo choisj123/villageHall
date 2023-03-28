@@ -34,11 +34,13 @@ pageEncoding="UTF-8"%>
   <section class="login-signup-area">
     <div>
       <!-- 자물쇠 아이콘 -->
+
       <a href="${contextPath}/user/login" id="login" class="fa-solid fa-lock"
         >&nbsp;로그인</a
       >
     </div>
 
     <a href="${contextPath}/user/signUp" id="signup">회원가입</a>
+
   </section>
 </header>
