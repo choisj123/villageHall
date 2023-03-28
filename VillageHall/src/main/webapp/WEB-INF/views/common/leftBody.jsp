@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
       <!-- 이미지 + 로그인 -->
 
       <img src="${pageContext.request.contextPath}/resources/images/profile.png" /><br />
-      <a href="${pageContext.request.contextPath}/board/login" id="body-login"> 로그인</a>
+      <a href="${pageContext.request.contextPath}/user/login" id="body-login"> 로그인</a>
     </article>
     <!-- 네비 (메뉴바)-->
     <nav>
