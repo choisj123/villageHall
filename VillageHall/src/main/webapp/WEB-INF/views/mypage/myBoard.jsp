@@ -15,7 +15,7 @@
     />
     
     <link rel="stylesheet"
-    href= "${contextPath}/resources/css/my-page-myBoard.css" />
+    href= "${contextPath}/resources/css/myPage-myBoard.css" />
 
     <!-- fontawesome -->
     <script
@@ -592,7 +592,7 @@
   
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
-      <script src="${contextPath}/resources/js/my-page-myBoard.js"></script>
+      <script src="${contextPath}/resources/js/myPage-myBoard.js"></script>
 
 </body>
 </html>
