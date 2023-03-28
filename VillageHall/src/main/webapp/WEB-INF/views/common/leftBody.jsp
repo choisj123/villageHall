@@ -35,10 +35,10 @@ pageEncoding="UTF-8"%>
           <a href="${contextPath}/board/FAQ">FAQ</a>
         </li>
         <li>
-        	<a href="${contextPath}/mypage/myBoard">내글목록(로그인기능추가하면 나중에삭제)</a>
+        	<a href="${contextPath}/mypage/myBoard">내글목록(테스트용)</a>
         </li>
         <li>
-        	<a href="${contextPath}/mypage/myInfo">내정보수정(로그인기능추가하면나중에삭제)</a>
+        	<a href="${contextPath}/mypage/myPage">내정보수정(테스트용)</a>
         </li>
       </ul>
     </nav>
