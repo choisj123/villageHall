@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
 
 <header>
   <!-- 클릭시 메인으로 이동하는 로고 -->
@@ -34,11 +35,11 @@ pageEncoding="UTF-8"%>
   <section class="login-signup-area">
     <div>
       <!-- 자물쇠 아이콘 -->
-      <a href="${pageContext.request.contextPath}/board/login" id="login" class="fa-solid fa-lock"
+      <a href="${pageContext.request.contextPath}/user/login" id="login" class="fa-solid fa-lock"
         >&nbsp;로그인</a
       >
     </div>
 
-    <a href="${pageContext.request.contextPath}/board/signUp" id="signup">회원가입</a>
+    <a href="${pageContext.request.contextPath}/user/signUp" id="signup">회원가입</a>
   </section>
 </header>
