@@ -34,7 +34,7 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          FAQ게시판 확인 
+          내글목록 게시판 확인 
             
           </section>
         </section>
