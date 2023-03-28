@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+  }
+  
+body {
+    margin: 0;
+    padding: 0;
+}
+  
+main {
+    width: 1140px;
+    margin: auto;
+}
+
+.confirm{
+    color : green;
+    font-size: x-small;
+}
+
+.error{
+    color: red;
+    font-size: x-small;
+    
+
+}
+  
+  
+/************************헤더 부분 시작**************************/
+header {
+    height: 130px;
+    display: flex;
+    border-bottom: 1px solid #55710f;
+}
+  
+/* 로고 영역 */
+header > section:nth-child(1) {
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+#home-logo {
+    width: 120px;
+    height: 100px;
+    margin-left: 510px;
+}
+  
+.sign-in-text {
+    display: flex;
+    justify-content: center;
+}
+
+/****************************바디 부분 시작***********************************/
+
+
+.content-2{
+
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+}
+
+.pw-reset-text{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+
+#pw-reset-area{
+    
+    width: 500px; 
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    padding-left: 100px;
+    padding-top: 30px;
+    margin-bottom: 150px;
+    border-radius: 20px;
+    border: 1px solid gray;
+
+    
+}
+
+.div1 {
+    
+    width:400px;
+    height: 30px;
+    color: black;
+    border-radius: 10px;
+    padding-bottom: 50px;
+    line-height: 30px;
+
+}
+
+
+.input-text{
+    background-color: rgb(240, 244, 240);
+    border: solid 1px rgb(240, 244, 240);
+    outline: 0;
+    width: 250px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+#email-check-btn{
+    
+    color: white; 
+    background-color:#55710f;
+    border:0;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.div2{
+    
+    padding-top: 3px;
+    font-size: small;
+    color: gray;
+
+}
+
+.div3{
+
+  padding: 10px 10px;
+  background-color: rgb(240, 244, 240);
+  width: 355px;
+  border-radius: 5px;
+  color:green;
+  font-size: xx-small;
+  display: none;
+}
+
+.div2:hover + .div3 {
+
+    display: block;
+  }
+
+#pw2 {
+    margin-top: 5px;
+}
+
+#pw-resetBtn{ 
+    margin-top: 10px;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    color: gray;
+    border: none;
+    
+}
+
+
+
+/******************************푸터*******************************************/
+footer {
+    background-color: #d0d3c6;
+    height: 150px;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  footer p {
+    font-weight: bold;
+  }
+  footer a {
+
+    text-decoration: none;
+    color: black;
+  }
+  
+
+
+
+
+
+

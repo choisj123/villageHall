@@ -4,8 +4,9 @@ pageEncoding="UTF-8"%>
 <header>
   <!-- 클릭시 메인으로 이동하는 로고 -->
   <section>
-    <a href="/html/main-page.html">
-      <img src="/src/logo.png" id="home-logo" />
+    <a href="${pageContext.request.contextPath}">
+      <img src="${pageContext.request.contextPath}/resources/images/logo.png" id="home-logo" />
+
     </a>
   </section>
 
@@ -33,11 +34,11 @@ pageEncoding="UTF-8"%>
   <section class="login-signup-area">
     <div>
       <!-- 자물쇠 아이콘 -->
-      <a href="/html/sign-in-page.html" id="login" class="fa-solid fa-lock"
+      <a href="${pageContext.request.contextPath}/board/login" id="login" class="fa-solid fa-lock"
         >&nbsp;로그인</a
       >
     </div>
 
-    <a href="/html/sign-up-page.html" id="signup">회원가입</a>
+    <a href="${pageContext.request.contextPath}/board/signUp" id="signup">회원가입</a>
   </section>
 </header>
