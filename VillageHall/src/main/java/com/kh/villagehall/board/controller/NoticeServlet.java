@@ -1,4 +1,4 @@
-package edu.kh.villagehall.board.controller;
+package com.kh.villagehall.board.controller;
 
 import java.io.IOException;
 
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/board/myBoard")
-public class MyBoardServlet extends HttpServlet {
+@WebServlet("/board/notice")
+public class NoticeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/board/myBoard.jsp";
+		String path = "/WEB-INF/views/board/notice.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 }
