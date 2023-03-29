@@ -347,7 +347,7 @@
     <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
     <script src="/js/main-page.js"></script>
-    <script src="/VillageHall/src/main/webapp/resources/js/weather.js"></script>
+    <script src="${contextPath}/resources/js/weather.js"></script>
 
     <script src="${contextPath}/resources/js/main-page-Map-API.js"></script>
   </body>

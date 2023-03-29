@@ -1,4 +1,4 @@
-     $.getJSON //api 키값
+$.getJSON 
     ('http://api.openweathermap.org/data/2.5/weather?id=1835848&appid=7401ee2987d021037ece4c98b2baf927&units=metric',function(data){
 
         var $minTemp = Math.floor(data.main.temp_min) + "℃";
@@ -7,28 +7,27 @@
         var $humidity = data.main.humidity + '%';
         var $now = new Date($.now());
         var $cDate = $now.getMonth() + 1 + '월' + $now.getDate() + '일';
-        //  + $now.getHours()+ '시간' + $now.getMinutes() + '분';
         var $wIcon = data.weather[0].icon;
 
 
         var box = document.querySelector(".box");
 
-        var img = (window.getComputedStyle(document.querySelector(".box")).getPropertyValue("background-image"))
+        var images = (window.getComputedStyle(document.querySelector(".box")).getPropertyValue("background-image"))
      
         const main = document.querySelector(".main");
         
         function getText($main) {
             if($main === "Haze" || $main === "Clouds"){
-                box.style.backgroundImage = "url(/src/cloud.jpg)";
+                box.style.backgroundImage = "${contextPath}/resources/images/cloud.png";
                 main.innerText = "흐림";
             } else if($main === "Clear"){
-                box.style.backgroundImage = "url(/src/sunny.jpg)";
+                box.style.backgroundImage = "${contextPath}/resources/images/sunny.png";
                 main.innerText ="맑음";
             } else if($main === "Snow"){
-                box.style.backgroundImage = "url(/src/snow.jpg)";
+                box.style.backgroundImage = "${contextPath}/resources/images/snow.png";
                 main.innerText = "눈";
             } else if($main === "Rain"){
-                box.style.backgroundImage = "url(/src/rain.jpg)";
+                box.style.backgroundImage = "${contextPath}/resources/images/rain.png";
                 main.innerText = "비";
             } else {
                 main.innerText = '번개';
@@ -64,6 +63,4 @@
     });
 
 
-
-   //단점이 먼지  jQuery 하고 자바스크립트랑 혼종이다. 문제점 var에 코드를 쓰고 호이스팅(동적이 난잡하다.)이 일어나고 있다. 
-   //해결코드 : 이 소스를 다 갈아 엎어야 된다. 
+ 

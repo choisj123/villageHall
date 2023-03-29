@@ -12,7 +12,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/css/main.css"
+      href="${contextPath}/resources/css/main.css"
     />
 
     <!-- fontawesome -->
