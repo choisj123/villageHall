@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +11,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <link
       rel="stylesheet"
-      href="${contextPath}/resources/css/sign-up-page.css"
+      href="${contextPath}/resources/css/signUp.css"
       >
 
     <!-- fontawesome -->

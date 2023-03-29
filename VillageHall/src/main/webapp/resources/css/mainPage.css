@@ -4,6 +4,18 @@
   padding: 20px 0px 10px 30px;
 } */
 
+/* 
+.right-body :nth-child(1) {
+  flex-basis: 50%;
+}
+.right-body :nth-child(2) {
+  flex-basis: 25%;
+}
+.right-body :nth-child(3) {
+  flex-basis: 25%;
+} */
+
+
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
 .infowindow-contaioner {
@@ -121,6 +133,7 @@ flex-basis : 80%;
 }
 
 .notice-fave {
+  justify-content: space-evenly;
   height: 30%;
   display: flex;
   flex-direction: row;
@@ -155,7 +168,7 @@ flex-basis : 80%;
 
 .notice-content,
 .fave-content {
-  /* margin: auto; */
+  margin: auto;
   font-size: 12px;
 }
 

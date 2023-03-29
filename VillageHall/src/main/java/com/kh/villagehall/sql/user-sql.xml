@@ -13,6 +13,14 @@
 		AND USER_DELETE_FG = 'N'
 	</entry>
 	
+	<entry key="myInfoCheckPw">
+		SELECT COUNT(*)
+		FROM "USER" 
+		WHERE USER_DELETE_FG = 'N' 
+		AND USER_NO = ? 
+		AND USER_PW = ? 
+	</entry>
+	
 	
 	
 	
