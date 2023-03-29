@@ -78,6 +78,28 @@ public class UserDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+
+	public int myInfoCheckPw(Connection conn, int userNo, String inputPw) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("myInfoCheckPw");
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, inputPw);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 }

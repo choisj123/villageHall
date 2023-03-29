@@ -35,10 +35,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <h3>마이페이지</h3>
           <div class="myPage-box">
             <div>내 정보 수정</div>
-            <form action="${contextPath}/mypage/myInfo" method="post">
+            <form action="${contextPath}/mypage/myPage" method="post">
               <div id="box-body">
-                비밀번호 <input type="password" id="myPage-PW" />
-                <button type="submit">확인</button>
+                비밀번호 <input type="password" name="inputPw" id="inputPw" />
+                <button type="submit" id="pwBtn">확인</button>
               </div>
               <div></div>
             </form>

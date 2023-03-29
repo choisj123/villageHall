@@ -58,6 +58,17 @@ public class UserService {
 		// 5) 결과 반환
 		return result;
 	}
+
+	public int myInfoCheckPw(int userNo, String inputPw) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.myInfoCheckPw(conn, userNo, inputPw);
+		
+		close(conn);
+		
+		return result;
+	}
 	
 
 	
