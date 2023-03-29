@@ -13,7 +13,7 @@
 
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/login-page.css"
+    href="${contextPath}/resources/css/login.css"
     />
 
     <!-- fontawesome -->

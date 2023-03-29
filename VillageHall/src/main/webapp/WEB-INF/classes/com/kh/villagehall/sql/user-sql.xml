@@ -13,6 +13,7 @@
 		AND USER_DELETE_FG = 'N'
 	</entry>
 	
+<<<<<<< HEAD
 	<!-- 인증번호 수정 -->
 	<entry key="updateCertification">
 		UPDATE CERTIFICATION SET
@@ -28,6 +29,16 @@
 	
 
 	
+=======
+	<entry key="myInfoCheckPw">
+		SELECT COUNT(*)
+		FROM "USER" 
+		WHERE USER_DELETE_FG = 'N' 
+		AND USER_NO = ? 
+		AND USER_PW = ? 
+	</entry>
+	
+>>>>>>> fd1980dc1b4b00aafb86edbac01ae7a09f4986e3
 	
 	
 	

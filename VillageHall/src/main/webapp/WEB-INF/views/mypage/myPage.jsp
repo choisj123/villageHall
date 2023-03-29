@@ -11,7 +11,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage.css" />
-
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af34b09f8f2cdee07cf990ab549e6220"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af34b09f8f2cdee07cf990ab549e6220&libraries=LIBRARY"
+    ></script>
     <script
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
@@ -28,15 +35,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <h3>마이페이지</h3>
           <div class="myPage-box">
             <div>내 정보 수정</div>
-            <form action="${contextPath}/mypage/myPage.jsp" method="post">
+            <form action="${contextPath}/mypage/myPage" method="post">
               <div id="box-body">
-                비밀번호 <input type="password" size ="20px" name = "inputPw" id="inputPw" />
+                비밀번호 <input type="password" name="inputPw" id="inputPw" />
                 <button type="submit" id="pwBtn">확인</button>
               </div>
               <div></div>
             </form>
           </div>
-          <a href="${contextPath}/mypage/myInfo">이동</a>
         </section>
       </section>
     </main>

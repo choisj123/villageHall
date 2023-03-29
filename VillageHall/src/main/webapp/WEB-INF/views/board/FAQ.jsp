@@ -14,7 +14,7 @@
 
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/FAQ-page.css"
+    href="${contextPath}/resources/css/FAQ.css"
     />
 
     <!-- fontawesome -->
@@ -704,7 +704,7 @@
       ></script>
   
       <!-- FAQ-page.js 연결 -->
-      <script src="${pageContext.request.contextPath}/resources/js/FAQ-page.js"></script>
+      <script src="${contextPath}/resources/js/FAQ.js"></script>
 
 </body>
 </html>

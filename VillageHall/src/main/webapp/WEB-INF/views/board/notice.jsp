@@ -13,7 +13,7 @@
 
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/Notice-page.css"
+    href="${contextPath}/resources/css/notice.css"
     />
 
     <!-- fontawesome -->

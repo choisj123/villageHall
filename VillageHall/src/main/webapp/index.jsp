@@ -3,7 +3,6 @@
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,7 +72,7 @@
             </div>
             <div
               id="map"
-              style="width: auto; height: 500px; margin-left: 15px"
+              style="width:auto; height: 500px; margin-left:15px"
             ></div>
           </section>
 

@@ -31,14 +31,14 @@ public class UserService {
 		// 결과 반환
 		return loginUser;
 	}
-
+	
 	/** 회원가입 Service
 	 * @param user
 	 * @return result
 	 * @throws Exception
 	 */
 	public int signUp(User user) throws Exception {
-		
+
 		// 1) 커넥션 얻어오기
 		Connection conn = getConnection(); // DBCP 에서 얻어옴
 				
@@ -55,6 +55,17 @@ public class UserService {
 		close(conn);
 				
 		// 5) 결과 반환
+		return result;
+	}
+
+	public int myInfoCheckPw(int userNo, String inputPw) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.myInfoCheckPw(conn, userNo, inputPw);
+		
+		close(conn);
+		
 		return result;
 	}
 	
