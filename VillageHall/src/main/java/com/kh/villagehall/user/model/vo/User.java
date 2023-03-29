@@ -3,6 +3,21 @@ package com.kh.villagehall.user.model.vo;
 
 
 public class User {
+	private int userNo;
+	private String userEmail;
+	private String userPw;
+	private String userNickname;
+	private String userTel;
+	private String enrollDate;
+	private String profileImg;
+	private String kakaoUserKey;
+	private String userDeleteFG;
+	private String administer;
+	
+	public User() {
+	}
+
+	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -83,19 +98,6 @@ public class User {
 		this.administer = administer;
 	}
 
-	private int userNo;
-	private String userEmail;
-	private String userPw;
-	private String userNickname;
-	private String userTel;
-	private String enrollDate;
-	private String profileImg;
-	private String kakaoUserKey;
-	private String userDeleteFG;
-	private String administer;
-	
-	public User() {
-	}
 
 	@Override
 	public String toString() {
