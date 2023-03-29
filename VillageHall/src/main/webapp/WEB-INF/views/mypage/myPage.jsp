@@ -30,7 +30,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div>내 정보 수정</div>
             <form action="${contextPath}/mypage/myPage.jsp" method="post">
               <div id="box-body">
-                비밀번호 <input type="password" size ="20px" id="inputPw" />
+                비밀번호 <input type="password" size ="20px" name = "inputPw" id="inputPw" />
                 <button type="submit" id="pwBtn">확인</button>
               </div>
               <div></div>
