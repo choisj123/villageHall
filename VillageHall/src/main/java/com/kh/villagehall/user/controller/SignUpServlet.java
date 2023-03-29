@@ -17,51 +17,34 @@ import com.kh.villagehall.user.model.vo.User;
 public class SignUpServlet extends HttpServlet {
 	
 	
-
+	
 	// GET 방식 요청 시 JSP로 바로 응답할 수 있도록 요청 위임
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		String path = "/WEB-INF/views/user/signUp.jsp";
+		
+		String path = "/WEB-INF/views/member/signUp.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
-	
 	
 	// POST 방식 요청 시 회원가입 서비스 수행
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		// 파라미터를 모두 변수에 저장
-		String userEmail = req.getParameter("userEmail");
-		String userPw = req.getParameter("userPw");
-		String userNickname = req.getParameter("userNickname");
-		String userTel = req.getParameter("userTel");
+		String inputEmail = req.getParameter("inputEmail");
+		String inputPw = req.getParameter("inputPw");
+		String inputNickname = req.getParameter("inputNickname");
+		String inputTel = req.getParameter("inputTel");
 		
-		// 주소는 3개의 input으로 이루어져 있으므로 배열로 전달 받음
-		// -> DB 컬럼을 1개이므로 배열을 하나의 문자열로 합칠 예정
-		String[] address = req.getParameterValues("userAddress");
-		
-		// 주소가 입력되지 않으면 null이 아니라 빈칸 3개
-		
-		String userAddress = null;
-		
-		if(!address[0].equals("")) { // 우편번호가 빈칸이 아니라면 == 주소 작성
-			userAddress = String.join(",,", address);
-			
-			// String.join("구분자", 배열)
-			// -> 배열 요소를 하나의 문자열로 반환
-			//    요소 사이에 "구분자" 추가
-		}
 		
 		
 		// 파라미터를 하나의 Member 객체에 저장
 		User user = new User();
 		
-		user.setUserEmail(userEmail);
-		user.setUserPw(userPw);
-		user.setUserNickname(userNickname);
-		user.setUserTel(userTel);
-	
+		user.setUserEmail(inputEmail);
+		user.setUserPw(inputPw);
+		user.setUserNickname(inputNickname);
+		user.setUserTel(inputTel);
 		
 		
 		try {
@@ -91,6 +74,7 @@ public class SignUpServlet extends HttpServlet {
 		
 	
 	}
+	
 	
 	
 	
