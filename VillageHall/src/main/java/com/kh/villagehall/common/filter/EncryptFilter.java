@@ -9,7 +9,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.kh.villagehall.common.wrapper.EncryptWrapper;
@@ -24,7 +23,7 @@ import com.kh.villagehall.common.wrapper.EncryptWrapper;
 		   urlPatterns = {"/user/login", 
 				   		  "/user/signUp", 
 				   		  "/mypage/myInfo",
-				   		  "mypage/myPage"
+				   		  "/mypage/myPage"
 				   		  })
 
 public class EncryptFilter extends HttpFilter implements Filter {
