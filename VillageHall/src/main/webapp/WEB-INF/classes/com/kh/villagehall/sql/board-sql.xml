@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>board-sql.xml</comment>
+	
+	<entry key="selectMyBoard">
+		SELECT BOARD_NO, BOARD_TITLE, 
+		TO_CHAR(BOARD_CREATE_DATE, 'YYYY-MM-DD HH24:MI:SS') AS BOARD_CREATE_DATE, 
+		READ_COUNT
+		FROM BOARD
+		JOIN "USER" USING (USER_NO)
+		WHERE USER_NO = ?
+		AND USER_DELETE_FG = 'N'
+	</entry>
+	
+	
+	
+	
+</properties>
