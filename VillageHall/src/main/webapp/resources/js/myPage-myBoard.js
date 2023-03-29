@@ -1,9 +1,7 @@
-/*
-(() => {
-	console.log("하이")
 	$.ajax({
 		url : "mypage/myBoard",
 		type : "GET",
+		data : "loginUser",
 		dataType : "JSON",
 		
 		success : function(boardList){
@@ -12,18 +10,18 @@
 			
 			myBoardList.innerHTML = "";
 			
-			for(let i = 0; i <= boardList.length; i++) {
+			for(let item of boardList) {
 				
-				const tr = document.createElement("tr");
+				const tr = document.createElement;
 				
 				const td1 = document.createElement("td");
-				td1.innerText = boardList[i].getBoardNo;
+				td1.innerText = item.boardNo;
 				const td2 = document.createElement("td");
-				td1.innerText = boardList[i].getBoardTitle;
+				td1.innerText = item.boardTitle;
 				const td3 = document.createElement("td");
-				td1.innerText = boardList[i].getBoardCreateDate;
+				td1.innerText = item.boardCreateDate;
 				const td4 = document.createElement("td");
-				td1.innerText = boardList[i].getReadCount;
+				td1.innerText = item.readCount;
 				const td5 = document.createElement("td");
 				td1.innerText = '좋아요';
 				
@@ -36,7 +34,3 @@
 			console.log("에러 발생");
 		}
 	})	
-})();
-*/
-
-	

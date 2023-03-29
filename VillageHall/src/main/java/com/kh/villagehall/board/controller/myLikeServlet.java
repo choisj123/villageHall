@@ -1,4 +1,4 @@
-package com.kh.villagehall.user.controller;
+package com.kh.villagehall.board.controller;
 
 import java.io.IOException;
 

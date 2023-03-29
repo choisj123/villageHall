@@ -218,7 +218,7 @@
       ></script>
   
       <!-- Notice-page.js 연결 -->
-      <script src="${pageContext.request.contextPath}/resources/js/Notice-page.js"></script>
+      <script src="${contextPath}/resources/js/Notice-page.js"></script>
 
 </body>
 </html>

@@ -60,25 +60,7 @@
                 </thead>
 
                 <tbody id="myBoardList">
-                	<c:choose>
-                		<c:when test="${empty boardList}">
-                			<tr>
-                				<th colspan="5">게시글이 존재하지 않습니다.</th>
-                			</tr>
-                		</c:when>
-                		
-                		<c:otherwise>
-                			<c:forEach var="board" items="${boardList}">
-                				<tr>
-                					<td>${board.boardNo}</td>
-                					<td>${board.boardTitle}</td>
-                					<td>${board.boardCreateDate}</td>
-                					<td>${board.readCount}</td>
-                					<td>좋아요공간</td>
-                				</tr>
-                			</c:forEach>
-                		</c:otherwise>
-                	</c:choose> 
+                  
                 </tbody>
 
 <!-- 페이징용 tfoot -->
