@@ -36,7 +36,7 @@
   padding: 10px;
 }
 
-#box-body {
+#myPage-content {
   height: 600px;
   flex-basis: 70%;
 
@@ -45,12 +45,12 @@
   padding-top: 150px;
 }
 
-#box-body > input {
+#myPage-content > input {
   border-radius: 5px;
   height: 23px;
 }
 
-#box-body > button {
+#myPage-content > button {
   text-decoration: none;
   border: 2px solid #55710f;
   border-radius: 5px;

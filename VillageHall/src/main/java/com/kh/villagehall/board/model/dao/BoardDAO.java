@@ -70,14 +70,4 @@ public class BoardDAO {
 		return boardList;
 	}
 
-	public List<Board> kakaoMap(Connection conn) {
-		
-		List<Board> kakaoBoardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("kakaoMap");
-		}
-		return null;
-	}
-
 }

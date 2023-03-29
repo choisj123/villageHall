@@ -13,7 +13,7 @@
 
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/notice.css"
+    href="${contextPath}/resources/css/Notice-page.css"
     />
 
     <!-- fontawesome -->
@@ -218,7 +218,7 @@
       ></script>
   
       <!-- Notice-page.js 연결 -->
-      <script src="${contextPath}/resources/js/Notice-page.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/Notice-page.js"></script>
 
 </body>
 </html>
