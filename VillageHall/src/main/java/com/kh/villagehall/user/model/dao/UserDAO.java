@@ -74,9 +74,39 @@ public class UserDAO {
 		return loginUser;
 	}
 
-	public int signUp(Connection conn, User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	/** 회원가입 DAO
+	 * @param conn
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int signUp(Connection conn, User user) throws Exception {
+	
+		
+		int result = 0; // 결과 저장용 변수
+		
+		try {
+			String sql = prop.getProperty("signUp");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getUserEmail());
+			pstmt.setString(2, user.getUserPw());
+			pstmt.setString(3, user.getUserNickname());
+			
+				
+			pstmt.setString(4, user.getUserTel());
+		
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		// 결과 반환
+		return result;
 	}
 	
 	
@@ -101,5 +131,66 @@ public class UserDAO {
 		return result;
 	}
 
+
+
+	/** 인증번호, 발급일 수정DAO
+	 * @param conn
+	 * @param inputEmail
+	 * @param cNumber
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateCertification(Connection conn, String inputEmail, String cNumber)throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateCertification");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, cNumber);
+			pstmt.setString(2, inputEmail);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+
+	
+	}
+
+	/** 인증번호 생성 DAO
+	 * @param conn
+	 * @param inputEmail
+	 * @param cNumber
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertCertification(Connection conn, String inputEmail, String cNumber) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("insertCertification");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, inputEmail);
+			pstmt.setString(2, cNumber);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
 
 }

@@ -22,7 +22,7 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/member/signUp.jsp";
+		String path = "/WEB-INF/views/user/signUp.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 	
