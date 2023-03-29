@@ -24,7 +24,7 @@ import com.kh.villagehall.common.wrapper.EncryptWrapper;
 		   urlPatterns = {"/user/login", 
 				   		  "/user/signUp", 
 				   		  "/mypage/myInfo",
-				   		  "mypage/myPage"
+				   		  "/mypage/myPage"
 				   		  })
 
 public class EncryptFilter extends HttpFilter implements Filter {
