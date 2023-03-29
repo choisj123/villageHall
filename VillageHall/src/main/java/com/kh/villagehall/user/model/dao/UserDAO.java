@@ -74,9 +74,39 @@ public class UserDAO {
 		return loginUser;
 	}
 
-	public int signUp(Connection conn, User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	/** 회원가입 DAO
+	 * @param conn
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int signUp(Connection conn, User user) throws Exception {
+	
+		
+		int result = 0; // 결과 저장용 변수
+		
+		try {
+			String sql = prop.getProperty("signUp");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getUserEmail());
+			pstmt.setString(2, user.getUserPw());
+			pstmt.setString(3, user.getUserNickname());
+			
+				
+			pstmt.setString(4, user.getUserTel());
+		
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		// 결과 반환
+		return result;
 	}
 
 

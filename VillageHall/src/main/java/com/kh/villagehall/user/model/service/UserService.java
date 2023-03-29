@@ -32,7 +32,7 @@ public class UserService {
 		return loginUser;
 	}
 
-	public int signUp(User user) {
+	public int signUp(User user) throws Exception {
 		
 		// 1) 커넥션 얻어오기
 		Connection conn = getConnection(); // DBCP 에서 얻어옴
