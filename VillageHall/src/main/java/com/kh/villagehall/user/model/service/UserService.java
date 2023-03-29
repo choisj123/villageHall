@@ -14,7 +14,7 @@ public class UserService {
 
 	/** 로그인 서비스
 	 * @param user
-	 * @return loginMember
+	 * @return loginUser
 	 * @throws Exception
 	 */
 	public User login(User user) throws Exception{
@@ -32,6 +32,11 @@ public class UserService {
 		return loginUser;
 	}
 
+	/** 회원가입 Service
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
 	public int signUp(User user) throws Exception {
 		
 		// 1) 커넥션 얻어오기
@@ -53,8 +58,31 @@ public class UserService {
 		return result;
 	}
 	
-
 	
+	/** 인증 번호 DB 추가 Service
+	 * @param inputEmail
+	 * @param cNumber
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertCertification(String inputEmail, String cNumber)throws Exception {
+
+		Connection conn = getConnection();
+		
+		// 1) 입력한 이메일과 일치하는 값이 있으면 수정(UPDATE)
+		int result = dao.updateCertification(conn, inputEmail, cNumber);
+		
+		// 2) 일치하는 이메일이 없는겨우 -> 처음으로 인증번호를 발급 받음 -> 삽입(INSERT)
+		if( result == 0 ) {
+			result = dao.insertCertification(conn, inputEmail, cNumber);
+		}
+		
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		return result;
+	}
 
 	
 }

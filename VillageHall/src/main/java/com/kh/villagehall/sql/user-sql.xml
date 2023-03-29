@@ -13,6 +13,21 @@
 		AND USER_DELETE_FG = 'N'
 	</entry>
 	
+	<!-- 인증번호 수정 -->
+	<entry key="updateCertification">
+		UPDATE CERTIFICATION SET
+		C_NUMBER = ?,
+		ISSUE_DT = SYSDATE
+		WHERE EMAIL = ?
+	</entry>
+	
+	<!-- 인증번호 생성 -->
+	<entry key="insertCertification">
+		INSERT INTO CERTIFICATION VALUES(?, ?, SYSDATE)
+	</entry>
+	
+
+	
 	
 	
 	
