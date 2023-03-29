@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
 <header>
   <!-- 클릭시 메인으로 이동하는 로고 -->
   <section>
-    <a href="/html/main-page.html">
-      <img src="/src/logo.png" id="home-logo" />
+    <a href="${contextPath}">
+      <img src="${contextPath}/resources/images/logo.png" id="home-logo" />
+
     </a>
   </section>
 
@@ -29,15 +31,28 @@ pageEncoding="UTF-8"%>
     </article>
   </section>
 
-  <!-- 로그인 / 회원가입 -->
-  <section class="login-signup-area">
-    <div>
-      <!-- 자물쇠 아이콘 -->
-      <a href="/html/sign-in-page.html" id="login" class="fa-solid fa-lock"
-        >&nbsp;로그인</a
-      >
-    </div>
-
-    <a href="/html/sign-up-page.html" id="signup">회원가입</a>
-  </section>
+  <!-- 로그인 / 회원가입 / 로그아웃 -->
+  <c:choose>
+  	<c:when test="${empty sessionScope.loginUser}">
+  		<section class="login-signup-area">
+  			<div>    	
+      			<!-- 자물쇠 아이콘 -->
+      				<a href="${contextPath}/user/login" id="login" class="fa-solid fa-lock"
+        			>&nbsp;로그인</a>
+    		</div>
+    		<a href="${contextPath}/user/signUp" id="signup">회원가입</a>
+  		</section>
+  	</c:when>
+  	<c:otherwise>
+  		<%-- 회원이름 / 로그아웃 --%>
+        <section class="logout-area">
+        	<span id="user-name">${loginUser.userNickname}님</span>&nbsp;&nbsp;
+        	<div>
+            	<%-- 자물쇠 아이콘 --%>
+            	<a href="${contextPath}/user/logout" id="logout" class="fa-solid fa-unlock"
+              	>&nbsp;로그아웃</a>
+          	</div>
+        </section>		
+  	</c:otherwise>
+  </c:choose>
 </header>
