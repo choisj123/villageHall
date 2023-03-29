@@ -73,5 +73,10 @@ public class UserDAO {
 		
 		return loginUser;
 	}
+
+	public int signUp(Connection conn, User user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
