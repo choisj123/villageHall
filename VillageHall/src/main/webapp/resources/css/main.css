@@ -175,7 +175,9 @@ nav ul li table td {
 }
 
 .right-body {
+	width: 912px;
   flex-basis: 80%;
+  width : 912px;
   border: none;
   display: flex;
   flex-direction: column;

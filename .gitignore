@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-/.metadata/
-/.env/
-/.sql/
-/.vscode/
-=======
+
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,eclipse,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,eclipse,visualstudiocode
 
@@ -158,16 +153,5 @@ $RECYCLE.BIN/
 *.sql
 
 /Servers
-<<<<<<< HEAD
->>>>>>> 84a02c348ed7b0f07fba665755d68cba424971b6
-=======
+/jspwork
 
-<<<<<<< HEAD
->>>>>>> defd60fd8251664facb42d458c9abf29226497d9
-=======
-<<<<<<< HEAD
-/jspwork
-=======
-/jspwork
->>>>>>> 95abe00d44688f42c5e4ce7b4699c810828d0f5f
->>>>>>> af0039ec8526c7e8ec0d6ce1834d63bd32580ef3

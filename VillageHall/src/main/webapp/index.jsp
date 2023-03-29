@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -71,7 +72,7 @@
             </div>
             <div
               id="map"
-              style="width: auto; height: 500px; margin-left: 15px"
+              style="width:auto; height: 500px; margin-left:15px"
             ></div>
           </section>
 
@@ -348,8 +349,11 @@
     <!-- main.js 연결 -->
     <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
+<<<<<<< HEAD
     <script src="/js/main-page.js"></script>
     <script src="${contextPath}/resources/js/weather.js"></script>
+=======
+>>>>>>> 6ee6744abeed221f28c66717de1d651fc5e4a9ff
     <script src="/js/mainPage.js"></script>
     <script src="/js/weather.js"></script>
 

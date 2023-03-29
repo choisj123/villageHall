@@ -1,4 +1,4 @@
-/* /* .right-body {
+/* .right-body {
   display: flex;
   flex-direction: column;
   padding: 20px 0px 10px 30px;
@@ -7,6 +7,7 @@
 
 =======
 } */
+
 /* 
 >>>>>>> af0039ec8526c7e8ec0d6ce1834d63bd32580ef3:VillageHall/src/main/webapp/resources/css/mainPage.css
 .right-body :nth-child(1) {
@@ -22,6 +23,7 @@
 =======
 } */
 >>>>>>> af0039ec8526c7e8ec0d6ce1834d63bd32580ef3:VillageHall/src/main/webapp/resources/css/mainPage.css
+
 
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
@@ -41,13 +43,13 @@
 }
 
 .inwi-left {
+	flex-basis : 20%;
   border: 1px solid black;
-  flex-basis: 20%;
   width: 50px;
   height: auto;
 }
 .inwi-right {
-  flex-basis: 80%;
+flex-basis : 80%;
   width: 50px;
   height: auto;
 }
@@ -175,7 +177,7 @@
 
 .notice-content,
 .fave-content {
-  /* margin: auto; */
+  margin: auto;
   font-size: 12px;
 }
 
