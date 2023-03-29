@@ -23,7 +23,8 @@ import com.kh.villagehall.common.wrapper.EncryptWrapper;
 @WebFilter(filterName = "encryptFilter", 
 		   urlPatterns = {"/user/login", 
 				   		  "/user/signUp", 
-				   		  "/mypage/myInfo"						
+				   		  "/mypage/myInfo",
+				   		  "mypage/myPage"
 				   		  })
 
 public class EncryptFilter extends HttpFilter implements Filter {
