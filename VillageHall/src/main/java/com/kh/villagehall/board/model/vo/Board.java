@@ -12,7 +12,30 @@ public class Board {
 	private String boardDeleteFG;
 	private int categoryNo;
 	private int userNo;
+	private int likeCount;
 	
+	private String userNickname;
+	
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
 
 	public Board() {
 		// TODO Auto-generated constructor stub

@@ -26,4 +26,18 @@ public class BoardService {
 		return boardList;
 	}
 
+	/** 내좋아요 목록 조회 Service
+	 * @param userNo 
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectMyLike(int userNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectMyLike(conn, userNo);
+		
+		return boardList;
+	}
+
 }

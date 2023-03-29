@@ -8,7 +8,16 @@ public class Comment {
 	private String commentDeleteFG;
 	private int userNo;
 	private int boardNo;
+	private String boardTitle;
 	
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
+
 	public Comment() {
 		// TODO Auto-generated constructor stub
 	}

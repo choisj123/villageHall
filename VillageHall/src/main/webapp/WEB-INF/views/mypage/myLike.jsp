@@ -60,81 +60,27 @@
                   </tr>
                 </thead>
 
-                <tbody>
-                  <tr>
-                    <td>1231</td>
-                    <td><a href="#">여기는 데이터불러오는 걸로 수정필요</a></td>
-                    <td>2023.03.04</td>
-                    <td>역삼불주먹</td>
-                    <td>1181</td>
-                    <td>18</td>
-                  </tr>
-                  <tr>
-                    <td>993</td>
-                    <td><a href="#">테스트2</a></td>
-                    <td>2023.02.08</td>
-                    <td>고양이만세</td>
-                    <td>111</td>
-                    <td>19</td>
-                  </tr>
-                  <tr>
-                    <td>951</td>
-                    <td><a href="#">가나다라마바사</a></td>
-                    <td>2023.01.14</td>
-                    <td>민수짱123</td>
-                    <td>141</td>
-                    <td>58</td>
-                  </tr>
-                  <tr>
-                    <td>831</td>
-                    <td><a href="#">새해복 많이받으세요</a></td>
-                    <td>2023.01.01</td>
-                    <td>개발하조만세</td>
-                    <td>11</td>
-                    <td>11</td>
-                  </tr>
-                  <tr>
-                    <td>777</td>
-                    <td><a href="#">맛집추천좀해주세요</a></td>
-                    <td>2022.11.12</td>
-                    <td>아이디도일이다</td>
-                    <td>181</td>
-                    <td>98</td>
-                  </tr>
-                  <tr>
-                    <td>556</td>
-                    <td><a href="#">할말이없다</a></td>
-                    <td>2022.08.24</td>
-                    <td>가나다라마바</td>
-                    <td>111</td>
-                    <td>8</td>
-                  </tr>
-                  <tr>
-                    <td>512</td>
-                    <td>
-                      <a href="#">2호선 시위때문에 다들 일찍 출발하세요</a>
-                    </td>
-                    <td>2022.06.03</td>
-                    <td>티없이맑은눈</td>
-                    <td>121</td>
-                    <td>12</td>
-                  </tr>
-                  <tr>
-                    <td>323</td>
-                    <td><a href="#">역삼역 맛집 정보</a></td>
-                    <td>2022.05.14</td>
-                    <td>캣캣캣캣</td>
-                    <td>11</td>
-                    <td>1</td>
-                  </tr>
-                  <tr>
-                    <td>123</td>
-                    <td><a href="#">가입했습니다 ^^</a></td>
-                    <td>2022.03.04</td>
-                    <td>작성자만세</td>
-                    <td>111</td>
-                    <td>8</td>
-                  </tr>
+                <tbody id="myLikeList">
+                	<c:choose>
+                		<c:when test="${empty boardList}">
+                			<tr>
+                				<th colspan="6">좋아요를 누른 게시글이 존재하지 않습니다.</th>
+                			</tr>
+                		</c:when>
+                		
+                		<c:otherwise>
+                			<c:forEach var="board" items="${boardList}">
+                				<tr>
+                					<td>${board.boardNo}</td>
+                					<td>${board.boardTitle}</td>
+                					<td>${board.boardCreateDate}</td>
+                					<td>${board.userNickname}</td>
+                					<td>${board.readCount}</td>
+                					<td>${board.likeCount}</td>
+                				</tr>
+                			</c:forEach>
+                		</c:otherwise>
+                	</c:choose>
                 </tbody>
               </table>
             </div>

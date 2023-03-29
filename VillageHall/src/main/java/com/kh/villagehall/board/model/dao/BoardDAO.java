@@ -59,7 +59,45 @@ public class BoardDAO {
 				board.setBoardTitle(rs.getString(2));
 				board.setBoardCreateDate(rs.getString(3));
 				board.setReadCount(rs.getInt(4));
+				board.setLikeCount(rs.getInt(5));
 				
+				boardList.add(board);				
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return boardList;
+	}
+
+	/** 내좋아요 목록 조회 DAO
+	 * @param conn
+	 * @param userNo 
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectMyLike(Connection conn, int userNo) throws Exception {
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectMyLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt(1));
+				board.setBoardTitle(rs.getString(2));
+				board.setBoardCreateDate(rs.getString(3));
+				board.setUserNickname(rs.getString(4));
+				board.setReadCount(rs.getInt(5));
+				board.setLikeCount(rs.getInt(6));
+								
 				boardList.add(board);				
 			}
 			

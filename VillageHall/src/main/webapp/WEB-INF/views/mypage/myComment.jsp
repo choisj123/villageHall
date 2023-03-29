@@ -48,47 +48,29 @@
             <div id="myComment" class="tabContent">
               <h3>내 댓글</h3>
               <table class="commentTable">
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="#">
-                        <span>반갑습니다</span><br />
-                        <span>2023.09.08</span><br />
-                        <span>오늘 가입했습니다~</span>
-                      </a>
-                      <hr />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">
-                        <span>좋은정보 감사합니다</span><br />
-                        <span>2022.09.08</span><br />
-                        <span>강남역에 새로운 라멘집 오픈했어요!</span>
-                      </a>
-                      <hr />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">
-                        <span>아 우산 챙겨야겠네요 ㅠ</span><br />
-                        <span>2021.07.08</span><br />
-                        <span>오늘 하루종일 폭우래요 우산챙기세요</span>
-                      </a>
-                      <hr />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">
-                        <span>감사합니다 ~~</span><br />
-                        <span>2021.02.08</span><br />
-                        <span>무료나눔합니다(역삼역 근처에서!)</span>
-                      </a>
-                      <hr />
-                    </td>
-                  </tr>
+                <tbody id="myCommentList">
+                	<c:choose>
+                		<c:when test="${empty commentList}">
+                			<tr>
+                				<th>댓글이 존재하지 않습니다.</th>
+                			</tr>
+                		</c:when>
+                		
+                		<c:otherwise>
+                			<c:forEach var="comment" items="${commentList}">
+                				<tr>
+                					<td>
+                						<a href="#">
+                							<span>${comment.commentContent}</span><br>
+                							<span>${comment.commentCreateDate}</span><br>
+                							<span>${comment.boardTitle}</span><br>
+                						</a>
+                						<hr>
+                					</td>
+                				</tr>
+                			</c:forEach>
+                		</c:otherwise>
+                	</c:choose>                  
                 </tbody>
               </table>
             </div>

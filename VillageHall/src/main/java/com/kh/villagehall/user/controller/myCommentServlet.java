@@ -34,10 +34,12 @@ public class myCommentServlet extends HttpServlet {
 			
 			List<Comment> commentList = service.selectMyComment(userNo);
 			
+			req.setAttribute("commentList", commentList);
+			req.getRequestDispatcher(path).forward(req, resp);
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher(path).forward(req, resp);
 	}
 }

@@ -74,7 +74,7 @@
                 					<td>${board.boardTitle}</td>
                 					<td>${board.boardCreateDate}</td>
                 					<td>${board.readCount}</td>
-                					<td>좋아요공간</td>
+                					<td>${board.likeCount}</td>
                 				</tr>
                 			</c:forEach>
                 		</c:otherwise>
