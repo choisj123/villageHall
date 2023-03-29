@@ -1,12 +1,11 @@
-(() => {
-	const myBoardList = document.getElementById("myBoardList");
-	
 	$.ajax({
 		url : "mypage/myBoard",
 		type : "GET",
+		data : "loginUser",
 		dataType : "JSON",
 		
 		success : function(boardList){
+			const myBoardList = document.getElementById("myBoardList");
 			console.log(boardList)
 			
 			myBoardList.innerHTML = "";
@@ -35,4 +34,3 @@
 			console.log("에러 발생");
 		}
 	})	
-})();

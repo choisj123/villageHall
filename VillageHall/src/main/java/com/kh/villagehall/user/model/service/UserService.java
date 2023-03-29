@@ -31,9 +31,15 @@ public class UserService {
 		// 결과 반환
 		return loginUser;
 	}
+	
+	/** 회원가입 Service
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int signUp(User user) throws Exception {
 
-	public int signUp(User user) {
-		
+
 		// 1) 커넥션 얻어오기
 		Connection conn = getConnection(); // DBCP 에서 얻어옴
 				

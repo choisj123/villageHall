@@ -17,7 +17,7 @@ import com.kh.villagehall.user.model.vo.User;
 @WebServlet("/mypage/myBoard")
 public class MyBoardServlet extends HttpServlet {
 	
-	// 내글 목록 페이지 이동
+	// 내글목록 페이지 이동
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
