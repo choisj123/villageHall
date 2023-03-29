@@ -74,89 +74,10 @@ public class UserDAO {
 		return loginUser;
 	}
 
-	/** 회원가입 DAO
-	 * @param conn
-	 * @param user
-	 * @return
-	 */
-	public int signUp(Connection conn, User user) throws Exception{
+	public int signUp(Connection conn, User user) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	/** 회원 정보 수정 DAO
-	 * @param conn
-	 * @param user
-	 * @return
-	 */
-	public int updateUser(Connection conn, User user) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	/** 비밀번호 변경 DAO
-	 * @param conn
-	 * @param currentPw
-	 * @param newPw
-	 * @param userNo
-	 * @return
-	 */
-	public int changePw(Connection conn, String currentPw, String newPw, int userNo) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/** 회원 탈퇴 DAO
-	 * @param conn
-	 * @param userNo
-	 * @param userPw
-	 * @return
-	 */
-	public int deleteFG(Connection conn, int userNo, String userPw) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/** 이메일 중복 검사 DAO
-	 * @param conn
-	 * @param userEmail
-	 * @return
-	 */
-	public int emailDupCheck(Connection conn, String userEmail) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/** 닉네임 중복 검사 DAO 
-	 * @param conn
-	 * @param userNickname
-	 * @return
-	 */
-	public int nicknameDupCheck(Connection conn, String userNickname) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int updateCertification(Connection conn, String inputEmail, String cNumber) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	public int updateProfileImage(Connection conn, int userNo, String profileImage) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int insertCertification(Connection conn, String inputEmail, String cNumber) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int checkNumber(Connection conn, String inputEmail, String cNumber) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
-	
 }
