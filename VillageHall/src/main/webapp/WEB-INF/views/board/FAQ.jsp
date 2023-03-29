@@ -14,7 +14,7 @@
 
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/FAQ-page.css"
+    href="${contextPath}/resources/css/FAQ.css"
     />
 
     <!-- fontawesome -->
