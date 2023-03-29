@@ -1,183 +1,94 @@
-* {
-    box-sizing: border-box;
-  }
-  
-body {
-    margin: 0;
-    padding: 0;
-}
-  
-main {
-    width: 1140px;
-    margin: auto;
-}
-
-  
-.confirm{ color : green;}
-
-.error{  color : red;  }  
-/************헤더 부분 시작***********/
-header {
-    height: 130px;
-    display: flex;
-    border-bottom: 1px solid #55710f;
-}
-  
-/* 로고 영역 */
-header > section:nth-child(1) {
-    flex-basis: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  
-#home-logo {
-    width: 120px;
-    height: 100px;
-    margin-left: 510px;
-}
-  
-.sign-up-text {
+/* 회원가입 영역 */
+.signUp-content{
     display: flex;
     justify-content: center;
 }
 
-/**********바디 부분 시작***********/
-
-.content{
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
+/* 필수 */
+.required{
+    color : red;
+    padding : 0 5px;
 }
 
-.content-2{
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
+/* 회원가입 폼 */
+form[name="signUp-form"]{
+    margin-top: 30px;
 }
 
-#sign-up-area{
-    width: 600px; 
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    border-radius: 20px;
-    
+/* 회원가입 폼 내부 input 제목(label) */
+form[name="signUp-form"] > label{
+    display: block;
+    margin-top: 40px;
+    font-size : 18px;
 }
 
-.input-text{
-    width: 280px;
-    height: 35px;
-    background-color: rgb(240, 244, 240);
-    border:solid 1px rgb(240, 244, 240);
-    outline: 0;
-    border-radius: 5px;
-    
-}
+/* input을 감싸고있는 div */
+.signUp-input-area{
+    width: 500px;
+    height: 50px;
 
-#email-check-btn{
-    background-color: #55710F;
-    color:white;
-    border-radius: 5px;
-    border: solid #55710F;
-    width: 70px;
-    cursor: pointer;
-}
+    margin-bottom : 10px;
 
-
-
-
-
-
-
-/*회원가입 버튼부분 article*/
-.sign-up-article-1{
+    border-bottom : 2px solid #ddd;
 
     display: flex;
-    justify-content: center;
-    padding-top: 10px;
-     
+    align-items: center; /* 세로 중앙 */
 }
 
-/*회원가입 버튼*/
-#signup-btn{
-    width: 300px;
-    height: 45px;
-    background-color: #55710f;
-    border: 1px solid #55710f;
-    color: white;
-    border-radius: 5px;
-    font-size: medium;
-    cursor: pointer;
-    
+/* input에 포커스가 맞춰졌을 때 밑줄 색 변화 */
+/* :focus-within  : 내부 input에 포커스가 맞춰졌을 때  */
+.signUp-input-area:focus-within  {
+    border-bottom: 2px solid #455ba8;
 }
 
-/*카카오로 시작하기 부분 article*/
-.sign-up-article-2{
+/* input태그 */
+.signUp-input-area > input{
+    width: 70%;
+    height: 10px;
+    padding : 15px 10px 5px; /* 상, 좌우, 하 */
 
-    display: flex;
-    justify-content: center;
-    padding-top: 15px;
-    padding-bottom: 150px;
-
-  }
-
-.sign-up-article-2 a {
-    text-decoration: none;
-} 
-
-
-/*카카오로 시작하기 버튼*/
-.kakao-signup{
-    border: 1px solid yellow;
-    background-color: yellow;
-    color: black;
-    width: 250px;
-    height:35px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    padding-top: 8px;
-    
-    
-}
-
-
-body > ul{
-    list-style: none;
-}
-
-#text-balloon {
-
-    display:flex;
-    padding-right: 20px;
-    padding-top: 2px;
-    
-}
-
-/*푸터*/
-footer {
-    background-color: #d0d3c6;
-    height: 150px;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    padding-top: 30px;
-  }
-  
-  footer p {
+    font-size: 16px;
     font-weight: bold;
-  }
-  footer a {
-    
-    text-decoration: none;
-    color: black;
-  }
-  
+
+    border : 0;
+    outline: 0; /* input 선택 시 테두리 */
+}
 
 
 
 
+/* button 태그 */
+.signUp-input-area > button{
+    width: 30%;
+    height: 70%;
+    background-color: white;
+    border : 1px solid gray;
+    cursor: pointer;
+}
 
 
+/* 회원가입 관련 메세지 */
+.signUp-message{
+    font-size: 14px;
+    letter-spacing: -1px; /* 자간 */
+}
+
+.confirm{ color : green;}
+.error{  color : red;  }
+
+
+/* 가입하기 버튼 */
+#signUp-btn{
+    width: 100%;
+    padding : 10px;
+    margin: 50px 0;
+    border : 0;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color : white;
+    background-color: #455ba8;
+
+    cursor: pointer;
+}

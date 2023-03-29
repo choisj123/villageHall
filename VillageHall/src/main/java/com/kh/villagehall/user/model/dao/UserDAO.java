@@ -1,5 +1,6 @@
 package com.kh.villagehall.user.model.dao;
 
+
 import static com.kh.villagehall.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
@@ -72,5 +73,5 @@ public class UserDAO {
 		
 		return loginUser;
 	}
-
+	
 }

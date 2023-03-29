@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
@@ -5,6 +6,7 @@
 
 <section class="left-body">
     <article>
+
 		<%-- 로그인/로그아웃(if-else) --%>
 		<c:choose>
 			<%-- 로그인 되있지 않은 경우 --%>
@@ -22,7 +24,6 @@
 		</c:choose>
     	<!-- 이미지 + 로그인 -->
     	
-
     </article>
     <!-- 네비 (메뉴바)-->
     <nav>
