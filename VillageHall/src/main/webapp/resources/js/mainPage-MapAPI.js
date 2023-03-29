@@ -114,3 +114,11 @@ function showMarkersByCategory(category) {
       }
     }
   }
+
+// 카테고리 선택 폼
+var categorySelect = document.getElementById('category');
+
+categorySelect.onchange = function() {
+  var category = this.value;
+  showMarkersByCategory(category);
+};

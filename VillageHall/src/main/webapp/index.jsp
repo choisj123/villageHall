@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -72,7 +71,7 @@
             </div>
             <div
               id="map"
-              style="width:auto; height: 500px; margin-left:15px"
+              style="width: auto; height: 500px; margin-left: 15px"
             ></div>
           </section>
 
@@ -313,7 +312,7 @@
             <div class="box">
               <!-- 날짜 -->
               <div class="FirstBox">
-                <h1 class="date">오늘의날씨..</h1>
+                <h1 class="date">오늘의날씨</h1>
               </div>
               <!-- 날씨 입력 -->
               <div class="SecondBox">
@@ -349,14 +348,8 @@
     <!-- main.js 연결 -->
     <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
-<<<<<<< HEAD
-    <script src="/js/main-page.js"></script>
-    <script src="${contextPath}/resources/js/weather.js"></script>
-=======
->>>>>>> 6ee6744abeed221f28c66717de1d651fc5e4a9ff
     <script src="/js/mainPage.js"></script>
     <script src="/js/weather.js"></script>
-
 
     <script src="${contextPath}/resources/js/mainPage-MapAPI.js"></script>
   </body>
