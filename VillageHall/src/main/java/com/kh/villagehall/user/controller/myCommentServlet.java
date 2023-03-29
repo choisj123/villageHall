@@ -1,4 +1,4 @@
-package com.kh.villagehall.board.controller;
+package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,38 +9,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kh.villagehall.board.model.service.BoardService;
-import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.board.model.service.CommentService;
+import com.kh.villagehall.comment.model.vo.Comment;
 import com.kh.villagehall.user.model.vo.User;
 
-@WebServlet("/mypage/myBoard")
-public class MyBoardServlet extends HttpServlet {
+@WebServlet("/mypage/myComment")
+public class myCommentServlet extends HttpServlet {
 	
 	// 내글목록 페이지 이동
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// 로그인 객체 불러오
+		// 로그인 객체 불러오기
 		User loginUser = (User)req.getSession().getAttribute("loginUser");
 		int userNo = loginUser.getUserNo();
 		
-		String path = "/WEB-INF/views/mypage/myBoard.jsp";
-		req.getRequestDispatcher(path).forward(req, resp);
+		String path = "/WEB-INF/views/mypage/myComment.jsp";
 		
-		// 내글목록 데이터 불러오기
+		
+		// 내댓글 목록 데이터 불러오고 저장
 		try {
-			BoardService service = new BoardService();
+			CommentService service = new CommentService();
 			
-			List<Board> boardList = service.selectMyBoard(userNo);
-			System.out.println(boardList);
+			List<Comment> commentList = service.selectMyComment(userNo);
 			
-			new Gson().toJson(boardList, resp.getWriter());
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+		req.getRequestDispatcher(path).forward(req, resp);
 	}
-	
 }
