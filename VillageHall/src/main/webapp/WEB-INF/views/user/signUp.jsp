@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +11,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <link
       rel="stylesheet"
-      href="${contextPath}/resources/css/main.css"
-    />
+      href="${contextPath}/resources/css/signUp.css"
+      >
 
     <!-- fontawesome -->
     <script
@@ -21,110 +20,146 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       crossorigin="anonymous"
     ></script>
   </head>
+  
   <body>
-    <main>
-      <!-- header include -->
+  
+       <main>
+        <!-- hedaer include -->
+        <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-      <!-- 내부 접근 절대 경로 -->
-      <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-      <!--콘텐츠 작성 영역-->
-      <section class="content">
-        <h1 class="sign-up-text">회원가입</h1>
-      </section>
+         <!-- 회원가입  -->
+         <section class="signUp-content">
+ 
+            <!-- 회원가입 화면 전환 주소(GET)와 같은 주소로 
+                실제 회원가입을 요청(POST)
+                -> 요청 주소가 같아도 데이터 전달 방식이 다르면 중복 허용
+            -->
 
-      <section class="content-2">
-        <!--회원가입시 필요한 정보 기입 영역-->
-        <form action="#" name="sign-up-form">
-          <fieldset id="sign-up-area">
-            <section class="sign-up-1">
-              <!--이메일-->
-              이메일<br /><input
-                type="text"
-                name="userEmail"
-                class="input-text"
-                id="userEmail"
-                placeholder="아이디(이메일)"
-                maxlength="30"
-                autocomplete="off"
-                required
-                autofocus
-              />
-              <button id="email-check-btn">인증</button><br />
-              <span class="signUp-message" id="emailMessage"
-                >메일을 받을 수 있는 이메일을 입력해주세요.</span
-              >
+            <!-- 
+                절대경로 : /community/member/signUp
+                상대경로 : signUp
+             -->
 
-              <!--이메일 인증번호 확인-->
-              이메일 인증<br /><input
-                type="text"
-                name="auth_number"
-                class="input-text"
-              />
-              <button id="email-check-btn">확인</button><br /><br />
-
-              <!--비밀번호-->
-              비밀번호<br /><input
-                type="password"
-                input
-                name="password"
-                id="pw1"
-                class="input-text"
-              /><br />
-              <span id="result1" class="confirm"></span><br />
-              비밀번호 확인<br /><input
-                type="password"
-                input
-                name="password-check"
-                id="pw2"
-                class="input-text"
-              /><br />
-              <span id="result2" class="confirm"></span><br />
-              <!--닉네임-->
-              닉네임<br /><input
-                type="text"
-                name="Nickname"
-                class="input-text"
-              />
-              <br /><br /><br />
-
-              <!--프로필사진-->
-              프로필사진<br />
-              <input type="file" name="profile-pic" />
-            </section>
-          </fieldset>
-
-          <!--회원가입/카카오로 시작하기-->
-          <br />
-          <section>
-            <article class="sign-up-article-1">
-              <button type="submit" id="signup-btn">회원가입</button><br />
-            </article>
-
-            <article class="sign-up-article-2">
-              <a href="javascript:void(0)" onclick="kakaoLogin();">
-                <img src="/src/kakao_login_medium_wide.png" />
-              </a>
-            </article>
-          </section>
-        </form>
-      </section>
-
-      <script src="/js/sign-up-page.js"></script>
-    </main>
-
+            <form action="signUp" method="POST" name="signUp-form" onsubmit="return signUpValidate()">
+ 
+                 <label for="userEmail">
+                     <span class="required">*</span> 아이디(이메일)
+                 </label>
+                 
+                 <div class="signUp-input-area">
+                     <input type="text" id="userEmail" name="inputEmail"
+                             placeholder="아이디(이메일)" maxlength="30"
+                             autocomplete="off" required>
+ 
+                     <!-- autocomplete="off" : 자동완성 미사용 -->
+                     <!-- required : 필수 작성 input 태그 -->
+                     
+                     <!-- 자바스크립로 코드 추가 예정 -->
+                     <button type="button" id="sendBtn">인증번호 받기</button>
+                 </div>
+ 
+                 <span class="signUp-message" id="emailMessage">메일을 받을 수 있는 이메일을 입력해주세요.</span>
+ 
+ 
+ 
+                 <label for="emailCheck">
+                     <span class="required">*</span> 인증번호
+                 </label>
+                 
+                 <div class="signUp-input-area">
+                     <!-- cNumber -->
+                     <input type="text" id="cNumber"  
+                             placeholder="인증번호 입력" maxlength="6"
+                             autocomplete="off">
+ 
+                     <button type="button" id="cBtn">인증하기</button>
+                 </div>
+ 
+                 <!-- 5:00 타이머 / 인증되었습니다(녹색) / 인증 시간이 만료되었습니다.(빨간색) -->
+                 <span class="signUp-message" id="cMessage" ></span>
+ 
+ 
+ 
+ 
+                 <label for="userPw">
+                     <span class="required">*</span> 비밀번호
+                 </label>
+                 
+                 <div class="signUp-input-area">
+                     <input type="text" id="userPw" name="inputPw"
+                             placeholder="비밀번호" maxlength="30">
+                 </div>
+ 
+                 <div class="signUp-input-area">
+                     <input type="text" id="userPwConfirm"
+                             placeholder="비밀번호 확인" maxlength="30">
+                 </div>
+ 
+                 <span class="signUp-message" id="pwMessage">영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.</span>
+ 
+ 
+ 
+ 
+                 <label for="userNickname">
+                     <span class="required">*</span> 닉네임
+                 </label>
+                 
+                 <div class="signUp-input-area">
+                     <input type="text" id="userNickname" name="inputNickname"
+                             placeholder="닉네임" maxlength="10">
+                 </div>
+ 
+                 <span class="signUp-message" id="nicknameMessage">영어/숫자/한글 2~10글자 사이로 작성해주세요.</span>
+ 
+ 
+ 
+                 <label for="userTel">
+                     <span class="required">*</span> 전화번호
+                 </label>
+                 
+                 <div class="signUp-input-area">
+                     <input type="text" id="userTel" name="inputTel"
+                             placeholder="(- 없이 숫자만 입력)" maxlength="11">
+                 </div>
+ 
+                 <span class="signUp-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
+                 
+                 <label for="profile">
+               		<span class="required">*</span> 프로필 사진
+                 </label>
+                 
+				<div class="signUp-profile-area">
+				
+                 	<input type="file" id="userPic">
+                 	
+                 </div>
+                
+              
+              
+ 
+                 <button type="submit" id="signUp-btn">가입하기</button>
+ 
+ 
+             </form>
+             
+         </section>
+ 
+ 
+     </main>
+ 
     <!-- footer include -->
-    <!-- 내부 접근 절대 경로 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <!-- jQuery 라이브러리 추가 -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
 
-    <!-- main.js 연결 -->
-    <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
+    <!-- jQuery 라이브러리 추가(CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- signUp.js 연결 -->
+    <script src="${contextPath}/resources/js/member/signUp.js"></script>
+  
   </body>
+  
+
+
 </html>
