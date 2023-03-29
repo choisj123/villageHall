@@ -11,38 +11,27 @@
   padding: 10px;
 }
 
-.tab button {
+.tab > a {
   background-color: inherit;
   border: none;
   outline: none;
+  text-decoration: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 10px 15px;
   transition: 0.3s;
   font-size: 15px;
   font-weight: normal;
   color: black;
 }
 
-.tab button:hover {
+.tab > a:hover {
   background-color: #55710f;
   color: white;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
-.tab button.active {
-  background-color: #55710f;
-  font-weight: bold;
-  color: white;
-  border-radius: 20px;
-}
 
-/*내글 목록 먼저 보이게*/
-#myContent {
-  display: block;
-}
-
-.tabcontent {
-  display: none;
+.tabContent {
   padding: 6px 12px;
   border: 1px solid white;
   border-top: none;

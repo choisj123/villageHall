@@ -1,7 +1,7 @@
 package com.kh.villagehall.user.model.service;
 
-import static com.kh.villagehall.common.JDBCTemplate.*; 
 
+import static com.kh.villagehall.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
@@ -11,7 +11,6 @@ import com.kh.villagehall.user.model.vo.User;
 public class UserService {
 	
 	private UserDAO dao = new UserDAO();
-	
 
 	/** 로그인 서비스
 	 * @param user

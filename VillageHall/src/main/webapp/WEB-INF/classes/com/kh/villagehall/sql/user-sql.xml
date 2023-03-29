@@ -3,8 +3,14 @@
 <properties>
 	<comment>user-sql.xml</comment>
 	
-	<entry key="">
-	
+	<entry key="login">
+		SELECT USER_NO, USER_EMAIL, USER_NICKNAME, USER_TEL, 
+		TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE,
+		PROFILE_IMG
+		FROM "USER"
+		WHERE USER_EMAIL = ?
+		AND USER_PW = ?
+		AND USER_DELETE_FG = 'N'
 	</entry>
 	
 	
