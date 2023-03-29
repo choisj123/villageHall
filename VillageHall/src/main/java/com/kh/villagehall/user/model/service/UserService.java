@@ -66,7 +66,7 @@ public class UserService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int updateMember(User user) throws Exception{
+	public int updateUser(User user) throws Exception{
 		
 		Connection conn = getConnection();
 		
@@ -109,7 +109,7 @@ public class UserService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int secession(int userNo, String userPw) throws Exception{
+	public int deleteFG(int userNo, String userPw) throws Exception{
 		Connection conn = getConnection(); // DBCP에서 얻어옴
 		
 		int result = dao.deleteFG(conn, userNo, userPw);
