@@ -19,10 +19,8 @@
   display: flex;
   flex-direction: column;
 
-  flex-basis: 85px;
-
   width: 750px;
-  height: 500px;
+  height: 700px;
 
   padding-left: 100px;
 }
@@ -37,12 +35,12 @@
 }
 
 #box-body {
-  height: 600px;
-  flex-basis: 70%;
+  height: 660px;
+  flex-basis: 90%;
 
   border: 1px solid black;
   text-align: center;
-  padding-top: 150px;
+  padding-top: 200px;
 }
 
 #box-body > input {
@@ -58,8 +56,4 @@
   color: white;
 }
 
-.myPage-box > div:last-child {
-  flex-basis: 15%;
 
-  border: 1px solid black;
-}

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,14 +9,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>마을회관</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
-    <link rel="stylesheet" href="${contextPath}/resources/css/myPage-myInfo.css"/>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af34b09f8f2cdee07cf990ab549e6220"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af34b09f8f2cdee07cf990ab549e6220&libraries=LIBRARY"></script>
-    <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="${contextPath}/resources/css/myPage-myInfo.css"
+    />
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <main>
+      <!-- header -->
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
       <!-- 바디 부분 시작 -->
@@ -25,56 +33,69 @@
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
           <h2>마이페이지</h2>
-          <hr />
-          <div class="myPage-box">
-            <div>내 정보 수정</div>
-            <form action="#" method="post">
-              <div id="myPage-content">
-                <table>
-                  <tr>
-                    <td>
-                      <tr colspan="3">
-                        <label for="profile-image">프로필 사진 변경</label>
-                        <input type="image" id="profile-image" />
-                        <br />
-                      </tr>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
-                      <button type="submit">프로필 사진 변경</button><br />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>닉네임</td>
-                    <td>
-                      <input type="text" />
-                    </td>
-                    <td><button type="submit">중복 확인</button><br /></td>
-                  </tr>
-                  <tr>
-                    <td>비밀번호</td>
-                    <td><input type="password" /> <br /></td>
-                  </tr>
-                  <tr>
-                    <td>비밀번호 확인</td>
-                    <td><input type="password" /> <br /><br /></td>
-                  </tr>
-                  <tr>
-                    <td colspan="3">
-                      <button type="submit" id="updateMyInfo">
-                        회원정보 수정
-                      </button>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div></div>
-            </form>
-          </div>
-        </section>
-      </section>
-    </main>
+
+          <!-- 탭 메뉴 -->
+          <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
+
+          <!-- 내 정보 -->
+          <div id="myInfo" class="tabContent">
+          
+                  <!-- 
+                    enctype : form 태그가 데이터를 서버로 제출할 때 
+                              데이터의 인코딩 형식을 지정하는 속성
+
+                    1) application/x-www-form-urlencoded
+                        - 모든 문자를 서버로 제출하기 전에 인코딩 (모든 데이터가 문자)
+                          (form태그 기본값)
+
+                    2) multipart/form-data : 제출할 때 인코딩을 하지 않음
+                        -> 모든 데이터가 원본 형태를 유지(파일이 파일상태로 서버로 제출)
+                        (주의) multipart/form-data 로 설정 시 method는 무조건 POST
+                -->
+          
+            <form action="profile" method="POST" name="myPage-form" 
+            	enctype="multipart/form-data" onsubmit="return profileValidate()">
+				<div class="profile-image-area">
+					<c:if test="${empty loginUser.profileImg}">
+                            <img src="${contextPath}/resources/images/profile.png" id="profile-image">
+                    </c:if>
+
+					<c:if test="${!empty loginUser.profileImg}">
+                            <img src="${contextPath}${loginUser.profileImg}" id="profile-image">
+                    </c:if>
+
+                    <!-- 프로필 이미지 삭제 버튼 -->
+                    <span id="delete-image">x</span>
+
+                </div>
+				<div class="profile-btn-area">
+	                <label for="input-image">이미지 선택</label>
+	                <input type="file" name="profileImage" id="input-image" accept="image/*">
+	                <!-- accept="image/*" : 이미지 파일 확장자만 선택 허용 -->
+	                <!-- accept="video/*" : 동영상 파일 확장자만 선택 허용 -->
+	                <!-- accept=".pdf" : pdf파일만 선택 허용 -->
+	
+	                <button type="submit">변경하기</button>
+                </div>
+
+                <div class="myPage-row">
+                    <label>이메일</label>
+                    <span>${loginUser.userEmail}</span>
+                </div>
+
+                <div class="myPage-row">
+                    <label>가입일</label>
+                    <span>${loginUser.enrollDate}</span>
+                </div>
+
+                    <!-- 삭제버튼(x)이 눌러짐을 기록하는 숨겨진 input 태그 -->
+                    <!-- 0 : 안눌러짐   /   1: 눌러짐 -->
+                <input type="hidden" name="delete" id="delete" value="0">
+           </form>
+         </div>
+       </section>
+     </section>
+   </main>
 
     <!-- 푸터 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

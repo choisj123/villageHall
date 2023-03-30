@@ -1,0 +1,108 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>마을회관</title>
+    <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="${contextPath}/resources/css/myPage-myInfo.css"
+    />
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <!-- header -->
+      <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+      <!-- 바디 부분 시작 -->
+      <section class="body">
+        <jsp:include page="/WEB-INF/views/common/leftBody.jsp" />
+
+        <!-- 메인 콘텐츠 -->
+        <section class="right-body">
+          <h2>마이페이지</h2>
+
+          <!-- 탭 메뉴 -->
+          <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
+
+          <!-- 회원 탈퇴 -->
+          <div id="deleteUser" class="tabContent">
+          	 <form action="secession" method="POST" name="myPage-form" onsubmit="return secessionValidate()" >
+
+                    <div class="myPage-row">
+                        <label>비밀번호</label>
+                        <input type="password" name="memberPw" id="memberPw" maxlength="30">              
+                    </div>
+
+                    
+                    <div class="myPage-row info-title">
+                        <label>회원 탈퇴 약관</label>
+                    </div>
+
+                    <pre id="secession-terms">
+제1조
+이 약관은 샘플 약관입니다.
+
+① 약관 내용 1
+
+② 약관 내용 2
+
+③ 약관 내용 3
+
+④ 약관 내용 4
+
+
+제2조
+이 약관은 샘플 약관입니다.
+
+① 약관 내용 1
+
+② 약관 내용 2
+
+③ 약관 내용 3
+
+④ 약관 내용 4
+
+                    </pre>
+
+                    <div>
+                        <input type="checkbox" name="agree" id="agree">
+                        <label for="agree">위 약관에 동의합니다.</label>
+                    </div>
+
+
+                    <button id="info-update-btn">탈퇴</button>
+
+                </form>
+          	
+          
+                
+         </div>
+       </section>
+     </section>
+   </main>
+
+    <!-- 푸터 -->
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    <script src="/js/myPage.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
