@@ -23,6 +23,8 @@ public class CommentService {
 		
 		List<Comment> commentList = dao.selectMyComment(conn, userNo);
 		
+		close(conn);
+		
 		return commentList;
 	}
 

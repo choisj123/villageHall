@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -37,7 +35,14 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          인게시판 확인
+            게시글조회 확인용
+           	<span>제목 : ${board.boardTitle}</span> <br>
+            <span>작성자 : ${board.userNickname}</span><br>
+            <span>내용 : ${board.boardContent}</span>
+            
+            <c:if test="${loginUser.userNickname == board.userNickname}">
+            	<a href="#">게시글 수정</a>
+            </c:if>
             
           </section>
         </section>

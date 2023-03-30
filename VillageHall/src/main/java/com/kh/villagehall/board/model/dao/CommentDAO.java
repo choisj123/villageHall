@@ -57,6 +57,7 @@ public class CommentDAO {
 				comment.setCommentContent(rs.getString(1));
 				comment.setCommentCreateDate(rs.getString(2));
 				comment.setBoardTitle(rs.getString(3));
+				comment.setBoardNo(rs.getInt(4));
 				
 				commentList.add(comment);
 			}

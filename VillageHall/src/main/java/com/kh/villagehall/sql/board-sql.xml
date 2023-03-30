@@ -38,6 +38,12 @@
 		ORDER BY B.BOARD_NO DESC
 	</entry>
 	
-	
+	<!-- 게시글 상세 조회 -->
+	<entry key="selectBoardDetail">
+		SELECT BOARD_TITLE, USER_NICKNAME, BOARD_CONTENT
+		FROM BOARD
+		JOIN "USER" USING (USER_NO)
+		WHERE BOARD_NO = ?
+	</entry>
 	
 </properties>

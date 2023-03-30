@@ -17,6 +17,22 @@ public class User {
 	public User() {}
 
 	
+	
+	public User(int userNo, String userEmail, String userPw, String userNickname, String userTel, String enrollDate,
+			String profileImg, String kakaoUserKey, String userDeleteFG, String administer) {
+		super();
+		this.userNo = userNo;
+		this.userEmail = userEmail;
+		this.userPw = userPw;
+		this.userNickname = userNickname;
+		this.userTel = userTel;
+		this.enrollDate = enrollDate;
+		this.profileImg = profileImg;
+		this.kakaoUserKey = kakaoUserKey;
+		this.userDeleteFG = userDeleteFG;
+		this.administer = administer;
+	}
+
 	public int getUserNo() {
 		return userNo;
 	}

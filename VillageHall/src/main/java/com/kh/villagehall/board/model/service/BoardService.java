@@ -23,6 +23,8 @@ public class BoardService {
 		
 		List<Board> boardList = dao.selectMyBoard(conn, userNo);
 		
+		close(conn);
+		
 		return boardList;
 	}
 
@@ -37,6 +39,8 @@ public class BoardService {
 		
 		List<Board> boardList = dao.selectMyLike(conn, userNo);
 		
+		close(conn);
+		
 		return boardList;
 	}
 
@@ -50,7 +54,25 @@ public class BoardService {
 		
 		List<Board> boardList = dao.selectAllBoard(conn);
 		
+		close(conn);
+		
 		return boardList;
+	}
+	
+	/** 게시글 상세조회 service
+	 * @param boardNo
+	 * @return board
+	 * @throws Exception
+	 */
+	public Board selectBoardDetail(int boardNo) throws Exception {
+
+		Connection conn = getConnection();
+		
+		Board board = dao.selectBoardDetail(conn, boardNo);
+		
+		close(conn);
+		
+		return board;
 	}
 
 }

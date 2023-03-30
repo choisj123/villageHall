@@ -12,12 +12,28 @@ public class Board {
 	private String boardDeleteFG;
 	private int categoryNo;
 	private int userNo;
-	private int likeCount;
 	
+	private int likeCount;	
 	private String userNickname;
 	
 	public Board() {}
 	
+	public Board(int boardNo, String boardTitle, String boardContent, String boardCreateDate, String boardUpdateDate,
+			int readCount, int latitude, int longtitude, String boardDeleteFG, int categoryNo, int userNo) 
+		{
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardCreateDate = boardCreateDate;
+		this.boardUpdateDate = boardUpdateDate;
+		this.readCount = readCount;
+		this.latitude = latitude;
+		this.longtitude = longtitude;
+		this.boardDeleteFG = boardDeleteFG;
+		this.categoryNo = categoryNo;
+		this.userNo = userNo;
+	}
 
 	public String getUserNickname() {
 		return userNickname;

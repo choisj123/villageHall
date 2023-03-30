@@ -71,7 +71,6 @@ public class BoardDAO {
 		return boardList;
 	}
 	
-
 	/** 내좋아요 목록 조회 DAO
 	 * @param conn
 	 * @param userNo 
@@ -109,8 +108,6 @@ public class BoardDAO {
 		return boardList;
 	}
 	
-	
-
 	/** 전체글 조회 DAO
 	 * @param conn
 	 * @return
@@ -137,6 +134,7 @@ public class BoardDAO {
 								
 				boardList.add(board);	
 			}
+
 			
 		} finally {
 			close(rs);
@@ -144,6 +142,42 @@ public class BoardDAO {
 		}
 		
 		return boardList;
+	}
+	
+	/** 게시글 상세조회 DAO
+	 * @param conn
+	 * @param boardNo
+	 * @return
+	 * @throws Exception
+	 */
+	public Board selectBoardDetail(Connection conn, int boardNo) throws Exception {
+		
+		Board board = null;
+		
+		try {
+			
+			String sql = prop.getProperty("selectBoardDetail");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board = new Board();
+				
+				board.setBoardTitle(rs.getString(1));
+				board.setUserNickname(rs.getString(2));
+				board.setBoardContent(rs.getString(3));
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return board;
 	}
 
 }
