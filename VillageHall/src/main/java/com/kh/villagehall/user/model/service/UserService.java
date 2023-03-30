@@ -142,5 +142,10 @@ public class UserService {
 		return result;
 	}
 
+	public int updateProfileImage(int userNo, String profileImg) throws Exception{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }

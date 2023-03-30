@@ -139,7 +139,7 @@ div > .tab {
 }
 
 .myPage-row:focus-within{
-    border-bottom: 2px solid #455ba8;
+    border-bottom: 2px solid #55710f;
 }
 
 form[name="myPage-form"]{
@@ -147,4 +147,16 @@ form[name="myPage-form"]{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+/* 회원 탈퇴 약관 */
+#secession-terms{
+    width : 500px;
+    height: 300px;
+    border : 1px solid black;
+    font-size : 16px;
+
+    /* 내용이 지정한 사이즈를 초과한 경우에 대한 속성 */
+    overflow : auto; /* 초과한 방향의 스크롤을 자동 생성 */
 }

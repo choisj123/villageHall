@@ -37,56 +37,33 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <!-- 탭 메뉴 -->
           <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
 
-          <!-- 회원 탈퇴 -->
-          <div id="deleteUser" class="tabContent">
-          	 <form action="secession" method="POST" name="myPage-form" onsubmit="return secessionValidate()" >
+          <!-- 내 정보 수정 -->
+          <div id="changeInfo" class="tabContent">
+          	<form action="changePw" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
 
                     <div class="myPage-row">
-                        <label>비밀번호</label>
-                        <input type="password" name="memberPw" id="memberPw" maxlength="30">              
+                        <label>닉네임</label>
+                        <input type="password" name="currentPw" id="currentPw" maxlength="30">              
                     </div>
-
                     
-                    <div class="myPage-row info-title">
-                        <label>회원 탈퇴 약관</label>
+                     <div class="myPage-row">
+                        <label>전화번호</label>
+                        <input type="password" name="newPw" maxlength="30">              
                     </div>
 
-                    <pre id="secession-terms">
-제1조
-이 약관은 샘플 약관입니다.
-
-① 약관 내용 1
-
-② 약관 내용 2
-
-③ 약관 내용 3
-
-④ 약관 내용 4
-
-
-제2조
-이 약관은 샘플 약관입니다.
-
-① 약관 내용 1
-
-② 약관 내용 2
-
-③ 약관 내용 3
-
-④ 약관 내용 4
-
-                    </pre>
-
-                    <div>
-                        <input type="checkbox" name="agree" id="agree">
-                        <label for="agree">위 약관에 동의합니다.</label>
+                    <div class="myPage-row">
+                        <label>새 비밀번호</label>
+                        <input type="password" name="newPw" maxlength="30">              
                     </div>
 
+                    <div class="myPage-row">
+                        <label>새 비밀번호 확인</label>
+                        <input type="password" name="newPwConfirm" maxlength="30">              
+                    </div>
 
-                    <button id="info-update-btn">탈퇴</button>
+                    <button id="info-update-btn">변경하기</button>
 
                 </form>
-          	
           
                 
          </div>

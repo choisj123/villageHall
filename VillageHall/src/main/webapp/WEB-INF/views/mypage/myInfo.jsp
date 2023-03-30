@@ -35,13 +35,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <h2>마이페이지</h2>
 
           <!-- 탭 메뉴 -->
-          <div class="tab">
-            <a href="${contextPath}/mypage/myInfo">내 정보</a>
-            <a href="${contextPath}/mypage/changePw">비밀번호 변경</a>
-            <a href="${contextPath}/mypage/deleteUser">회원탈퇴</a>
-          </div>
+          <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
+
           <!-- 내 정보 -->
           <div id="myInfo" class="tabContent">
+          
+                  <!-- 
+                    enctype : form 태그가 데이터를 서버로 제출할 때 
+                              데이터의 인코딩 형식을 지정하는 속성
+
+                    1) application/x-www-form-urlencoded
+                        - 모든 문자를 서버로 제출하기 전에 인코딩 (모든 데이터가 문자)
+                          (form태그 기본값)
+
+                    2) multipart/form-data : 제출할 때 인코딩을 하지 않음
+                        -> 모든 데이터가 원본 형태를 유지(파일이 파일상태로 서버로 제출)
+                        (주의) multipart/form-data 로 설정 시 method는 무조건 POST
+                -->
+          
             <form action="profile" method="POST" name="myPage-form" 
             	enctype="multipart/form-data" onsubmit="return profileValidate()">
 				<div class="profile-image-area">
