@@ -174,7 +174,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,visualstudiocode,java
 
 *.sql
-/Servers
-/jspwork/
-/privateInfo.xml/
+Servers/
+jspwork/
+privateInfo.xml
 
