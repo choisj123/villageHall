@@ -8,17 +8,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마을회관</title>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage.css" />
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af34b09f8f2cdee07cf990ab549e6220"
-    ></script>
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af34b09f8f2cdee07cf990ab549e6220&libraries=LIBRARY"
-    ></script>
+    
     <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -38,7 +32,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <button type="submit" id="pwBtn" onclick="return pwNull()">
                   확인
                 </button>
-
                 <c:if test="${!empty result}">
                   <script>
                     alert("비밀번호가 일치하지 않습니다.");
@@ -46,7 +39,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   </script>
                 </c:if>
               </div>
-              <div></div>
             </form>
           </div>
         </section>
@@ -63,6 +55,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       crossorigin="anonymous"
     ></script>
 
-    <script src="resources/js/myPage.js"></script>
+    <!-- <script src="resources/js/myPage.js"></script> -->
   </body>
 </html>

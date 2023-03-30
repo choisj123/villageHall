@@ -1,5 +1,3 @@
-/* 메인 바디 */
-
 .right-body {
   flex-basis: 71%;
 
@@ -7,72 +5,146 @@
   flex-direction: column;
 }
 
-.right-body > h3 {
-  padding-left: 20px;
 
-  flex-basis: 15px;
-}
-
-.myPage-box {
-  display: flex;
-  flex-direction: column;
-
-  flex-basis: 85px;
-
-  width: 750px;
-  height: 500px;
-
-  padding-left: 100px;
-}
-
-.myPage-box > div:first-child {
-  flex-basis: 15%;
-
-  border: 1px solid #55710f;
-  font-weight: bold;
-
+div > .tab {
+  overflow: hidden;
+  border: 1px solid white;
+  background-color: white;
   padding: 10px;
 }
 
-#myPage-content {
-  height: 700px;
-  flex-basis: 70%;
-
-  border: 1px solid #55710f;
-  text-align: center;
-  padding-top: 80px;
-}
-
-table {
-  margin-left: auto;
-  margin-right: auto;
-  border-spacing: 15px;
-}
-
-table input {
-  border-radius: 5px;
-  height: 25px;
-}
-
-table button {
-  border: 2px solid #55710f;
-  border-radius: 5px;
-  background-color: #55710f;
-  color: white;
-  padding: 3px 5px 3px 5px;
-}
-
-#updateMyInfo {
-  padding: 5px 40px 5px 40px;
-  border: 2px solid #55710f;
-  border-radius: 5px;
-  background-color: #55710f;
-  color: white;
+.tab > a {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: 0.3s;
   font-size: 15px;
+  font-weight: normal;
+  color: black;
 }
 
-.myPage-box > div:last-child {
-  flex-basis: 15%;
+.tab > a:hover {
+  background-color: #55710f;
+  color: white;
+  border-radius: 15px;
+}
 
-  border-top: 1px solid black;
+
+.tabContent {
+  padding: 6px 12px;
+  border: 1px solid white;
+  border-top: none;
+}
+
+
+.profile-image-area{
+    width: 150px;
+    height: 150px;
+    border : 3px solid #ddd;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position : relative;
+}
+
+/* 프로필 이미지 */
+#profile-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* 프로필 버튼 영역 */
+.profile-btn-area{
+    width: 230px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* 프로필 버튼 영역의 모든 자식 요소 */
+.profile-btn-area > *{
+    width: 110px;
+    height: 33px;
+
+    padding: 5px 10px;
+ 	border: 2px solid #55710f;
+ 	border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    color: #55710f;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* 파일 선택 버튼 */
+#input-image{
+    display: none;
+}
+
+/* 변경하기 버튼 */
+.profile-btn-area > button{
+    background-color: #55710f;
+    color : white;
+    border-radius: 5px;
+    border: 0;
+}
+
+/* 프로필 이미지 삭제 버튼 */
+#delete-image{
+    position : absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+
+.myPage-row{
+    width: 500px;
+    height: 50px;
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    border-bottom : 2px solid #ddd;
+}
+
+.myPage-row > *{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.myPage-row > label{
+    width: 30%;
+    color : #55710f;
+}
+
+.myPage-row > span{
+    width : 70%;
+}
+
+.myPage-row > input{
+    width: 100%;
+    height: 100%;
+    border : 0;
+    outline: 0;
+    font-weight: normal;
+}
+
+.myPage-row:focus-within{
+    border-bottom: 2px solid #455ba8;
+}
+
+form[name="myPage-form"]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
