@@ -8,11 +8,25 @@ public class Comment {
 	private String commentDeleteFG;
 	private int userNo;
 	private int boardNo;
+	
 	private String boardTitle;
 	
 	public Comment() {}
-	
-	
+		
+	public Comment(int commentNo, String commentContent, String commentCreateDate, String commentDeleteFG, int userNo,
+			int boardNo) {
+		super();
+		this.commentNo = commentNo;
+		this.commentContent = commentContent;
+		this.commentCreateDate = commentCreateDate;
+		this.commentDeleteFG = commentDeleteFG;
+		this.userNo = userNo;
+		this.boardNo = boardNo;
+	}
+
+
+
+
 	public String getBoardTitle() {
 		return boardTitle;
 	}

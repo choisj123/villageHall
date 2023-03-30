@@ -18,11 +18,16 @@
     href= "${contextPath}/resources/css/myPage-myBoard.css" />
 
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>  
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>   
 </head>
 <body>
     <main>
         <!-- header include -->
+  
+        <!-- 내부 접근 절대 경로 -->
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
   
         <!-- 바디 부분 시작 -->
@@ -56,7 +61,7 @@
                 					<c:forEach var="comment" items="${commentList}">
                 						<tr>
                 							<td>
-                								<a href="#">
+                								<a href="${contextPath}/board/boardDetail?boardNo=${comment.boardNo}">
                 									<span>${comment.commentContent}</span><br>
                 									<span>${comment.commentCreateDate}</span><br>
                 									<span>${comment.boardTitle}</span><br>
@@ -76,6 +81,7 @@
 	</main>
   
     <!-- footer include -->
+    <!-- 내부 접근 절대 경로 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
     <!-- jQuery 라이브러리 추가 -->
