@@ -40,10 +40,34 @@
 	
 	<!-- 게시글 상세 조회 -->
 	<entry key="selectBoardDetail">
-		SELECT BOARD_TITLE, USER_NICKNAME, BOARD_CONTENT
+		SELECT BOARD_NO, BOARD_TITLE, USER_NICKNAME, BOARD_CONTENT
 		FROM BOARD
 		JOIN "USER" USING (USER_NO)
 		WHERE BOARD_NO = ?
 	</entry>
+	
+	<!-- 조회수 증가  -->
+	<entry key="readCount">
+		UPDATE BOARD SET READ_COUNT = READ_COUNT +1
+		WHERE BOARD_NO = ?	
+	</entry>
+	
+	<!-- 좋아요 확인 -->
+	<entry key="selectLike">
+		SELECT COUNT(*)
+		FROM "LIKE"
+		WHERE USER_NO = ? AND BOARD_NO = ?
+	</entry>
+	
+	<!-- 좋아요 추가 -->
+	<entry key="updateLike">
+		INSERT INTO "LIKE" VALUES (?, ?)
+	</entry>
+	
+	<!-- 좋아요 삭제 -->
+	<entry key="deleteLike">
+		DELETE FROM "LIKE" WHERE USER_NO = ? AND BOARD_NO = ?
+	</entry>
+	
 	
 </properties>
