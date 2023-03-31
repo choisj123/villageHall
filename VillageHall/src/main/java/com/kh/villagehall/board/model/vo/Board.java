@@ -7,8 +7,8 @@ public class Board {
 	private String boardCreateDate;
 	private String boardUpdateDate;
 	private int readCount;
-	private int latitude;
-	private int longtitude;
+	private double latitude;
+	private double longtitude;
 	private String boardDeleteFG;
 	private int categoryNo;
 	private int userNo;
@@ -19,7 +19,7 @@ public class Board {
 	public Board() {}
 	
 	public Board(int boardNo, String boardTitle, String boardContent, String boardCreateDate, String boardUpdateDate,
-			int readCount, int latitude, int longtitude, String boardDeleteFG, int categoryNo, int userNo) 
+			int readCount, double latitude, double longtitude, String boardDeleteFG, int categoryNo, int userNo) 
 		{
 		super();
 		this.boardNo = boardNo;
@@ -117,22 +117,22 @@ public class Board {
 	}
 
 
-	public int getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
 
-	public int getLongtitude() {
+	public double getLongtitude() {
 		return longtitude;
 	}
 
 
-	public void setLongtitude(int longtitude) {
+	public void setLongtitude(double longtitude) {
 		this.longtitude = longtitude;
 	}
 

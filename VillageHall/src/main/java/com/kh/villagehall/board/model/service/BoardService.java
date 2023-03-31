@@ -75,6 +75,21 @@ public class BoardService {
 		return board;
 	}
 
+  /** 카카오맵 조회 service
+	 * @return kakaoMapList
+	 * @throws Exception
+	 */
+	public List<Board> kakaoMapBoard() throws Exception{
+		Connection conn = getConnection();
+		
+		List<Board>kakaoMapList = dao.kakaoMapBoard(conn);
+		
+		close(conn);
+		
+		return kakaoMapList;
+	}
+	
+
 
 	/** FAQ 게시글 조회 service
 	 * @return boardList
@@ -90,6 +105,7 @@ public class BoardService {
 		
 		return boardList;
 	}
+  
   
   /** 공지사항 게시글 조회 service
 	 * @return boardList
@@ -183,5 +199,6 @@ public class BoardService {
 		
 		return result;
 	}
+
 
 }

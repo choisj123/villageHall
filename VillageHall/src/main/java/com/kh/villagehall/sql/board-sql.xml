@@ -46,6 +46,13 @@
 		WHERE BOARD_NO = ?
 	</entry>
 	
+  <!-- 카카오맵리스트  -->
+	 <entry key="kakaoMapList">
+	  SELECT BOARD_TITLE, BOARD_CONTENT ,BOARD_CREATE_DATE, LATITUDE ,LONGITUDE, CATEGORY_NO, USER_NICKNAME, BOARD_NO 
+	  FROM BOARD
+	  LEFT JOIN "USER" "LIKE"  USING(USER_NO)
+	</entry>
+	
 	<!-- 조회수 증가  -->
 	<entry key="readCount">
 		UPDATE BOARD SET READ_COUNT = READ_COUNT +1
@@ -68,6 +75,5 @@
 	<entry key="deleteLike">
 		DELETE FROM "LIKE" WHERE USER_NO = ? AND BOARD_NO = ?
 	</entry>
-	
 	
 </properties>

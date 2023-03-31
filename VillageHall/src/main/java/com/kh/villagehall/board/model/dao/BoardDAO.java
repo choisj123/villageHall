@@ -182,7 +182,52 @@ public class BoardDAO {
 		return board;
 	}
 
-  // FAQ 게시글 조회
+  
+  /** 카카오 맵 DAO
+	 * @param conn
+	 * @return kakaoMapList;
+	 * @throws Exception
+	 */
+	public List<Board> kakaoMapBoard(Connection conn) throws Exception{
+		List<Board> kakaoMapList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("kakaoMapList");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board boardList = new Board();
+				
+				boardList.setBoardTitle(rs.getString(1));
+				boardList.setBoardContent(rs.getString(2));
+				boardList.setBoardCreateDate(rs.getString(3));
+				boardList.setLatitude(rs.getDouble(4));
+				boardList.setLongtitude(rs.getDouble(5));
+				boardList.setCategoryNo(rs.getInt(6));
+				boardList.setUserNickname(rs.getString(7));
+				boardList.setBoardNo(rs.getInt(8));
+				
+				kakaoMapList.add(boardList);
+			}
+			System.out.println(kakaoMapList);
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		
+		return kakaoMapList;
+	}
+
+
+
+  /** FAQ 게시글 조회 DAO
+	 * @param conn
+	 * @return boardList
+	 * @throws Exception
+	 */
 	public List<Board> selectFAQBoard(Connection conn) throws Exception {
 		// 리스트를 담을 객체 생성
 		List<Board> boardList = new ArrayList<>();
@@ -210,8 +255,14 @@ public class BoardDAO {
 		
 		return boardList;
 	}
+  
+  
 
-  // 공지사항 게시글 
+  /** 공지사항 게시글 조회 DAO
+	 * @param conn
+	 * @return boardList
+	 * @throws Exception
+	 */
 	public List<Board> selectNoticeBoard(Connection conn) throws Exception {
 		// 리스트 객체 생성
 		List<Board> boardList = new ArrayList<>();
@@ -238,6 +289,7 @@ public class BoardDAO {
 		  }
       return boardList;
   }
+  
 
 	/** 조회수 증가 dao
 	 * @param conn
@@ -264,6 +316,7 @@ public class BoardDAO {
 		
 		return result;
 	}
+  
 
 	/** 좋아요 유무 확인 dao
 	 * @param conn
@@ -354,5 +407,6 @@ public class BoardDAO {
 		
 		return result;
 	}
+
 
 }
