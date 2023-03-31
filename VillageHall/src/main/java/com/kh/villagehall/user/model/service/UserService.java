@@ -14,7 +14,7 @@ public class UserService {
 
 	/** 로그인 서비스
 	 * @param user
-	 * @return loginMember
+	 * @return loginUser
 	 * @throws Exception
 	 */
 	public User login(User user) throws Exception{
@@ -61,52 +61,51 @@ public class UserService {
 	
 
 
-	   /** 인증 번호 DB 추가 Service
-	    * @param inputEmail
-	    * @param cNumber
-	    * @return result
-	    * @throws Exception
-	    */
-	   public int insertCertification(String inputEmail, String cNumber) throws Exception {
+	 /** 인증 번호 DB 추가 Service
+	  * @param inputEmail
+	  * @param cNumber
+	  * @return result
+	  * @throws Exception
+	  */
+	  public int insertCertification(String inputEmail, String cNumber) throws Exception {
 	      
-	      Connection conn = getConnection();
-	      
-	      // 1) 입력한 이메일과 일치하는 값이 있으면 수정(UPDATE)
-	      int result = dao.updateCertification(conn, inputEmail, cNumber);
-	      
-	      // 2) 일치하는 이메일이 없는경우 -> 처음으로 인증번호를 발급 받음 -> 삽입(INSERT)
-	      if( result == 0 ) {
-	         result = dao.insertCertification(conn, inputEmail, cNumber);
-	      }
-	      
-	      if(result > 0)   commit(conn);
-	      else         rollback(conn);
-	      
-	      close(conn);
-	      return result;
-	   }
+	     Connection conn = getConnection();
+	     
+	     // 1) 입력한 이메일과 일치하는 값이 있으면 수정(UPDATE)
+	     int result = dao.updateCertification(conn, inputEmail, cNumber);
+	     
+	     // 2) 일치하는 이메일이 없는경우 -> 처음으로 인증번호를 발급 받음 -> 삽입(INSERT)
+	     if( result == 0 ) {
+	        result = dao.insertCertification(conn, inputEmail, cNumber);
+	     }
+	     
+	     if(result > 0)   commit(conn);
+	     else         rollback(conn);
+	     
+	     close(conn);
+	     return result;
+	  }
 
 
 	   
-	   /** 인증번호 확인 Service
-	    * @param inputEmail
-	    * @param cNumber
-	    * @return
-	    * @throws Exception
-	    */
-	   public int checkNumber(String inputEmail, String cNumber) throws Exception{
-	      Connection conn = getConnection();
-	      
+	  /** 인증번호 확인 Service
+	   * @param inputEmail
+	   * @param cNumber
+	   * @return
+	   * @throws Exception
+	   */
+	  public int checkNumber(String inputEmail, String cNumber) throws Exception{
+	     Connection conn = getConnection();
+	     
 	      int result = dao.checkNumber(conn, inputEmail, cNumber);
-	      
-	      close(conn);
-	      return result;
-	   }
-
+	     
+	     close(conn);
+	     return result;
+	  }
 	   
-	   
-	   /** 이메일 중복 검사 Service
-	    * @param memberEmail
+  
+	  /** 이메일 중복 검사 Service
+	    * @param userEmail
 	    * @return result
 	    * @throws Exception
 	    */
@@ -116,10 +115,34 @@ public class UserService {
 	      
 	      int result = dao.emailDupCheck(conn, userEmail);
 	      
-	      close(conn); 
+	      close(conn);
 	      
 	      return result;
+	
 	   }
+	   
+
+		/** 닉네임 중복 검사 Service
+		 * @param userNickname
+		 * @return result
+		 * @throws Exception
+		 */
+		public int nicknameDupCheck(String userNickname) throws Exception{
+			
+			// DBCP에서 Connection 얻어오기
+			Connection conn = getConnection();
+			
+			// DAO 메서드 수행 후 결과 반환 받기
+			int result = dao.nicknameDupCheck(conn, userNickname);
+			
+			// Connection 반환
+			close(conn);
+			
+			// 결과 반환
+			return result;
+		}
+
+
 	   
 	   
 	   
@@ -146,6 +169,8 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 	
 }

@@ -17,23 +17,28 @@
      
         const main = document.querySelector(".main");
         
-        function getText($main) {
+      function getText($main) {
+        var imageUrl = ""
             if($main === "Haze" || $main === "Clouds"){
-                box.style.backgroundImage = "url(/src/cloud.jpg)";
+              imageUrl = "../resources/images/cloud.jpg"
+                box.style.backgroundImage = "url('" +imageUrl+ "')";
                 main.innerText = "흐림";
             } else if($main === "Clear"){
-                box.style.backgroundImage = "url(/src/sunny.jpg)";
+              imageUrl = "../resources/images/sunny.jpg"
+              box.style.backgroundImage = "url('" +imageUrl+ "')";
                 main.innerText ="맑음";
             } else if($main === "Snow"){
-                box.style.backgroundImage = "url(/src/snow.jpg)";
+                              imageUrl = "../resources/images/snow.jpg"
+              box.style.backgroundImage = "url('" +imageUrl+ "')";
                 main.innerText = "눈";
             } else if($main === "Rain"){
-                box.style.backgroundImage = "url(/src/rain.jpg)";
+                              imageUrl = "../resources/images/rain.jpg"
+              box.style.backgroundImage = "url('" +imageUrl+ "')";
                 main.innerText = "비";
             } else {
                 main.innerText = '번개';
             }
-        }
+        }     
 
 
         $('.clowtemp').append($minTemp);

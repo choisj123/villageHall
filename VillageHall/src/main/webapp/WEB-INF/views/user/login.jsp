@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,92 +10,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마을회관</title>
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/login-page.css" />
+    <link rel="stylesheet" href="${contextPath}/resources/css/login.css" />
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
   </head>
+  
+  
   <body>
-    <main>
-      <!-- header include -->
-      <jsp:include page="/WEB-INF/views/common/header.jsp" />
+  
+      <main>
+        
 
-      <!-- 바디 부분 시작 -->
-      <section class="body">
-        <!-- 메인 콘텐츠 -->
-        <section class="right-body">
-          <!--콘텐츠 작성 영역-->
-          <section class="content">
-            <h1 class="sign-in-text">로그인</h1>
-          </section>
+            <section class="content-2">
+            
+            	<%-- if - else --%>
+            	<c:choose>  
+            		<%-- choose 내부에는 jsp 주석만 사용 --%>
+            		
+            		<%-- 로그인이 되어있지 않은 경우 --%>
+       				<c:when test="${ empty sessionScope.loginUser }"> 
+            		
+       			        <!-- 절대경로 : /community/member/login -->
+		           	 	<!-- 상대 경로 (index.jsp) 기준-->
+		                <form action="user/login" method="POST" name="login-form" onsubmit="return loginValidate()">
+		                   
+		                    <!-- 아이디(이메일)/비밀번호/로그인버튼 영역 -->
+		                    <fieldset id="id-pw-area">
+		        
+		                        <section>
+		                            <input type="text" name="inputEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}">     
+                                                                                                 <%-- 현재 페이지 쿠키 중 "saveId"의 내용을 출력--%>                   
+		                            <input type="password" name="inputPw" placeholder="비밀번호">
+		                        </section>
+		        
+		                        <section>
+		                            <!-- button의 type 기본값은 submit -->
+		                            <button>로그인</button>
+		                        </section>
+		                    </fieldset>
+		
+                            <%-- 쿠키에 saveId가 있는 경우--%>
+                            <c:if test="${ !empty cookie.saveId.value}">
 
-          <section class="content-2">
-            <!--로그인시 필요한 정보 기입 영역-->
-            <form action="#" name="sign-in-form">
-              <fieldset id="sign-in-area">
-                <section class="sign-in-1">
-                  <!--아이디-->
-                  <fieldset id="id-area">
-                    <i class="fa-regular fa-user"></i>
-                    <input
-                      type="text"
-                      name="inputId"
-                      class="input-text"
-                    /><br />
-                  </fieldset>
-                  <br />
+                                <%-- chk 변수 생성(page scope)--%>
+                                <c:set var="chk" value="checked"/>
 
-                  <!--비밀번호-->
-                  <fieldset id="pw-area">
-                    <i class="fa-solid fa-lock"></i>
-                    <input
-                      type="password"
-                      name="inputPw"
-                      class="input-text"
-                    /><br /><br />
-                  </fieldset>
-                  <br />
+                            </c:if>
 
-                  <!-- 로그인 버튼-->
-                  <article class="signInBtn-article">
-                    <button class="signInBtn">로그인</button>
-                  </article>
-                </section>
-              </fieldset>
+		                    <label>
+                                <!-- checked 속성 : radio/checkbox를 체크하는 속성 -->
+		                        <input type="checkbox" name="saveId" ${chk}  id="saveId"> 아이디 저장
+		                    </label>
 
-              <!--비밀번호 찾기/ 아이디 찾기/ 회원가입 -->
-              <br />
-              <article class="id-pw-found">
-                <a href="../html/pw-find-page.html" class="found"
-                  >비밀번호찾기</a
-                >
-                <a href="sign-up-page.html" class="found">회원가입</a>
-              </article>
 
-              <!--카카오로 로그인-->
 
-              <article class="sign-in-article-1">
-                <a href="javascript:void(0)" onclick="kakaoLogin();">
-                  <img src="/src/kakao_login_medium_wide.png" />
-                </a>
-              </article>
-            </form>
-          </section>
+		        
+		                    <!-- 회원가입 / ID/PW 찾기 영역 -->
+		                    <article id="signup-find-area">
+
+                                <!-- WEB-INF 폴더는 외부로 부터 직접적으로 요청할 수 없는 폴더
+                                    왜? 중요한 코드(자바, sql, 설정관련)가 위치하는 폴더로서
+                                        외부로부터 접근을 차단하기 위해서
+
+                                    -> 대신 Servlet을 이용 내부 접근(forward)은 가능
+                                -->
+		                       <!--  <a href="/community/WEB-INF/views/member/signUp.jsp">회원가입</a>  -->
+
+		                        <a href="${contextPath}/user/signUp">회원가입</a> 
+
+							
+
+		                        <span>|</span>
+		                        <a href="#">ID/PW 찾기</a>
+		                    </article>
+		                </form>
+            		
+            		</c:when>
+            	
+            	
+            		<%-- 로그인이 되어있는 경우 --%>
+            		<c:otherwise>
+            			
+            			<article class="login-area">
+                            <!-- 회원 프로필 이미지 -->
+            				<a href="${contextPath}/user/myPage/profile">
+                                
+                                <c:if test="${empty loginMember.profileImage}">
+                                    <img src="${contextPath}/resources/images/user.png" id="member-profile">
+                                </c:if>
+
+                                <c:if test="${!empty loginMember.profileImage}">
+                                    <img src="${contextPath}/${loginMember.profileImage}" id="member-profile">
+                                </c:if>
+
+            				</a>
+
+                            <!-- 회원 정보 + 로그아웃 버튼 -->                                       
+                            <div class="my-info">
+                                <div>
+                                    <a href="${contextPath}/member/myPage/info" id="nickname">${loginMember.memberNickname}</a>
+
+                                    <a href="/community/member/logout" id="logout-btn">로그아웃</a>
+                                </div>
+
+                                <p>
+                                    ${loginMember.memberEmail}
+                                </p>
+                            </div>
+            			</article>
+            		
+            		</c:otherwise>
+            	</c:choose>
+                
+            </section>
         </section>
-      </section>
+
     </main>
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <!-- jQuery 라이브러리 추가 -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   
     <!-- main.js 연결 -->
-    <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
+    <script src="${contextPath}/resources/js/main.js"></script>
+
   </body>
 </html>

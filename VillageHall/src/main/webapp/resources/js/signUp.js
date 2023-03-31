@@ -29,6 +29,7 @@ function kakaoLogin() {
 
 // 유효성 검사 여부를 기록할 객체 생성
 const checkObj = {
+	
     "userEmail" : false, // 1) 정규표현식 이메일 형식(@) 맞는지 체크 
                            // 2) -> 맞으면 ajax 통신(중복검사)
                            // 3) 통과하면 true
@@ -42,7 +43,85 @@ const checkObj = {
     "sendEmail" : false
 }
 
-//*****************인증번호 발송********************************
+
+
+/***********************이메일 확인******************************** */
+// 이메일 유효성 검사
+
+
+const userEmail = document.getElementById("userEmail");
+const emailMessage = document.querySelector("#emailMessage");
+
+userEmail.addEventListener("input", function(){
+
+    // 입력이 되지 않은 경우
+    if( userEmail.value.length == 0 ){
+        emailMessage.innerText = "메일을 받을 수 있는 이메일을 입력해주세요.";
+        emailMessage.classList.remove("confirm", "error");
+
+        checkObj.userEmail = false; // 유효 X 기록
+        return;
+    }
+
+    // 입력된 경우
+    const regExp = /^[\w\-\_]{4,}@[\w\-\_]+(\.\w+){1,3}$/;
+
+    if( regExp.test(userEmail.value) ){ // 유효한 경우
+        
+        // ****** 이메일 중복 검사(ajax) 진행 예정 ******
+
+        //  $.ajax( {k:v , k:v} );  // jQuery ajax 기본형태
+
+        // userEmail.value  == 입력된 이메일
+
+        $.ajax({
+            url : "emailDupCheck",   
+            data : { "userEmail" : userEmail.value },
+            type : "GET", // 데이터 전달 방식 type
+            
+            success : function(result){
+                // 비동기 통신(ajax)가 오류 없이 요청/응답 성공한 경우
+                
+                // 매개변수 result : servlet에서 출력된 result 값이 담겨있음
+                // console.log(result);
+
+                if(result == 1){ // 중복 O
+                    emailMessage.innerText = "이미 사용중인 이메일 입니다.";
+                    emailMessage.classList.add("error");
+                    emailMessage.classList.remove("confirm");
+                    checkObj.userEmail = false; // 유효 X 기록
+                    
+
+                } else { // 중복 X
+                    emailMessage.innerText = "사용 가능한 이메일 입니다.";
+                    emailMessage.classList.add("confirm");
+                    emailMessage.classList.remove("error");
+                    checkObj.userEmail = true; // 유효 O 기록
+                }
+            },
+            
+            error : function(){
+                // 비동기 통신(ajax) 중 오류가 발생한 경우
+                console.log("에러 발생");
+            }
+
+        });
+        
+
+
+    }else{
+        emailMessage.innerText = "이메일 형식이 유효하지 않습니다.";
+        emailMessage.classList.add("error");
+        emailMessage.classList.remove("confirm");
+
+        checkObj.userEmail = false; // 유효 X 기록
+    }
+
+}); 
+
+
+
+//*****************인증번호 발송/확인 ********************************
 
 // 인증번호 보내기
 const sendBtn = document.getElementById("sendBtn");
@@ -178,77 +257,232 @@ cBtn.addEventListener("click", function(){
 
 });
 
-/***********************이메일 유효성 검사******************************** */
 
-// 이메일 유효성 검사
-const userEmail = document.getElementById("userEmail");
-const emailMessage = document.querySelector("#emailMessage");
+/********************* 비밀번호 확인 ************************************* */
 
-userEmail.addEventListener("input", function(){
+// 비밀번호 유효성 검사
+const userPw = document.getElementById("userPw");
+const userPwConfirm = document.getElementById("userPwConfirm");
+const pwMessage = document.getElementById("pwMessage");
 
-    // 입력이 되지 않은 경우
-    if( userEmail.value.length == 0 ){
-        emailMessage.innerText = "메일을 받을 수 있는 이메일을 입력해주세요.";
-        emailMessage.classList.remove("confirm", "error");
+userPw.addEventListener("input", function(){
 
-        checkObj.userEmail = false; // 유효 X 기록
+    if(userPw.value.length == 0){
+        pwMessage.innerText = "영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.";
+        pwMessage.classList.remove("confirm", "error");
+
+        checkObj.userPw = false; // 유효 X 기록
         return;
     }
 
-    // 입력된 경우
-    const regExp = /^[\w\-\_]{4,}@[\w\-\_]+(\.\w+){1,3}$/;
+    const regExp = /^[\w!@#_-]{6,30}$/;
 
-    if( regExp.test(userEmail.value) ){ // 유효한 경우
+    if( regExp.test(userPw.value) ){ // 비밀번호 유효
+
+        checkObj.userPw = true; // 유효 O 기록
+
+        if(userPwConfirm.value.length == 0){ // 비밀번호 유효, 확인 작성 X
+            pwMessage.innerText = "안전한 비밀번호 입니다.";
+            pwMessage.classList.add("confirm");
+            pwMessage.classList.remove("error");
         
-        // ****** 이메일 중복 검사(ajax) 진행 예정 ******
+        } else { // 비밀번호 유효, 확인 작성 O
+            checkPw(); // 비밀번호 일치 검사 함수 호출()
+        }
 
-        //  $.ajax( {k:v , k:v} );  // jQuery ajax 기본형태
+    }else{
+        pwMessage.innerText = "비밀번호 형식이 유효하지 않습니다.";
+        pwMessage.classList.add("error");
+        pwMessage.classList.remove("confirm");
 
-        // userEmail.value  == 입력된 이메일
+        checkObj.userPw = false; // 유효 X 기록
+    }
+});
+
+
+// 비밀번호 확인 유효성 검사
+
+// 함수명() : 함수 호출(수행)
+// 함수명   : 함수에 작성된 코드 반환
+userPwConfirm.addEventListener("input", checkPw );
+// -> 이벤트가 발생 되었을 때 정의된 함수를 호출하겠다
+
+
+function checkPw(){ // 비밀번호 일치 검사
+    // 비밀번호 / 비밀번호 확인이 같을 경우
+    if(userPw.value == userPwConfirm.value){
+        pwMessage.innerText = "비밀번호가 일치합니다.";
+        pwMessage.classList.add("confirm");
+        pwMessage.classList.remove("error");
+
+        checkObj.userPwConfirm = true; // 유효 O 기록
+
+    } else{
+        pwMessage.innerText = "비밀번호가 일치하지 않습니다.";
+        pwMessage.classList.add("error");
+        pwMessage.classList.remove("confirm");
+
+        checkObj.userPwConfirm = false; // 유효 X 기록
+    }
+}
+
+
+
+/******************************* 닉네임 ********************************* */
+
+
+// 닉네임 유효성 검사
+const userNickname = document.getElementById("userNickname");
+const nicknameMessage = document.getElementById("nicknameMessage");
+
+userNickname.addEventListener("input", function(){
+
+    // 입력되지 않은 경우
+    if(userNickname.value.length == 0){
+        nicknameMessage.innerText = "영어/숫자/한글 2~10글자 사이로 작성해주세요.";
+        nicknameMessage.classList.remove("confirm", "error");
+
+        checkObj.userNickname = false; // 유효 X 기록
+        return;
+    }
+
+    const regExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
+
+    if( regExp.test(userNickname.value) ){ // 유효한 경우
+        
+
+        // ****** 닉네임 중복 검사(ajax) 진행 예정 ******
 
         $.ajax({
-            url : "emailDupCheck",   
-            data : { "userEmail" : userEmail.value },
-            type : "GET", // 데이터 전달 방식 type
+            url : "nicknameDupCheck",  // 필수 작성 속성
+            data : { "userNickname" : userNickname.value }, // 서버로 전달할 값(파라미터)
+            type : "GET", // 데이터 전달 방식(기본값 GET)
 
-            success : function(result){
-                // 비동기 통신(ajax)가 오류 없이 요청/응답 성공한 경우
-                
-                // 매개변수 result : servlet에서 출력된 result 값이 담겨있음
-                // console.log(result);
+            success : function(res){ // 비동기 통신 성공 시(에러 발생 X)
 
-                if(result == 1){ // 중복 O
-                    emailMessage.innerText = "이미 사용중인 이메일 입니다.";
-                    emailMessage.classList.add("error");
-                    emailMessage.classList.remove("confirm");
-                    checkObj.memberEmail = false; // 유효 X 기록
+                // 매개변수 res : Servlet에서 응답으로 출력된 데이터가 저장
 
-                } else { // 중복 X
-                    emailMessage.innerText = "사용 가능한 이메일 입니다.";
-                    emailMessage.classList.add("confirm");
-                    emailMessage.classList.remove("error");
-                    checkObj.memberEmail = true; // 유효 O 기록
+                if(res == 0){ // 닉네임 중복 X
+                    nicknameMessage.innerText = "사용 가능한 닉네임 입니다.";
+                    nicknameMessage.classList.add("confirm");
+                    nicknameMessage.classList.remove("error");
+                    checkObj.userNickname = true; // 유효 O 기록
+
+                } else { // 닉네임 중복 O
+                    nicknameMessage.innerText = "이미 사용중인 닉네임 입니다.";
+                    nicknameMessage.classList.add("error");
+                    nicknameMessage.classList.remove("confirm");
+                    checkObj.userNickname = false; // 유효 O 기록
                 }
             },
-            
-            error : function(){
-                // 비동기 통신(ajax) 중 오류가 발생한 경우
+
+            error : function(){ // 비동기 통신 중 에러가 발생한 경우
                 console.log("에러 발생");
             }
-
         });
-        
+
 
 
     }else{
-        emailMessage.innerText = "이메일 형식이 유효하지 않습니다.";
-        emailMessage.classList.add("error");
-        emailMessage.classList.remove("confirm");
+        nicknameMessage.innerText = "닉네임 형식이 유효하지 않습니다.";
+        nicknameMessage.classList.add("error");
+        nicknameMessage.classList.remove("confirm");
 
-        checkObj.userEmail = false; // 유효 X 기록
+        checkObj.userNickname = false; // 유효 X 기록
     }
 
 });
+
+/**************************** 전화번호 확인************************* */
+
+// 전화번호 유효성 검사
+const userTel = document.getElementById("userTel");
+const telMessage = document.getElementById("telMessage");
+
+// ** input 이벤트 **
+// -> 입력과 관련된 모든 동작(key관련, mouse관련, 붙여넣기)
+userTel.addEventListener("input", function(){
+
+    // 입력이 되지 않은 경우
+    if(userTel.value.length == 0){
+        telMessage.innerText = "전화번호를 입력해주세요.(- 제외)";
+
+        //telMessage.classList.remove("confirm");
+        //telMessage.classList.remove("error");
+        telMessage.classList.remove("confirm", "error");
+
+        checkObj.userTel = false; // 유효하지 않은 상태임을 기록
+
+        return;
+    }
+
+    // 전화번호 정규식
+    const regExp = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/;
+
+    if(regExp.test(userTel.value)){ // 유효한 경우
+        telMessage.innerText = "유효한 전화번호 형식입니다.";
+        telMessage.classList.add("confirm");
+        telMessage.classList.remove("error");
+
+        checkObj.userTel = true; // 유효한 상태임을 기록
+        
+    } else{ // 유효하지 않은 경우
+        telMessage.innerText = "전화번호 형식이 올바르지 않습니다.";
+        telMessage.classList.add("error");
+        telMessage.classList.remove("confirm");
+
+        checkObj.userTel = false; // 유효하지 않은 상태임을 기록
+    }
+});
+
+/* *******************************회원가입 가능확인 **********************************/
+
+
+
+// 회원가입 버튼 클릭 시 유효성 검사가 완료 되었는지 확인하는 함수
+function signUpValidate(){
+
+    // checkObj에 있는 모든 속성을 반복 접근하여
+    // false가 하나라도 있는 경우에는 form태그 기본 이벤트 제거
+
+    let str;
+
+    for( let key  in checkObj ){ // 객체용 향상된 for문
+
+        // 현재 접근 중인 key의 value가 false인 경우
+        if( !checkObj[key] ){ 
+
+            switch(key){
+            case "userEmail":     str="이메일이"; break;
+            case "userPw":        str="비밀번호가"; break;    
+            case "userPwConfirm": str="비밀번호 확인이"; break;
+            case "userNickname":  str="닉네임이"; break;
+            case "userTel":       str="전화번호가"; break;
+            }
+
+            str += " 유효하지 않습니다.";
+
+            alert(str);
+
+            document.getElementById(key).focus();
+            
+            return false; // form태그 기본 이벤트 제거
+        }
+    }
+
+    return true; // form태그 기본 이벤트 수행
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

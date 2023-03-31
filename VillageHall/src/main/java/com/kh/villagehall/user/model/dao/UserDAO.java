@@ -226,18 +226,55 @@ public class UserDAO {
 	         
 	         // rs.next() 로 조회결과를 확인
 	         if( rs.next() ) {
+	        	 
 	            result = rs.getInt(1); // 1번 컬럼 결과를 result에 대입
 	         }
 	         
 	         
 	      }finally {
+	    	  
 	         close(rs);
 	         close(pstmt);
 	      }
 	      
-	      
 	      return result;
 	   }
+	
+	
+
+	/** 닉네임 중복 검사
+	 * @param conn
+	 * @param userNickname
+	 * @return result
+	 * @throws Exception
+	 */
+	public int nicknameDupCheck(Connection conn, String userNickname) throws Exception {
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("userNickname");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userNickname);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	
 	
 	
 	
@@ -273,7 +310,8 @@ public class UserDAO {
 		
 		return result;
 	}
-	
+
+
 	
 	
 }

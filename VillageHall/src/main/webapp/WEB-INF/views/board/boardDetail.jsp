@@ -44,6 +44,10 @@
             	<a href="#">게시글 수정</a>
             </c:if>
             
+            <c:if test="${loginUser != null}"> 
+            	<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like">좋아요</a>				
+            </c:if>
+            
           </section>
         </section>
       </main>

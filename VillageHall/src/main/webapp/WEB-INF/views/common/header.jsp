@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
   <!-- 클릭시 메인으로 이동하는 로고 -->
   <section>
@@ -10,7 +10,7 @@
   </section>
 
   <section>
-    <article class="search-area">
+    <article class="search-area">	
       <!-- form 내부 input 태그 값을 서버 또는 페이지로 전달 -->
       <form action="#" name="search-form">
         <fieldset>
