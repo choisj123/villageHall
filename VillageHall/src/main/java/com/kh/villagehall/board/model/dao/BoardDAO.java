@@ -180,4 +180,34 @@ public class BoardDAO {
 		return board;
 	}
 
+	public List<Board> kakaoMapBoard(Connection conn) throws Exception{
+		List<Board> kakaoMapList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("kakaoMapList");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board boardList = new Board();
+				
+				boardList.setBoardTitle(rs.getString(1));
+				boardList.setBoardContent(rs.getString(2));
+				boardList.setBoardCreateDate(rs.getString(3));
+				
+				kakaoMapList.add(boardList);
+			}
+			System.out.println(kakaoMapList);
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		
+		return kakaoMapList;
+	}
+
+
+
 }

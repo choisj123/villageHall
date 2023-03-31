@@ -46,4 +46,10 @@
 		WHERE BOARD_NO = ?
 	</entry>
 	
+	<entry key="kakaoMapList">
+		SELECT BOARD_TITLE , BOARD_CONTENT ,BOARD_CREATE_DATE ,LATITUDE ,LONGITUDE
+		FROM BOARD
+
+	</entry>
+	
 </properties>

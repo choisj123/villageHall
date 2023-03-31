@@ -75,4 +75,15 @@ public class BoardService {
 		return board;
 	}
 
+	public List<Board> kakaoMapBoard() throws Exception{
+		Connection conn = getConnection();
+		
+		List<Board>kakaoMapList = dao.kakaoMapBoard(conn);
+		
+		close(conn);
+		
+		return kakaoMapList;
+	}
+	
+
 }

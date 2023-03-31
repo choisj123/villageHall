@@ -1,3 +1,13 @@
+$.ajax({
+        url : "board/kakaoMap",
+        dataType : "json",    //  응답 데이터의 형식을 "json"으로 지정
+                              // -> 자동으로 JS 객체로 변환됨
+        success : function( kakaoMapList ){
+	console.log(kakaoMapList);
+
+
+
+
 var mapContainer = document.getElementById('map'),
     mapOption = { 
         center: new kakao.maps.LatLng(37.566826, 126.9786567), 
@@ -7,8 +17,8 @@ var mapContainer = document.getElementById('map'),
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 
-var markers = [];
 
+var markers = [];
 
 // 마커 데이터
 var markersData = [
@@ -114,11 +124,10 @@ function showMarkersByCategory(category) {
       }
     }
   }
+  },
 
-// 카테고리 선택 폼
-var categorySelect = document.getElementById('category');
-
-categorySelect.onchange = function() {
-  var category = this.value;
-  showMarkersByCategory(category);
-};
+ error : function(request, status, error){
+            console.log("AJAX 에러 발생");
+            console.log("상태코드 : " + request.status); // 404, 500
+        }
+});
