@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -142,10 +143,13 @@
           </div>
 
           <span class="signUp-message" id="telMessage"
-            >전화번호를 입력해주세요.(- 제외)</span
-          >
-
-          <button type="submit" id="signUp-btn">가입하기</button>
+            >전화번호를 입력해주세요.(- 제외)</span> <br>
+            
+          <button type="submit" id="signUp-btn">가입하기</button>  
+                  
+           <a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin();">
+           		<img src="${contextPath}/resources/images/kakao_login_medium_wide.png">
+           </a>
         </form>
       </section>
     </main>

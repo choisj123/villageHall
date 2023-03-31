@@ -52,10 +52,17 @@
    
       <!-- 이메일 중복 검사 -->
    <entry key="emailDupCheck">
-      SELECT COUNT(*) FROM USER 
+      SELECT COUNT(*) FROM "USER" 
       WHERE USER_EMAIL = ? 
-      AND SECESSION_FL = 'N'
+      AND USER_DELETE_FG = 'N' 
    </entry>
+   
+   	<!-- 닉네임 중복 검사 -->
+	<entry key="nicknameDupCheck">
+		SELECT COUNT(*) FROM "USER" 
+		WHERE USER_NICKNAME = ? 
+		AND USER_DELETE_FG = 'N' 
+	</entry>
    
 	
 	<!-- 마이페이지 비밀번호 일치 검사 -->
@@ -65,9 +72,9 @@
 		WHERE USER_DELETE_FG = 'N' 
 		AND USER_NO = ? 
 		AND USER_PW = ?
-
 	</entry>
 	
+		
 	
 	
 	
