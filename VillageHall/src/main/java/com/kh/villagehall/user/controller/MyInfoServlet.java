@@ -13,6 +13,7 @@ import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 
+/*
 @WebServlet("/mypage/myInfo")
 public class MyInfoServlet extends HttpServlet{
 	
@@ -150,3 +151,4 @@ public class MyInfoServlet extends HttpServlet{
 		}
 	}
 }
+*/
