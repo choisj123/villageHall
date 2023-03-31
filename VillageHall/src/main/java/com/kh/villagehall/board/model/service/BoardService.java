@@ -75,4 +75,15 @@ public class BoardService {
 		return board;
 	}
 
+	public List<Board> selectFAQBoard() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectFAQBoard(conn);
+		
+		close(conn);
+		
+		return boardList;
+	}
+
 }

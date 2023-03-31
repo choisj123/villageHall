@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -178,6 +179,33 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		return board;
+	}
+
+	public List<Board> selectFAQBoard(Connection conn) throws Exception {
+		// 리스트를 담을 객체 생성
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectFAQBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardTitle(rs.getString(1));
+				board.setBoardContent(rs.getString(2));
+				
+			}
+			
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		
+		return null;
 	}
 
 }
