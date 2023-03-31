@@ -196,6 +196,8 @@ public class BoardDAO {
 				boardList.setBoardTitle(rs.getString(1));
 				boardList.setBoardContent(rs.getString(2));
 				boardList.setBoardCreateDate(rs.getString(3));
+				boardList.setLatitude(rs.getDouble(4));
+				boardList.setLongtitude(rs.getDouble(5));
 				
 				kakaoMapList.add(boardList);
 			}
