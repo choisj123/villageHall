@@ -169,9 +169,10 @@ public class BoardDAO {
 			if(rs.next()) {
 				board = new Board();
 				
-				board.setBoardTitle(rs.getString(1));
-				board.setUserNickname(rs.getString(2));
-				board.setBoardContent(rs.getString(3));
+				board.setBoardNo(rs.getInt(1));
+				board.setBoardTitle(rs.getString(2));
+				board.setUserNickname(rs.getString(3));
+				board.setBoardContent(rs.getString(4));
 			}
 			
 		} finally {
@@ -181,6 +182,7 @@ public class BoardDAO {
 		return board;
 	}
 
+  // FAQ 게시글 조회
 	public List<Board> selectFAQBoard(Connection conn) throws Exception {
 		// 리스트를 담을 객체 생성
 		List<Board> boardList = new ArrayList<>();
@@ -209,6 +211,7 @@ public class BoardDAO {
 		return boardList;
 	}
 
+  // 공지사항 게시글 
 	public List<Board> selectNoticeBoard(Connection conn) throws Exception {
 		// 리스트 객체 생성
 		List<Board> boardList = new ArrayList<>();
@@ -229,12 +232,127 @@ public class BoardDAO {
 				boardList.add(board);
 			}
 			
-		}finally{
-			close(rs);
+		  }finally{
+			  close(rs);
+			  close(pstmt);
+		  }
+      return boardList;
+  }
+
+	/** 조회수 증가 dao
+	 * @param conn
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int readCount(Connection conn, int boardNo) throws Exception {
+
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("readCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			
+			result = pstmt.executeUpdate();
+		} finally {
 			close(pstmt);
 		}
 		
-		return boardList;
+		return result;
+	}
+
+	/** 좋아요 유무 확인 dao
+	 * @param conn
+	 * @param userNo
+	 * @param boardNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int selectLike(Connection conn, int userNo, int boardNo) throws Exception {
+
+		int count = 0;
+		
+		try {
+			String sql = prop.getProperty("selectLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, boardNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	}
+  
+	
+	/** 좋아요 업데이트 DAO
+	 * @param conn
+	 * @param userNo
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateLike(Connection conn, int userNo, int boardNo) throws Exception {
+
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+
+	/** 좋아요 취소 dao
+	 * @param conn
+	 * @param userNo
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteLike(Connection conn, int userNo, int boardNo) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, boardNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

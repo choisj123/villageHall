@@ -75,6 +75,7 @@ public class BoardService {
 		return board;
 	}
 
+
 	/** FAQ 게시글 조회 service
 	 * @return boardList
 	 * @throws Exception
@@ -89,7 +90,11 @@ public class BoardService {
 		
 		return boardList;
 	}
-
+  
+  /** 공지사항 게시글 조회 service
+	 * @return boardList
+	 * @throws Exception
+	 */
 	public List<Board> selectNoticeBoard() throws Exception {
 		
 		Connection conn = getConnection();
@@ -99,6 +104,84 @@ public class BoardService {
 		close(conn);
 		
 		return boardList;
+	}
+
+
+	/** 조회수 증가 service
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int readCount(int boardNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.readCount(conn, boardNo);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+  
+
+	/** 좋아요 유무 확인 서비스
+	 * @param userNo
+	 * @param boardNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int selectLike(int userNo, int boardNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int count = dao.selectLike(conn, userNo, boardNo);
+		
+		close(conn);
+		
+		return count;
+	}
+  
+	
+	/** 좋아요 업데이트 서비스 
+	 * @param userNo
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateLike(int userNo, int boardNo) throws Exception {
+
+		Connection conn = getConnection();
+		
+		int result = dao.updateLike(conn, userNo, boardNo);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+  
+
+	/** 좋아요 취소 DAO
+	 * @param userNo
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteLike(int userNo, int boardNo) throws Exception {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteLike(conn, userNo, boardNo);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		return result;
 	}
 
 }
