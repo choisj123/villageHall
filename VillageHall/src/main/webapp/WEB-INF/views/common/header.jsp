@@ -10,7 +10,7 @@
   </section>
 
   <section>
-    <article class="search-area">
+    <article class="search-area">	
       <!-- form 내부 input 태그 값을 서버 또는 페이지로 전달 -->
       <form action="#" name="search-form">
         <fieldset>
