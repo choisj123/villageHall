@@ -198,6 +198,7 @@ public class BoardDAO {
 				board.setBoardTitle(rs.getString(1));
 				board.setBoardContent(rs.getString(2));
 				
+				boardList.add(board);
 			}
 			
 		}finally{
@@ -205,7 +206,35 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		
-		return null;
+		return boardList;
+	}
+
+	public List<Board> selectNoticeBoard(Connection conn) throws Exception {
+		// 리스트 객체 생성
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectNoticeBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardTitle(rs.getString(1));
+				board.setBoardContent(rs.getString(2));
+				
+				boardList.add(board);
+			}
+			
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		
+		return boardList;
 	}
 
 }

@@ -75,11 +75,26 @@ public class BoardService {
 		return board;
 	}
 
+	/** FAQ 게시글 조회 service
+	 * @return boardList
+	 * @throws Exception
+	 */
 	public List<Board> selectFAQBoard() throws Exception {
 		
 		Connection conn = getConnection();
 		
 		List<Board> boardList = dao.selectFAQBoard(conn);
+		
+		close(conn);
+		
+		return boardList;
+	}
+
+	public List<Board> selectNoticeBoard() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectNoticeBoard(conn);
 		
 		close(conn);
 		
