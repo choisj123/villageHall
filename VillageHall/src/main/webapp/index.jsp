@@ -337,7 +337,7 @@
     <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
     <script src="/js/mainPage.js"></script>
-    <script src="/js/weather.js"></script>
+    <script src="${contextPath}/resources/js/weather.js"></script>
 
     <script src="${contextPath}/resources/js/mainPage-MapAPI.js"></script>
   </body>
