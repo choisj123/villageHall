@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -181,6 +182,63 @@ public class BoardDAO {
 		return board;
 	}
 
+  // FAQ 게시글 조회
+	public List<Board> selectFAQBoard(Connection conn) throws Exception {
+		// 리스트를 담을 객체 생성
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectFAQBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardTitle(rs.getString(1));
+				board.setBoardContent(rs.getString(2));
+				
+				boardList.add(board);
+			}
+			
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		
+		return boardList;
+	}
+
+  // 공지사항 게시글 
+	public List<Board> selectNoticeBoard(Connection conn) throws Exception {
+		// 리스트 객체 생성
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectNoticeBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardTitle(rs.getString(1));
+				board.setBoardContent(rs.getString(2));
+				
+				boardList.add(board);
+			}
+			
+		  }finally{
+			  close(rs);
+			  close(pstmt);
+		  }
+      return boardList;
+  }
+
 	/** 조회수 증가 dao
 	 * @param conn
 	 * @param boardNo
@@ -235,9 +293,9 @@ public class BoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
 		return count;
 	}
+  
 	
 	/** 좋아요 업데이트 DAO
 	 * @param conn

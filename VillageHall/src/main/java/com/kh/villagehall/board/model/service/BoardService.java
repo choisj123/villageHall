@@ -75,6 +75,38 @@ public class BoardService {
 		return board;
 	}
 
+
+	/** FAQ 게시글 조회 service
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectFAQBoard() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectFAQBoard(conn);
+		
+		close(conn);
+		
+		return boardList;
+	}
+  
+  /** 공지사항 게시글 조회 service
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectNoticeBoard() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectNoticeBoard(conn);
+		
+		close(conn);
+		
+		return boardList;
+	}
+
+
 	/** 조회수 증가 service
 	 * @param boardNo
 	 * @return result
@@ -93,6 +125,7 @@ public class BoardService {
 		
 		return result;
 	}
+  
 
 	/** 좋아요 유무 확인 서비스
 	 * @param userNo
@@ -110,6 +143,7 @@ public class BoardService {
 		
 		return count;
 	}
+  
 	
 	/** 좋아요 업데이트 서비스 
 	 * @param userNo
@@ -130,6 +164,7 @@ public class BoardService {
 		
 		return result;
 	}
+  
 
 	/** 좋아요 취소 DAO
 	 * @param userNo
@@ -148,7 +183,5 @@ public class BoardService {
 		
 		return result;
 	}
-
-	
 
 }
