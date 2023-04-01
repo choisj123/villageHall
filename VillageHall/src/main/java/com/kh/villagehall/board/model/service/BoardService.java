@@ -128,11 +128,11 @@ public class BoardService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int readCount(int boardNo) throws Exception {
+	public int updateRead(int boardNo) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.readCount(conn, boardNo);
+		int result = dao.updateRead(conn, boardNo);
 		
 		if(result > 0) commit(conn);
 		else			rollback(conn);

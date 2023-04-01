@@ -297,12 +297,12 @@ public class BoardDAO {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int readCount(Connection conn, int boardNo) throws Exception {
+	public int updateRead(Connection conn, int boardNo) throws Exception {
 
 		int result = 0;
 		
 		try {
-			String sql = prop.getProperty("readCount");
+			String sql = prop.getProperty("updateRead");
 			
 			pstmt = conn.prepareStatement(sql);
 			
