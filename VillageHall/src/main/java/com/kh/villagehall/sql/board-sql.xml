@@ -76,4 +76,9 @@
 		DELETE FROM "LIKE" WHERE USER_NO = ? AND BOARD_NO = ?
 	</entry>
 	
+	<entry key="deleteBoard">
+		UPDATE BOARD SET BOARD_DELETE_FG = 'Y'
+		WHERE BOARD_NO = ?
+	</entry>
+	
 </properties>

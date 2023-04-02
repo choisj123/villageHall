@@ -41,7 +41,8 @@
             <span>내용 : ${board.boardContent}</span>
             
             <c:if test="${loginUser.userNickname == board.userNickname}">
-            	<a href="#">게시글 수정</a>
+            	<a href="#">수정</a>
+            	<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
             </c:if>
             
             <c:if test="${loginUser != null}"> 
