@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
-z
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +36,7 @@ z
           <h2>마이페이지</h2>
 
           <!-- 탭 메뉴 -->
-          <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
+          <jsp:include page="/WEB-INF/views/mypage/myInfoTab.jsp" />
 
           <!-- 내 정보 수정 -->
           <div id="changeInfo" class="tabContent">
@@ -67,8 +67,8 @@ z
 
                     <!-- 프로필 이미지 삭제 버튼 -->
                     <span id="delete-image">x</span>
-
                 </div>
+                
 				<div class="profile-btn-area">
 	                <label for="input-image">이미지 선택</label>
 	                <input type="file" name="profileImage" id="input-image" accept="image/*">
@@ -83,20 +83,18 @@ z
                     <!-- 0 : 안눌러짐   /   1: 눌러짐 -->
                 <input type="hidden" name="delete" id="delete" value="0">
            </form>
-          
-          
-          
+
           
           	<form action="changeInfo" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
 
                     <div class="myPage-row">
                         <label>닉네임</label>
-                        <input type="password" name="currentPw" id="currentPw" maxlength="30">              
+                        <input type="text" name="newNickname" id="newNickname" maxlength="30">              
                     </div>
                     
                      <div class="myPage-row">
                         <label>전화번호</label>
-                        <input type="password" name="newPw" maxlength="30">              
+                        <input type="tel" name="newTel" maxlength="30">              
                     </div>
 
                     <div class="myPage-row">
@@ -108,7 +106,7 @@ z
                         <label>새 비밀번호 확인</label>
                         <input type="password" name="newPwConfirm" maxlength="30">              
                     </div>
-
+					
                     <button id="info-update-btn">변경하기</button>
 
                 </form>

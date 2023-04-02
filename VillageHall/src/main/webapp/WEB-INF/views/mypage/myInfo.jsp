@@ -35,11 +35,10 @@
           <h2>마이페이지</h2>
 
           <!-- 탭 메뉴 -->
-          <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
+          <jsp:include page="/WEB-INF/views/mypage/myInfoTab.jsp" />
 
           <!-- 내 정보 -->
           <div id="myInfo" class="tabContent">
-          
                   <!-- 
                     enctype : form 태그가 데이터를 서버로 제출할 때 
                               데이터의 인코딩 형식을 지정하는 속성
@@ -74,10 +73,6 @@
                     <label>가입일</label>
                     <span>${loginUser.enrollDate}</span>
                 </div>
-
-                    <!-- 삭제버튼(x)이 눌러짐을 기록하는 숨겨진 input 태그 -->
-                    <!-- 0 : 안눌러짐   /   1: 눌러짐 -->
-                <input type="hidden" name="delete" id="delete" value="0">
          </div>
        </section>
      </section>

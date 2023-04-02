@@ -310,6 +310,33 @@ public class UserDAO {
 		
 		return result;
 	}
+	
+
+	/** 프로필 이미지 변경 DAO
+	 * @param conn
+	 * @param userNo
+	 * @param profileImg
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateProfileImage(Connection conn, int userNo, String profileImg) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateProfileImage");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, profileImg);
+			pstmt.setInt(2, userNo);
+
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 	
