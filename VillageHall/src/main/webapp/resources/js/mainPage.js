@@ -27,8 +27,9 @@ signupBtn.addEventListener("mouseout",function(){
 	
 //})
 
+
 function writePage() {
 	console.log("click");
-	location.href='board/write';
+	location.href='board/writeBoard';
 	
 }
