@@ -75,7 +75,12 @@
 	</entry>
 	
 		
-	
+	<!-- 프로필 이미지 변경 -->
+	<entry key="updateProfileImage">
+		UPDATE "USER" SET
+		PROFILE_IMG = ?
+		WHERE USER_NO = ?
+	</entry>
 	
 	
 </properties>
