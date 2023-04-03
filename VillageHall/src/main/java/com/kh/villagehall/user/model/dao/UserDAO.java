@@ -337,8 +337,6 @@ public class UserDAO {
 		
 		return result;
 	}
-
-
 	
 	
 }
