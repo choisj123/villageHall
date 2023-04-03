@@ -34,6 +34,7 @@ public class TestServlet extends HttpServlet {
 				session.setAttribute("loginUser", loginUser);
 				session.setMaxInactiveInterval(3600);
 				
+				
 			} else {
 				session.setAttribute("message", "실패");
 			}
