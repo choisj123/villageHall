@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마을회관</title>
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/Notice-page.css"/>
+    <link rel="stylesheet" href="${contextPath}/resources/css/notice.css"/>
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/2f1bf0eac7.js"crossorigin="anonymous"></script>   
