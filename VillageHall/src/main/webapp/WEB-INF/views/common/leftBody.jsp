@@ -10,17 +10,27 @@
     <c:choose>
       <%-- 로그인 되있지 않은 경우 --%>
       <c:when test="${empty sessionScope.loginUser}">
-        <img src="${contextPath}/resources/images/profile.png" /><br />
+        <img src="${contextPath}/resources/images/profile.png" id="profile-image" /><br />
         <a href="${contextPath}/user/login" id="body-login"> 로그인</a>
       </c:when>
+      <%-- 로그인 한 경우 --%>
       <c:otherwise>
-        <img src="${contextPath}/resources/images/profile.png" /><br />
+      	<%-- 프로필사진 설정 안한 경우 --%>
+      	<c:if test="${empty loginUser.profileImg}">
+			<img src="${contextPath}/resources/images/profile.png" id="profile-image">
+		</c:if>
+		<%-- 프로필사진 설정 한 경우 --%>
+		<c:if test="${!empty loginUser.profileImg}">
+			<img src="${contextPath}${loginUser.profileImg}" id="profile-image">
+        </c:if>
         <span id="left-user-name"><strong>${loginUser.userNickname}님</strong></span>
+        
         <span>
           <a href="${contextPath}/mypage/myPage" id="updateMyInfo">내 정보 수정</a>
           |
           <a href="${contextPath}/mypage/myBoard" id="selectMyBoard"> 내 글 목록</a></span>
       </c:otherwise>
+		
     </c:choose>
     <!-- 이미지 + 로그인 -->
   </article>
