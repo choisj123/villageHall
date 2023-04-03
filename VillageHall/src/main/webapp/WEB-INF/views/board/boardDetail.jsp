@@ -24,8 +24,6 @@
 <body>
     <main>
         <!-- header include -->
-  
-        <!-- 내부 접근 절대 경로 -->
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
   
         <!-- 바디 부분 시작 -->
@@ -54,7 +52,6 @@
       </main>
   
       <!-- footer include -->
-      <!-- 내부 접근 절대 경로 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
       <!-- jQuery 라이브러리 추가 -->

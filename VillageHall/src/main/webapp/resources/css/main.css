@@ -94,7 +94,7 @@ header > section:nth-of-type(3) {
 
 #signup {
   text-decoration: none;
-  border: 6px solid #55710f;
+  border: 0;
   border-radius: 25px;
   background-color: #55710f;
   color: white;
@@ -129,6 +129,7 @@ header > section:nth-of-type(3) {
   height: 1140px;
 }
 
+
 .left-body {
   flex-basis: 20%;
   border-right: 1px solid #55710f;
@@ -143,10 +144,40 @@ header > section:nth-of-type(3) {
   padding-top: 30px;
 }
 
+
 .left-body a {
   text-decoration: none;
   color: #55710f;
 }
+
+#left-profile-area{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+  	align-items: center;
+  	
+  	
+}
+
+
+
+#writeBtn {
+  text-decoration: none;
+  border: 0;
+  border-radius: 10px;
+  background-color: #55710f;
+  color: white;
+  
+  font-size:16px;
+  padding: 3px 10px;
+  margin-top : 6px;
+  
+  cursor: pointer;
+	
+}
+
+
+/* 네비 */
 
 nav > ul {
   display: flex;

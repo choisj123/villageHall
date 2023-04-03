@@ -54,7 +54,7 @@
           
 				<div class="profile-image-area">
 					<c:if test="${empty loginUser.profileImg}">
-                            <img src="${contextPath}/resources/images/profile.png" id="profile-image">
+                            <img src="${contextPath}/resources/images/profile.png" id="lprofile-image">
                     </c:if>
 
 					<c:if test="${!empty loginUser.profileImg}">
