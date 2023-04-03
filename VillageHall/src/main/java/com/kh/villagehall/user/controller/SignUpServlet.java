@@ -17,6 +17,7 @@ import com.kh.villagehall.user.model.vo.User;
 
 @WebServlet("/user/signUp")
 public class SignUpServlet extends HttpServlet{
+	
 
 	// GET 방식 요청 시 JSP로 바로 응답할 수 있도록 요청 위임
 	@Override
@@ -46,8 +47,9 @@ public class SignUpServlet extends HttpServlet{
 		user.setUserNickname(userNickname);
 		user.setUserTel(userTel);
 		
-		
-		
+	
+
+
 		try {
 			
 			UserService service = new UserService();
@@ -57,22 +59,29 @@ public class SignUpServlet extends HttpServlet{
 			
 			// 서비스 결과에 따라서 message를 다르게하여 메인 페이지 재요청(redirect)
 			
-			HttpSession session = req.getSession();
-			PrintWriter out = resp.getWriter();
+			HttpSession session = req.getSession();	
 			
-			if(result >0) { // 성공
-
-				out.println("<script>alert('회원가입이 완료되었습니다.'); self.close();</script>");
-
+			resp.setContentType("text/html; charset=UTF-8");
+	 		PrintWriter out = resp.getWriter();
+			
+			
+			
+			
+			if(result > 0) { // 성공
+				
+				 
+				out.println("<script>alert('가입이 완료되었습니다. 환영합니다!');</script>");
+				 
 				out.flush();
+
+			
 				
 			}else { // 실패
 				
-		
-				out.println("<script>alert('회원가입이 실패하였습니다.'); self.close();</script>");
-
+				out.println("<script>alert('가입이 실패하였습니다.');</script>");
+				 
 				out.flush();
-				
+			
 			}
 			
 			resp.sendRedirect( req.getContextPath() );
