@@ -41,7 +41,7 @@ public class JDBCTemplate {
 	/** Connection 객체 자원 반환 메소드
 	 * @param connn
 	 */
-	public static void close(Connection connn) {
+	public static void close(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) conn.close();
 			

@@ -206,7 +206,7 @@ public class BoardDAO {
 				boardList.setBoardCreateDate(rs.getString(3));
 				boardList.setLatitude(rs.getDouble(4));
 				boardList.setLongtitude(rs.getDouble(5));
-				boardList.setCategoryNo(rs.getInt(6));
+				boardList.setCategoryName(rs.getString(6));
 				boardList.setUserNickname(rs.getString(7));
 				boardList.setBoardNo(rs.getInt(8));
 				
