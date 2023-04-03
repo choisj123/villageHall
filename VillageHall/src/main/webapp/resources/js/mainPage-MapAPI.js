@@ -20,12 +20,13 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 var markers = [];
 
+// 데이터를 담을 배열추가
 var markersData = [];
 
-// 마커 데이터
+// 데이터를 배열에 삽입
 for (var i = 0; i < kakaoMapList.length; i++) {
   markersData.push({
-    marker : null,  // 아직 marker 객체는 생성하지 않음
+    marker : null,  
     name : kakaoMapList[i].userNickname,
     title : kakaoMapList[i].boardTitle,
     createAt : kakaoMapList[i].boardCreateDate,
