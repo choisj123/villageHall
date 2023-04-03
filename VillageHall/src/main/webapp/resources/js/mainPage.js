@@ -1,3 +1,5 @@
+
+console.log("main loaded")
 const signupBtn = document.getElementById("signup")
 signupBtn.addEventListener("mouseover",function(){
     signupBtn.style.backgroundColor="#EEF5ED"
@@ -13,3 +15,20 @@ signupBtn.addEventListener("mouseout",function(){
     signupBtn.style.padding = "3px"
 })
 
+
+
+//const writeBtn = document.getElementById("writeBtn");
+
+
+//writeBtn.addEventListener("click", function(){
+	//console.log("test!!!")
+	//location.href='board/write'
+	
+	
+//})
+
+function writePage() {
+	console.log("click");
+	location.href='board/write';
+	
+}
