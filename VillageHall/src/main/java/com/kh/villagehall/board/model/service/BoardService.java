@@ -128,11 +128,11 @@ public class BoardService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int readCount(int boardNo) throws Exception {
+	public int updateRead(int boardNo) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.readCount(conn, boardNo);
+		int result = dao.updateRead(conn, boardNo);
 		
 		if(result > 0) commit(conn);
 		else			rollback(conn);
@@ -193,6 +193,23 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		int result = dao.deleteLike(conn, userNo, boardNo);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		return result;
+	}
+
+	/** 게시글 삭제 DAO
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(int boardNo) throws Exception {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn, boardNo);
 		
 		if(result > 0) commit(conn);
 		else			rollback(conn);

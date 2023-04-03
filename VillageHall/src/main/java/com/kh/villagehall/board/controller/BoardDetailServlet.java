@@ -31,7 +31,7 @@ public class BoardDetailServlet extends HttpServlet {
 			Board board = service.selectBoardDetail(boardNo);
 			
 			// 내글이아닌 게시글 조회시 조회수 증가	(아직전체증가 미완성)					
-			int result = service.readCount(boardNo);
+			int result = service.updateRead(boardNo);
 				
 				
 			req.setAttribute("board", board);
