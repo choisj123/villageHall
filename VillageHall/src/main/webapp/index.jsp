@@ -46,7 +46,7 @@
           <section>
             <div>
               <label for="category" class="category">카테고리:</label>
-              <select onchange="showMarkersByCategory(this.value)">
+              <select onchange="showMarkersByCategory(this.value)" id="categorySelect">
                 <option value="전체">전체글</option>
                 <option value="이슈">이슈</option>
                 <option value="맛집">맛집</option>

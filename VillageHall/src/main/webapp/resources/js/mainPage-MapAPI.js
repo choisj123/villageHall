@@ -1,3 +1,4 @@
+// servlet에서 json 객체 불러오기
 $.ajax({
         url : "board/kakaoMap",
         dataType : "json",    //  응답 데이터의 형식을 "json"으로 지정
@@ -7,36 +8,38 @@ $.ajax({
 
 
 
-
+// map 함수 정의 
 var mapContainer = document.getElementById('map'),
     mapOption = { 
         center: new kakao.maps.LatLng(37.566826, 126.9786567), 
         level: 3 
     }; 
-
+// kakao library 메서드
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 
-
+// 데이터를 담을 배열추가
 var markers = [];
 
+// 데이터를 담을 배열추가
 var markersData = [];
 
-// 마커 데이터
+// DB데이터를 배열에 삽입
 for (var i = 0; i < kakaoMapList.length; i++) {
   markersData.push({
-    marker : null,  // 아직 marker 객체는 생성하지 않음
+    marker : null,  
     name : kakaoMapList[i].userNickname,
     title : kakaoMapList[i].boardTitle,
     createAt : kakaoMapList[i].boardCreateDate,
     location: new kakao.maps.LatLng(kakaoMapList[i].latitude, kakaoMapList[i].longtitude),
     content : kakaoMapList[i].boardContent,
-    category : "전체",
+    category : kakaoMapList[i].categoryName,
+    like : kakaoMapList[i].boardNo,
     photoUrl : 'https://media.tenor.com/7bS_ec1TjfEAAAAi/%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EB%A1%9C%EC%95%84%EC%BD%98-%EB%AA%A8%EC%BD%94%EC%BD%94.gif'
   });
 }
 
-// markersData 배열에 데이터가 모두 추가된 후에 반복문 실행
+// marker에 위치 , 맵, 카테고리 삽입
 for (var i = 0; i < markersData.length; i++) {
   var marker = new kakao.maps.Marker({
     position: markersData[i].location,
@@ -46,8 +49,10 @@ for (var i = 0; i < markersData.length; i++) {
 
   markersData[i].marker = marker;
 
+// 위에서 정의한 markers배열에 marker 데이터 삽입
   markers.push(marker);
 
+// 배열에 담은 데이터를 정의하는 인포윈도우 이벤트 리스너
   kakao.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
           var infowindow = new kakao.maps.InfoWindow({
@@ -69,6 +74,7 @@ for (var i = 0; i < markersData.length; i++) {
             '</div>'
             
           });
+          // 인포윈도우 이벤트 리스너
           infowindow.open(map, marker);
           map.addListener('click',  function() {
             infowindow.close();
@@ -77,6 +83,7 @@ for (var i = 0; i < markersData.length; i++) {
   })(marker, i));
 }
 
+// option을 정의하는 함수
 function showMarkersByCategory(category) {
     for (var i = 0; i < markersData.length; i++) {
       if (category === "전체" || markersData[i].category === category) {
@@ -86,6 +93,15 @@ function showMarkersByCategory(category) {
       }
     }
   }
+  
+ // option 이벤트 리스너 
+ document.getElementById("categorySelect").addEventListener('change', function(){
+	
+	const category = this.value;
+	showMarkersByCategory(category);
+	
+});
+  
   },
 
  error : function(request, status, error){
