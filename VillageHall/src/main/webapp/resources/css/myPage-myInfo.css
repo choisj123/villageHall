@@ -193,6 +193,9 @@ form[name="myPage-form"]{
 
     /* 내용이 지정한 사이즈를 초과한 경우에 대한 속성 */
     overflow : auto; /* 초과한 방향의 스크롤을 자동 생성 */
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow:clip
 }
 
 .info-title{

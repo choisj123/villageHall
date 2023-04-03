@@ -11,16 +11,19 @@ public class Board {
 	private double longtitude;
 	private String boardDeleteFG;
 	private int categoryNo;
+
 	private String categoryName;
 	private int userNo;
 	private int likeCount;	
 	private String userNickname;
 	private String boardImg;
+
 	
 	public Board() {}
 	
 	public Board(int boardNo, String boardTitle, String boardContent, String boardCreateDate, String boardUpdateDate,
 			int readCount, double latitude, double longtitude, String boardDeleteFG, int categoryNo, String categoryName, int userNo, String boardImg) 
+
 		{
 		super();
 		this.boardNo = boardNo;
@@ -36,6 +39,7 @@ public class Board {
 		this.categoryName = categoryName;
 		this.userNo = userNo;
 		this.boardImg = boardImg;
+
 	}
 
 	public String getUserNickname() {
@@ -169,6 +173,7 @@ public class Board {
 	}
 
 
+
 	public int getUserNo() {
 		return userNo;
 	}
@@ -185,7 +190,6 @@ public class Board {
 	public void setBoardImg(String boardImg) {
 		this.boardImg = boardImg;
 	}
-
 
 	@Override
 	public String toString() {

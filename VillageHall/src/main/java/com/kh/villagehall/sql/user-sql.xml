@@ -79,7 +79,8 @@
 	<entry key="updateProfileImage">
 		UPDATE "USER" SET
 		PROFILE_IMG = ?
-		WHERE USER_NO = ?
+		WHERE USER_NO = ? 
+		AND USER_DELETE_FG = 'N' 
 	</entry>
 	
 	

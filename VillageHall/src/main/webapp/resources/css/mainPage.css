@@ -137,6 +137,7 @@
   flex-direction: row;
   align-items: center;
   text-align: center;
+  border-radiuse :5px;
 }
 
 .notice-box {
