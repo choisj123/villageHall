@@ -142,8 +142,6 @@ public class UserService {
 			return result;
 		}
 
-
-	   
 	   
 	   
 	/** 마이페이지 비밀번호 일치 검사 service
@@ -164,10 +162,26 @@ public class UserService {
 		
 		return result;
 	}
+	
 
+	/** 프로필 이미지 변경 service
+	 * @param userNo
+	 * @param profileImg
+	 * @return result
+	 * @throws Exception
+	 */
 	public int updateProfileImage(int userNo, String profileImg) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = getConnection();
+		
+		int result = dao.updateProfileImage(conn, userNo, profileImg);
+		
+		// 트랜잭션 제어 처리
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 
 	

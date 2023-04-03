@@ -35,11 +35,10 @@
           <h2>마이페이지</h2>
 
           <!-- 탭 메뉴 -->
-          <jsp:include page="/WEB-INF/views/mypage/myInfoMenu.jsp" />
+          <jsp:include page="/WEB-INF/views/mypage/myInfoTab.jsp" />
 
           <!-- 내 정보 -->
           <div id="myInfo" class="tabContent">
-          
                   <!-- 
                     enctype : form 태그가 데이터를 서버로 제출할 때 
                               데이터의 인코딩 형식을 지정하는 속성
@@ -53,8 +52,6 @@
                         (주의) multipart/form-data 로 설정 시 method는 무조건 POST
                 -->
           
-            <form action="profile" method="POST" name="myPage-form" 
-            	enctype="multipart/form-data" onsubmit="return profileValidate()">
 				<div class="profile-image-area">
 					<c:if test="${empty loginUser.profileImg}">
                             <img src="${contextPath}/resources/images/profile.png" id="profile-image">
@@ -64,19 +61,8 @@
                             <img src="${contextPath}${loginUser.profileImg}" id="profile-image">
                     </c:if>
 
-                    <!-- 프로필 이미지 삭제 버튼 -->
-                    <span id="delete-image">x</span>
+                </div>
 
-                </div>
-				<div class="profile-btn-area">
-	                <label for="input-image">이미지 선택</label>
-	                <input type="file" name="profileImage" id="input-image" accept="image/*">
-	                <!-- accept="image/*" : 이미지 파일 확장자만 선택 허용 -->
-	                <!-- accept="video/*" : 동영상 파일 확장자만 선택 허용 -->
-	                <!-- accept=".pdf" : pdf파일만 선택 허용 -->
-	
-	                <button type="submit">변경하기</button>
-                </div>
 
                 <div class="myPage-row">
                     <label>이메일</label>
@@ -87,11 +73,6 @@
                     <label>가입일</label>
                     <span>${loginUser.enrollDate}</span>
                 </div>
-
-                    <!-- 삭제버튼(x)이 눌러짐을 기록하는 숨겨진 input 태그 -->
-                    <!-- 0 : 안눌러짐   /   1: 눌러짐 -->
-                <input type="hidden" name="delete" id="delete" value="0">
-           </form>
          </div>
        </section>
      </section>
