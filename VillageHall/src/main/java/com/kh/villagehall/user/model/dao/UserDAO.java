@@ -367,6 +367,27 @@ public class UserDAO {
 		
 		return result;
 	}
+
+	public int changePw(Connection conn, String newPw, int userNo) throws Exception{
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("changePw");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPw);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 }

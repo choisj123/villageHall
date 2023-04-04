@@ -1,3 +1,4 @@
+
 // 내 정보 수정 유효성 검사
 function infoValidate(){
 	console.log("js loaded..")
@@ -62,6 +63,7 @@ function printAlert(el, message){ // 매개변수 el은 요소
 
 // 비밀번호 변경 제출 시 유효성 검사
 function changePwValidate(){
+	console.log("js loaded..")
 
     
     const newPw = document.getElementsByName("newPw")[0];
@@ -70,14 +72,6 @@ function changePwValidate(){
     // 비밀번호 정규표현식
     const regEx = /^[\w!@#_-]{6,30}$/;
 
-    // 현재 비밀번호 미작성
-    if(currentPw.value.trim().length == 0){
-        /*alert("현재 비밀번호를 입력해주세요.");
-        currentPw.focus();
-        return false;*/
-
-        return printAlert(currentPw, "현재 비밀번호를 입력해주세요.");
-    }
 
     // 새 비밀번호
     // 미작성
@@ -106,6 +100,17 @@ function changePwValidate(){
     if(newPw.value != newPwConfirm.value){
         return printAlert(newPwConfirm, "새 비밀번호가 일치하지 않습니다.");
     }
+    
+    $.ajax({
+            url : "changePw",
+            type : "POST",
+            success : function(){
+				alert("비밀번호가 성공적으로 변경되었습니다.")
+            },
+            error : function(){
+                console.log("비밀번호 변경을 실패하였습니다.")
+            }
+        });
 
     return true; // 위 조건을 모두 수행하지 않은 경우 true 반환
 }
@@ -234,7 +239,7 @@ document.getElementById("delete-image").addEventListener("click", function(){
     if(del.value == 0){ // 눌러지지 않은 경우
 
         // 1) 프로필 이미지를 기본 이미지로 변경
-        document.getElementById("profile-image").setAttribute("src", contextPath + "/resources/images/user.png");                     
+        document.getElementById("profile-image").setAttribute("src", "${contextPath}/resources/images/profile.png");                     
 
         // 2) input type="file"에 저장된 값(value)에 "" 대입 
         document.getElementById("input-image").value = "";

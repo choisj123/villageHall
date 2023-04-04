@@ -26,42 +26,53 @@ public class ChangePwServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		String newPw = req.getParameter("newPw");
-		String newPwConfirm = req.getParameter("newPwConfirm");
-		
-		
-		HttpSession session = req.getSession();
-		
-		User loginUser = (User)(session.getAttribute("loginUser"));
-		
-		int userNo = loginUser.getUserNo();
-		
-	
-		System.out.println(newPw);
-		System.out.println(newPwConfirm);
-		
-		
-		
-		
-		if(newPw == null) {
-//			newPw = UserService.loginUserPw(userNo);
+			String newPw = req.getParameter("newPw");
 			
-		}else {
+			// ** 로그인 회원 번호 얻어오기 **
+			HttpSession session = req.getSession(); // 세션 얻어오기
 			
-			if(newPw.equals(newPwConfirm)) {
+			// 로그인 정보 얻어오기
+			User loginMember = (User)( session.getAttribute("loginUser") ) ;
+			
+			int userNo = loginMember.getUserNo(); // 로그인 회원 번호
+			
+			System.out.println(newPw);
+			System.out.println(userNo);
+			
+			
+			try {
+				UserService service = new UserService();
+				
+				int result = service.changePw(newPw, userNo);
 				
 				
+				String path = null; // 리다이렉트 주소
+				
+				if(result > 0) { // 성공
+					// session scope ->   key="message",  vlaue="비밀번호 변경 성공!"    세팅
+					// path = "내 정보 페이지 주소"
+					session.setAttribute("message", "비밀번호 변경 성공!" );
+					
+					//path = req.getContextPath() + "/member/mypage/info";
+					path = "changePw";
+					
+				} else { // 실패
+					// session scope ->   key="message",  vlaue="현재 비밀번호가 일치하지 않습니다"  세팅
+					// path = "비밀번호 변경 페이지 주소"
+					session.setAttribute("message", "현재 비밀번호가 일치하지 않습니다" );
+					
+					//path = req.getContextPath() + "/member/mypage/changePw";
+					path ="changePw";
+				}
+				
+				resp.sendRedirect(path);
+				
+				
+			}catch (Exception e) {
+				e.printStackTrace();
 			}
+			
+		
 		}
-		
-		req.setAttribute("userPw", newPw);
-		
-		
-		
-		String path = "/WEB-INF/views/mypage/changeInfo.jsp";
-		req.getRequestDispatcher(path).forward(req, resp);
-	
-	}
 
 }

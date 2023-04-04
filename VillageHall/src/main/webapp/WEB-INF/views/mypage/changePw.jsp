@@ -39,13 +39,9 @@
           <jsp:include page="/WEB-INF/views/mypage/myInfoTab.jsp" />
 
           <!-- 내 정보 수정 -->
-          <div id="changeInfo" class="tabContent">
+          <div id="changePw" class="tabContent">
           
-
-
-          
-          	<form action="changeInfo" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
-
+          	<form action="changePw" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
 
                     <div class="myPage-row">
                         <label>새 비밀번호</label>
@@ -69,8 +65,8 @@
 
     <!-- 푸터 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-
-    <script src="/js/myPage.js"></script>
+    
+    <script src="${contextPath}/resources/js/myPage-myInfo.js"></script>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"

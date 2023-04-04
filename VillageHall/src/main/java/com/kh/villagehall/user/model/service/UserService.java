@@ -185,7 +185,7 @@ public class UserService {
 		return result;
 	}
 
-	/** 마이페이지 회원정보 수정
+	/** 마이페이지 회원정보 수정 service
 	 * @param user
 	 * @return result
 	 * @throws Exception
@@ -204,6 +204,25 @@ public class UserService {
 		
 		return result;
 		
+	}
+
+	/** 마이페이지 비밀번호 변경 service
+	 * @param newPw
+	 * @param userNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int changePw(String newPw, int userNo) throws Exception {
+		Connection conn = getConnection(); // DBCP에서 얻어옴
+		
+		int result = dao.changePw(conn, newPw, userNo);
+		
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 
 
