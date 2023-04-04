@@ -14,20 +14,19 @@ import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 
-@WebServlet("/mypage/changeInfo")
-public class ChangeInfo extends HttpServlet{
+@WebServlet("/mypage/changePw")
+public class ChangePwServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/mypage/changeInfo.jsp";
+		String path = "/WEB-INF/views/mypage/changePw.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String newNickname = req.getParameter("newNickname");
-		String newTel = req.getParameter("newTel");
+		
 		String newPw = req.getParameter("newPw");
 		String newPwConfirm = req.getParameter("newPwConfirm");
 		
@@ -38,11 +37,25 @@ public class ChangeInfo extends HttpServlet{
 		
 		int userNo = loginUser.getUserNo();
 		
-		System.out.println(newNickname);
-		System.out.println(newTel);
+	
 		System.out.println(newPw);
 		System.out.println(newPwConfirm);
 		
+		
+		
+		
+		if(newPw == null) {
+//			newPw = UserService.loginUserPw(userNo);
+			
+		}else {
+			
+			if(newPw.equals(newPwConfirm)) {
+				
+				
+			}
+		}
+		
+		req.setAttribute("userPw", newPw);
 		
 		
 		

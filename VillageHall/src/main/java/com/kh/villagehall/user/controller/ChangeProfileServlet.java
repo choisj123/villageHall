@@ -15,7 +15,7 @@ import com.kh.villagehall.user.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 
 @WebServlet("/mypage/ChangeProfile")
-public class ChangeProfile extends HttpServlet{
+public class ChangeProfileServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -139,7 +139,7 @@ public class ChangeProfile extends HttpServlet{
 				loginUser.setProfileImg(profileImg); // 세션의 값이 변경됨
 				
 			} else { // 실패
-				session.setAttribute("message", "프로필 이미지 변경 실패 ㅜㅜ");
+				session.setAttribute("message", "프로필 이미지 변경 실패");
 			}
 			
 			

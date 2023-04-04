@@ -1,8 +1,8 @@
 // 내 정보 수정 유효성 검사
 function infoValidate(){
 
-    const userNickname = document.getElementById("userNickname");
-    const userTel = document.getElementById("userTel");
+    const userNickname = document.getElementById("newNickname");
+    const userTel = document.getElementById("newTel");
 
     const regExp1 = /^[a-zA-Z0-9가-힣]{2,10}$/;        // 닉네임 정규식
     const regExp2 = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/; // 전화번호 정규식

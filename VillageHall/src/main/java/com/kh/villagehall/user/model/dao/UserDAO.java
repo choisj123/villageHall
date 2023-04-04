@@ -337,6 +337,26 @@ public class UserDAO {
 		
 		return result;
 	}
+
+	public int updateProfileImage(Connection conn, User user) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUserNickname());
+			pstmt.setString(2, user.getUserTel());
+			pstmt.setInt(3, user.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 }

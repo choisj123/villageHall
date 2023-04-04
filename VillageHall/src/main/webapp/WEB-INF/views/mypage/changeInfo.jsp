@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,10 +37,9 @@
           <!-- 탭 메뉴 -->
           <jsp:include page="/WEB-INF/views/mypage/myInfoTab.jsp" />
 
-          <!-- 내 정보 수정 -->
-          <div id="changeInfo" class="tabContent">
-          
-          <!-- 
+          <!-- 내 정보 -->
+          <div id="myInfo" class="tabContent">
+             <!-- 
              enctype : form 태그가 데이터를 서버로 제출할 때 
                        데이터의 인코딩 형식을 지정하는 속성
 
@@ -84,34 +82,23 @@
                 <input type="hidden" name="delete" id="delete" value="0">
            </form>
 
-          
-          	<form action="changeInfo" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
+                <form action="changeInfo" method="POST" name="myPage-form" onsubmit="return infoValidate()">
+	                <div class="myPage-row">
+	                    <label>이메일</label>
+	                    <span>${loginUser.userEmail}</span>
+	                </div>
+	                <div class="myPage-row">
+	                    <label>닉네임</label>
+	                    <input type="text" name="newNickname" id="newNickname" value="${loginUser.userNickname}" maxlength="10"></input>
+	                </div>
+	                 <div class="myPage-row">
+	                    <label>전화번호</label>
+	                    <input type="tel" name="newTel" id="newTel" value="${loginUser.userTel}" maxlength="11"></input>
+	                </div>
+	                
+	               <button type="submit" id="info-update-btn">변경</button>
+	            </form>
 
-                    <div class="myPage-row">
-                        <label>닉네임</label>
-                        <input type="text" name="newNickname" id="newNickname" maxlength="30">              
-                    </div>
-                    
-                     <div class="myPage-row">
-                        <label>전화번호</label>
-                        <input type="tel" name="newTel" maxlength="30">              
-                    </div>
-
-                    <div class="myPage-row">
-                        <label>새 비밀번호</label>
-                        <input type="password" name="newPw" maxlength="30">              
-                    </div>
-
-                    <div class="myPage-row">
-                        <label>새 비밀번호 확인</label>
-                        <input type="password" name="newPwConfirm" maxlength="30">              
-                    </div>
-					
-                    <button id="info-update-btn">변경하기</button>
-
-                </form>
-          
-                
          </div>
        </section>
      </section>
@@ -120,7 +107,7 @@
     <!-- 푸터 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <script src="/js/myPage.js"></script>
+    <script src="${contextPath}/resources/js/myPage-myInfo.js"></script>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"

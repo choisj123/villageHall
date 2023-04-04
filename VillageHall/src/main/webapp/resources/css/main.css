@@ -95,13 +95,13 @@ header > section:nth-of-type(3) {
 #signup {
   text-decoration: none;
   border: 0;
-  border-radius: 25px;
+  border-radius: 15px;
   background-color: #55710f;
   color: white;
 }
 
 #logout {
-  padding-right: 10px;
+  padding-right: 5px;
   text-decoration: none;
   color: #55710f;
 }
@@ -110,14 +110,14 @@ header > section:nth-of-type(3) {
   text-decoration: none;
   font-weight: bold;
   border: 7px solid #55710f;
-  border-radius: 25px;
+  border-radius: 15px;
   background-color: #55710f;
   color: white;
 }
 
 #user-name {
   border: 6px solid #55710f;
-  border-radius: 25px;
+  border-radius: 15px;
   background-color: #55710f;
   color: white;
 }

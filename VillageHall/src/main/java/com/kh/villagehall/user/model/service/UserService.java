@@ -184,6 +184,22 @@ public class UserService {
 		return result;
 	}
 
+	public int updateUser(User user) throws Exception{
+
+		Connection conn = getConnection();
+		
+		int result = dao.updateProfileImage(conn, user);
+		
+		// 트랜잭션 제어 처리
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+
 
 	
 }
