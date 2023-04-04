@@ -21,17 +21,21 @@ public class PopularBoardServlet extends HttpServlet {
 		String path = "/WEB-INF/views/board/popularBoard.jsp";
 		
 		String sortBy = req.getParameter("sortBy");
+		
 		System.out.println(sortBy);
 		
 		try {
 			BoardService service = new BoardService();
 			
 			
-			List<Board> boardList = service.selectAllBoard();
+			List<Board> boardList = service.selectPopularBoard(sortBy);
+			
+			req.setAttribute("boardList", boardList);
+			req.getRequestDispatcher(path).forward(req, resp);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher(path).forward(req, resp);
+		
 	}
 }
