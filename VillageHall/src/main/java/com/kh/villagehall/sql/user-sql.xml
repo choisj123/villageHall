@@ -87,7 +87,7 @@
 	<entry key="updateUser">
 		UPDATE "USER" SET 
 		USER_NICKNAME = ?, 
-		USER_TEL =? 
+		USER_TEL = ? 
 		WHERE USER_NO = ? 
 		AND USER_DELETE_FG = 'N' 
 	</entry>

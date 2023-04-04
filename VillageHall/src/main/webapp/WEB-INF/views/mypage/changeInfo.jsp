@@ -89,7 +89,7 @@
 	                </div>
 	                <div class="myPage-row">
 	                    <label>닉네임</label>
-	                    <input type="text" name="newNickname" id="newNickname" value="${loginUser.userNickname}" maxlength="10"></input>
+	                    <input type="text" name="newNickname" id="newNickname" value="${loginUser.userNickname}" maxlength="10" autofocus></input>
 	                </div>
 	                 <div class="myPage-row">
 	                    <label>전화번호</label>

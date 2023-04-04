@@ -338,7 +338,13 @@ public class UserDAO {
 		return result;
 	}
 
-	public int updateProfileImage(Connection conn, User user) throws Exception{
+	/** 마이페이지 회원정보 수정
+	 * @param conn
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateUser(Connection conn, User user) throws Exception{
 		int result = 0;
 		
 		try {

@@ -150,7 +150,25 @@ header > section:nth-of-type(3) {
   color: #55710f;
 }
 
-#left-profile-area{
+.profile-area{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+  	align-items: center;
+	
+}
+
+
+
+/* 프로필 이미지 */
+#left-profile-image{
+    width: 150px;
+    height: 150px;
+    border : 3px solid #ddd;
+    border-radius: 50%;
+}
+
+#profile-info-area{
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
