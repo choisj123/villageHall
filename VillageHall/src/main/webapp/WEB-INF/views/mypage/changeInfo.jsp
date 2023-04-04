@@ -76,7 +76,6 @@
 	
 	                <button type="submit">변경하기</button>
                 </div>
-
                     <!-- 삭제버튼(x)이 눌러짐을 기록하는 숨겨진 input 태그 -->
                     <!-- 0 : 안눌러짐   /   1: 눌러짐 -->
                 <input type="hidden" name="delete" id="delete" value="0">

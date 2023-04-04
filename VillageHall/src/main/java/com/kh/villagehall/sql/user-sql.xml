@@ -92,5 +92,10 @@
 		AND USER_DELETE_FG = 'N' 
 	</entry>
 	
-	
+		<!-- 비밀번호 변경 -->
+	<entry key="changePw">
+		UPDATE "USER" SET 
+		USER_PW = ? 
+		WHERE USER_NO = ? 
+	</entry>
 </properties>
