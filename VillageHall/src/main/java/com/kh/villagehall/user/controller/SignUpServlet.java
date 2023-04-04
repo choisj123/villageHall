@@ -16,8 +16,8 @@ import com.kh.villagehall.user.model.vo.User;
 
 
 @WebServlet("/user/signUp")
-public class SignUpServlet extends HttpServlet{
-	
+public class SignUpServlet extends HttpServlet{   
+	 
 
 	// GET 방식 요청 시 JSP로 바로 응답할 수 있도록 요청 위임
 	@Override

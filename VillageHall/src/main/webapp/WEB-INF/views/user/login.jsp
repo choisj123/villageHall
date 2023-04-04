@@ -29,15 +29,15 @@
             		
        			        <!-- 절대경로 : /community/member/login -->
 		           	 	<!-- 상대 경로 (index.jsp) 기준-->
-		                <form action="login" method="get" name="login-form" onsubmit="return loginValidate()">
+		                <form action="login" method="Post" name="login-form" onsubmit="return loginValidate()">
 		                   
 		                    <!-- 아이디(이메일)/비밀번호/로그인버튼 영역 -->
 		                    <fieldset id="id-pw-area">
 		        
 		                        <section>
-		                            <input type="text" name="inputEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}">     
+		                            <input type="text" name="userEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}">     
                                                                                                  <%-- 현재 페이지 쿠키 중 "saveId"의 내용을 출력--%>                   
-		                            <input type="password" name="inputPw" placeholder="비밀번호">
+		                            <input type="password" name="userPw" placeholder="비밀번호">
 		                        </section>
 		        
 		                        <section>

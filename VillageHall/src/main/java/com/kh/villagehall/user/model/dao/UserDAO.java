@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import com.kh.villagehall.user.model.vo.User;
 
-public class UserDAO {
+public class UserDAO { 
 	
 	private Statement stmt;
 	private PreparedStatement pstmt;
@@ -42,6 +42,8 @@ public class UserDAO {
 	 */
 	public User login(Connection conn, User user) throws Exception{
 		
+		System.out.println("dao쩍user" + user);
+		
 		User loginUser = null; // 결과 저장용 변수
 		
 		try {
@@ -65,12 +67,14 @@ public class UserDAO {
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
 				
+				
+				
 			}
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
-		
+		System.out.println("DAO" + loginUser);
 		return loginUser;
 	}
 
