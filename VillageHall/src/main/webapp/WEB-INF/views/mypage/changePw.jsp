@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,42 +38,30 @@
           <!-- 탭 메뉴 -->
           <jsp:include page="/WEB-INF/views/mypage/myInfoTab.jsp" />
 
-          <!-- 내 정보 -->
-          <div id="myInfo" class="tabContent">
-                  <!-- 
-                    enctype : form 태그가 데이터를 서버로 제출할 때 
-                              데이터의 인코딩 형식을 지정하는 속성
-
-                    1) application/x-www-form-urlencoded
-                        - 모든 문자를 서버로 제출하기 전에 인코딩 (모든 데이터가 문자)
-                          (form태그 기본값)
-
-                    2) multipart/form-data : 제출할 때 인코딩을 하지 않음
-                        -> 모든 데이터가 원본 형태를 유지(파일이 파일상태로 서버로 제출)
-                        (주의) multipart/form-data 로 설정 시 method는 무조건 POST
-                -->
+          <!-- 내 정보 수정 -->
+          <div id="changeInfo" class="tabContent">
           
-				<div class="profile-image-area">
-					<c:if test="${empty loginUser.profileImg}">
-                            <img src="${contextPath}/resources/images/profile.png" id="lprofile-image">
-                    </c:if>
-
-					<c:if test="${!empty loginUser.profileImg}">
-                            <img src="${contextPath}${loginUser.profileImg}" id="profile-image">
-                    </c:if>
-
-                </div>
 
 
-                <div class="myPage-row">
-                    <label>이메일</label>
-                    <span>${loginUser.userEmail}</span>
-                </div>
+          
+          	<form action="changeInfo" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
 
-                <div class="myPage-row">
-                    <label>가입일</label>
-                    <span>${loginUser.enrollDate}</span>
-                </div>
+
+                    <div class="myPage-row">
+                        <label>새 비밀번호</label>
+                        <input type="password" name="newPw" maxlength="30">              
+                    </div>
+
+                    <div class="myPage-row">
+                        <label>새 비밀번호 확인</label>
+                        <input type="password" name="newPwConfirm" maxlength="30">              
+                    </div>
+					
+                    <button id="info-update-btn">변경하기</button>
+
+                </form>
+          
+                
          </div>
        </section>
      </section>

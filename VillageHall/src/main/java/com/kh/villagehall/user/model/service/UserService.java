@@ -184,6 +184,27 @@ public class UserService {
 		return result;
 	}
 
+	/** 마이페이지 회원정보 수정
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateUser(User user) throws Exception{
+
+		Connection conn = getConnection();
+		
+		int result = dao.updateUser(conn, user);
+		
+		// 트랜잭션 제어 처리
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+
 
 	
 }

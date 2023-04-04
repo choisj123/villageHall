@@ -63,7 +63,6 @@ div > .tab {
 
 
 
-
 /* 프로필 버튼 영역 */
 .profile-btn-area{
     width: 230px;
@@ -149,6 +148,8 @@ div > .tab {
     outline: 0;
     font-weight: normal;
 }
+
+
 
 .myPage-row:focus-within{
     border-bottom: 2px solid #55710f;

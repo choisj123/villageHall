@@ -337,6 +337,32 @@ public class UserDAO {
 		
 		return result;
 	}
+
+	/** 마이페이지 회원정보 수정
+	 * @param conn
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateUser(Connection conn, User user) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUserNickname());
+			pstmt.setString(2, user.getUserTel());
+			pstmt.setInt(3, user.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 }

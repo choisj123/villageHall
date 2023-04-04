@@ -45,7 +45,7 @@ public class MyPageServlet extends HttpServlet {
 			
 			if(result == 1) {
 				
-				path = "/WEB-INF/views/mypage/myInfo.jsp";
+				path = "/WEB-INF/views/mypage/changeInfo.jsp";
 				
 				
 			}else {
