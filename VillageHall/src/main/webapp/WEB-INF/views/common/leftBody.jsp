@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
 	        	<a href="${contextPath}/mypage/myBoard" id="selectMyBoard"> 내 글 목록</a> 
 	        </span>
         </div>
-          <button type="button" id="writeBtn" onclick="writePage()" >글쓰기</button>
+          <button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard'" >글쓰기</button>
       </c:otherwise>
 		
     </c:choose>

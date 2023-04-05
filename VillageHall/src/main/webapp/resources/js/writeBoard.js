@@ -14,21 +14,22 @@ $(document).ready(function(){
           ["color", ["color"]],
           ["para", ["ul", "ol", "paragraph"]],
           ["table", ["table"]],
-          ["insert", ["link", "picture", "video"]],
+          ["insert", ["link", "picture"]],
           ["view", ["fullscreen", "codeview", "help"]],
         ],
       });
 
-      $(document).on("click", "#saveBtn", function () {
+      $(document).on("click", "#writebtn", function () {
         saveContent();
       });
       
     });
     
-          function saveContent() {
-            let title = $("#title").val;
-            let content = $("#summernote").summernote("code");
-    
-            console.log("제목 : " + title);
-            console.log("내용 : " + content);
-          }
+      function saveContent() {
+        let boardTitle = $("#boardTitle").val;
+        let boardContent = $("#summernote").summernote("code");
+        
+        console.log("제목 : " + boardTitle);
+        console.log("내용 : " + boardContent);
+      }
+          

@@ -42,29 +42,52 @@
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
-          <form>
             <h2>글 작성</h2>
+          <form action="write" enctype="multipart/form-data" method="POST" class="board-write"
+            onsubmit="return writeValidate()">
             <hr />
-            <label>태그 </label>
-            <select id="tag">
-              <option name="tag" value="issue" id="issue">이슈</option>
-              <option name="tag" value="delicious" id="delicious">맛집</option>
-              <option name="tag" value="hobby" id="hobby">취미</option>
-              <option name="tag" value="friend" id="friend">친목</option>
-              <option name="tag" value="recommend" id="recommend">추천</option>
-              <option name="tag" value="etc" id="etc" selected>기타</option>
+            <select name="category" class="category">
+              <option>카테고리</option>
+              <option value="이슈" id="issue">이슈</option>
+              <option value="맛집" id="delicious">맛집</option>
+              <option value="취미" id="hobby">취미</option>
+              <option value="친목" id="friend">친목</option>
+              <option value="추천" id="recommend">추천</option>
+              <option value="기타" id="etc">기타</option>
             </select>
             <input
               type="text"
-              name="title"
-              id="title"
+              name="boardTitle"
+              id="boardTitle"
               placeholder="제목을 입력해주세요"
               size="125px"
             />
-            <div id="summernote"></div>
+            <textarea id="summernote" name="boardContent"></textarea>
+            <!-- 버튼 영역 -->
+            <div class="board-btn-area">
+                <button type="submit" id="writebtn">등록</button>
+                <!-- insert 모드 -->
+                <c:if test="${param.mode == 'insert'}">
+                    <button type="button" id="goToListBtn">목록으로</button>
+                </c:if>
+                <!-- update 모드 -->
+                <c:if test="${param.mode == 'update'}">
+                    <button type="button" onclick="location.href='${header.referer}'">이전으로</button>                           
+                </c:if>
+            </div>
+            
+            <!-- 숨겨진 값(hidden) -->
+            <!-- 동작 구분 -->
+            <input type="hidden" name="mode" value="${param.mode}">
 
-            <button type="button" id="reset">취소</button>
-            <button type="button" id="saveBtn">등록</button>
+            <!-- 게시판 구분 -->
+            <input type="hidden" name="type" value="${param.type}">
+
+            <!-- 게시글 번호 -->
+            <input type="hidden" name="no" value="${param.no}">
+            
+            <!-- 현재 페이지 -->
+            <input type="hidden" name="cp" value="${param.cp}">
           </form>
         </section>
       </section>
