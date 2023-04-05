@@ -15,7 +15,7 @@ import com.kh.villagehall.user.model.vo.User;
 
 
 @WebServlet("/mypage/changeInfo")
-public class changeInfoServlet extends HttpServlet{
+public class ChangeInfoServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

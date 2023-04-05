@@ -20,6 +20,7 @@ public class PopularBoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = "/WEB-INF/views/board/popularBoard.jsp";
 		
+	
 		String sortBy = req.getParameter("sortBy");
 		
 		System.out.println(sortBy);
@@ -31,7 +32,12 @@ public class PopularBoardServlet extends HttpServlet {
 			List<Board> boardList = service.selectPopularBoard(sortBy);
 			
 			req.setAttribute("boardList", boardList);
+			
+			
 			req.getRequestDispatcher(path).forward(req, resp);
+			
+			
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

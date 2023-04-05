@@ -446,30 +446,39 @@ public class BoardDAO {
 		List<Board> boardList = new ArrayList<>();
 				
 		try {
-			String sql = prop.getProperty("selectPopularBoard");
-					
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, sortBy);
+			String sql = "";
+			
+			if(sortBy.equals("read")) {
+				sql = prop.getProperty("sortByReadCount");
+			} else if(sortBy.equals("like")) {
+				sql = prop.getProperty("sortByLikeCount");
+			}
+			
+			
 					
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			
+			
+					
+			rs = stmt.executeQuery(sql);
 					
 			while(rs.next()) {
 				Board board = new Board();
 				
-				board.setBoardNo(rs.getInt(1));
-				board.setBoardTitle(rs.getString(2));
-				board.setBoardCreateDate(rs.getString(3));
-				board.setUserNickname(rs.getString(4));
-				board.setReadCount(rs.getInt(5));
-				board.setLikeCount(rs.getInt(6));				
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setBoardCreateDate(rs.getString(4));
+				board.setUserNickname(rs.getString(5));
+				board.setReadCount(rs.getInt(6));
+				board.setLikeCount(rs.getInt(7));				
 						
 				boardList.add(board);
 			}
 					
 			}finally{
 				close(rs);
-				close(pstmt);
+				close(stmt);
 			}
 		
 		return boardList;

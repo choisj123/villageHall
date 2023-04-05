@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 			user.setUserEmail(inputEmail);
 			user.setUserPw(inputPw);
 			
-			System.out.println(user);
 			
 			 
 			try {  
@@ -45,9 +44,7 @@ public class LoginServlet extends HttpServlet {
 				
 				User loginUser = service.login(user);
 				
-				System.out.println(loginUser);
-				
-				HttpSession session = req.getSession();	
+				HttpSession session = req.getSession();
 				
 				if(loginUser != null) {
 					

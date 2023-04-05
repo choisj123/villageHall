@@ -43,21 +43,19 @@
           
           	<form action="changePw" method="POST" name="myPage-form" onsubmit="return changePwValidate()">
 
-                    <div class="myPage-row">
-                        <label>새 비밀번호</label>
-                        <input type="password" name="newPw" maxlength="30">              
-                    </div>
+               <div class="myPage-row">
+                   <label>새 비밀번호</label>
+                   <input type="password" name="newPw" maxlength="30">              
+               </div>
 
-                    <div class="myPage-row">
-                        <label>새 비밀번호 확인</label>
-                        <input type="password" name="newPwConfirm" maxlength="30">              
-                    </div>
-					
-                    <button id="info-update-btn">변경하기</button>
+               <div class="myPage-row">
+                   <label>새 비밀번호 확인</label>
+                   <input type="password" name="newPwConfirm" maxlength="30">              
+               </div>
 
-                </form>
-          
-                
+               <button id="info-update-btn">변경하기</button>
+
+            </form>
          </div>
        </section>
      </section>
@@ -66,7 +64,7 @@
     <!-- 푸터 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
-    <script src="${contextPath}/resources/js/myPage-myInfo.js"></script>
+    <script src="${contextPath}/resources/js/myPage-changePw.js"></script>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
