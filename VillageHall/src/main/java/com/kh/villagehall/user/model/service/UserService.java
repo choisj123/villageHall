@@ -217,6 +217,8 @@ public class UserService {
 		
 		int result = dao.changePw(conn, newPw, userNo);
 		
+		System.out.println("service result: " +  result);
+		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);
 		

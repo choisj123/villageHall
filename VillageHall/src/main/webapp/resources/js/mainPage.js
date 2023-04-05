@@ -16,20 +16,3 @@ signupBtn.addEventListener("mouseout",function(){
 })
 
 
-
-//const writeBtn = document.getElementById("writeBtn");
-
-
-//writeBtn.addEventListener("click", function(){
-	//console.log("test!!!")
-	//location.href='board/write'
-	
-	
-//})
-
-
-function writePage() {
-	console.log("click");
-	location.href='board/writeBoard';
-	
-}
