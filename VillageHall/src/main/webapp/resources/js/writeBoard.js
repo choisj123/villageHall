@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	console.log("js loaded");
     $("#summernote").summernote({
         placeholder: "내용을 입력해주세요",
         tabsize: 2,
@@ -26,9 +27,11 @@ $(document).ready(function(){
     });
     
       function saveContent() {
+		let category = $("category").val;
         let boardTitle = $("#boardTitle").val;
         let boardContent = $("#summernote").summernote("code");
         
+        console.log("카테고리 : " + category);
         console.log("제목 : " + boardTitle);
         console.log("내용 : " + boardContent);
       }
