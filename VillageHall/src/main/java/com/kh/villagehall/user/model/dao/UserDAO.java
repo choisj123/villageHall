@@ -41,8 +41,7 @@ public class UserDAO {
 	 * @throws Exception
 	 */
 	public User login(Connection conn, User user) throws Exception{
-		
-		System.out.println("dao쩍user" + user);
+	
 		
 		User loginUser = null; // 결과 저장용 변수
 		
@@ -74,7 +73,7 @@ public class UserDAO {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("DAO" + loginUser);
+
 		return loginUser;
 	}
 

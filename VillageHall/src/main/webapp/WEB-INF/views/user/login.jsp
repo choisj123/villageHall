@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인창</title>
 
-    <link rel="stylesheet" href="resources/css/login.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/login.css">
 
     <script src="https://kit.fontawesome.com/a2e8ca0ae3.js" crossorigin="anonymous"></script>
 
@@ -27,8 +27,6 @@
             		<%-- 로그인이 되어있지 않은 경우 --%>
        				<c:when test="${ empty sessionScope.loginUser}"> 
             		
-       			        <!-- 절대경로 : /community/member/login -->
-		           	 	<!-- 상대 경로 (index.jsp) 기준-->
 		                <form action="login" method="Post" name="login-form" onsubmit="return loginValidate()">
 		                   
 		                    <!-- 아이디(이메일)/비밀번호/로그인버튼 영역 -->
@@ -54,8 +52,7 @@
                                 <c:set var="chk" value="checked"/>
 
                             </c:if>
-                            
-                            
+                                
 
 		                    <label>
                                 <!-- checked 속성 : radio/checkbox를 체크하는 속성 -->
@@ -64,8 +61,7 @@
 
 
 
-		        
-		                    <!-- 회원가입 / ID/PW 찾기 영역 -->
+		         <!-- 회원가입 / ID/PW 찾기 영역 -->
 		                    <article id="signup-find-area">
 
                                 <!-- WEB-INF 폴더는 외부로 부터 직접적으로 요청할 수 없는 폴더
@@ -81,23 +77,26 @@
 							
 
 		                        <span>|</span>
-		                        <a href="#">ID/PW 찾기</a>
+		                        <a href="${contextPath}/user/pwFind">ID/PW 찾기</a>
 		                    </article>
 		                </form>
             		
             		</c:when>
-            	
-            	
+            
             	</c:choose>
                 
             </section>
+  
 
     </main>
+
+	
+
 
     <!-- jQuery 라이브러리 추가 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
    
-    <!-- main.js 연결 -->
+    <!-- login.js 연결 -->
     <script src="${contextPath}/resources/js/login.js"></script>
 
 </body>

@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 
-
-@WebServlet("/user/signUp")
+ 
+@WebServlet("/user/signUp") 
 public class SignUpServlet extends HttpServlet{   
 	 
 
