@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
 	}
 	
 	
-		
 	
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,9 +37,9 @@ public class LoginServlet extends HttpServlet {
 			user.setUserPw(inputPw);
 			
 			
-			
-			try {
-				
+			 
+			try {  
+				 
 				UserService service = new UserService();
 				
 				User loginUser = service.login(user);
@@ -50,14 +49,41 @@ public class LoginServlet extends HttpServlet {
 				if(loginUser != null) {
 					
 					
-					
 					session.setAttribute("loginUser", loginUser);
 					
 					session.setMaxInactiveInterval(3600);
 					
 					
-				} else {
+
+					// 쿠키 객체 생성
+					//Cookie c = new Cookie("클라이언트쪽에 저장될 쿠키 이름", "쿠키 내용");
+					Cookie c = new Cookie( "saveId" , inputEmail );
 					
+					
+					// 아이디 저장이 체크된 경우
+					if( req.getParameter("saveId") != null ) {
+						// 쿠키 파일을 30일 동안 유지
+						c.setMaxAge(60 * 60 * 24 * 30); // 30일(1초 단위)
+						
+					} else {
+						// 쿠키 파일을 0초 동안 유지
+						// -> 기존에 존재하던 쿠키 파일에 유지 시간을 0초 덮어씌움
+						//	  == 삭제하겠다는 소리
+						c.setMaxAge(0);
+					}
+					
+					// 해당 쿠키 파일이 적용될 주소를 지정
+					c.setPath( req.getContextPath()  );
+					// req.getContextPath() : 최상위 주소(/community)
+					// -> /community 로 시작하는 주소에서만 쿠키 적용
+					
+					
+					// 응답 객체를 이용해서 클라이언트로 전달
+					resp.addCookie(c); // 코드가 해석되는 순간 바로 전달
+					
+					
+					 
+				} else {
 		
 					session.setAttribute("message", "실패");
 				}
@@ -72,5 +98,7 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		
 }
 

@@ -34,7 +34,7 @@
              -->
 
         <form
-          action="user/signUp"
+          action="signUp"
           method="POST"
           name="signUp-form"
           onsubmit="return signUpValidate()"
@@ -62,8 +62,7 @@
           </div>
 
           <span class="signUp-message" id="emailMessage"
-            >메일을 받을 수 있는 이메일을 입력해주세요.</span
-          >
+            >메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
           <label for="emailCheck">
             <span class="required">*</span> 인증번호
@@ -143,8 +142,11 @@
           </div>
 
           <span class="signUp-message" id="telMessage"
-            >전화번호를 입력해주세요.(- 제외)</span> <br>
-            
+            >전화번호를 입력해주세요.(- 제외)</span> <br><br>
+           
+          <span id="profile-message">프로필 사진</span><br>
+          <input type="file" id="file"> 
+                     
           <button type="submit" id="signUp-btn">가입하기</button>  
                   
            <a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin();">

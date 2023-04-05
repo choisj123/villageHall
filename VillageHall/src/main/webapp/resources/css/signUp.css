@@ -81,6 +81,16 @@ form[name="signUp-form"] > label{
 .confirm{ color : green;}
 .error{  color : red;  }
 
+/*프로필 사진 부분*/
+#profile-message{
+	
+	display: flex;
+	padding-left: 25px 
+}
+
+#file{
+	
+}
 
 /* 가입하기 버튼 */
 #signUp-btn{
@@ -107,8 +117,10 @@ form[name="signUp-form"] > label{
 /*카카오 버튼*/
 #kakao-btn{
 	
-	display: flex;
+	
     padding-left: 90px;
     padding-bottom: 150px;
    
 }
+
+

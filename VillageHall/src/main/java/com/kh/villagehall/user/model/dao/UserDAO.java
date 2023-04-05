@@ -41,8 +41,7 @@ public class UserDAO {
 	 * @throws Exception
 	 */
 	public User login(Connection conn, User user) throws Exception{
-		
-		
+
 		User loginUser = null; // 결과 저장용 변수
 		
 		try {
