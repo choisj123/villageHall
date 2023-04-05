@@ -239,5 +239,16 @@ public class BoardService {
 		return boardList;
 	}
 
+	public List<Board> kakaoMapBoardRecent()throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> kakaoBoardRecent = dao.kakaoMapBoardRecent(conn);
+		
+		close(conn);
+		
+		return kakaoBoardRecent;
+	}
+
 
 }
