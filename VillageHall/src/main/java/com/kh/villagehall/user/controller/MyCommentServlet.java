@@ -15,7 +15,7 @@ import com.kh.villagehall.comment.model.vo.Comment;
 import com.kh.villagehall.user.model.vo.User;
 
 @WebServlet("/mypage/myComment")
-public class myCommentServlet extends HttpServlet {
+public class MyCommentServlet extends HttpServlet {
 	
 	// 내글목록 페이지 이동
 	@Override

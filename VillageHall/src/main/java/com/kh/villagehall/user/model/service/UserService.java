@@ -24,7 +24,6 @@ public class UserService {
 		
 		// DAO 수행
 		User loginUser = dao.login(conn, user);
-		System.out.println("service" + loginUser);
 		
 		// Connection 반환
 		close(conn);

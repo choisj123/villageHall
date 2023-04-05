@@ -14,7 +14,7 @@ import com.kh.villagehall.board.model.vo.Board;
 import com.kh.villagehall.user.model.vo.User;
 
 @WebServlet("/mypage/myLike")
-public class myLikeServlet extends HttpServlet {
+public class MyLikeServlet extends HttpServlet {
 	
 	// 좋아요 목록 이동
 	@Override
