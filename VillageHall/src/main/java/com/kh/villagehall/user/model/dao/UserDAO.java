@@ -368,6 +368,13 @@ public class UserDAO {
 		return result;
 	}
 
+	/** 마이페이지 비밀번호 변경 DAO
+	 * @param conn
+	 * @param newPw
+	 * @param userNo
+	 * @return
+	 * @throws Exception
+	 */
 	public int changePw(Connection conn, String newPw, int userNo) throws Exception{
 		int result = 0;
 		
@@ -381,6 +388,8 @@ public class UserDAO {
 			pstmt.setInt(2, userNo);
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("DAO result :" + result);
 			
 		}finally {
 			close(pstmt);
