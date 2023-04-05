@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
       </li>
       <li>
         <i class="fa-solid fa-bookmark" id="nav-popular"></i>
-        <a href="${contextPath}/board/popularBoard">인기글</a>
+        <a href="${contextPath}/board/popularBoard?sortBy=like">인기글</a>
       </li>
       <li>
         <i class="fa-regular fa-circle-question" id="nav-faq"></i>
