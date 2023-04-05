@@ -20,20 +20,20 @@
       function getText($main) {
         var imageUrl = ""
             if($main === "Haze" || $main === "Clouds"){
-              imageUrl = "../resources/images/cloud.jpg"
-                box.style.backgroundImage = "url('" +imageUrl+ "')";
+             /* imageUrl = "../resources/images/cloud.jpg"
+                box.style.backgroundImage = "url('" +imageUrl+ "')";*/
                 main.innerText = "흐림";
             } else if($main === "Clear"){
-              imageUrl = "../resources/images/sunny.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";
+             /* imageUrl = "../resources/images/sunny.jpg"
+              box.style.backgroundImage = "url('" +imageUrl+ "')"; */
                 main.innerText ="맑음";
             } else if($main === "Snow"){
-                              imageUrl = "../resources/images/snow.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";
+              /*imageUrl = "../resources/images/snow.jpg"
+              box.style.backgroundImage = "url('" +imageUrl+ "')";*/
                 main.innerText = "눈";
             } else if($main === "Rain"){
-                              imageUrl = "../resources/images/rain.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";
+              /*imageUrl = "../resources/images/rain.jpg"
+              box.style.backgroundImage = "url('" +imageUrl+ "')";*/
                 main.innerText = "비";
             } else {
                 main.innerText = '번개';

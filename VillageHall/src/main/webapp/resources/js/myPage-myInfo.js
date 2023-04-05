@@ -1,30 +1,28 @@
+
 // 내 정보 수정 유효성 검사
 function infoValidate(){
+	console.log("js loaded..")
 
-    const userNickname = document.getElementById("userNickname");
-    const userTel = document.getElementById("userTel");
+    const userNickname = document.getElementById("newNickname");
+    const userTel = document.getElementById("newTel");
 
     const regExp1 = /^[a-zA-Z0-9가-힣]{2,10}$/;        // 닉네임 정규식
     const regExp2 = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/; // 전화번호 정규식
 
     // 닉네임 유효성 검사
     if(userNickname.value.length == 0){ // 미작성 시 : 닉네임을 입력해주세요.
-        alert("닉네임을 입력해주세요.");
-        userNickname.focus();
-        return false;
+        
+        return printAlert(userNickname, "닉네임을 입력해주세요.");
     }
 
     if(!regExp1.test(userNickname.value)){ // 유효하지 않은 경우
-        alert("닉네임은 영어/숫자/한글 2~10 글자 사이로 작성해주세요.");
-        userNickname.focus();
-        return false;
+        
+        return printAlert(userNickname, "닉네임은 영어/숫자/한글 2~10 글자 사이로 작성해주세요.");
     }
 
     // 전화번호 유효성 검사
     if(userTel.value.length == 0){ // 미작성 시
-        alert("전화번호를 입력해주세요.(- 제외)");
-        userTel.focus();
-        return false;
+        return printAlert(userTel, "전화번호를 입력해주세요.(- 제외)");
     }
 
     if(!regExp2.test(userTel.value)){ // 유효하지 않은 경우
@@ -35,7 +33,22 @@ function infoValidate(){
         return printAlert(userTel, "전화번호 형식이 올바르지 않습니다.");
     }
 
+	$.ajax({
+            url : "changeInfo"  ,
+            type : "POST",
+            success : function(){
+				alert("정보가 성공적으로 변경되었습니다.")
+            },
+            error : function(){
+                console.log("변경을 실패하였습니다.")
+            }
+        });
+        
     return true; // true를 반환해서 form 제출 수행
+    
+
+
+    
 }
 
 
@@ -50,6 +63,7 @@ function printAlert(el, message){ // 매개변수 el은 요소
 
 // 비밀번호 변경 제출 시 유효성 검사
 function changePwValidate(){
+	console.log("js loaded..")
 
     
     const newPw = document.getElementsByName("newPw")[0];
@@ -58,14 +72,6 @@ function changePwValidate(){
     // 비밀번호 정규표현식
     const regEx = /^[\w!@#_-]{6,30}$/;
 
-    // 현재 비밀번호 미작성
-    if(currentPw.value.trim().length == 0){
-        /*alert("현재 비밀번호를 입력해주세요.");
-        currentPw.focus();
-        return false;*/
-
-        return printAlert(currentPw, "현재 비밀번호를 입력해주세요.");
-    }
 
     // 새 비밀번호
     // 미작성
@@ -94,6 +100,17 @@ function changePwValidate(){
     if(newPw.value != newPwConfirm.value){
         return printAlert(newPwConfirm, "새 비밀번호가 일치하지 않습니다.");
     }
+    
+    $.ajax({
+            url : "changePw",
+            type : "POST",
+            success : function(){
+				alert("비밀번호가 성공적으로 변경되었습니다.")
+            },
+            error : function(){
+                console.log("비밀번호 변경을 실패하였습니다.")
+            }
+        });
 
     return true; // 위 조건을 모두 수행하지 않은 경우 true 반환
 }
@@ -149,8 +166,8 @@ if(inputImage != null){ // inputImage 요소가 화면에 존재 할 때
 
         // files : input type="file"만 사용 가능한 속성으로
         //         선택된 파일 목록(배열)을 반환
-        //console.log(this.files)
-        //console.log(this.files[0]) // 파일목록에서 첫 번째 파일 객체를 선택
+        console.log(this.files)
+        console.log(this.files[0]) // 파일목록에서 첫 번째 파일 객체를 선택
 
         if(this.files[0] != undefined){ // 파일이 선택되었을 때
 
@@ -222,7 +239,7 @@ document.getElementById("delete-image").addEventListener("click", function(){
     if(del.value == 0){ // 눌러지지 않은 경우
 
         // 1) 프로필 이미지를 기본 이미지로 변경
-        document.getElementById("profile-image").setAttribute("src", contextPath + "/resources/images/user.png");                     
+        document.getElementById("profile-image").setAttribute("src", "${contextPath}/resources/images/profile.png");                     
 
         // 2) input type="file"에 저장된 값(value)에 "" 대입 
         document.getElementById("input-image").value = "";

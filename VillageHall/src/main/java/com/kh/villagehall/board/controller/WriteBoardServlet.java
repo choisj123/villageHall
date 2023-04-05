@@ -1,4 +1,4 @@
-package com.kh.villagehall.user.controller;
+package com.kh.villagehall.board.controller;
 
 import java.io.IOException;
 
@@ -8,16 +8,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-@WebServlet("/mypage/myInfo")
-public class MyInfoServlet extends HttpServlet{
+@WebServlet("/board/writeBoard")
+public class WriteBoardServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/mypage/myInfo.jsp";
+		
+		String path = "/WEB-INF/views/board/writeBoard.jsp";
+	
+	
 		req.getRequestDispatcher(path).forward(req, resp);
+	
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.getParameter("tag");
+		req.getParameter("title");
+		req.getParameter("summernote");
+		
+		
+		
+	
+	
+	
+	}
 }

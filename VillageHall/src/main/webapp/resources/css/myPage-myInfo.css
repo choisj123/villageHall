@@ -44,7 +44,7 @@ div > .tab {
 .profile-image-area{
     width: 150px;
     height: 150px;
-    border : 3px solid #ddd;
+	border : 1px solid #55710f;
     border-radius: 50%;
 
     display: flex;
@@ -60,7 +60,6 @@ div > .tab {
     height: 100%;
     border-radius: 50%;
 }
-
 
 
 
@@ -150,6 +149,8 @@ div > .tab {
     font-weight: normal;
 }
 
+
+
 .myPage-row:focus-within{
     border-bottom: 2px solid #55710f;
 }
@@ -193,6 +194,9 @@ form[name="myPage-form"]{
 
     /* 내용이 지정한 사이즈를 초과한 경우에 대한 속성 */
     overflow : auto; /* 초과한 방향의 스크롤을 자동 생성 */
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow:clip
 }
 
 .info-title{

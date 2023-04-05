@@ -206,7 +206,8 @@ public class BoardDAO {
 				boardList.setBoardCreateDate(rs.getString(3));
 				boardList.setLatitude(rs.getDouble(4));
 				boardList.setLongtitude(rs.getDouble(5));
-				boardList.setCategoryNo(rs.getInt(6));
+				boardList.setCategoryName(rs.getString(6));
+
 				boardList.setUserNickname(rs.getString(7));
 				boardList.setBoardNo(rs.getInt(8));
 				
@@ -432,6 +433,46 @@ public class BoardDAO {
 		}
 		
 		return result;
+	}
+
+	/** 인기글 게시판 조회 DAO
+	 * @param conn
+	 * @param sortBy
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectPopularBoard(Connection conn, String sortBy) throws Exception {
+		// 리스트 객체 생성
+		List<Board> boardList = new ArrayList<>();
+				
+		try {
+			String sql = prop.getProperty("selectPopularBoard");
+					
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, sortBy);
+					
+			rs = pstmt.executeQuery();
+					
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt(1));
+				board.setBoardTitle(rs.getString(2));
+				board.setBoardCreateDate(rs.getString(3));
+				board.setUserNickname(rs.getString(4));
+				board.setReadCount(rs.getInt(5));
+				board.setLikeCount(rs.getInt(6));				
+						
+				boardList.add(board);
+			}
+					
+			}finally{
+				close(rs);
+				close(pstmt);
+			}
+		
+		return boardList;
 	}
 
 

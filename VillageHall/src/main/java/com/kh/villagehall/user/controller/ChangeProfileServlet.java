@@ -14,8 +14,8 @@ import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 
-@WebServlet("/mypage/ChangeProfile")
-public class ChangeProfile extends HttpServlet{
+@WebServlet("/mypage/profile")
+public class ChangeProfileServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -95,17 +95,17 @@ public class ChangeProfile extends HttpServlet{
 			
 			// getOriginalFileName("input type='file'의 name 속성 값")
 			// -> 원본 파일명
-			//System.out.println( mpReq.getOriginalFileName("profileImage")  );
+			System.out.println( mpReq.getOriginalFileName("profileImage")  );
 			
 			// getFilesystemName("input type='file'의 name 속성 값")
 			// -> 변경된 파일명
-			//System.out.println( mpReq.getFilesystemName("profileImage") );
+			System.out.println( mpReq.getFilesystemName("profileImage") );
 			
 			
 			
 			// DB에 삽입될 프로필 이미지 경로
 			// 단, X버튼이 클릭된 상태면 null을 가지게 한다
-			String profileImg = folderPath + mpReq.getFilesystemName("profileImg");
+			String profileImg = folderPath + mpReq.getFilesystemName("profileImage");
 			
 			
 			// ** 프로필 이미지 삭제 **
@@ -139,7 +139,7 @@ public class ChangeProfile extends HttpServlet{
 				loginUser.setProfileImg(profileImg); // 세션의 값이 변경됨
 				
 			} else { // 실패
-				session.setAttribute("message", "프로필 이미지 변경 실패 ㅜㅜ");
+				session.setAttribute("message", "프로필 이미지 변경 실패");
 			}
 			
 			

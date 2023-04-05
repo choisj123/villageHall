@@ -13,77 +13,67 @@ import javax.servlet.http.HttpSession;
 import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 
+
 @WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
 	
-	// 로그인 페이지로 이동
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String path = "/WEB-INF/views/user/login.jsp";
-
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 	
-	// 로그인 기능
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
 		
-		String inputEmail = req.getParameter("inputEmail");
-		String inputPw = req.getParameter("inputPw");
-		
-		User user = new User();
-		user.setUserEmail(inputEmail);
-		user.setUserPw(inputPw);
-		
-		try {
+	
+		@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			UserService service = new UserService();
+			String inputEmail = req.getParameter("userEmail");
+			String inputPw = req.getParameter("userPw");
 			
-			User loginUser = service.login(user);
+	
+			User user = new User();
+			user.setUserEmail(inputEmail);
+			user.setUserPw(inputPw);
 			
-			// Session 객체 얻어오기
-			HttpSession session = req.getSession();
+			System.out.println(user);
 			
-			if(loginUser != null) { // 로그인 성공시
+			
+			try {
 				
-				// 회원 정보 session 세팅
-				session.setAttribute("loginUser", loginUser);
+				UserService service = new UserService();
 				
-				// 3600초동안 요청없으면 세션 만료
-				session.setMaxInactiveInterval(3600);
+				User loginUser = service.login(user);
 				
-				// 아이디 저장(쿠키)
+				System.out.println(loginUser);
 				
-				//쿠키 객체 생성
-				Cookie c = new Cookie("saveId", inputEmail);
+				HttpSession session = req.getSession();	
 				
-				// 아이디 저장이 체크된 경우
-				if(req.getParameter("saveId") != null) {
-					// 쿠키 파일을 30일동안 유지
-					c.setMaxAge(60 * 60 * 24 * 30);
+				if(loginUser != null) {
+					
+					
+					
+					session.setAttribute("loginUser", loginUser);
+					
+					session.setMaxInactiveInterval(3600);
+					
+					
 				} else {
-					// 체크안된경우 0초유지(==삭제)
-					c.setMaxAge(0);
+					
+		
+					session.setAttribute("message", "실패");
 				}
 				
-				// 쿠키파일 적용 주소 지정
-				c.setPath(req.getContextPath());// 최상위주소
 				
-				//응답객체통해 클라이언트로 전달(해석즉시)
-				resp.addCookie(c);
-			} else { // 실패
-				session.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");				
+				
+				// redirect
+				resp.sendRedirect(req.getContextPath());
+
+				
+			} catch(Exception e) {
+				e.printStackTrace();
 			}
-			
-			// redirect
-			resp.sendRedirect(req.getContextPath());
-			
-			
-		} catch(Exception e) {
-			e.printStackTrace();
 		}
-	}
-
-
 }
+

@@ -8,6 +8,7 @@ import java.util.List;
 import com.kh.villagehall.board.model.dao.BoardDAO;
 import com.kh.villagehall.board.model.vo.Board;
 
+
 public class BoardService {
 	
 	private BoardDAO dao = new BoardDAO();
@@ -197,6 +198,8 @@ public class BoardService {
 		if(result > 0) commit(conn);
 		else			rollback(conn);
 		
+		close(conn);
+		
 		return result;
 	}
 
@@ -214,7 +217,26 @@ public class BoardService {
 		if(result > 0) commit(conn);
 		else			rollback(conn);
 		
+		close(conn);
+		
 		return result;
+	}
+
+	
+	/** 인기글 조회 DAO
+	 * @param sortBy
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectPopularBoard(String sortBy) throws Exception {
+
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectPopularBoard(conn, sortBy);
+		
+		close(conn);
+		
+		return boardList;
 	}
 
 

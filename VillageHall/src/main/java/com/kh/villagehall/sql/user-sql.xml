@@ -79,8 +79,23 @@
 	<entry key="updateProfileImage">
 		UPDATE "USER" SET
 		PROFILE_IMG = ?
-		WHERE USER_NO = ?
+		WHERE USER_NO = ? 
+		AND USER_DELETE_FG = 'N' 
 	</entry>
 	
+		<!-- 회원 정보 변경(닉네임, 전화번호) -->
+	<entry key="updateUser">
+		UPDATE "USER" SET 
+		USER_NICKNAME = ?, 
+		USER_TEL = ? 
+		WHERE USER_NO = ? 
+		AND USER_DELETE_FG = 'N' 
+	</entry>
 	
+		<!-- 비밀번호 변경 -->
+	<entry key="changePw">
+		UPDATE "USER" SET 
+		USER_PW = ? 
+		WHERE USER_NO = ? 
+	</entry>
 </properties>

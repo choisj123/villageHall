@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import com.kh.villagehall.user.model.vo.User;
 
-public class UserDAO {
+public class UserDAO { 
 	
 	private Statement stmt;
 	private PreparedStatement pstmt;
@@ -42,6 +42,8 @@ public class UserDAO {
 	 */
 	public User login(Connection conn, User user) throws Exception{
 		
+		System.out.println("dao쩍user" + user);
+		
 		User loginUser = null; // 결과 저장용 변수
 		
 		try {
@@ -65,12 +67,14 @@ public class UserDAO {
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
 				
+				
+				
 			}
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
-		
+		System.out.println("DAO" + loginUser);
 		return loginUser;
 	}
 
@@ -338,7 +342,52 @@ public class UserDAO {
 		return result;
 	}
 
+	/** 마이페이지 회원정보 수정
+	 * @param conn
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateUser(Connection conn, User user) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUserNickname());
+			pstmt.setString(2, user.getUserTel());
+			pstmt.setInt(3, user.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
+	public int changePw(Connection conn, String newPw, int userNo) throws Exception{
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("changePw");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPw);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 }

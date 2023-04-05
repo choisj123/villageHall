@@ -42,11 +42,12 @@
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
           <h2>
-            인기게시판
-          	<form action="${contextPath}/board/popularBoard" id="sortBy" onchange="document.getElementById('sortBy').submit()">
-            	<select name="sortBy">
-             		<option value="like">좋아요순</option>
-              		<option value="read">조회수순</option>
+            인기게시판          
+          	<form action="board/popularBoard">
+          		<label for="sortBy">정렬순서:</label>
+            	<select id="sortBy" onchange="changeSort(this.value)">
+             		<option value="B.LIKE_COUNT">좋아요순</option>
+              		<option value="READ_COUNT">조회수순</option>
             	</select>
             </form>
           </h2>
@@ -143,5 +144,6 @@
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
+		<script src="${contextPath}/resources/js/popularBoard.js"></script>
 </body>
 </html>

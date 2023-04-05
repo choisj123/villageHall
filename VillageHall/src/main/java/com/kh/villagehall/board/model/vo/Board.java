@@ -11,15 +11,19 @@ public class Board {
 	private double longtitude;
 	private String boardDeleteFG;
 	private int categoryNo;
+
+	private String categoryName;
 	private int userNo;
-	
 	private int likeCount;	
 	private String userNickname;
+	private String boardImg;
+
 	
 	public Board() {}
 	
 	public Board(int boardNo, String boardTitle, String boardContent, String boardCreateDate, String boardUpdateDate,
-			int readCount, double latitude, double longtitude, String boardDeleteFG, int categoryNo, int userNo) 
+			int readCount, double latitude, double longtitude, String boardDeleteFG, int categoryNo, String categoryName, int userNo, String boardImg) 
+
 		{
 		super();
 		this.boardNo = boardNo;
@@ -32,7 +36,10 @@ public class Board {
 		this.longtitude = longtitude;
 		this.boardDeleteFG = boardDeleteFG;
 		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
 		this.userNo = userNo;
+		this.boardImg = boardImg;
+
 	}
 
 	public String getUserNickname() {
@@ -155,6 +162,16 @@ public class Board {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+	
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+	
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 
 
 	public int getUserNo() {
@@ -165,14 +182,21 @@ public class Board {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-
+	
+	public String getBoardImg() {
+		return boardImg;
+	}
+	
+	public void setBoardImg(String boardImg) {
+		this.boardImg = boardImg;
+	}
 
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardCreateDate=" + boardCreateDate + ", boardUpdateDate=" + boardUpdateDate + ", readCount="
 				+ readCount + ", latitude=" + latitude + ", longtitude=" + longtitude + ", boardDeleteFG="
-				+ boardDeleteFG + ", categoryNo=" + categoryNo + ", userNo=" + userNo + "]";
+				+ boardDeleteFG + ", categoryNo=" + categoryNo + ", categoryName=" + categoryName +", userNo=" + userNo + ", boardImg=" + boardImg +"]";
 	}
 	
 	
