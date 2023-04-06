@@ -528,8 +528,8 @@ public class BoardDAO {
 		
 		return kakaoBoardRecent;
 	}
-
-	/** 게시글 내 댓글 조회 DAO
+	
+		/** 게시글 내 댓글 조회 DAO
 	 * @param conn
 	 * @param boardNo
 	 * @return commentList
@@ -564,6 +564,64 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		return commentList;
+}
+  
+	
+	public int insertBoard(Connection conn, Board board) throws Exception{
+		int result = 0;
+		
+		
+		try {
+			String sql = prop.getProperty("insertBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setDouble(3, board.getLatitude());
+			pstmt.setDouble(4, board.getLongtitude());
+			
+			pstmt.setInt(5, board.getCategoryNo());
+			pstmt.setInt(6, board.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int getBoardNo(Connection conn, Board board) throws Exception{
+		int boardNo = 0;
+	
+		try {
+			
+			String sql = prop.getProperty("getBoardNo");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setInt(3, board.getCategoryNo());
+			pstmt.setInt(4, board.getUserNo());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				boardNo = rs.getInt(1);
+			}
+		
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return boardNo;
+
 	}
 
 
