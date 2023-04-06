@@ -213,7 +213,7 @@ public class BoardDAO {
 				
 				kakaoMapList.add(boardList);
 			}
-			System.out.println(kakaoMapList);
+			
 		}finally {
 			close(rs);
 			close(stmt);
@@ -482,6 +482,98 @@ public class BoardDAO {
 			}
 		
 		return boardList;
+	}
+	
+	public List<Board> kakaoMapBoardRecent(Connection conn) throws Exception{
+		
+		List<Board> kakaoBoardRecent = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("kakaoMapBoardRecent");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board boardList = new Board();
+				
+				boardList.setBoardTitle(rs.getString(1));
+				boardList.setBoardCreateDate(rs.getString(2));
+				boardList.setCategoryName(rs.getString(3));
+				boardList.setUserNickname(rs.getString(4));
+				boardList.setBoardNo(rs.getInt(5));
+				boardList.setBoardImg(rs.getString(6));
+				
+				kakaoBoardRecent.add(boardList);
+			}
+			System.out.println(kakaoBoardRecent);
+			
+		}finally {
+			close(rs);
+			close(stmt);
+			
+		}
+		
+		return kakaoBoardRecent;
+	}
+
+	
+	
+	
+	public int insertBoard(Connection conn, Board board) throws Exception{
+		int result = 0;
+		
+		
+		try {
+			String sql = prop.getProperty("insertBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setDouble(3, board.getLatitude());
+			pstmt.setDouble(4, board.getLongtitude());
+			
+			pstmt.setInt(5, board.getCategoryNo());
+			pstmt.setInt(6, board.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int getBoardNo(Connection conn, Board board) throws Exception{
+		int boardNo = 0;
+	
+		try {
+			
+			String sql = prop.getProperty("getBoardNo");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setInt(3, board.getCategoryNo());
+			pstmt.setInt(4, board.getUserNo());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				boardNo = rs.getInt(1);
+			}
+		
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return boardNo;
 	}
 
 

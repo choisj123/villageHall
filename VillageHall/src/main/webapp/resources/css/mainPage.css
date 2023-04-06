@@ -16,6 +16,20 @@
 
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
+#map {
+  position: relative;
+}
+
+.map-nav {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3; /* 검색 폼이 지도 위에 나타나도록 z-index 값 조정 */
+  border: 1px solid black;
+}
+
+
+
 .infowindow-contaioner {
   border: 1px solid black;
 }

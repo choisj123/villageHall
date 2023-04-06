@@ -45,7 +45,7 @@ public class LoginFilter extends HttpFilter implements Filter {
 		HttpSession session = req.getSession();
 		
 		// 3. 로그인 되어있는지 확인
-		if(  session.getAttribute("loginMember") != null ) { // 로그인이 되어있는 경우
+		if(  session.getAttribute("loginUser") != null ) { // 로그인이 되어있는 경우
 			
 			// 다음 필터 호출, 없으면 servlet으로 이동
 			chain.doFilter(request, response);

@@ -56,12 +56,23 @@
                 <option value="기타">기타</option>
               </select>
             </div>
-            <div
-              id="map"
-              style="width: auto; height: 500px; margin-left: 15px"
-            ></div>
+            
+            <div class="map-wrap">
+              <div id="map" style="width: auto; height: 500px; margin-left: 15px">
+                <div class="map-nav">
+                  <div class="map-option">
+                    <div>
+                      <form onsubmit="searchPlaces(); return false;">
+                        검색 : <input type="text" value="" id="keyword" size="15"> 
+                        <button type="submit">검색하기</button> 
+                      </form>
+                    </div>
+                  </div>
+                  <div class="map-placeList"></div>
+                </div>
+              </div>
+            </div>
           </section>
-
           <!-- 공지+인기글 -->
           <section class="notice-fave">
             <!-- 공지사항 -->

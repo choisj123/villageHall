@@ -109,4 +109,33 @@
 		WHERE ROWNUM &lt;= 25
 	</entry>
 	
+	<entry key="kakaoMapBoardRecent">
+		SELECT BOARD_TITLE, BOARD_CREATE_DATE, CATEGORY_NAME, USER_NICKNAME, BOARD_NO, IMG_RENAME
+		FROM BOARD
+		LEFT JOIN "USER" "LIKE"  USING(USER_NO)
+		LEFT JOIN "BOARD_IMG" USING(BOARD_NO)
+		LEFT JOIN "CATEGORY"   USING(CATEGORY_NO)
+		ORDER BY BOARD_CREATE_DATE DESC
+	</entry>
+	
+	
+	<!-- 게시글 등록 -->
+	<entry key="insertBoard">
+		INSERT INTO "BOARD"(BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, READ_COUNT, LATITUDE, LONGITUDE, BOARD_DELETE_FG ,CATEGORY_NO, USER_NO ) 
+       	VALUES( ? , ?, SYSDATE,  DEFAULT,  ? , ?, DEFAULT, ? , ?)
+	
+	</entry>
+	
+		<!-- 게시글 번호 얻어오기 -->
+	<entry key="getBoardNo">
+		SELECT BOARD_NO 
+		FROM BOARD 
+		WHERE BOARD_TITLE = ? 
+		AND BOARD_CONTENT =? 
+		AND CATEGORY_NO = ? 
+		AND USER_NO = ? 
+		AND BOARD_DELETE_FG = 'N' 
+	</entry>
+	
+	
 </properties>
