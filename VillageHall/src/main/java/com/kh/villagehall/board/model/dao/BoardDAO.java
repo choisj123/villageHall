@@ -567,6 +567,12 @@ public class BoardDAO {
 }
   
 	
+	/** 게시글 등록 DAO
+	 * @param conn
+	 * @param board
+	 * @return
+	 * @throws Exception
+	 */
 	public int insertBoard(Connection conn, Board board) throws Exception{
 		int result = 0;
 		
@@ -594,6 +600,13 @@ public class BoardDAO {
 	}
 
 
+	
+	/** 게시글 등록 - 게시글 번호 얻어오기 
+	 * @param conn
+	 * @param board
+	 * @return
+	 * @throws Exception
+	 */
 	public int getBoardNo(Connection conn, Board board) throws Exception{
 		int boardNo = 0;
 	

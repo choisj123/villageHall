@@ -21,40 +21,37 @@ public class WriteBoardServlet extends HttpServlet{
 		
 		String path = "/WEB-INF/views/board/writeBoard.jsp";
 	
-	
+		
 		req.getRequestDispatcher(path).forward(req, resp);
-	
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		int result = 0;
-		int categoryNo = 0;
-		
-		try {
 	
-			try {
-				categoryNo = Integer.parseInt(req.getParameter("category"));
-				
-			}catch(NumberFormatException e) {
-				categoryNo = 100;
-			}
-			String boardTitle = req.getParameter("boardTitle");
-			String boardContent = req.getParameter("boardContent");
+		try {
+			
 			double latitude = Double.parseDouble(req.getParameter("latitude"));
 			double longitude = Double.parseDouble(req.getParameter("longitude"));
 			
+			int categoryNo = Integer.parseInt(req.getParameter("category"));
+			String boardTitle = req.getParameter("boardTitle");
+			String boardContent = req.getParameter("boardContent");
+			
+			System.out.println("writeBoardServlet : " + latitude +longitude ) ;
+			  
 			// ** 로그인 회원 번호 얻어오기 **
 			HttpSession session = req.getSession(); // 세션 얻어오기
-			
+	
 			// 로그인 정보 얻어오기
 			User loginUser = (User)( session.getAttribute("loginUser") ) ;
-			
+  			
 			int userNo = loginUser.getUserNo(); // 로그인 회원 번호
 			
 			Board board = new Board();
-			
+			  
 			board.setBoardTitle(boardTitle);
 			board.setBoardContent(boardContent);
 			board.setCategoryNo(categoryNo);
@@ -66,12 +63,12 @@ public class WriteBoardServlet extends HttpServlet{
 			System.out.println(longitude);
 			
 			BoardService service = new BoardService();
-			
+			  
 			result = service.insertBoard(board);
-			
+  	
 			
 			String path = null; 
-			
+		
 			
 			if(result > 0) {
 				
@@ -92,7 +89,7 @@ public class WriteBoardServlet extends HttpServlet{
 			resp.sendRedirect(path);
 //			resp.getWriter().print(result);
 			
-			
+	
 			
 			
 			
