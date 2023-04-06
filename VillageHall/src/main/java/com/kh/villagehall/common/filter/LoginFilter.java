@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 
 // 수정필요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @WebFilter(filterName = "loginFilter", 
-		   urlPatterns = { "/board/write", "/board/delete",
-				   		   "/reply/insert", "/reply/update", "/reply/delete",
-				   		   "/user/myPage/*"}  )
+		   urlPatterns = { "/board/writeBoard", "/board/deleteBoard",
+				   		   "/comment/insertComment", "/comment/updateComment", "/comment/deleteComment",
+				   		   "/user/myPage/*" }  )
 
 public class LoginFilter extends HttpFilter implements Filter {
        
@@ -56,7 +56,7 @@ public class LoginFilter extends HttpFilter implements Filter {
 			
 			resp.sendRedirect( req.getContextPath() ); // 메인 페이지로 이동
 		}
-		
+	
 		
 	}
 

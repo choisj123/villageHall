@@ -40,6 +40,7 @@ public class WriteBoardServlet extends HttpServlet{
 		
 		// 로그인 정보 얻어오기
 		User loginUser = (User)( session.getAttribute("loginUser") ) ;
+		System.out.println("servelt : " + loginUser);
 		
 		int userNo = loginUser.getUserNo(); // 로그인 회원 번호
 		
