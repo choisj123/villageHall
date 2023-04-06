@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kh.villagehall.board.model.dao.BoardDAO;
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.comment.model.vo.Comment;
 
 
 public class BoardService {
@@ -248,6 +249,22 @@ public class BoardService {
 		close(conn);
 		
 		return kakaoBoardRecent;
+	}
+
+	/** 게시글 내 댓글 조회 service
+	 * @param boardNo
+	 * @return commentList
+	 * @throws Exception
+	 */
+	public List<Comment> selectAllComment(int boardNo) throws Exception {
+
+		Connection conn = getConnection();
+		
+		List<Comment> commentList = dao.selectAllComment(conn, boardNo);
+		
+		close(conn);
+		
+		return commentList;
 	}
 
 
