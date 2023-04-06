@@ -127,7 +127,7 @@
 		ORDER BY BOARD_CREATE_DATE DESC
 	</entry>
 	
-<<<<<<< HEAD
+
 	<!-- 게시글 상세조회 내 댓글 조회 -->
 	<entry key="selectAllComment">
 		SELECT PROFILE_IMG, USER_NICKNAME, COMMENT_CONTENT, TO_CHAR(COMMENT_CREATE_DATE, 'YYYY-MM-DD HH24:MI') AS COMMENT_CREATE_DATE
@@ -135,8 +135,7 @@
 		JOIN "USER" USING(USER_NO)
 		WHERE BOARD_NO = ?
 	</entry>
-	
-=======
+
 	
 	<!-- 게시글 등록 -->
 	<entry key="insertBoard">
@@ -156,6 +155,4 @@
 		AND BOARD_DELETE_FG = 'N' 
 	</entry>
 	
-	
->>>>>>> 76b4cd2e968edb6be918f13e9fbe14ef1decdecb
 </properties>
