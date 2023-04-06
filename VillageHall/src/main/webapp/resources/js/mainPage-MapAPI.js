@@ -4,9 +4,14 @@ $.ajax({
         dataType : "json",    //  응답 데이터의 형식을 "json"으로 지정
                               // -> 자동으로 JS 객체로 변환됨
         success : function( kakaoMapList ){
-	console.log(kakaoMapList);
+	      console.log(kakaoMapList);
 
+$.ajax({
+        url : "board/kakaoMapBoardRecent",
+        dataType : "json",
 
+        success : function(kakaoMapBoardRecent){
+          console.log(kakaoMapBoardRecent);
 
 // map 함수 정의 
 var mapContainer = document.getElementById('map'),
@@ -101,11 +106,20 @@ function showMarkersByCategory(category) {
 	showMarkersByCategory(category);
 	
 });
-  
+ 
   },
-
  error : function(request, status, error){
-            console.log("AJAX 에러 발생");
+            console.log("2번째 AJAX 에러 발생");
             console.log("상태코드 : " + request.status); // 404, 500
         }
 });
+
+},
+
+error : function(request, status, error){
+  console.log("1번째 AJAX 에러 발생");
+  console.log("상태코드 : " + request.status); // 404, 500
+}
+
+});
+

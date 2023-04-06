@@ -213,7 +213,7 @@ public class BoardDAO {
 				
 				kakaoMapList.add(boardList);
 			}
-			System.out.println(kakaoMapList);
+			
 		}finally {
 			close(rs);
 			close(stmt);
@@ -482,6 +482,40 @@ public class BoardDAO {
 			}
 		
 		return boardList;
+	}
+	
+	public List<Board> kakaoMapBoardRecent(Connection conn) throws Exception{
+		
+		List<Board> kakaoBoardRecent = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("kakaoMapBoardRecent");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board boardList = new Board();
+				
+				boardList.setBoardTitle(rs.getString(1));
+				boardList.setBoardCreateDate(rs.getString(2));
+				boardList.setCategoryName(rs.getString(3));
+				boardList.setUserNickname(rs.getString(4));
+				boardList.setBoardNo(rs.getInt(5));
+				boardList.setBoardImg(rs.getString(6));
+				
+				kakaoBoardRecent.add(boardList);
+			}
+			System.out.println(kakaoBoardRecent);
+			
+		}finally {
+			close(rs);
+			close(stmt);
+			
+		}
+		
+		return kakaoBoardRecent;
 	}
 
 
