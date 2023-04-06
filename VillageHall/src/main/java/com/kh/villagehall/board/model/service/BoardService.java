@@ -144,7 +144,7 @@ public class BoardService {
 	}
   
 
-	/** 좋아요 유무 확인 서비스
+	/** 좋아요 유무 확인 service
 	 * @param userNo
 	 * @param boardNo
 	 * @return count
@@ -162,7 +162,7 @@ public class BoardService {
 	}
   
 	
-	/** 좋아요 업데이트 서비스 
+	/** 좋아요 업데이트 service 
 	 * @param userNo
 	 * @param boardNo
 	 * @return result
@@ -183,7 +183,7 @@ public class BoardService {
 	}
   
 
-	/** 좋아요 취소 DAO
+	/** 좋아요 취소 service
 	 * @param userNo
 	 * @param boardNo
 	 * @return result
@@ -203,7 +203,7 @@ public class BoardService {
 		return result;
 	}
 
-	/** 게시글 삭제 DAO
+	/** 게시글 삭제 service
 	 * @param boardNo
 	 * @return result
 	 * @throws Exception
@@ -223,7 +223,7 @@ public class BoardService {
 	}
 
 	
-	/** 인기글 조회 DAO
+	/** 인기글 조회 service
 	 * @param sortBy
 	 * @return boardList
 	 * @throws Exception
@@ -239,6 +239,10 @@ public class BoardService {
 		return boardList;
 	}
 
+	/** 카카오맵 service
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Board> kakaoMapBoardRecent()throws Exception {
 		
 		Connection conn = getConnection();
@@ -248,6 +252,39 @@ public class BoardService {
 		close(conn);
 		
 		return kakaoBoardRecent;
+	}
+
+
+	
+	/** 게시글 등록 service
+	 * @param board
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertBoard(Board board) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.insertBoard(conn, board);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	
+		
+	}
+
+	public int getBoardNo(Board board) throws Exception{
+		Connection conn = getConnection();
+		
+		int boardNo = dao.getBoardNo(conn, board);
+		
+		
+		close(conn);
+		
+		return boardNo;
 	}
 
 
