@@ -11,6 +11,25 @@ public class Comment {
 	
 	private String boardTitle;
 	
+	private String profileImg;
+	private String userNickname;
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
 	public Comment() {}
 		
 	public Comment(int commentNo, String commentContent, String commentCreateDate, String commentDeleteFG, int userNo,

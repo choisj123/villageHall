@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.comment.model.vo.Comment;
 
 public class BoardDAO {
 
@@ -61,6 +62,7 @@ public class BoardDAO {
 				board.setBoardCreateDate(rs.getString(3));
 				board.setReadCount(rs.getInt(4));
 				board.setLikeCount(rs.getInt(5));
+				board.setCategoryName(rs.getString(6));
 				
 				boardList.add(board);				
 			}
@@ -98,6 +100,7 @@ public class BoardDAO {
 				board.setUserNickname(rs.getString(4));
 				board.setReadCount(rs.getInt(5));
 				board.setLikeCount(rs.getInt(6));
+				board.setCategoryName(rs.getString(7));
 								
 				boardList.add(board);				
 			}
@@ -132,6 +135,7 @@ public class BoardDAO {
 				board.setUserNickname(rs.getString(4));
 				board.setReadCount(rs.getInt(5));
 				board.setLikeCount(rs.getInt(6));
+				board.setCategoryName(rs.getString(7));
 								
 				boardList.add(board);	
 			}
@@ -141,6 +145,56 @@ public class BoardDAO {
 			close(rs);
 			close(stmt);
 		}
+		
+		return boardList;
+	}
+	
+	/** 인기글 게시판 조회 DAO
+	 * @param conn
+	 * @param sortBy
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectPopularBoard(Connection conn, String sortBy) throws Exception {
+		// 리스트 객체 생성
+		List<Board> boardList = new ArrayList<>();
+				
+		try {
+			
+			String sql = "";
+			
+			if(sortBy.equals("read")) {
+				sql = prop.getProperty("sortByReadCount");
+			} else if(sortBy.equals("like")) {
+				sql = prop.getProperty("sortByLikeCount");
+			}
+			
+			
+					
+			stmt = conn.createStatement();
+			
+			
+					
+			rs = stmt.executeQuery(sql);
+					
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setBoardCreateDate(rs.getString(4));
+				board.setUserNickname(rs.getString(5));
+				board.setReadCount(rs.getInt(6));
+				board.setLikeCount(rs.getInt(7));
+				board.setCategoryName(rs.getString(8));
+						
+				boardList.add(board);
+			}
+					
+			}finally{
+				close(rs);
+				close(stmt);
+			}
 		
 		return boardList;
 	}
@@ -170,9 +224,13 @@ public class BoardDAO {
 				board = new Board();
 				
 				board.setBoardNo(rs.getInt(1));
-				board.setBoardTitle(rs.getString(2));
-				board.setUserNickname(rs.getString(3));
-				board.setBoardContent(rs.getString(4));
+				board.setBoardTitle(rs.getString(2));				
+				board.setBoardContent(rs.getString(3));
+				board.setBoardCreateDate(rs.getString(4));
+				board.setUserNickname(rs.getString(5));
+				board.setReadCount(rs.getInt(6));
+				board.setLikeCount(rs.getInt(7));
+				board.setCategoryName(rs.getString(8));
 			}
 			
 		} finally {
@@ -435,54 +493,7 @@ public class BoardDAO {
 		return result;
 	}
 
-	/** 인기글 게시판 조회 DAO
-	 * @param conn
-	 * @param sortBy
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectPopularBoard(Connection conn, String sortBy) throws Exception {
-		// 리스트 객체 생성
-		List<Board> boardList = new ArrayList<>();
-				
-		try {
-			
-			String sql = "";
-			
-			if(sortBy.equals("read")) {
-				sql = prop.getProperty("sortByReadCount");
-			} else if(sortBy.equals("like")) {
-				sql = prop.getProperty("sortByLikeCount");
-			}
-			
-			
-					
-			stmt = conn.createStatement();
-			
-			
-					
-			rs = stmt.executeQuery(sql);
-					
-			while(rs.next()) {
-				Board board = new Board();
-				
-				board.setBoardNo(rs.getInt(2));
-				board.setBoardTitle(rs.getString(3));
-				board.setBoardCreateDate(rs.getString(4));
-				board.setUserNickname(rs.getString(5));
-				board.setReadCount(rs.getInt(6));
-				board.setLikeCount(rs.getInt(7));				
-						
-				boardList.add(board);
-			}
-					
-			}finally{
-				close(rs);
-				close(stmt);
-			}
-		
-		return boardList;
-	}
+	
 	
 	public List<Board> kakaoMapBoardRecent(Connection conn) throws Exception{
 		
@@ -517,9 +528,44 @@ public class BoardDAO {
 		
 		return kakaoBoardRecent;
 	}
+	
+		/** 게시글 내 댓글 조회 DAO
+	 * @param conn
+	 * @param boardNo
+	 * @return commentList
+	 * @throws Exception
+	 */
+	public List<Comment> selectAllComment(Connection conn, int boardNo) throws Exception {
 
-	
-	
+		List<Comment> commentList = new ArrayList<>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectAllComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Comment comment = new Comment();
+				comment.setProfileImg(rs.getString(1));
+				comment.setUserNickname(rs.getString(2));
+				comment.setCommentContent(rs.getString(3));
+				comment.setCommentCreateDate(rs.getString(4));
+				
+				commentList.add(comment);				
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return commentList;
+}
+  
 	
 	public int insertBoard(Connection conn, Board board) throws Exception{
 		int result = 0;
@@ -546,6 +592,7 @@ public class BoardDAO {
 		
 		return result;
 	}
+
 
 	public int getBoardNo(Connection conn, Board board) throws Exception{
 		int boardNo = 0;
@@ -574,6 +621,7 @@ public class BoardDAO {
 		}
 		
 		return boardNo;
+
 	}
 
 
