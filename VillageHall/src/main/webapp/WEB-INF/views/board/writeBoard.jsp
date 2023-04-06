@@ -43,17 +43,17 @@
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
             <h2>글 작성</h2>
-          <form action="write" enctype="multipart/form-data" method="POST" class="board-write"
+          <form action="${contextPath}/board/writeBoard" method="POST" class="board-write"
             onsubmit="return writeValidate()">
             <hr />
-            <select name="category" class="category">
-              <option>카테고리</option>
-              <option value="이슈" id="issue">이슈</option>
-              <option value="맛집" id="delicious">맛집</option>
-              <option value="취미" id="hobby">취미</option>
-              <option value="친목" id="friend">친목</option>
-              <option value="추천" id="recommend">추천</option>
-              <option value="기타" id="etc">기타</option>
+            <select name="category" id="category">
+              <option value="">카테고리</option>
+              <option value="3" id="issue">이슈 🔍️</option>
+              <option value="4" id="delicious">맛집 🍽️</option>
+              <option value="5" id="hobby">취미 🏂 </option>
+              <option value="6" id="friend">친목 👫</option>
+              <option value="7" id="recommend">추천 👍</option>
+              <option value="8" id="etc">기타 😎</option>
             </select>
             <input
               type="text"
@@ -65,29 +65,20 @@
             <textarea id="summernote" name="boardContent"></textarea>
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
-                <button type="submit" id="writebtn">등록</button>
-                <!-- insert 모드 -->
-                <c:if test="${param.mode == 'insert'}">
+                <button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
                     <button type="button" id="goToListBtn">목록으로</button>
-                </c:if>
-                <!-- update 모드 -->
-                <c:if test="${param.mode == 'update'}">
-                    <button type="button" onclick="location.href='${header.referer}'">이전으로</button>                           
-                </c:if>
+                    <c:if test ="">
+                    <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
+                    </c:if>                 
             </div>
+            <iframe width=800 name="por" width="0" height="0" frameborder="0" scrolling="no"></iframe>
+				<form name="location" method="post" action=""></form>
+				<script>
+				frm.target = "por"; // iframe의 이름
+				frm.action = "현재 페이지 이름.jsp?name= "+name;
+				frm.submit();
+				</script>
             
-            <!-- 숨겨진 값(hidden) -->
-            <!-- 동작 구분 -->
-            <input type="hidden" name="mode" value="${param.mode}">
-
-            <!-- 게시판 구분 -->
-            <input type="hidden" name="type" value="${param.type}">
-
-            <!-- 게시글 번호 -->
-            <input type="hidden" name="no" value="${param.no}">
-            
-            <!-- 현재 페이지 -->
-            <input type="hidden" name="cp" value="${param.cp}">
           </form>
         </section>
       </section>

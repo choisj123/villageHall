@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 
 // 수정필요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @WebFilter(filterName = "loginFilter", 
-		   urlPatterns = { "/board/write", "/board/delete",
-				   		   "/reply/insert", "/reply/update", "/reply/delete",
-				   		   "/user/myPage/*"}  )
+		   urlPatterns = { "/board/writeBoard", "/board/deleteBoard",
+				   		   "/comment/insertComment", "/comment/updateComment", "/comment/deleteComment",
+				   		   "/user/myPage/*" }  )
 
 public class LoginFilter extends HttpFilter implements Filter {
        
@@ -45,7 +45,7 @@ public class LoginFilter extends HttpFilter implements Filter {
 		HttpSession session = req.getSession();
 		
 		// 3. 로그인 되어있는지 확인
-		if(  session.getAttribute("loginMember") != null ) { // 로그인이 되어있는 경우
+		if(  session.getAttribute("loginUser") != null ) { // 로그인이 되어있는 경우
 			
 			// 다음 필터 호출, 없으면 servlet으로 이동
 			chain.doFilter(request, response);
@@ -56,7 +56,7 @@ public class LoginFilter extends HttpFilter implements Filter {
 			
 			resp.sendRedirect( req.getContextPath() ); // 메인 페이지로 이동
 		}
-		
+	
 		
 	}
 
