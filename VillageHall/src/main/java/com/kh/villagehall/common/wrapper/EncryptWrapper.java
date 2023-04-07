@@ -54,7 +54,6 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	
 	private String getSha512(String pw) {
 		// 매개변수 pw : 암호화 되기 전 비밀번호
-		
 		String encryptPw = null; // 암호화된 비밀번호 저장 변수
 		
 		// 1. 해시 함수를 수행할 객체를 참조할 변수 선언

@@ -9,39 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 
-@WebServlet("/board/popularBoard")
-public class PopularBoardServlet extends HttpServlet {
-	
-	// 인기글 조회 기능
+@WebServlet("/board/kakaoMapBoardRecent")
+public class KakaoBoardRecentServlet extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/board/popularBoard.jsp";
-		
-	
-		String sortBy = req.getParameter("sortBy");
-		
-		System.out.println(sortBy);
 		
 		try {
 			BoardService service = new BoardService();
 			
+			List<Board> kakaoBoardRecent = service.kakaoMapBoardRecent();
 			
-			List<Board> boardList = service.selectPopularBoard(sortBy);
+			new Gson().toJson(kakaoBoardRecent, resp.getWriter() );
 			
-			req.setAttribute("boardList", boardList);
-			
-			
-			req.getRequestDispatcher(path).forward(req, resp);
-			
-			
-			
-			
-		} catch(Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	
+		
 		
 	}
+	
 }

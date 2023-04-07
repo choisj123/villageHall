@@ -4,9 +4,14 @@ $.ajax({
         dataType : "json",    //  응답 데이터의 형식을 "json"으로 지정
                               // -> 자동으로 JS 객체로 변환됨
         success : function( kakaoMapList ){
-	console.log(kakaoMapList);
+	      console.log(kakaoMapList);
 
+$.ajax({
+        url : "board/kakaoMapBoardRecent",
+        dataType : "json",
 
+        success : function(kakaoMapBoardRecent){
+          console.log(kakaoMapBoardRecent);
 
 // map 함수 정의 
 var mapContainer = document.getElementById('map'),
@@ -24,6 +29,9 @@ var markers = [];
 // 데이터를 담을 배열추가
 var markersData = [];
 
+var navData = [];
+
+
 // DB데이터를 배열에 삽입
 for (var i = 0; i < kakaoMapList.length; i++) {
   markersData.push({
@@ -37,6 +45,17 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     like : kakaoMapList[i].boardNo,
     photoUrl : 'https://media.tenor.com/7bS_ec1TjfEAAAAi/%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EB%A1%9C%EC%95%84%EC%BD%98-%EB%AA%A8%EC%BD%94%EC%BD%94.gif'
   });
+}
+
+for(var i = 0; i < kakaoMapBoardRecent.length; i++){
+	navData.push({
+		name : kakaoMapBoardRecent[i].userNickname,
+		title : kakaoMapBoardRecent[i].boardTitle,
+		createAt : kakaoMapBoardRecent[i].boardCreateDate,
+		category : kakaoMapBoardRecent[i].categoryName,
+		like : kakaoMapBoardRecent[i].boardNo,
+		photoUrl : 'https://media.tenor.com/7bS_ec1TjfEAAAAi/%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EB%A1%9C%EC%95%84%EC%BD%98-%EB%AA%A8%EC%BD%94%EC%BD%94.gif'
+	});
 }
 
 // marker에 위치 , 맵, 카테고리 삽입
@@ -53,13 +72,13 @@ for (var i = 0; i < markersData.length; i++) {
   markers.push(marker);
 
 // 배열에 담은 데이터를 정의하는 인포윈도우 이벤트 리스너
-  kakao.maps.event.addListener(marker, 'click', (function(marker, i) {
+  kakao.maps.event.addListener(marker, 'click', (function(marker ,i) {
       return function() {
           var infowindow = new kakao.maps.InfoWindow({
               content: 
               '<div class="infowindow-container">' +
               '<div class="infowindow-header">' + 
-                '<div class="inwi-left"><img src="'+ markersData[i].photoUrl +'width="58" height="58"></div>' +
+                '<div class="inwi-left"><img src='+ markersData[i].photoUrl +'"width="58" height="58"></div>' +
                 '<div class="inwi-right">' +
                  ' <div>' + markersData[i].name + '</div>' +
                  ' <div class="time">' + markersData[i].createAt + '</div>' + 
@@ -84,28 +103,60 @@ for (var i = 0; i < markersData.length; i++) {
 }
 
 // option을 정의하는 함수
-function showMarkersByCategory(category) {
+let category = "전체";
+
+function showMarkersByCategory(newCategory) {
+    category = newCategory; // 전역 변수인 category 값을 업데이트
     for (var i = 0; i < markersData.length; i++) {
       if (category === "전체" || markersData[i].category === category) {
         markers[i].setVisible(true);
+        
       } else {
         markers[i].setVisible(false);
       }
     }
   }
   
- // option 이벤트 리스너 
- document.getElementById("categorySelect").addEventListener('change', function(){
-	
-	const category = this.value;
-	showMarkersByCategory(category);
-	
+// option 이벤트 리스너 
+document.getElementById("categorySelect").addEventListener('change', function(){
+  const newCategory = this.value;
+  showMarkersByCategory(newCategory);
 });
-  
-  },
 
+
+const placesList = document.getElementById("placesList");
+placesList.innerHTML = ""; // 이전 목록 삭제
+
+for (let i = 0; i < navData.length; i++) {
+  if (category === "전체" || navData[i].category === category) {
+    const li = document.createElement("li");
+	const content = 
+	
+	  '<p>' + navData[i].name +'</p>' +
+	  '<p>'+ navData[i].title +'</p>' +
+	  '<p>' + navData[i].createAt + '</p>' +
+	  '<hr>';
+    li.innerHTML = content;
+    placesList.appendChild(li);
+  }
+}
+ 
+
+
+
+  },
  error : function(request, status, error){
-            console.log("AJAX 에러 발생");
+            console.log("2번째 AJAX 에러 발생");
             console.log("상태코드 : " + request.status); // 404, 500
         }
 });
+
+},
+
+error : function(request, status, error){
+  console.log("1번째 AJAX 에러 발생");
+  console.log("상태코드 : " + request.status); // 404, 500
+}
+
+});
+

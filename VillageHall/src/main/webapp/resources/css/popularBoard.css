@@ -1,0 +1,30 @@
+#popularBoard{
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-top: none;
+    width: 700px;
+}
+
+.popularBoardTable {
+    width: 100%;
+  }
+  
+.popularBoardTable tr{
+  line-height: 2;
+}
+
+.popularBoardTable td{
+  text-align: center;
+}
+
+.popularBoardTable td a{
+  text-decoration: none;
+  color: black;
+}
+
+.popularBoardTable td a:hover{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+

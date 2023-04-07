@@ -33,16 +33,6 @@ function infoValidate(){
         return printAlert(userTel, "전화번호 형식이 올바르지 않습니다.");
     }
 
-	$.ajax({
-            url : "changeInfo"  ,
-            type : "POST",
-            success : function(){
-				alert("정보가 성공적으로 변경되었습니다.")
-            },
-            error : function(){
-                console.log("변경을 실패하였습니다.")
-            }
-        });
         
     return true; // true를 반환해서 form 제출 수행
     
@@ -59,61 +49,6 @@ function printAlert(el, message){ // 매개변수 el은 요소
     return false;
 }
 
-
-
-// 비밀번호 변경 제출 시 유효성 검사
-function changePwValidate(){
-	console.log("js loaded..")
-
-    
-    const newPw = document.getElementsByName("newPw")[0];
-    const newPwConfirm = document.getElementsByName("newPwConfirm")[0];
-
-    // 비밀번호 정규표현식
-    const regEx = /^[\w!@#_-]{6,30}$/;
-
-
-    // 새 비밀번호
-    // 미작성
-    if(newPw.value.trim().length == 0){
-        alert("새 비밀번호를 입력해주세요.");
-        newPw.focus();
-        return false;
-    }
-
-    // 유효하지 않은 경우
-    if(!regEx.test(newPw.value)){
-        alert("영어, 숫자, 특수문자(!,@,#,-,_) 6~30 글자 사이로 작성해주세요.");
-        newPw.focus();
-        return false;
-    }
-
-
-    // 새 비밀번호 확인
-    // 미작성
-    if(newPwConfirm.value.trim().length == 0){
-        return printAlert(newPwConfirm, "새 비밀번호 확인을 입력해주세요.");
-    }
-
-
-    // 새 비밀번호 != 새 비밀번호 확인
-    if(newPw.value != newPwConfirm.value){
-        return printAlert(newPwConfirm, "새 비밀번호가 일치하지 않습니다.");
-    }
-    
-    $.ajax({
-            url : "changePw",
-            type : "POST",
-            success : function(){
-				alert("비밀번호가 성공적으로 변경되었습니다.")
-            },
-            error : function(){
-                console.log("비밀번호 변경을 실패하였습니다.")
-            }
-        });
-
-    return true; // 위 조건을 모두 수행하지 않은 경우 true 반환
-}
 
 
 

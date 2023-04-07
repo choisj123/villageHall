@@ -28,7 +28,7 @@
             <div>내 정보 수정</div>
             <form action="${contextPath}/mypage/myPage" method="post">
               <div id="box-body">
-                비밀번호 <input type="password" name="inputPw" id="inputPw" />
+                비밀번호 <input type="password" name="inputPw" id="inputPw" autofocus/>
                 <button type="submit" id="pwBtn" onclick="return pwNull()">
                   확인
                 </button>

@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
 	        	<a href="${contextPath}/mypage/myBoard" id="selectMyBoard"> 내 글 목록</a> 
 	        </span>
         </div>
-          <button type="button" id="writeBtn" onclick="writePage()" >글쓰기</button>
+          <button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard'" >글쓰기</button>
       </c:otherwise>
 		
     </c:choose>
@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
       </li>
       <li>
         <i class="fa-solid fa-bookmark" id="nav-popular"></i>
-        <a href="${contextPath}/board/popularBoard">인기글</a>
+        <a href="${contextPath}/board/popularBoard?sortBy=like">인기글</a>
       </li>
       <li>
         <i class="fa-regular fa-circle-question" id="nav-faq"></i>

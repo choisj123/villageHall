@@ -53,7 +53,7 @@
 	            	<table class="contentTable">
 	                	<thead>
 	                  		<tr>
-	                    		<th>글번호</th>
+	                    		<th>카테고리</th>
 	                    		<th>제목</th>
 	                    		<th>작성일</th>
 	                    		<th>조회</th>
@@ -72,7 +72,7 @@
 	                			<c:otherwise>
 	                				<c:forEach var="board" items="${boardList}">
 	                					<tr>
-	                						<td>${board.boardNo}</td>
+	                						<td>${board.categoryName}</td>
 	                						<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
 	                						<td>${board.boardCreateDate}</td>
 	                						<td>${board.readCount}</td>

@@ -25,6 +25,7 @@ public class ChangePwServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			System.out.println("post loadeds");
 		
 			String newPw = req.getParameter("newPw");
 			
@@ -32,12 +33,9 @@ public class ChangePwServlet extends HttpServlet{
 			HttpSession session = req.getSession(); // 세션 얻어오기
 			
 			// 로그인 정보 얻어오기
-			User loginMember = (User)( session.getAttribute("loginUser") ) ;
+			User loginUser = (User)( session.getAttribute("loginUser") ) ;
 			
-			int userNo = loginMember.getUserNo(); // 로그인 회원 번호
-			
-			System.out.println(newPw);
-			System.out.println(userNo);
+			int userNo = loginUser.getUserNo(); // 로그인 회원 번호
 			
 			
 			try {
@@ -48,24 +46,30 @@ public class ChangePwServlet extends HttpServlet{
 				
 				String path = null; // 리다이렉트 주소
 				
+				
 				if(result > 0) { // 성공
 					// session scope ->   key="message",  vlaue="비밀번호 변경 성공!"    세팅
 					// path = "내 정보 페이지 주소"
 					session.setAttribute("message", "비밀번호 변경 성공!" );
 					
-					//path = req.getContextPath() + "/member/mypage/info";
-					path = "changePw";
+					session.invalidate();
+//					path = req.getContextPath()"/WEB-INF/views/user/login";
+					path = req.getContextPath() + "/user/login";
 					
 				} else { // 실패
 					// session scope ->   key="message",  vlaue="현재 비밀번호가 일치하지 않습니다"  세팅
 					// path = "비밀번호 변경 페이지 주소"
 					session.setAttribute("message", "현재 비밀번호가 일치하지 않습니다" );
 					
-					//path = req.getContextPath() + "/member/mypage/changePw";
-					path ="changePw";
+//					path = "/WEB-INF/views/mypage/changePw";
+					path =  "changePw";
 				}
 				
+				
+				
 				resp.sendRedirect(path);
+//				req.getRequestDispatcher(path).forward(req, resp);
+				
 				
 				
 			}catch (Exception e) {

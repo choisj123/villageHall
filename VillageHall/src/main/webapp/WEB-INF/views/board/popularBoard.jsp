@@ -17,7 +17,7 @@
     
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/allBoard.css"
+    href="${contextPath}/resources/css/popularBoard.css"
     />
     
 
@@ -26,6 +26,8 @@
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
     ></script>   
+    
+    <script src="${contextPath}/resources/js/popularBoard.js"></script>
 </head>
 <body>
     <main>
@@ -37,26 +39,24 @@
         <!-- 바디 부분 시작 -->
         <section class="body">
           
-          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
+          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" />
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          <h2>
-            인기게시판          
-          	<form action="board/popularBoard">
-          		<label for="sortBy">정렬순서:</label>
-            	<select id="sortBy" onchange="changeSort(this.value)">
-             		<option value="B.LIKE_COUNT">좋아요순</option>
-              		<option value="READ_COUNT">조회수순</option>
+          <h2>인기게시판</h2>          
+          	<form id="sortBy">
+            	<select id="sortBySelect" name="sortBy" onchange="this.form.submit()">
+             		<option value="like">좋아요순</option>
+              		<option value="read">조회수순</option>              		
             	</select>
             </form>
-          </h2>
+          
           
           <div id="popularBoard">
           	<table class="popularBoardTable">
           		<thead>
           			<tr>
-	                    <th>글번호</th>
+	                    <th>카테고리</th>
 	                    <th>제목</th>
 	                    <th>작성일</th>
 	                    <th>작성자</th>
@@ -76,7 +76,7 @@
 	                	<c:otherwise>
 	                		<c:forEach var="board" items="${boardList}">
 	                			<tr>
-	                				<td>${board.boardNo}</td>
+	                				<td>${board.categoryName}</td>
 	                				<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
 	                				<td>${board.boardCreateDate}</td>
 	                				<td>${board.userNickname}</td>
@@ -89,42 +89,6 @@
           		</tbody>
           	</table>
           </div>
-         <div class="pagination-area">
-
-                <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                <c:set var="url" value="myBoard?type=${param.type}&cp="/>
-
-
-                <ul class="pagination">
-                    <!-- 첫 페이지로 이동 -->
-                    <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
-
-                    <!-- 이전 목록 마지막 번호로 이동 -->
-                    <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
-
-                    <!-- 범위가 정해진 일반 for문 사용 -->
-                    <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
-
-                        <c:choose>
-                            <c:when test="${i == pagination.currentPage}">
-                                <li><a class="current">${i}</a></li>
-                            </c:when>
-
-                            <c:otherwise>
-                                <li><a href="${url}${i}${sURL}">${i}</a></li>        
-                            </c:otherwise>
-                        </c:choose>
-
-                    </c:forEach>
-                    
-                    <!-- 다음 목록 시작 번호로 이동 -->
-                    <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
-
-                    <!-- 끝 페이지로 이동 -->
-                    <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
-
-                </ul>
-            </div> 
           </section>
         </section>
         
@@ -144,6 +108,6 @@
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
-		<script src="${contextPath}/resources/js/popularBoard.js"></script>
+		
 </body>
 </html>
