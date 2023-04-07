@@ -280,6 +280,7 @@ userPw.addEventListener("input", function(){
     if( regExp.test(userPw.value) ){ // 비밀번호 유효
 
         checkObj.userPw = true; // 유효 O 기록
+        console.log(userPw.value)
 
         if(userPwConfirm.value.length == 0){ // 비밀번호 유효, 확인 작성 X
             pwMessage.innerText = "안전한 비밀번호 입니다.";
@@ -298,6 +299,7 @@ userPw.addEventListener("input", function(){
         checkObj.userPw = false; // 유효 X 기록
     }
 });
+
 
 
 // 비밀번호 확인 유효성 검사
@@ -325,7 +327,6 @@ function checkPw(){ // 비밀번호 일치 검사
         checkObj.userPwConfirm = false; // 유효 X 기록
     }
 }
-
 
 
 /******************************* 닉네임 ********************************* */

@@ -73,8 +73,6 @@ public class DeleteUserServlet extends HttpServlet{
 					} else {
 						session.setAttribute("message", "비밀번호가 일치하지 않습니다.");
 						
-						// 절대 경로
-						//path = req.getContextPath() + "/member/myPage/secession";
 						
 						// 상대 경로
 						path = req.getContextPath() + "/mypage/deleteUser";

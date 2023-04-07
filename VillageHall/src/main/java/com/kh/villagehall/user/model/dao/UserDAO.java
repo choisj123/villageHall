@@ -96,8 +96,9 @@ public class UserDAO {
 	         pstmt.setString(2, user.getUserPw());
 	         pstmt.setString(3, user.getUserNickname());         
 	         pstmt.setString(4, user.getUserTel());
-	      
+	         pstmt.setString(5, user.getProfileImg());
 	         
+	      
 	         result = pstmt.executeUpdate();
 	         
 	      }finally {
