@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 
-@WebServlet("/board/FAQ")
-public class FAQServlet extends HttpServlet {
+@WebServlet("/board/FAQBoard")
+public class FAQBoardServlet extends HttpServlet {
 	
+	// FAQ게시판 조회 기능
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/board/FAQ.jsp";
+		String path = "/WEB-INF/views/board/FAQBoard.jsp";
 		// 주소값
 		
 		try {
@@ -25,17 +26,14 @@ public class FAQServlet extends HttpServlet {
 		BoardService service = new BoardService();
 		//조회한거 리스트 담을 객체 생성
 		List<Board> boardList = service.selectFAQBoard();
+		System.out.println(boardList);
 		
-		req.setAttribute("boardList", boardList);
-		// 서비스에 어떤 메서드로 보낼지
-		
-				
-			req.getRequestDispatcher(path).forward(req, resp);
+		req.setAttribute("boardList", boardList);		
+		req.getRequestDispatcher(path).forward(req, resp);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+				
 	}
 }
