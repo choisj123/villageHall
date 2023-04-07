@@ -60,7 +60,7 @@
    	<!-- 닉네임 중복 검사 -->
 	<entry key="nicknameDupCheck">
 		SELECT COUNT(*) FROM "USER" 
-		WHERE USER_NICKNAME = ? 
+		WHERE USER_NICKNAME= ? 
 		AND USER_DELETE_FG = 'N' 
 	</entry>
    
