@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.board.model.vo.Pagination;
 import com.kh.villagehall.comment.model.vo.Comment;
 
 public class BoardDAO {
@@ -317,41 +318,7 @@ public class BoardDAO {
   
   
 
-  /** 공지사항 게시글 조회 DAO
-	 * @param conn
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectNoticeBoard(Connection conn) throws Exception {
-		// 리스트 객체 생성
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectNoticeBoard");
-			
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				Board board = new Board();
-				
-				board.setRowNo(rs.getInt(1));
-				board.setBoardNo(rs.getInt(2));
-				board.setBoardTitle(rs.getString(3));
-				board.setUserNickname(rs.getString(4));
-				board.setBoardCreateDate(rs.getString(5));
-				board.setReadCount(rs.getInt(6));
-				
-				boardList.add(board);
-			}
-			
-		  }finally{
-			  close(rs);
-			  close(pstmt);
-		  }
-      return boardList;
-  }
+	
   
 
 	/** 조회수 증가 dao
@@ -712,6 +679,97 @@ public class BoardDAO {
 		
 		return boardList;
 	}
+
+	/** 특정 게시판 전체 게시글 수 조회 DAO
+	 * @param conn
+	 * @param category
+	 * @return listCount
+	 * @throws Exception
+	 */
+	public int getListCount(Connection conn, int category) throws Exception{
+		int listCount = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("getListCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, category);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	/** 특정 게시판에서 일정한 범위의 목록 조회 DAO
+	 * @param conn
+	 * @param pagination
+	 * @param category
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectBoardList(Connection conn, Pagination pagination, int category) throws Exception {
+		// 리스트 객체 생성
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectBoardList");
+			
+			// BETWEEN 구문에 들어갈 범위 계산
+			int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
+			int end = start + pagination.getLimit() - 1;
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			if(category == 1 || category == 2) {
+				pstmt.setInt(1, category);
+			} else {
+				String category2 = "3,4,5,6,7,8";
+				pstmt.setString(1, category2);
+			}
+			
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Board board = new Board();
+												
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setBoardCreateDate(rs.getString(4));
+				board.setUserNickname(rs.getString(5));				
+				board.setReadCount(rs.getInt(6));
+				board.setLikeCount(rs.getInt(7));
+				board.setCategoryName(rs.getString(8));
+				
+				boardList.add(board);
+			}
+			
+		  }finally{
+			  close(rs);
+			  close(pstmt);
+		  }
+      return boardList;
+	}
+	
+	public int searchListCount(Connection conn, int category, String condition) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 
 }

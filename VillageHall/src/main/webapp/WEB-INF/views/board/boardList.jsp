@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- map에 저장된 값을 각각 변수에 저장 -->
+<c:set var="pagination" value="${map.pagination}" />
+<c:set var="boardList" value="${map.boardList}" />
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +21,7 @@
     
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/noticeBoard.css"
+    href="${contextPath}/resources/css/boardList.css"
     />
     
 
@@ -40,17 +44,18 @@
           <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
   
           <!-- 메인 콘텐츠 -->
-          <section class="right-body">
+          <section class="board-list">
           <h2>공지사항</h2>
-          <div id="noticeBoard">
-          	<table class="noticeBoardTable">
+          <div id="boardList">
+          	<table class="boardListTable">
           		<thead>
           			<tr>
 	                    <th>글번호</th>
 	                    <th>제목</th>	                    
 	                    <th>작성자</th>
 	                    <th>작성일</th>
-	                    <th>조회</th>
+	                    <th>조회수</th>
+	                    <th>좋아요</th>
 	               </tr>
           		</thead>
           		
@@ -58,18 +63,19 @@
           			<c:choose>
           				<c:when test="${empty boardList}">
 	                		<tr>
-	                			<th colspan="5">게시글이 존재하지 않습니다.</th>
+	                			<th colspan="6">게시글이 존재하지 않습니다.</th>
 	                		</tr>
 	                	</c:when>
 	                	
 	                	<c:otherwise>
 	                		<c:forEach var="board" items="${boardList}">
 	                			<tr>
-	                				<td>${board.rowNo}</td>	                				
-	                				<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
+	                				<td>${board.boardNo}</td>	                				
+	                				<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a></td>
 	                				<td>${board.userNickname}</td>
 	                				<td>${board.boardCreateDate}</td>	                				
 	                				<td>${board.readCount}</td>
+	                				<td>${board.likeCount}</td>
 	                			</tr>
 	                		</c:forEach>
 	                	</c:otherwise>
@@ -77,10 +83,21 @@
           		</tbody>
           	</table>
           </div>
+          
+          <div class="btn-area">
+
+                <c:if test="${!empty loginMember}">
+                    <!-- /community/board/write -->
+                    <button id="insertBtn" onclick="location.href='writeBoard?mode=insert&type=${param.type}&cp=${param.cp}'">글쓰기</button>                     
+                </c:if>
+
+            </div>
+            
+            
          <div class="pagination-area">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                <c:set var="url" value="myBoard?type=${param.type}&cp="/>
+                <c:set var="url" value="list?category=${param.category}&cp="/>
 
 
                 <ul class="pagination">
@@ -112,7 +129,29 @@
                     <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
 
                 </ul>
-            </div> 
+            </div>
+            
+            
+            <!-- /board/list?type=1&cp=3 -->
+
+            <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
+
+            <form action="list" method="get" id="boardSearch" onsubmit="return searchValidate()">
+                <input type="hidden" name="type" value="${param.type}">
+
+                <select name="key" id="search-key">
+                    <option value="t">제목</option>
+                  	<option value="c">내용</option>
+                    <option value="tc">제목+내용</tion>
+                    <option value="w">작성자</option>
+                </select>
+
+                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
+
+                <button>검색</button>
+            </form>
+            
+            
           </section>
         </section>
         
@@ -132,5 +171,6 @@
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
+	<script src="${contextPath}/resources/js/board.js"></script>
 </body>
 </html>
