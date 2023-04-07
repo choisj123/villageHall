@@ -591,6 +591,7 @@ public class BoardDAO {
 			
 			pstmt.setInt(5, board.getCategoryNo());
 			pstmt.setInt(6, board.getUserNo());
+			pstmt.setString(7, board.getBoardImg());
 			
 			result = pstmt.executeUpdate();
 			
