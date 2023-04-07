@@ -288,17 +288,17 @@ public class BoardDAO {
 	 * @throws Exception
 	 */
 	public List<Board> selectFAQBoard(Connection conn) throws Exception {
-		// 리스트를 담을 객체 생성
+		
 		List<Board> boardList = new ArrayList<>();
 		
 		try {
 			String sql = prop.getProperty("selectFAQBoard");
 			
-			pstmt = conn.prepareStatement(sql);
+			stmt = conn.createStatement();
 			
-			rs = pstmt.executeQuery();
+			rs = stmt.executeQuery(sql);
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				Board board = new Board();
 				
 				board.setBoardTitle(rs.getString(1));
@@ -329,15 +329,19 @@ public class BoardDAO {
 		try {
 			String sql = prop.getProperty("selectNoticeBoard");
 			
-			pstmt = conn.prepareStatement(sql);
+			stmt = conn.createStatement();
 			
-			rs = pstmt.executeQuery();
+			rs = stmt.executeQuery(sql);
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				Board board = new Board();
 				
-				board.setBoardTitle(rs.getString(1));
-				board.setBoardContent(rs.getString(2));
+				board.setRowNo(rs.getInt(1));
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setUserNickname(rs.getString(4));
+				board.setBoardCreateDate(rs.getString(5));
+				board.setReadCount(rs.getInt(6));
 				
 				boardList.add(board);
 			}
@@ -636,6 +640,76 @@ public class BoardDAO {
 		}
 		
 		return boardNo;
+	}
+
+	/** 메인페이지 인기글 목록 조회 dao
+	 * @param conn
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectMainPagePopularBoard(Connection conn) throws Exception {
+		
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectMainPagePopularBoard");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setReadCount(rs.getInt(4));
+				
+				boardList.add(board);
+			}
+			
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		
+		return boardList;
+	}
+
+	/** 메인페이지 공지사항 목록 조회 dao
+	 * @param conn
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectMainPageNotice(Connection conn) throws Exception {
+		
+		List<Board> boardList = new ArrayList<>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectMainPageNotice");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setReadCount(rs.getInt(4));
+				
+				boardList.add(board);
+			}
+			
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		
+		return boardList;
 	}
 
 

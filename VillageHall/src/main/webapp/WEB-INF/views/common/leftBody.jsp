@@ -46,7 +46,7 @@ pageEncoding="UTF-8"%>
       </li>
       <li>
         <i class="fa-regular fa-bell" id="nav-notice"></i>
-        <a href="${contextPath}/board/notice"> 공지사항</a>
+        <a href="${contextPath}/board/noticeBoard"> 공지사항</a>
       </li>
       <li>
         <i class="fa-solid fa-globe" id="nav-all"></i>
@@ -58,7 +58,7 @@ pageEncoding="UTF-8"%>
       </li>
       <li>
         <i class="fa-regular fa-circle-question" id="nav-faq"></i>
-        <a href="${contextPath}/board/FAQ">FAQ</a>
+        <a href="${contextPath}/board/FAQBoard">FAQ</a>
       </li>
       <li>
         <a href="${contextPath}/user/test">테스트로그인용</a>

@@ -18,8 +18,17 @@ public class Board {
 	private String userNickname;
 	private String boardImg;
 	private int commentCount;
+	private int rowNo;
 
 	
+	public int getRowNo() {
+		return rowNo;
+	}
+
+	public void setRowNo(int rowNo) {
+		this.rowNo = rowNo;
+	}
+
 	public int getCommentCount() {
 		return commentCount;
 	}
