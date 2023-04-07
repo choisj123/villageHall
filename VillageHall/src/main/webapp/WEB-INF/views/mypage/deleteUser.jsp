@@ -39,11 +39,11 @@
 
           <!-- 회원 탈퇴 -->
           <div id="deleteUser" class="tabContent">
-          	 <form action="secession" method="POST" name="myPage-form" onsubmit="return deleteUserValidate()" >
+          	 <form action="deleteUser" method="POST" name="myPage-form" onsubmit="return deleteUserValidate()" >
 
                     <div class="myPage-row">
                         <label>비밀번호</label>
-                        <input type="password" name="memberPw" id="memberPw" maxlength="30">              
+                        <input type="password" name="userPw" id="userPw" maxlength="30">              
                     </div>
 
                     
@@ -120,7 +120,7 @@
     <!-- 푸터 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <script src="/js/myPage.js"></script>
+    <script src="${contextPath}/resources/js/myPage-deleteUser.js"></script>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
