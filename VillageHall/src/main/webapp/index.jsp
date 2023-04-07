@@ -79,19 +79,8 @@
                       <th>조회수</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <c:forEach var="board" items="${boardList}">
-                    
-                    </c:forEach>
-
-                    <tr>
-                      <td>
-                        <a href="#" title="사용꿀팁">
-                          인터넷 익스플로러(IE) 지원 종료 안내
-                        </a>
-                      </td>
-                      <td><a href="#" title="사용꿀팁"> 27 </a></td>
-                    </tr>
+                  <tbody id="noticeTbody">
+               
                   </tbody>
                 </table>
               </div>
@@ -107,17 +96,8 @@
                       <th>조회수</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="popularTbody">
                     
-
-                    <tr>
-                      <td>
-                        <a href="#" title="사용꿀팁">
-                          인터넷 익스플로러(IE) 지원 종료 안내
-                        </a>
-                      </td>
-                      <td><a href="#" title="사용꿀팁"> 27 </a></td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
