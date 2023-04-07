@@ -14,6 +14,11 @@
     rel="stylesheet"
     href="${contextPath}/resources/css/main.css"
     />
+    
+    <link
+    rel="stylesheet"
+    href="${contextPath}/resources/css/boardDetail.css"
+    />
 
     <!-- fontawesome -->
     <script
@@ -33,19 +38,82 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-            게시글조회 확인용
-           	<span>제목 : ${board.boardTitle}</span> <br>
-            <span>작성자 : ${board.userNickname}</span><br>
-            <span>내용 : ${board.boardContent}</span>
+          	<div id="boardContainer">
+          		게시글조회 확인용
+          		
+          		
+          		
+          		<span>제목 : ${board.boardTitle}</span> <br>
+          		<span>작성자 : ${board.userNickname}</span><br>
+          		<span>내용 : ${board.boardContent}</span>
+          		<span>작성일 : ${board.boardCreateDate}</span>
+          		<span>조회수 : ${board.readCount}</span>
+          		<span>좋아요수 : ${board.likeCount}</span>
+          		<span>카테고리 : ${board.categoryName}</span>
+          		
+          		<p>조회수 좋아요수 작성일 </p>
             
-            <c:if test="${loginUser.userNickname == board.userNickname}">
-            	<a href="#">수정</a>
-            	<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
-            </c:if>
+          		<c:if test="${loginUser.userNickname == board.userNickname}">
+          			<a href="#">수정</a>
+          			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
+          		</c:if>
             
-            <c:if test="${loginUser != null}"> 
-            	<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like">좋아요</a>				
-            </c:if>
+          		<c:if test="${loginUser != null}"> 
+          			<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like">좋아요</a>				
+          		</c:if>
+          	</div>
+          	
+          	
+          	
+          	<div id="commentContainer">
+          		<c:choose>
+          			<c:when test="${empty commentList}">
+          				<div>
+          					<hr>
+          				</div>
+          			</c:when>
+          		
+          			<c:otherwise>
+          				<c:forEach var="comment" items="${commentList}">
+          					
+          					<div class="commentDetail">
+          						
+          						<div><img src="${contextPath}${comment.profileImg}"></div>
+          						<div>
+          							<span>${comment.userNickname}</span><br>
+          							<span>${comment.commentContent}</span><br>
+          							<span>${comment.commentCreateDate}</span>
+          						</div>
+          						<c:if test="${loginUser.userNickname == comment.userNickname}">
+          							<div>
+          								<button type="button">수정</button>&nbsp;&nbsp;
+          								<a href="#">삭제</a>
+          							</div>
+          						</c:if>
+          						
+          					</div>
+          				</c:forEach>
+          			</c:otherwise>
+          		</c:choose>
+          	</div>
+          	
+          	<c:if test="${loginUser != null}">          		
+          		<div>
+          			
+          			<br><hr>
+          			<form>
+          				<div class="insertComment">
+          				<div>
+          					<textarea id="commentContent" name="commentContent" ></textarea>
+          				</div>
+          				<div>
+          					<button id="insertCommentBtn">댓글 등록</button>
+          				</div>
+          				</div>
+          			</form>
+          		</div>
+          			
+          	</c:if>
             
           </section>
         </section>

@@ -17,8 +17,26 @@ public class Board {
 	private int likeCount;	
 	private String userNickname;
 	private String boardImg;
+	private int commentCount;
+	private int rowNo;
 
 	
+	public int getRowNo() {
+		return rowNo;
+	}
+
+	public void setRowNo(int rowNo) {
+		this.rowNo = rowNo;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
 	public Board() {}
 	
 	public Board(int boardNo, String boardTitle, String boardContent, String boardCreateDate, String boardUpdateDate,

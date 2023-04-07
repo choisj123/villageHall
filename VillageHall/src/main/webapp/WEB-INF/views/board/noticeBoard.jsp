@@ -17,7 +17,7 @@
     
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/allBoard.css"
+    href="${contextPath}/resources/css/noticeBoard.css"
     />
     
 
@@ -41,37 +41,35 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          <h2>전체게시판</h2>
-          <div id="allBoard">
-          	<table class="allBoardTable">
+          <h2>공지사항</h2>
+          <div id="noticeBoard">
+          	<table class="noticeBoardTable">
           		<thead>
           			<tr>
-	                    <th>카테고리</th>
-	                    <th>제목</th>
-	                    <th>작성일</th>
+	                    <th>글번호</th>
+	                    <th>제목</th>	                    
 	                    <th>작성자</th>
+	                    <th>작성일</th>
 	                    <th>조회</th>
-	                    <th>좋아요</th>
 	               </tr>
           		</thead>
           		
-          		<tbody id="allBoardList">
+          		<tbody id="noticeBoardList">
           			<c:choose>
           				<c:when test="${empty boardList}">
 	                		<tr>
-	                			<th colspan="6">게시글이 존재하지 않습니다.</th>
+	                			<th colspan="5">게시글이 존재하지 않습니다.</th>
 	                		</tr>
 	                	</c:when>
 	                	
 	                	<c:otherwise>
 	                		<c:forEach var="board" items="${boardList}">
 	                			<tr>
-	                				<td>${board.categoryName}</td>
+	                				<td>${board.rowNo}</td>	                				
 	                				<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
-	                				<td>${board.boardCreateDate}</td>
 	                				<td>${board.userNickname}</td>
+	                				<td>${board.boardCreateDate}</td>	                				
 	                				<td>${board.readCount}</td>
-	                				<td>${board.likeCount}</td>
 	                			</tr>
 	                		</c:forEach>
 	                	</c:otherwise>

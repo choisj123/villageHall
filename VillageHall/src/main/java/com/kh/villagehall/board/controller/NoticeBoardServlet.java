@@ -12,30 +12,27 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 
-@WebServlet("/board/FAQ")
-public class FAQServlet extends HttpServlet {
+@WebServlet("/board/noticeBoard")
+public class NoticeBoardServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/board/FAQ.jsp";
-		// 주소값
+		String path = "/WEB-INF/views/board/noticeBoard.jsp";
 		
 		try {
-		// 서비스 객체 생성
-		BoardService service = new BoardService();
-		//조회한거 리스트 담을 객체 생성
-		List<Board> boardList = service.selectFAQBoard();
-		
-		req.setAttribute("boardList", boardList);
-		// 서비스에 어떤 메서드로 보낼지
-		
-				
+			
+			//서비스 객체 생성
+			BoardService service = new BoardService();
+			//리스트 생성
+			List<Board> boardList = service.selectNoticeBoard();
+			
+			
+			req.setAttribute("boardList", boardList);
 			req.getRequestDispatcher(path).forward(req, resp);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+			
 	}
 }
