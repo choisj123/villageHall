@@ -11,32 +11,34 @@
         var $wIcon = data.weather[0].icon;
 
 
-        var box = document.querySelector(".box");
+        var box123 = document.querySelector(".box123");
 
         var img = (window.getComputedStyle(document.querySelector(".box")).getPropertyValue("background-image"))
      
         const main = document.querySelector(".main");
         
       function getText($main) {
-        var imageUrl = ""
             if($main === "Haze" || $main === "Clouds"){
-             /* imageUrl = "../resources/images/cloud.jpg"
-                box.style.backgroundImage = "url('" +imageUrl+ "')";*/
+                box123.style.backgroundImage = "url('../resources/images/cloud.jpg')";
                 main.innerText = "흐림";
+                console.log("1");
             } else if($main === "Clear"){
-             /* imageUrl = "../resources/images/sunny.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')"; */
+             box123.style.backgroundImage = "url('../resources/images/sunny.jpg')"; 
                 main.innerText ="맑음";
+                 console.log("2");
             } else if($main === "Snow"){
-              /*imageUrl = "../resources/images/snow.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";*/
+             box123.style.backgroundImage = "url('../resources/images/snow.jpg')";
                 main.innerText = "눈";
+                 console.log("3");
             } else if($main === "Rain"){
-              /*imageUrl = "../resources/images/rain.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";*/
+			 box123.style.backgroundImage = "url('../resources/images/rain.jpg')";
                 main.innerText = "비";
+                 console.log("4");
             } else {
-                main.innerText = '번개';
+			   main.innerText = '번개';
+                console.log("6");
+             box123.style.backgroundImage = "url('../resources/images/rain.jpg')";
+                
             }
         }     
 

@@ -296,7 +296,7 @@
 
           <!-- 날씨 -->
           <section class="weather">
-            <div class="box">
+            <div class="box123">
               <!-- 날짜 -->
               <div class="FirstBox">
                 <h1 class="date">오늘의날씨</h1>

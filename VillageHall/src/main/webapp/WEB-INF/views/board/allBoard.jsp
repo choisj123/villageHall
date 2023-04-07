@@ -2,6 +2,7 @@
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,6 +83,14 @@
 
           </section>
         </section>
+        <div class="pagination">
+        <%
+        	for(int i=1; i<3; i++){
+        		
+        	}
+        %>
+        
+        </div>
         
       </main>
   
