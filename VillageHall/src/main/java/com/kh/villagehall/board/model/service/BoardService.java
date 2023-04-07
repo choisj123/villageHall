@@ -304,5 +304,35 @@ public class BoardService {
 		return boardNo;
 	}
 
+	/** 메인페이지 인기글 목록 조회 Service
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectMainPagePopularBoard() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectMainPagePopularBoard(conn);
+		
+		close(conn);
+		
+		return boardList;
+	}
+
+	/** 메인페이지 공지사항 목록 조회 Service
+	 * @return boardList
+	 * @throws Exception
+	 */
+	public List<Board> selectMainPageNotice() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.selectMainPageNotice(conn);
+		
+		close(conn);
+		
+		return boardList;
+	}
+
 
 }

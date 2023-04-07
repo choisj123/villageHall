@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 
-@WebServlet("/board/notice")
-public class NoticeServlet extends HttpServlet {
+@WebServlet("/board/noticeBoard")
+public class NoticeBoardServlet extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/board/notice.jsp";
+		String path = "/WEB-INF/views/board/noticeBoard.jsp";
 		
 		try {
 			
