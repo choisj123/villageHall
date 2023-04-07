@@ -155,5 +155,4 @@
 		AND BOARD_DELETE_FG = 'N' 
 	</entry>
 	
-
 </properties>

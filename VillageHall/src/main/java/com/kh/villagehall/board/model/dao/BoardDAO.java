@@ -528,8 +528,9 @@ public class BoardDAO {
 		
 		return kakaoBoardRecent;
 	}
+
 	
-		/** 게시글 내 댓글 조회 DAO
+	/** 게시글 내 댓글 조회 DAO
 	 * @param conn
 	 * @param boardNo
 	 * @return commentList
@@ -564,7 +565,8 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		return commentList;
-}
+	
+	}
   
 	
 	public int insertBoard(Connection conn, Board board) throws Exception{
@@ -621,7 +623,6 @@ public class BoardDAO {
 		}
 		
 		return boardNo;
-
 	}
 
 
