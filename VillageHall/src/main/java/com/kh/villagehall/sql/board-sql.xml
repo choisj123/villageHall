@@ -117,5 +117,17 @@
 		LEFT JOIN "CATEGORY"   USING(CATEGORY_NO)
 		ORDER BY BOARD_CREATE_DATE DESC
 	</entry>
-	
+
+	<entry key="selectFAQBoard">	
+		SELECT BOARD_TITLE, BOARD_CONTENT
+		FROM BOARD 
+		WHERE BOARD_DELETE_FG = 'N' AND CATEGORY_NO = '1';
+	</entry>
+
+	<entry key="selectNoticeBoard">	
+		SELECT BOARD_TITLE, BOARD_CONTENT
+		FROM BOARD 
+		WHERE BOARD_DELETE_FG = 'N' AND CATEGORY_NO = '2';
+	</entry>
+
 </properties>
