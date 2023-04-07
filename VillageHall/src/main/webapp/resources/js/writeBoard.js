@@ -1,91 +1,136 @@
+
 $(document).ready(function(){
+	
 	console.log("js loaded");
-	if (navigator.geolocation) {
-    
-	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-	    navigator.geolocation.getCurrentPosition(function(position) {
-        
-        var latitude = position.coords.latitude, // 위도
-            longitude = position.coords.longitude; // 경도
-        
-        console.log(latitude, longitude);
-            
-      });
-    
-} 
-	
-	
-    $("#summernote").summernote({
-        placeholder: "내용을 입력해주세요",
-        tabsize: 2,
-        height: 500,
-        minHeight: null, // set minimum height of editor
-        maxHeight: null, // set maximum height of editor
-        focus: true,
-        lang: "ko-KR",
-        
-        callbacks: {
-	        	onImageUpload: function(files, editor, welEditable) {
-	        		for(var i = files.length -1; i>=0; i--) {
-	        			sendFile(files[i], this);
-	        		}
-	        	}
-	        	},
+	    
 
-        toolbar: [
-          ["style", ["style"]],
-          ["font", ["bold", "underline", "clear"]],
-          ["color", ["color"]],
-          ["para", ["ul", "ol", "paragraph"]],
-          ["table", ["table"]],
-          ["insert", ["link", "picture"]],
-          ["view", ["fullscreen", "codeview", "help"]],
-        ],
-      });
+// 썸머노트 호출
+$("#summernote").summernote({
+    placeholder: "내용을 입력해주세요",
+    tabsize: 2,
+    height: 500,
+    minHeight: null, // set minimum height of editor
+    maxHeight: null, // set maximum height of editor
+    focus: true,
+    lang: "ko-KR",
+    
+    callbacks: {
+        	onImageUpload: function(files, editor, welEditable) {
+        		for(var i = files.length -1; i>=0; i--) {
+        			sendFile(files[i], this);
+        		}
+        	}
+        	},
 
-      $(document).on("click", "#writebtn", function () {
+    toolbar: [
+      ["style", ["style"]],
+      ["font", ["bold", "underline", "clear"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["table", ["table"]],
+      ["insert", ["link", "picture"]],
+      ["view", ["fullscreen", "codeview", "help"]],
+    ],
+  });
+  
+  
+
+
+
+$(document).on("click", "#writebtn", function () {
         saveContent();
       });
       
+      
     });
+
+
+
     
-      function saveContent(form) {
-		let category = form.category.value;
-        let boardTitle = form.boardTitle.value;
-        let boardContent = form.boardContent.value;
-        //let boardContent = $("#summernote").summernote("code");
-        
-        console.log("카테고리 : " + category);
-        console.log("제목 : " + boardTitle);
-        console.log("내용 : " + boardContent);
-        
-        if (navigator.geolocation) {
-    
-		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-		    navigator.geolocation.getCurrentPosition(function(position) {
-	        
-		        let latitude = position.coords.latitude // 위도
-		        let longitude = position.coords.longitude; // 경도
-		        
-		        console.log(latitude, longitude);
-	        
-	            
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(
+		function(position) {
+			 const latitude = position.coords.latitude;
+		     const longitude = position.coords.longitude;
+		      // 데이터 처리 함수 호출
+		      processData(latitude, longitude);
+		      
+		      
+   		 },		
+		 function(error) {
+	     console.log(error);
+	    }
+ 	 );
+}
+
+function processData(latitude, longitude) {
+  // 데이터 처리 로직
+  $.ajax({
+	      url: "writeBoard",
+	      data: { "latitude": latitude, "longitude": longitude},
+	      type: "POST",
+	      success: function() {
+	          console.log("성공?");
+	          console.log("ajax: " + latitude, longitude);
+	      },
+	           error : function(request, status, error){
+	          console.log("AJAX 에러 발생");
+	          console.log("상태코드 : " + request.status); // 404, 500
+	      }
 	      });
+}
     
-		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-		    
-		    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-		        message = 'geolocation을 사용할수 없어요..'
-		        
-		    displayMarker(locPosition, message);
-		    
-		}
-		
-      }
       
+/*
+    var latitude = 0;
+    var longitude = 0;
+    
+if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	       latitude = position.coords.latitude; // 위도
+	       longitude = position.coords.longitude; // 경도
+
+			console.log(latitude, longitude)
+
+  });
+}
+if(latitude != null){
+	 console.log("실행")
+	  $.ajax({
+	      url: "writeBoard",
+	      data: { "latitude": latitude, "longitude": longitude},
+	      type: "POST",
+	      success: function() {
+	          console.log("성공?");
+	          console.log(latitude, longitude);
+	      },
+	           error : function(request, status, error){
+	          console.log("AJAX 에러 발생");
+	          console.log("상태코드 : " + request.status); // 404, 500
+	      }
+	      });
+	
+}
+	 */
+
+    // 저장 
+function saveContent(form) {
+	let category = form.category.value;
+    let boardTitle = form.boardTitle.value;
+    let boardContent = form.boardContent.value;
+    latitude = form.latitude.value;
+    longitude = form.longitude.value;
+    //let boardContent = $("#summernote").summernote("code");
+    
+    console.log("카테고리 : " + category);
+    console.log("제목 : " + boardTitle);
+    console.log("내용 : " + boardContent);
+    
+	
+  }
+
       
-      
-      
+
       // 게시글 작성 유효성 검사
 function writeValidate(){
     const boardTitle = document.getElementsByName("boardTitle")[0];
