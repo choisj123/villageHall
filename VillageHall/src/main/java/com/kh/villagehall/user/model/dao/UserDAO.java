@@ -251,10 +251,11 @@ public class UserDAO {
 	 * @throws Exception
 	 */
 	public int nicknameDupCheck(Connection conn, String userNickname) throws Exception {
+		
 		int result = 0;
 		
 		try {
-			String sql = prop.getProperty("userNickname");
+			String sql = prop.getProperty("nicknameDupCheck");
 			
 			pstmt = conn.prepareStatement(sql);
 			

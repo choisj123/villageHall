@@ -268,14 +268,14 @@ const pwMessage = document.getElementById("pwMessage");
 userPw.addEventListener("input", function(){
 
     if(userPw.value.length == 0){
-        pwMessage.innerText = "영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.";
+        pwMessage.innerText = "영어, 숫자, 특수문자($,!,%,*,#,?,&) 8~30글자 사이로 작성해주세요.";
         pwMessage.classList.remove("confirm", "error");
 
         checkObj.userPw = false; // 유효 X 기록
         return;
     }
 
-    const regExp = /^[\w!@#_-]{6,30}$/;
+    const regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
 
     if( regExp.test(userPw.value) ){ // 비밀번호 유효
 
