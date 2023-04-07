@@ -53,6 +53,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	// 해시 함수 : 어떤 문자열이든 일정한 길이의 무작위 문자열로 변환하는 함수(중복 X)
 	
 	private String getSha512(String pw) {
+		System.out.println(pw);
 		// 매개변수 pw : 암호화 되기 전 비밀번호
 		String encryptPw = null; // 암호화된 비밀번호 저장 변수
 		
