@@ -110,20 +110,16 @@ function showMarkersByCategory(newCategory) {
     for (var i = 0; i < markersData.length; i++) {
       if (category === "전체" || markersData[i].category === category) {
         markers[i].setVisible(true);
+        navData[i].setVisible(true);
         
       } else {
         markers[i].setVisible(false);
+        navData[i].setVisible(false);
       }
     }
+      updatePlacesList();
   }
   
-// option 이벤트 리스너 
-document.getElementById("categorySelect").addEventListener('change', function(){
-  const newCategory = this.value;
-  showMarkersByCategory(newCategory);
-});
-
-
 const placesList = document.getElementById("placesList");
 placesList.innerHTML = ""; // 이전 목록 삭제
 
@@ -141,6 +137,12 @@ for (let i = 0; i < navData.length; i++) {
   }
 }
  
+ // option 이벤트 리스너 
+document.getElementById("categorySelect").addEventListener('change', function(){
+  const newCategory = this.value;
+  showMarkersByCategory(newCategory);
+});
+  updatePlacesList();
 
 
 
@@ -150,6 +152,7 @@ for (let i = 0; i < navData.length; i++) {
             console.log("상태코드 : " + request.status); // 404, 500
         }
 });
+
 
 },
 

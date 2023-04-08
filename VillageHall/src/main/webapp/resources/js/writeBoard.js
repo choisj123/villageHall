@@ -1,5 +1,5 @@
 console.log("js loaded");
-	    
+ 
 
 // 썸머노트 호출
 $("#summernote").summernote({
@@ -162,5 +162,4 @@ function writeValidate(){
 
     return true;
 }
-
 
