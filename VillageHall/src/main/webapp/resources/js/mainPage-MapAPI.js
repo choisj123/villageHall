@@ -8,10 +8,10 @@ $.ajax({
 
 $.ajax({
         url : "board/kakaoMapBoardRecent",
-        dataType : "json",
+        dataType : "json", 
 
-        success : function(kakaoMapBoardRecent){
-          console.log(kakaoMapBoardRecent);
+        success : function(kakaoBoardRecent){
+          console.log(kakaoBoardRecent);
 
 // map 함수 정의 
 var mapContainer = document.getElementById('map'),
@@ -47,13 +47,13 @@ for (var i = 0; i < kakaoMapList.length; i++) {
   });
 }
 
-for(var i = 0; i < kakaoMapBoardRecent.length; i++){
+for(var i = 0; i < kakaoBoardRecent.length; i++){
 	navData.push({
-		name : kakaoMapBoardRecent[i].userNickname,
-		title : kakaoMapBoardRecent[i].boardTitle,
-		createAt : kakaoMapBoardRecent[i].boardCreateDate,
-		category : kakaoMapBoardRecent[i].categoryName,
-		like : kakaoMapBoardRecent[i].boardNo,
+		name : kakaoBoardRecent[i].userNickname,
+		title : kakaoBoardRecent[i].boardTitle,
+		createAt : kakaoBoardRecent[i].boardCreateDate,
+		category : kakaoBoardRecent[i].categoryName,
+		like : kakaoBoardRecent[i].boardNo,
 		photoUrl : 'https://media.tenor.com/7bS_ec1TjfEAAAAi/%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EB%A1%9C%EC%95%84%EC%BD%98-%EB%AA%A8%EC%BD%94%EC%BD%94.gif'
 	});
 }
@@ -117,9 +117,15 @@ function showMarkersByCategory(newCategory) {
         navData[i].setVisible(false);
       }
     }
-      updatePlacesList();
   }
   
+// option 이벤트 리스너 
+document.getElementById("categorySelect").addEventListener('change', function(){
+  const newCategory = this.value;
+  showMarkersByCategory(newCategory);
+});
+
+
 const placesList = document.getElementById("placesList");
 placesList.innerHTML = ""; // 이전 목록 삭제
 
@@ -127,7 +133,6 @@ for (let i = 0; i < navData.length; i++) {
   if (category === "전체" || navData[i].category === category) {
     const li = document.createElement("li");
 	const content = 
-	
 	  '<p>' + navData[i].name +'</p>' +
 	  '<p>'+ navData[i].title +'</p>' +
 	  '<p>' + navData[i].createAt + '</p>' +
@@ -137,12 +142,6 @@ for (let i = 0; i < navData.length; i++) {
   }
 }
  
- // option 이벤트 리스너 
-document.getElementById("categorySelect").addEventListener('change', function(){
-  const newCategory = this.value;
-  showMarkersByCategory(newCategory);
-});
-  updatePlacesList();
 
 
 
@@ -152,7 +151,6 @@ document.getElementById("categorySelect").addEventListener('change', function(){
             console.log("상태코드 : " + request.status); // 404, 500
         }
 });
-
 
 },
 

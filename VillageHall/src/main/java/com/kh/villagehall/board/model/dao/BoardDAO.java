@@ -466,6 +466,11 @@ public class BoardDAO {
 
 	
 	
+	/** 맵 NAV DAO
+	 * @param conn
+	 * @return kakaoBoardRecent
+	 * @throws Exception
+	 */
 	public List<Board> kakaoMapBoardRecent(Connection conn) throws Exception{
 		
 		List<Board> kakaoBoardRecent = new ArrayList<>();
