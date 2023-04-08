@@ -37,6 +37,7 @@
           action="signUp"
           method="POST"
           name="signUp-form"
+          enctype="multipart/form-data" 
           onsubmit="return signUpValidate()"
         >
           <label for="userEmail">
@@ -45,7 +46,7 @@
 
           <div class="signUp-input-area">
             <input
-              type="text"
+              type="email"
               id="userEmail"
               name="userEmail"
               placeholder="아이디(이메일)"
@@ -88,7 +89,7 @@
 
           <div class="signUp-input-area">
             <input
-              type="text"
+              type="password"
               id="userPw"
               name="userPw"
               placeholder="비밀번호"
@@ -98,7 +99,7 @@
 
           <div class="signUp-input-area">
             <input
-              type="text"
+              type="password"
               id="userPwConfirm"
               placeholder="비밀번호 확인"
               maxlength="30"
@@ -133,7 +134,7 @@
 
           <div class="signUp-input-area">
             <input
-              type="text"
+              type="tel"
               id="userTel"
               name="userTel"
               placeholder="(- 없이 숫자만 입력)"
@@ -145,9 +146,10 @@
             >전화번호를 입력해주세요.(- 제외)</span> <br><br>
            
           <span id="profile-message">프로필 사진</span><br>
-          <input type="file" id="file"> 
+          <input type="file" name="profileImage" id="input-image" accept="image/*"> 
                      
           <button type="submit" id="signUp-btn">가입하기</button>  
+                  
                   
            <a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin();">
            		<img src="${contextPath}/resources/images/kakao_login_medium_wide.png">

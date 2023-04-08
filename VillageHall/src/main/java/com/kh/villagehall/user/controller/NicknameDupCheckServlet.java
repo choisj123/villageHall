@@ -18,13 +18,13 @@ public class NicknameDupCheckServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 파라미터 얻어오기(data 속성의 값)
-		String UserService = req.getParameter("UserService");
+		String userNickname = req.getParameter("userNickname");
 		
 		try {
 			UserService service = new UserService();
 			
 			// 닉네임 중복 검사 Service 호출 후 결과 반환 받기
-			int result = service.nicknameDupCheck(UserService);
+			int result = service.nicknameDupCheck(userNickname);
 			
 			// 동기식   -> forward 또는 redirect로 응답 (화면 전환)
 			// 비동기식 -> 응답용 스트림을 이용해 데이터 전달 (데이터가 현재 화면 추가)

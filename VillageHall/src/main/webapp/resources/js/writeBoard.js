@@ -1,7 +1,4 @@
-
-$(document).ready(function(){
-	
-	console.log("js loaded");
+console.log("js loaded");
 	    
 
 // 썸머노트 호출
@@ -13,15 +10,11 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-    
     callbacks: {
-        	onImageUpload: function(files, editor, welEditable) {
-        		for(var i = files.length -1; i>=0; i--) {
-        			sendFile(files[i], this);
-        		}
-        	}
-        	},
-
+    onImageUpload: function(files) {
+            sendFile(files[0], $(this));
+    }
+  },
     toolbar: [
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
@@ -33,55 +26,25 @@ $("#summernote").summernote({
     ],
   });
   
-  
-
-
-
-$(document).on("click", "#writebtn", function () {
-        saveContent();
-      });
-      
-      
+function sendFile(file, editor) {
+    var formData = new FormData();
+    formData.append("image", file);
+    $.ajax({
+        url: "writeBoard",
+        type: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            var imageUrl = data.imageUrl;
+            console.log(data.imageUrl);
+            editor.summernote('insertImage', imageUrl);
+        }
     });
-
-
-
-    
-if (navigator.geolocation) {
-	navigator.geolocation.getCurrentPosition(
-		function(position) {
-			 const latitude = position.coords.latitude;
-		     const longitude = position.coords.longitude;
-		      // 데이터 처리 함수 호출
-		      processData(latitude, longitude);
-		      
-		      
-   		 },		
-		 function(error) {
-	     console.log(error);
-	    }
- 	 );
 }
 
-function processData(latitude, longitude) {
-  // 데이터 처리 로직
-  $.ajax({
-	      url: "writeBoard",
-	      data: { "latitude": latitude, "longitude": longitude},
-	      type: "POST",
-	      success: function() {
-	          console.log("성공?");
-	          console.log("ajax: " + latitude, longitude);
-	      },
-	           error : function(request, status, error){
-	          console.log("AJAX 에러 발생");
-	          console.log("상태코드 : " + request.status); // 404, 500
-	      }
-	      });
-}
-    
-      
-/*
+
     var latitude = 0;
     var longitude = 0;
     
@@ -90,28 +53,40 @@ if (navigator.geolocation) {
 	       latitude = position.coords.latitude; // 위도
 	       longitude = position.coords.longitude; // 경도
 
-			console.log(latitude, longitude)
+			console.log("위도경도 받아오기" + latitude, longitude)
 
   });
 }
-if(latitude != null){
-	 console.log("실행")
+
+/*
+let ajaxDo = function(){
+	if(latitude != 0){
+	 console.log("실행");
+	 
 	  $.ajax({
 	      url: "writeBoard",
-	      data: { "latitude": latitude, "longitude": longitude},
+	      data: { latitude: latitude, longitude: longitude},
 	      type: "POST",
 	      success: function() {
-	          console.log("성공?");
-	          console.log(latitude, longitude);
+	          console.log("ajax : " + latitude, longitude);
+	          //document.getElementById("latitude").innerText = latitude;
 	      },
 	           error : function(request, status, error){
 	          console.log("AJAX 에러 발생");
 	          console.log("상태코드 : " + request.status); // 404, 500
 	      }
 	      });
-	
+	}
 }
-	 */
+	 
+setTimeout(ajaxDo,10000);
+*/
+
+
+$(document).on("click", "#writebtn", function () {
+        saveContent();
+      });
+
 
     // 저장 
 function saveContent(form) {
@@ -157,4 +132,5 @@ function writeValidate(){
 
     return true;
 }
+
 
