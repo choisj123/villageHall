@@ -1,7 +1,7 @@
 package com.kh.villagehall.user.model.dao;
 
 
-import static com.kh.villagehall.common.JDBCTemplate.*;
+import static com.kh.villagehall.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -96,8 +96,9 @@ public class UserDAO {
 	         pstmt.setString(2, user.getUserPw());
 	         pstmt.setString(3, user.getUserNickname());         
 	         pstmt.setString(4, user.getUserTel());
-	      
+	         pstmt.setString(5, user.getProfileImg());
 	         
+	      
 	         result = pstmt.executeUpdate();
 	         
 	      }finally {
@@ -251,10 +252,11 @@ public class UserDAO {
 	 * @throws Exception
 	 */
 	public int nicknameDupCheck(Connection conn, String userNickname) throws Exception {
+		
 		int result = 0;
 		
 		try {
-			String sql = prop.getProperty("userNickname");
+			String sql = prop.getProperty("nicknameDupCheck");
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -370,7 +372,7 @@ public class UserDAO {
 	 * @param conn
 	 * @param newPw
 	 * @param userNo
-	 * @return
+	 * @return result
 	 * @throws Exception
 	 */
 	public int changePw(Connection conn, String newPw, int userNo) throws Exception{
@@ -388,6 +390,37 @@ public class UserDAO {
 			result = pstmt.executeUpdate();
 			
 			System.out.println("DAO result :" + result);
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+	
+	/** 마이페이지 회원 탈퇴 DAO
+	 * @param conn
+	 * @param userNo
+	 * @param userPw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteUser(Connection conn, int userNo, String userPw) throws Exception {
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, userPw);
+			
+			result = pstmt.executeUpdate();
+			
 			
 		}finally {
 			close(pstmt);

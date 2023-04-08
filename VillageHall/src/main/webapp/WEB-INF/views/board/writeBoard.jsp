@@ -1,5 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="javax.servlet.http.*,java.util.*" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%@ page import="java.io.*, java.util.*" %> --%>
+<%-- <%
+String uploadFolder = "/resources/images/boardImg/";
+String saveName = UUID.randomUUID().toString() + "_" + request.getParameter("file.name");
+String savePath = uploadFolder + saveName;
+
+Part filePart = request.getPart("file");
+InputStream fileContent = filePart.getInputStream();
+OutputStream os = new FileOutputStream(savePath);
+byte[] buffer = new byte[1024];
+int len;
+while ((len = fileContent.read(buffer)) != -1) {
+  os.write(buffer, 0, len);
+}
+os.close();
+fileContent.close();
+
+String imageUrl = request.getContextPath() + "/boardImg/" + saveName;
+out.print(imageUrl);
+%> --%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +40,10 @@
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
     ></script>
-
+   
     <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
     <link
@@ -43,9 +66,10 @@
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
             <h2>글 작성</h2>
-          <form action="${contextPath}/board/writeBoard" method="POST" class="board-write"
-            onsubmit="return writeValidate()">
+          <form action="${contextPath}/board/writeBoard" method="POST"  enctype="multipart/form-data"
+          class="board-write" onsubmit="return writeValidate()">
             <hr />
+     
             <select name="category" id="category">
               <option value="">카테고리</option>
               <option value="3" id="issue">이슈 🔍️</option>
@@ -62,7 +86,10 @@
               placeholder="제목을 입력해주세요"
               size="125px"
             />
+       
             <textarea id="summernote" name="boardContent"></textarea>
+            <img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
+            
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
                 <button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
@@ -71,23 +98,15 @@
                     <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
                     </c:if>                 
             </div>
-            <iframe width=800 name="por" width="0" height="0" frameborder="0" scrolling="no"></iframe>
-				<form name="location" method="post" action=""></form>
-				<script>
-				frm.target = "por"; // iframe의 이름
-				frm.action = "현재 페이지 이름.jsp?name= "+name;
-				frm.submit();
-				</script>
-            
           </form>
         </section>
       </section>
     </main>
-
+    
 	 <!-- footer include -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
-
+    
     <script src="${contextPath}/resources/js/mainPage.js"></script>
     <script src="${contextPath}/resources/js/writeBoard.js"></script>
   </body>

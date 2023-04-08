@@ -18,7 +18,7 @@
    <!-- 회원가입 -->
    <entry key="signUp">
       INSERT INTO "USER"(USER_EMAIL, USER_PW, USER_NICKNAME, USER_TEL,ENROLL_DATE, PROFILE_IMG,KAKAO_USER_KEY,USER_DELETE_FG,ADMINISTER)
-      VALUES(?, ? , ? , ? , DEFAULT, NULL, NULL, DEFAULT, DEFAULT)   
+      VALUES(?, ? , ? , ? , DEFAULT, ?, NULL, DEFAULT, DEFAULT)   
    </entry>
    
    <!-- 인증번호 생성 -->
@@ -60,7 +60,7 @@
    	<!-- 닉네임 중복 검사 -->
 	<entry key="nicknameDupCheck">
 		SELECT COUNT(*) FROM "USER" 
-		WHERE USER_NICKNAME = ? 
+		WHERE USER_NICKNAME= ? 
 		AND USER_DELETE_FG = 'N' 
 	</entry>
    
@@ -83,7 +83,7 @@
 		AND USER_DELETE_FG = 'N' 
 	</entry>
 	
-		<!-- 회원 정보 변경(닉네임, 전화번호) -->
+	<!-- 회원 정보 변경(닉네임, 전화번호) -->
 	<entry key="updateUser">
 		UPDATE "USER" SET 
 		USER_NICKNAME = ?, 
@@ -92,10 +92,22 @@
 		AND USER_DELETE_FG = 'N' 
 	</entry>
 	
-		<!-- 비밀번호 변경 -->
+	<!-- 비밀번호 변경 -->
 	<entry key="changePw">
 		UPDATE "USER" SET 
 		USER_PW = ? 
 		WHERE USER_NO = ? 
 	</entry>
+	
+	
+	<!-- 회원탈퇴 -->
+	<entry key="deleteUser">
+		UPDATE "USER" SET 
+		USER_DELETE_FG = 'Y' 
+		WHERE USER_NO = ? 
+		AND USER_PW = ? 
+	</entry>
+	
+	
+	
 </properties>

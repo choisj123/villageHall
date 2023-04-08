@@ -1,7 +1,10 @@
 package com.kh.villagehall.user.model.service;
 
 
-import static com.kh.villagehall.common.JDBCTemplate.*;
+import static com.kh.villagehall.common.JDBCTemplate.close;
+import static com.kh.villagehall.common.JDBCTemplate.commit;
+import static com.kh.villagehall.common.JDBCTemplate.getConnection;
+import static com.kh.villagehall.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
@@ -18,8 +21,6 @@ public class UserService {
 	 * @return loginUser
 	 * @throws Exception 
 	 */
-	
-	
 	public User login(User user) throws Exception{
 		
 		// Connection 얻어오기
@@ -95,7 +96,7 @@ public class UserService {
 	  /** 인증번호 확인 Service
 	   * @param inputEmail
 	   * @param cNumber
-	   * @return
+	   * @return result
 	   * @throws Exception
 	   */
 	  public int checkNumber(String inputEmail, String cNumber) throws Exception{
@@ -151,7 +152,7 @@ public class UserService {
 	/** 마이페이지 비밀번호 일치 검사 service
 	 * @param userNo
 	 * @param inputPw
-	 * @return
+	 * @return result
 	 * @throws Exception
 	 */
 	public int myInfoCheckPw(int userNo, String inputPw) throws Exception{
@@ -212,15 +213,33 @@ public class UserService {
 	/** 마이페이지 비밀번호 변경 service
 	 * @param newPw
 	 * @param userNo
-	 * @return
+	 * @return result
 	 * @throws Exception
 	 */
 	public int changePw(String newPw, int userNo) throws Exception {
-		Connection conn = getConnection(); // DBCP에서 얻어옴
+		Connection conn = getConnection(); 
 		
 		int result = dao.changePw(conn, newPw, userNo);
 		
-		System.out.println("service result: " +  result);
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+	/** 마이페이지 회원 탈퇴 service
+	 * @param userNo
+	 * @param userPw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteUser(int userNo, String userPw) throws Exception{
+		Connection conn = getConnection(); 
+		
+		int result = dao.deleteUser(conn, userNo, userPw);
 		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);

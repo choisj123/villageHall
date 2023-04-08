@@ -9,29 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 
-@WebServlet("/board/notice")
-public class NoticeServlet extends HttpServlet {
+@WebServlet("/board/selectMainPageNotice")
+public class MainPageNoticeServlet extends HttpServlet {
+	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "/WEB-INF/views/board/notice.jsp";
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			
-			//서비스 객체 생성
 			BoardService service = new BoardService();
-			//리스트 생성
-			List<Board> boardList = service.selectNoticeBoard();
 			
+			List<Board> boardList = service.selectMainPageNotice();
 			
-			req.setAttribute("boardList", boardList);
-			req.getRequestDispatcher(path).forward(req, resp);
+			new Gson().toJson(boardList, resp.getWriter());
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-			
 	}
+	
 }

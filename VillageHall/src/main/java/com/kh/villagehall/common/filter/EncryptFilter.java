@@ -1,6 +1,7 @@
 package com.kh.villagehall.common.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -23,8 +24,7 @@ import com.kh.villagehall.common.wrapper.EncryptWrapper;
 		   urlPatterns = {"/user/login", 
 				   		  "/user/signUp", 
 				   		  "/user/pwFind",
-				   		  "/mypage/changePw",
-				   		  "/mypage/myPage"
+				   		  "/mypage/*",
 				   		  })
 
 public class EncryptFilter extends HttpFilter implements Filter {
