@@ -108,6 +108,17 @@
 		AND USER_PW = ? 
 	</entry>
 	
+	<!-- 비밀번호 찾기 -->
+	<entry key="pwFind">
+		UPDATE "USER" SET
+		USER_PW = ? 
+		WHERE USER_EMAIL = ? 
+		AND USER_PW = ?   
+   </entry>
+	
+	
+
+	
 	
 	
 </properties>

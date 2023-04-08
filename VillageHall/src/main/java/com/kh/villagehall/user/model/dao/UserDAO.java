@@ -428,6 +428,41 @@ public class UserDAO {
 		
 		return result;
 	}
+
+	/** 비밀번호 찾기 DAO
+	 * @param conn
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int pwFind(Connection conn, User user) throws Exception {
+		
+		int result = 0; // 결과 저장용 변수
+		
+		try {
+			String sql = prop.getProperty("pwFind");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getUserEmail());
+			pstmt.setString(2, user.getUserPw());
+
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println(user);
+			
+		
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		// 결과 반환
+		return result;
+	}
+
+	
 	
 	
 }

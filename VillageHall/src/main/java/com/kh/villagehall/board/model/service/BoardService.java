@@ -73,15 +73,15 @@ public class BoardService {
 	 * @throws Exception
 	 */
 	public Board selectBoardDetail(int boardNo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-	
+		
 		return board;
-	}  
+	}
 
   /** 카카오맵 조회 service
 	 * @return kakaoMapList
@@ -343,7 +343,7 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		// 게시판 이름 조회 DAO 호출
-//		String boardName = dao.selectBoardName(conn, type);
+		String boardName = dao.selectBoardName(conn, type);
 		
 		// 1. 특정 게시판 전체 게시글 수 조회 DAO 호출
 		int listCount = dao.getListCount(conn, type);
@@ -357,7 +357,7 @@ public class BoardService {
 		// 4. Map 객체를 생성하여 1,2 결과 객체를 모두 저장
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-//		map.put("boardName", boardName);
+		map.put("boardName", boardName);
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
 		
@@ -409,64 +409,6 @@ public class BoardService {
 		close(conn);
 	
 		return map;
-	}
-
-	/** 게시글 수정 Service
-	 * @param boardNo
-	 * @return result
-	 * @throws Exception
-	 */
-	public int updateBoard(Board board) throws Exception {
-		
-		Connection conn = getConnection();
-		
-		int result = dao.updateBoard(conn, board);
-		
-		if(result > 0) commit(conn);
-		else			rollback(conn);
-		
-		close(conn);
-		
-		return result;
-	}
-
-	
-	/** 댓글 등록 Service
-	 * @param comment
-	 * @return result
-	 * @throws Exception
-	 */
-	public int insertComment(Comment comment) throws Exception {
-
-		Connection conn = getConnection();
-		
-		int result = dao.insertComment(conn, comment);
-		
-		if(result > 0) commit(conn);
-		else			rollback(conn);
-		
-		close(conn);
-		
-		return result;
-	}
-
-	/** 댓글 삭제 Service
-	 * @param comment
-	 * @return result
-	 * @throws Exception
-	 */
-	public int deleteComment(Comment comment) throws Exception {
-
-		Connection conn = getConnection();
-		
-		int result = dao.deleteComment(conn, comment);
-		
-		if(result > 0) commit(conn);
-		else			rollback(conn);
-		
-		close(conn);
-		
-		return result;
 	}
 
 

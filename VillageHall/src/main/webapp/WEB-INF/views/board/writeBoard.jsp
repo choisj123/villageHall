@@ -65,59 +65,38 @@ out.print(imageUrl);
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
-        	<c:choose>
-        		<c:when test="${board == null}">
-        			<h2>글 작성</h2>
-        		</c:when>
-        		<c:otherwise>
-        			<h2>게시글 수정</h2>
-        		</c:otherwise>
-        	</c:choose>
-          
+            <h2>글 작성</h2>
           <form action="${contextPath}/board/writeBoard" method="POST"  enctype="multipart/form-data"
           class="board-write" onsubmit="return writeValidate()">
             <hr />
-            <c:choose>
-            	<c:when test="${board != null}">
-            		<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
-            		<select name="category" id="category">
-              			<option value="">카테고리</option>
-              			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
-              			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
-              			<option value="5" <% if(categoryNo == 5) { %> selected <% } %> id="hobby">취미 🏂 </option>
-              			<option value="6" <% if(categoryNo == 6) { %> selected <% } %> id="friend">친목 👫</option>
-              			<option value="7" <% if(categoryNo == 7) { %> selected <% } %> id="recommend">추천 👍</option>
-              			<option value="8" <% if(categoryNo == 7) { %> selected <% } %> id="etc">기타 😎</option>
-            		</select>
-            	</c:when>
-            	<c:otherwise>
-            		<select name="category" id="category">
-              			<option value="">카테고리</option>
-              			<option value="3" id="issue">이슈 🔍️</option>
-              			<option value="4" id="delicious">맛집 🍽️</option>
-              			<option value="5" id="hobby">취미 🏂 </option>
-              			<option value="6" id="friend">친목 👫</option>
-              			<option value="7" id="recommend">추천 👍</option>
-              			<option value="8" id="etc">기타 😎</option>
-            		</select>
-            	</c:otherwise>            	
-            </c:choose>
-
+     
+            <select name="category" id="category">
+              <option value="">카테고리</option>
+              <option value="3" id="issue">이슈 🔍️</option>
+              <option value="4" id="delicious">맛집 🍽️</option>
+              <option value="5" id="hobby">취미 🏂 </option>
+              <option value="6" id="friend">친목 👫</option>
+              <option value="7" id="recommend">추천 👍</option>
+              <option value="8" id="etc">기타 😎</option>
+            </select>
             <input
               type="text"
               name="boardTitle"
               id="boardTitle"
               placeholder="제목을 입력해주세요"
-              size="125px" value="${board.boardTitle}"
+              size="125px"
             />
        
             <textarea id="summernote" name="boardContent"></textarea>
-            <img src="${contextPath}/${board.boardImg}" alt="게시글 이미지">
+            <img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
             
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
                 <button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
-                <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
+                    <button type="button" id="goToListBtn">목록으로</button>
+                    <c:if test ="">
+                    <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
+                    </c:if>                 
             </div>
           </form>
         </section>
