@@ -111,16 +111,13 @@ out.print(imageUrl);
               size="125px" value="${board.boardTitle}"
             />
        
-            <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
-            <img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
+            <textarea id="summernote" name="boardContent"></textarea>
+            <img src="${contextPath}/${board.boardImg}" alt="게시글 이미지">
             
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
                 <button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
-                    <button type="button" id="goToListBtn">목록으로</button>
-                    <c:if test ="">
-                    <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
-                    </c:if>                 
+                <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>
           </form>
         </section>

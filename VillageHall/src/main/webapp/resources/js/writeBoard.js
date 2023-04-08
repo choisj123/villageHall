@@ -10,10 +10,10 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-   	imageUploadUrl: '/writeBoard',
+   	imageUploadUrl: "writeBoard",
     callbacks: {
-    onImageUpload: function(files) {
-            sendFile(files[0], $(this));
+    onImageUpload: function(file) {
+            sendFile(file[0], $(this));
     }
   },
     toolbar: [
@@ -31,7 +31,7 @@ function sendFile(file, editor) {
     var formData = new FormData();
     formData.append("file", file);
     $.ajax({
-        url: "board/writeBoard",
+        url: "writeBoard",
         type: "POST",
         data: formData,
         cache: false,
@@ -97,6 +97,7 @@ function saveContent(form) {
     let boardContent = form.boardContent.value;
     latitude = form.latitude.value;
     longitude = form.longitude.value;
+    let boardImg = 
     //let boardContent = $("#summernote").summernote("code");
     
     console.log("카테고리 : " + category);
@@ -141,19 +142,19 @@ function writeValidate(){
     const boardContent = document.querySelector("[name='boardContent']");
 	
 	if(category.value == "" ){
-		alert("카테고리를 선택해주세요")
+		alert("카테고리를 선택해주세요.")
 		return false;
 	}
 
     if(boardTitle.value.trim().length == 0){
-        alert("제목을 입력해주세요!!!");
+        alert("제목을 입력해주세요.");
         boardTitle.value = "";
         boardTitle.focus();
         return false;
     }
 
     if(boardContent.value.trim().length == 0){
-        alert("내용을 입력해주세요!!!");
+        alert("내용을 입력해주세요.");
         boardContent.value = "";
         boardContent.focus();
         return false;

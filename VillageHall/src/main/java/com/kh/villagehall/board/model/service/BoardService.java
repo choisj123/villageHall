@@ -73,15 +73,15 @@ public class BoardService {
 	 * @throws Exception
 	 */
 	public Board selectBoardDetail(int boardNo) throws Exception {
-
+		
 		Connection conn = getConnection();
 		
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-		
+	
 		return board;
-	}
+	}  
 
   /** 카카오맵 조회 service
 	 * @return kakaoMapList
@@ -343,7 +343,7 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		// 게시판 이름 조회 DAO 호출
-		String boardName = dao.selectBoardName(conn, type);
+//		String boardName = dao.selectBoardName(conn, type);
 		
 		// 1. 특정 게시판 전체 게시글 수 조회 DAO 호출
 		int listCount = dao.getListCount(conn, type);
@@ -357,7 +357,7 @@ public class BoardService {
 		// 4. Map 객체를 생성하여 1,2 결과 객체를 모두 저장
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("boardName", boardName);
+//		map.put("boardName", boardName);
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
 		
