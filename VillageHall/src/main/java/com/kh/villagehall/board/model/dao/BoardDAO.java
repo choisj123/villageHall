@@ -232,6 +232,7 @@ public class BoardDAO {
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
 				board.setBoardImg(rs.getString(9));
+				board.setCategoryNo(rs.getInt(10));
 			}
 			
 		} finally {
@@ -523,10 +524,11 @@ public class BoardDAO {
 			
 			while(rs.next()) {
 				Comment comment = new Comment();
-				comment.setProfileImg(rs.getString(1));
-				comment.setUserNickname(rs.getString(2));
-				comment.setCommentContent(rs.getString(3));
-				comment.setCommentCreateDate(rs.getString(4));
+				comment.setCommentNo(rs.getInt(1));
+				comment.setProfileImg(rs.getString(2));
+				comment.setUserNickname(rs.getString(3));
+				comment.setCommentContent(rs.getString(4));
+				comment.setCommentCreateDate(rs.getString(5));
 				
 				commentList.add(comment);				
 			}
@@ -799,6 +801,92 @@ public class BoardDAO {
 	public int searchListCount(Connection conn, int category, String condition) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int updateBoard(Connection conn, Board board) throws Exception {
+
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+						
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setDouble(3, board.getLatitude());
+			pstmt.setDouble(4, board.getLongtitude());
+			pstmt.setInt(5, board.getCategoryNo());
+			pstmt.setString(6, board.getBoardImg());
+			pstmt.setInt(7, board.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 댓글 등록 DAO
+	 * @param conn
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertComment(Connection conn, Comment comment) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("insertComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comment.getCommentContent());
+			pstmt.setInt(2, comment.getUserNo());
+			pstmt.setInt(3, comment.getBoardNo());
+			
+			result = pstmt.executeUpdate();			
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 댓글 삭제 DAO
+	 * @param conn
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Connection conn, Comment comment) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, comment.getUserNo());
+			pstmt.setInt(2, comment.getBoardNo());
+			pstmt.setInt(3, comment.getCommentNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 	
