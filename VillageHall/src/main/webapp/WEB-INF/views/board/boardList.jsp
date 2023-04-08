@@ -2,6 +2,7 @@
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- map에 저장된 값을 각각 변수에 저장 -->
+<c:set var="boardName" value="${map.boardName}" />
 <c:set var="pagination" value="${map.pagination}" />
 <c:set var="boardList" value="${map.boardList}" />
 
@@ -45,12 +46,12 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="board-list">
-          <h2>공지사항</h2>
+          <h2>${boardName}</h2>
           <div id="boardList">
           	<table class="boardListTable">
           		<thead>
           			<tr>
-	                    <th>글번호</th>
+	                    <th>카테고리</th>
 	                    <th>제목</th>	                    
 	                    <th>작성자</th>
 	                    <th>작성일</th>
@@ -70,7 +71,7 @@
 	                	<c:otherwise>
 	                		<c:forEach var="board" items="${boardList}">
 	                			<tr>
-	                				<td>${board.boardNo}</td>	                				
+	                				<td>${board.categoryName}</td>	                				
 	                				<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a></td>
 	                				<td>${board.userNickname}</td>
 	                				<td>${board.boardCreateDate}</td>	                				
@@ -97,7 +98,7 @@
          <div class="pagination-area">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                <c:set var="url" value="list?category=${param.category}&cp="/>
+                <c:set var="url" value="list?type=${param.type}&cp="/>
 
 
                 <ul class="pagination">
