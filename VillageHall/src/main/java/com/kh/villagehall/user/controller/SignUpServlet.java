@@ -54,6 +54,7 @@ public class SignUpServlet extends HttpServlet{
 		
 		// 파라미터를 모두 변수에 저장
 		String userEmail = req.getParameter("userEmail");
+		System.out.println(userEmail);
 		String userPw = req.getParameter("userPw");
 		System.out.println(userPw);
 		String userNickname = req.getParameter("userNickname");

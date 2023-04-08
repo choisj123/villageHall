@@ -1,11 +1,6 @@
 package com.kh.villagehall.board.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,11 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.*;
+import javax.servlet.http.Part;
 
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.common.MyRenamePolicy;
 import com.kh.villagehall.user.model.vo.User;
+import com.oreilly.servlet.MultipartRequest;
 
 @WebServlet("/board/writeBoard")
 @MultipartConfig(
@@ -27,6 +24,7 @@ import com.kh.villagehall.user.model.vo.User;
 		   maxRequestSize = 1024 * 1024 * 50 * 5
 		)
 public class WriteBoardServlet extends HttpServlet{
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,24 +38,38 @@ public class WriteBoardServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		    // 파일 저장할 디렉토리 경로
-		    String uploadPath = req.getServletContext().getRealPath("/") + "resources/images/boardImg/";
-	
-		    // 업로드된 파일 정보 받아오기
-		    Part filePart = req.getPart("image");
-		    String fileName = filePart.getSubmittedFileName();
-		    
-
-		    // 파일 저장될 경로 및 이름 설정
-		    String savePath = uploadPath + fileName;
-
-		    // 파일 쓰기
-		    try (InputStream input = filePart.getInputStream()) {
-		        Files.copy(input, Paths.get(savePath), StandardCopyOption.REPLACE_EXISTING);
-		    }
-
 		
+int maxSize = 1024 * 1024 * 20;
+		
+		HttpSession session = req.getSession(); // session 얻어오는 것은 지장없음(사용 가능)
+		
+		// 최상위 경로( "/" == webapp 폴더)의 컴퓨터상의 실제 절대 경로를 얻어옴.
+		String root = session.getServletContext().getRealPath("/");
+		
+		// 실제 파일이 저장되는 폴더의 경로
+		String folderPath = "/resources/images/boardImg/";
+		
+		// userProfile 폴더 까지의 절대경로
+		String filePath = root + folderPath;
+
+		String encoding = "UTF-8";
+		
+        Part filePart = req.getPart("file");
+        String fileName = filePart.getSubmittedFileName();
+        
+        MultipartRequest mpReq = new MultipartRequest(req, filePath, maxSize, encoding, new MyRenamePolicy());
+        
+        
+		System.out.println( mpReq.getOriginalFileName("file")  );
+		
+		// getFilesystemName("input type='file'의 name 속성 값")
+		// -> 변경된 파일명
+		System.out.println( mpReq.getFilesystemName("file") );
+        
+        
+   
+		
+        String boardImg = folderPath + mpReq.getFilesystemName("file");
 		
 		int result = 0;
 	
@@ -72,14 +84,13 @@ public class WriteBoardServlet extends HttpServlet{
 				
 			
 			int categoryNo = Integer.parseInt(req.getParameter("category"));
+			System.out.println(categoryNo);
 			String boardTitle = req.getParameter("boardTitle");
 			String boardContent = req.getParameter("boardContent");
 			
-			String boardImg = "/resources/images/boardImg/" + fileName;  // 저장할 이미지 URL
 //			System.out.println("writeBoardServlet : " + latitude +longitude ) ;
 			  
 			// ** 로그인 회원 번호 얻어오기 **
-			HttpSession session = req.getSession(); // 세션 얻어오기
 	
 			// 로그인 정보 얻어오기
 			User loginUser = (User)( session.getAttribute("loginUser") ) ;
@@ -136,6 +147,17 @@ public class WriteBoardServlet extends HttpServlet{
 	
 	
 	}
+	
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("file")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
+    }
 	
 	
 
