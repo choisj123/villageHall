@@ -1,6 +1,9 @@
 package com.kh.villagehall.board.model.service;
 
-import static com.kh.villagehall.common.JDBCTemplate.*;
+import static com.kh.villagehall.common.JDBCTemplate.close;
+import static com.kh.villagehall.common.JDBCTemplate.commit;
+import static com.kh.villagehall.common.JDBCTemplate.getConnection;
+import static com.kh.villagehall.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.HashMap;
@@ -283,6 +286,11 @@ public class BoardService {
 		
 	}
 
+	/** 게시글 등록 후 게시글 번호 얻어오기 service
+	 * @param board
+	 * @return boardNo
+	 * @throws Exception
+	 */
 	public int getBoardNo(Board board) throws Exception{
 		Connection conn = getConnection();
 		
@@ -386,16 +394,16 @@ public class BoardService {
 		
 		
 		// 4. 특정 게시판에서 조건을 만족하는 게시글 목록 조회
-		List<Board> boardList = dao.searchBoardList(conn, pagination, category, condition);
+//		List<Board> boardList = dao.searchBoardList(conn, pagination, category, condition);
 		
 		// 5. 결과 값을 하나의 Map에 모아서 반환
 		Map<String, Object> map = new HashMap<>();
 		
 		map.put("pagination", pagination);
-		map.put("boardList", boardList);
+//		map.put("boardList", boardList);
 		
 		close(conn);
-		
+	
 		return map;
 	}
 
