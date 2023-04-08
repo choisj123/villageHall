@@ -187,19 +187,11 @@
 		ORDER BY BOARD_TITLE
 	</entry>
 	
-	<!-- 게시판 이름 조회 -->
-	<entry key="selectBoardName">
-		SELECT TYPE_NO
-		FROM CATEGORY 
-		WHERE TYPE_NO = ?
-	</entry>
-	
 	<!-- 특정 게시판의 전체 게시글 수 조회 -->
 	<entry key="getListCount">
 		SELECT COUNT(*) FROM BOARD
-		JOIN CATEGORY USING (CATEGORY_NO)
 		WHERE BOARD_DELETE_FG = 'N'
-		AND TYPE_NO = ?
+		AND CATEGORY_NO IN (?)
 	</entry>
 	
 	<!-- 게시글 목록 조회 -->
@@ -215,7 +207,7 @@
 				LEFT JOIN "LIKE" L ON B.BOARD_NO = L.BOARD_NO
 				JOIN CATEGORY USING(CATEGORY_NO)
 				WHERE BOARD_DELETE_FG = 'N' 
-				AND TYPE_NO = ?
+				AND CATEGORY_NO IN (?)
 				GROUP BY B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CREATE_DATE, 
 					USER_NICKNAME, B.READ_COUNT, CATEGORY_NAME
 				ORDER BY B.BOARD_NO DESC
