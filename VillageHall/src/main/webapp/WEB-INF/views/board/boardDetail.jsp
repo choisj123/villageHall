@@ -50,11 +50,12 @@
           		<span>조회수 : ${board.readCount}</span>
           		<span>좋아요수 : ${board.likeCount}</span>
           		<span>카테고리 : ${board.categoryName}</span>
+          		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
           		
           		<p>조회수 좋아요수 작성일 </p>
             
           		<c:if test="${loginUser.userNickname == board.userNickname}">
-          			<a href="#">수정</a>
+          			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?boardNo=${board.boardNo}'" >수정</button>
           			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
           		</c:if>
             

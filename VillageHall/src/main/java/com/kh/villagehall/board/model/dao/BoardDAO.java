@@ -1,12 +1,11 @@
 package com.kh.villagehall.board.model.dao;
 
-import static com.kh.villagehall.common.JDBCTemplate.*;
+import static com.kh.villagehall.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -232,6 +231,7 @@ public class BoardDAO {
 				board.setReadCount(rs.getInt(6));
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
+				board.setBoardImg(rs.getString(9));
 			}
 			
 		} finally {

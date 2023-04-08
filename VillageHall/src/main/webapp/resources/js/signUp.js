@@ -268,7 +268,7 @@ const pwMessage = document.getElementById("pwMessage");
 userPw.addEventListener("input", function(){
 
     if(userPw.value.length == 0){
-        pwMessage.innerText = "영어, 숫자, 특수문자($,!,%,*,#,?,&) 8~30글자 사이로 작성해주세요.";
+        pwMessage.innerText = "영어, 숫자, 특수문자($,!,%,*,#,?,&)포함 8~30글자 사이로 작성해주세요.";
         pwMessage.classList.remove("confirm", "error");
 
         checkObj.userPw = false; // 유효 X 기록

@@ -21,7 +21,7 @@ public class BoardListServlet extends HttpServlet {
 						
 		try {
 			//쿼리스트링 얻어오기 == 파라미터 얻어오기
-			int category = Integer.parseInt(req.getParameter("category"));
+			int type = Integer.parseInt(req.getParameter("type"));
 			
 			// nav 메뉴(공지사항, 자유게시판, 질문게시판) 선택 시
 			// 쿼리스트링에 cp가 없음 --> cp = 1 고정
@@ -40,13 +40,13 @@ public class BoardListServlet extends HttpServlet {
 								
 			if( req.getParameter("key") == null ) { // 일반 목록 조회
 							
-				map = service.selectBoardList(category, cp);
+				map = service.selectBoardList(type, cp);
 							
 			}else { // 검색 목록 조회
 				String key = req.getParameter("key");
 				String query = req.getParameter("query");
 							
-				map = service.searchBoardList(category, cp, key, query);
+				map = service.searchBoardList(type, cp, key, query);
 							
 			}
 			
