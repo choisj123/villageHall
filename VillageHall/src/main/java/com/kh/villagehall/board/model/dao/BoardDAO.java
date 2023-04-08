@@ -679,6 +679,44 @@ public class BoardDAO {
 		
 		return boardList;
 	}
+	
+	/** 게시판 이름 조회 DAO
+	 * @param conn
+	 * @param type
+	 * @return boardName;
+	 * @throws Exception
+	 */
+	public String selectBoardName(Connection conn, int type) throws Exception {
+		int typeNo = 0;
+		String boardName = null;
+		
+		try {
+			String sql = prop.getProperty("selectBoardName");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, type);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				typeNo = rs.getInt(1);
+				if(typeNo == 1) {
+					boardName = "공지사항 게시판";
+				} else if (typeNo == 2) {
+					boardName = "FAQ 게시판";
+				} else {
+					boardName = "전체 게시판";
+				}
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return boardName;
+	}
 
 	/** 특정 게시판 전체 게시글 수 조회 DAO
 	 * @param conn
@@ -686,7 +724,7 @@ public class BoardDAO {
 	 * @return listCount
 	 * @throws Exception
 	 */
-	public int getListCount(Connection conn, int category) throws Exception{
+	public int getListCount(Connection conn, int type) throws Exception{
 		int listCount = 0;
 		
 		try {
@@ -695,7 +733,7 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, category);
+			pstmt.setInt(1, type);
 			
 			rs = pstmt.executeQuery();
 			
@@ -718,7 +756,7 @@ public class BoardDAO {
 	 * @return boardList
 	 * @throws Exception
 	 */
-	public List<Board> selectBoardList(Connection conn, Pagination pagination, int category) throws Exception {
+	public List<Board> selectBoardList(Connection conn, Pagination pagination, int type) throws Exception {
 		// 리스트 객체 생성
 		List<Board> boardList = new ArrayList<>();
 		
@@ -730,14 +768,8 @@ public class BoardDAO {
 			int end = start + pagination.getLimit() - 1;
 			
 			pstmt = conn.prepareStatement(sql);
-			
-			if(category == 1 || category == 2) {
-				pstmt.setInt(1, category);
-			} else {
-				String category2 = "3,4,5,6,7,8";
-				pstmt.setString(1, category2);
-			}
-			
+						
+			pstmt.setInt(1, type);						
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);			
 			
