@@ -15,6 +15,11 @@
     href="${contextPath}/resources/css/main.css"
     />
     
+    <link
+    rel="stylesheet"
+    href="${contextPath}/resources/css/popularBoard.css"
+    />
+    
 
     <!-- fontawesome -->
     <script

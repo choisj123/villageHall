@@ -2,6 +2,7 @@ package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +24,12 @@ public class MyLikeServlet extends HttpServlet {
 		// 로그인 객체 불러오기
 			User loginUser = (User)req.getSession().getAttribute("loginUser");
 			int userNo = loginUser.getUserNo();
-				
+			
 			String path = "/WEB-INF/views/mypage/myLike.jsp";
 			
 			// 좋아요 글 목록 데이터 불러오기
 			try {
+				
 				BoardService service = new BoardService();
 				
 				List<Board> boardList = service.selectMyLike(userNo);
