@@ -77,12 +77,14 @@
          </label>
 
         <div class="pwFind-input-area">
+        
             <input
               type="password"
               id="userPw"
               name="userPw"
-              placeholder=" 새 비밀번호"
+              placeholder=" 새 비밀번호"   
               maxlength="30">
+              
         </div>
 
         <div class="pwFind-input-area">
