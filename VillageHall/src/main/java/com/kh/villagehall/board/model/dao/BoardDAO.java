@@ -121,6 +121,7 @@ public class BoardDAO {
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
 				board.setBoardImg(rs.getString(9));
+				board.setCategoryNo(rs.getInt(10));
 			}
 			
 		} finally {
