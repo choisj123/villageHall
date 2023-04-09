@@ -49,7 +49,7 @@ public class BoardService {
 		List<Board> boardList = dao.selectMyLike(conn, userNo);
 		
 		close(conn);
-		
+	
 		return boardList;
 	}
 	
@@ -65,7 +65,7 @@ public class BoardService {
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-		
+
 		return board;
 	}
 

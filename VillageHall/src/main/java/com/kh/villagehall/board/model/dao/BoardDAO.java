@@ -391,6 +391,11 @@ public class BoardDAO {
 
 	
 	
+	/** 맵 NAV DAO
+	 * @param conn
+	 * @return kakaoBoardRecent
+	 * @throws Exception
+	 */
 	public List<Board> kakaoMapBoardRecent(Connection conn) throws Exception{
 		
 		List<Board> kakaoBoardRecent = new ArrayList<>();
@@ -487,6 +492,7 @@ public class BoardDAO {
 			
 			pstmt.setInt(3, board.getCategoryNo());
 			pstmt.setInt(4, board.getUserNo());
+			pstmt.setString(5, board.getBoardImg());
 			
 			result = pstmt.executeUpdate();
 			
@@ -813,4 +819,10 @@ public class BoardDAO {
 
 
 
+
 }
+
+	
+
+
+

@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 
 <!DOCTYPE html>
@@ -22,11 +24,11 @@
     
 
     <!-- fontawesome -->
-    <script
+  <script
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
-    ></script> 
-      
+    ></script>
+    
 </head>
 <body>
     <main>
@@ -80,10 +82,13 @@
           		</tbody>
           	</table>
           </div>
-         <div class="pagination-area">
+          </section>
+        </section>
+            <div class="pagination-area">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                <c:set var="url" value="myBoard?type=${param.type}&cp="/>
+                <c:set var="url" value="list?type=${param.type}&cp="/>
+
 
 
                 <ul class="pagination">
@@ -115,10 +120,10 @@
                     <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
 
                 </ul>
+
             </div> 
-          </section>
-        </section>
-        
+
+
       </main>
   
       <!-- footer include -->
