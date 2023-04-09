@@ -77,7 +77,7 @@
 							
 
 		                        <span>|</span>
-		                        <a href="${contextPath}/user/pwFind">ID/PW 찾기</a>
+		                        <a href="${contextPath}/user/pwFindEmail">비밀번호 찾기</a>
 		                    </article>
 		                </form>
             		

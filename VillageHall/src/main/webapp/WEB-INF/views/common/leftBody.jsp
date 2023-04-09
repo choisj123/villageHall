@@ -28,10 +28,10 @@ pageEncoding="UTF-8"%>
 	        <span id="left-user-name"><strong>${loginUser.userNickname}님</strong></span>
 	        <span>
 	          <a href="${contextPath}/mypage/myPage" id="updateMyInfo">내 정보 수정</a> |
-	        	<a href="${contextPath}/mypage/myBoard" id="selectMyBoard"> 내 글 목록</a> 
+	        	<a href="${contextPath}/mypage/myList?type=1" id="selectMyBoard"> 내 글 목록</a> 
 	        </span>
         </div>
-          <button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard'" >글쓰기</button>
+          <button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'" >글쓰기</button>
       </c:otherwise>
 		
     </c:choose>

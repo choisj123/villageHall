@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="pagination" value="${map.pagination}" />
+<c:set var="commentList" value="${map.commentList}" />
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,62 +62,123 @@
           			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
           		</c:if>
             
-          		<c:if test="${loginUser != null}"> 
+          		<c:if test="${loginUser != null && board.categoryNo != 1 && board.categoryNo != 2}"> 
           			<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like">좋아요</a>				
           		</c:if>
           	</div>
           	
           	
-          	
-          	<div id="commentContainer">
-          		<c:choose>
-          			<c:when test="${empty commentList}">
-          				<div>
-          					<hr>
-          				</div>
-          			</c:when>
-          		
-          			<c:otherwise>
-          				<c:forEach var="comment" items="${commentList}">
-          					
-          					<div class="commentDetail">
-          						
-          						<div><img src="${contextPath}${comment.profileImg}"></div>
-          						<div>
-          							<span>${comment.userNickname}</span><br>
-          							<span>${comment.commentContent}</span><br>
-          							<span>${comment.commentCreateDate}</span>
-          						</div>
-          						<c:if test="${loginUser.userNickname == comment.userNickname}">
-          							<div>
-          								<button type="button">수정</button>&nbsp;&nbsp;
-          								<a href="${contextPath}/comment/deleteComment?commentNo=${comment.commentNo}&userNo=${loginUser.userNo}&boardNo=${board.boardNo}">삭제</a>
-          							</div>
-          						</c:if>
-          						
-          					</div>
-          				</c:forEach>
-          			</c:otherwise>
-          		</c:choose>
-          	</div>
-          	
-          	<c:if test="${loginUser != null}">          		
-          		<div>
-          			
-          			<br><hr>
-          			<form action="${contextPath}/comment/insertComment?boardNo=${board.boardNo}&userNo=${loginUser.userNo}" method="post">
-          				<div class="insertComment">
-          				<div>
-          					<textarea id="commentContent" name="commentContent" ></textarea>
-          				</div>
-          				<div>
-          					<button id="insertCommentBtn">댓글 등록</button>
-          				</div>
-          				</div>
-          			</form>
-          		</div>
-          			
+          	<c:if test="${board.categoryNo != 1 && board.categoryNo != 2}">
+          		<div id="commentContainer">
+	          		<c:choose>
+	          			<c:when test="${empty commentList}">
+	          				<div>
+	          					<hr>
+	          					<span>등록된 댓글이 없습니다.</span>
+	          				</div>
+	          			</c:when>
+	          		
+	          			<c:otherwise>
+	          				<c:forEach var="comment" items="${commentList}">
+	          					
+	          					<div class="commentDetail">
+	          						
+	          						<div>
+	          							<img src="${contextPath}${comment.profileImg}"><br>
+	          							<span>${comment.userNickname}</span>
+	          						</div>
+	          						<div id="commentContent">	          							
+	          							<span>${comment.commentContent}</span><br>	          							
+	          						</div>
+	          						<div>
+	          							<span>${comment.commentCreateDate}</span>
+	          						</div>
+	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
+	          							<div>
+	          								<button type="button" id="updateCommentButton">수정</button>&nbsp;&nbsp;
+	          								<a href="${contextPath}/comment/deleteComment?commentNo=${comment.commentNo}&userNo=${loginUser.userNo}&boardNo=${board.boardNo}">삭제</a>
+	          							</div>
+	          						</c:if>
+	          						
+	          					</div>
+	          				</c:forEach>
+	          			</c:otherwise>
+	          		</c:choose>
+	          	</div>
+	          	
+	          	<c:if test="${loginUser != null}">          		
+	          		<div>	          			
+	          			<br>
+	          			<form action="${contextPath}/comment/insertComment?boardNo=${board.boardNo}&userNo=${loginUser.userNo}" method="post">
+	          				<div class="insertComment">
+	          				<div>
+	          					<textarea id="insertCommentContent" name="commentContent" placeholder="댓글을 입력해주세요."></textarea>
+	          				</div>
+	          				<div>
+	          					<button id="insertCommentBtn">댓글 등록</button>
+	          				</div>
+	          				</div>
+	          			</form>
+	          		</div>          			
+	          	</c:if>
+	          	<c:if test="${loginUser == null}">
+	          		<div>	          			
+	          			<br>
+	          			<form action="${contextPath}/comment/insertComment?boardNo=${board.boardNo}&userNo=${loginUser.userNo}" method="post">
+	          				<div class="insertComment">
+	          				<div>
+	          					<textarea id="insertCommentContent" name="commentContent" placeholder="로그인 후 이용해주세요." disabled="disabled"></textarea>
+	          				</div>
+	          				<div>
+	          					<button id="insertCommentBtn" disabled="disabled">댓글 등록</button>
+	          				</div>
+	          				</div>
+	          			</form>
+	          		</div>
+	          	</c:if>	     
+	          	
+	          	
+	          	<c:if test="${!empty commentList}">
+	          		<div class="pagination-area">
+	
+		                <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
+		                <c:set var="url" value="boardDetail?boardNo=${board.boardNo}&cp="/>
+		
+		
+		                <ul class="pagination">
+		                    <!-- 첫 페이지로 이동 -->
+		                    <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+		
+		                    <!-- 이전 목록 마지막 번호로 이동 -->
+		                    <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
+		
+		                    <!-- 범위가 정해진 일반 for문 사용 -->
+		                    <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+		
+		                        <c:choose>
+		                            <c:when test="${i == pagination.currentPage}">
+		                                <li><a class="current">${i}</a></li>
+		                            </c:when>
+		
+		                            <c:otherwise>
+		                                <li><a href="${url}${i}${sURL}">${i}</a></li>        
+		                            </c:otherwise>
+		                        </c:choose>
+		
+		                    </c:forEach>
+		                    
+		                    <!-- 다음 목록 시작 번호로 이동 -->
+		                    <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
+		
+		                    <!-- 끝 페이지로 이동 -->
+		                    <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+		
+		                </ul>
+		            </div>
+	          	</c:if>
+	          	
           	</c:if>
+            
             
           </section>
         </section>
@@ -132,6 +196,7 @@
   
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
+      <script src="${contextPath}/resources/js/boardDetail.js"></script>
 
 </body>
 </html>

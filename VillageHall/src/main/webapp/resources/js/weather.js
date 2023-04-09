@@ -17,28 +17,23 @@
      
         const main = document.querySelector(".main");
         
-      function getText($main) {
-        var imageUrl = ""
+        function getText($main) {
             if($main === "Haze" || $main === "Clouds"){
-             /* imageUrl = "../resources/images/cloud.jpg"
-                box.style.backgroundImage = "url('" +imageUrl+ "')";*/
+                box.style.backgroundImage = "url(/src/cloud.jpg)";
                 main.innerText = "흐림";
             } else if($main === "Clear"){
-             /* imageUrl = "../resources/images/sunny.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')"; */
+                box.style.backgroundImage = "url(/src/sunny.jpg)";
                 main.innerText ="맑음";
             } else if($main === "Snow"){
-              /*imageUrl = "../resources/images/snow.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";*/
+                box.style.backgroundImage = "url(/src/snow.jpg)";
                 main.innerText = "눈";
             } else if($main === "Rain"){
-              /*imageUrl = "../resources/images/rain.jpg"
-              box.style.backgroundImage = "url('" +imageUrl+ "')";*/
+                box.style.backgroundImage = "url(/src/rain.jpg)";
                 main.innerText = "비";
             } else {
                 main.innerText = '번개';
             }
-        }     
+        }
 
 
         $('.clowtemp').append($minTemp);
@@ -69,6 +64,3 @@
     });
 
 
-
-   //단점이 먼지  jQuery 하고 자바스크립트랑 혼종이다. 문제점 var에 코드를 쓰고 호이스팅(동적이 난잡하다.)이 일어나고 있다. 
-   //해결코드 : 이 소스를 다 갈아 엎어야 된다. 

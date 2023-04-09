@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 
 <!DOCTYPE html>
@@ -17,17 +19,16 @@
     
     <link
     rel="stylesheet"
-    href="${contextPath}/resources/css/popularBoard.css"
+    href="${contextPath}/resources/css/allBoard.css"
     />
     
 
     <!-- fontawesome -->
-    <script
+  <script
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
-    ></script>   
+    ></script>
     
-    <script src="${contextPath}/resources/js/popularBoard.js"></script>
 </head>
 <body>
     <main>
@@ -39,24 +40,13 @@
         <!-- 바디 부분 시작 -->
         <section class="body">
           
-          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" />
+          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          	<h2>인기게시판</h2>
-            
-            <% String sortBy = (String)request.getAttribute("sortBy"); %>
-                
-          	<form id="sortBy">
-            	<select id="sortBySelect" name="sortBy" onchange="this.form.submit()">
-             		<option value="like" <% if(sortBy.equals("like")) { %> selected <% } %>>좋아요순</option>
-              		<option value="read" <% if(sortBy.equals("read")) { %> selected <% } %>>조회수순</option>              		
-            	</select>
-            </form>
-          
-          
-          <div id="popularBoard">
-          	<table class="popularBoardTable">
+          <h2>전체게시판</h2>
+          <div id="allBoard">
+          	<table class="allBoardTable">
           		<thead>
           			<tr>
 	                    <th>카테고리</th>
@@ -68,7 +58,7 @@
 	               </tr>
           		</thead>
           		
-          		<tbody id="popularBoardList">
+          		<tbody id="allBoardList">
           			<c:choose>
           				<c:when test="${empty boardList}">
 	                		<tr>
@@ -94,7 +84,46 @@
           </div>
           </section>
         </section>
-        
+            <div class="pagination-area">
+
+                <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
+                <c:set var="url" value="list?type=${param.type}&cp="/>
+
+
+
+                <ul class="pagination">
+                    <!-- 첫 페이지로 이동 -->
+                    <li><a href="${url}1${sURL}">&lt;&lt;</a></li>
+
+                    <!-- 이전 목록 마지막 번호로 이동 -->
+                    <li><a href="${url}${pagination.prevPage}${sURL}">&lt;</a></li>
+
+                    <!-- 범위가 정해진 일반 for문 사용 -->
+                    <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+
+                        <c:choose>
+                            <c:when test="${i == pagination.currentPage}">
+                                <li><a class="current">${i}</a></li>
+                            </c:when>
+
+                            <c:otherwise>
+                                <li><a href="${url}${i}${sURL}">${i}</a></li>        
+                            </c:otherwise>
+                        </c:choose>
+
+                    </c:forEach>
+                    
+                    <!-- 다음 목록 시작 번호로 이동 -->
+                    <li><a href="${url}${pagination.nextPage}${sURL}">&gt;</a></li>
+
+                    <!-- 끝 페이지로 이동 -->
+                    <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+
+                </ul>
+
+            </div> 
+
+
       </main>
   
       <!-- footer include -->
@@ -111,6 +140,5 @@
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
-		
 </body>
 </html>

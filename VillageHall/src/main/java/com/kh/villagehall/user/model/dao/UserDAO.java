@@ -428,6 +428,42 @@ public class UserDAO {
 		
 		return result;
 	}
+
+	/** 비밀번호 찾기 DAO
+	 * @param conn
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int pwFind(Connection conn, String userEmail, String newPw) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("pwFind");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, userEmail);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println(userEmail);
+			System.out.println(newPw);
+			
+		}finally {
+			// try - finally 왜 사용하는가?
+			// ->  try 구문에서 JDBC 관련 예외가 발생하더라도
+			//    사용중이던 JDBC 객체 자원을 무조건 반환하기 위해서
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 	
 	
 }

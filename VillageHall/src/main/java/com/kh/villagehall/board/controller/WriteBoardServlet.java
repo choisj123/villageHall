@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.mail.Part;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +15,11 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.common.MyRenamePolicy;
 import com.kh.villagehall.user.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 @WebServlet("/board/writeBoard")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1MB
@@ -52,6 +55,7 @@ public class WriteBoardServlet extends HttpServlet {
 			}
 			String path = "/WEB-INF/views/board/writeBoard.jsp";
 		
+			req.setAttribute("mode", mode);
 			req.getRequestDispatcher(path).forward(req, resp);
 
 		} catch (Exception e) {
@@ -105,8 +109,7 @@ public class WriteBoardServlet extends HttpServlet {
 //			double longitude = Double.parseDouble(req.getParameter("longitude"));
 				
 			
-			int categoryNo = Integer.parseInt(req.getParameter("category"));
-			System.out.println(categoryNo);
+			int categoryNo = Integer.parseInt(req.getParameter("category"));		
 			String boardTitle = req.getParameter("boardTitle");
 			String boardContent = req.getParameter("boardContent");
 			
@@ -124,6 +127,7 @@ public class WriteBoardServlet extends HttpServlet {
 			board.setCategoryNo(categoryNo);
 			board.setUserNo(userNo);
 			board.setBoardImg(savedFilePath);
+			System.out.println("board확인용" + board);
 			
 			
 			BoardService service = new BoardService();

@@ -2,6 +2,7 @@ package com.kh.villagehall.board.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,15 +34,31 @@ public class BoardDetailServlet extends HttpServlet {
 			// 게시글 정보 받아오기
 			Board board = service.selectBoardDetail(boardNo);
 			
-			// 댓글 정보 받아오기
-			List<Comment> commentList = service.selectAllComment(boardNo);
+			//---------------------------------------------------------------
 			
+			// nav 메뉴(공지사항, 자유게시판, 질문게시판) 선택 시
+			// 쿼리스트링에 cp가 없음 --> cp = 1 고정
+			int cp = 1;
+						
+			// 페이지네이션의 번호 선택 시
+			// 쿼리스트링에 cp가 있음 --> cp = 쿼리스트링의 cp 값
+			if( req.getParameter("cp") != null  ) { // 쿼리스트링에 "cp"가 존재한다면
+				cp = Integer.parseInt( req.getParameter("cp") );
+			}
+			
+			// 페이지네이션 객체, 댓글 리스트를 한 번에 반환하는 Service 호출
+			Map<String, Object> map = null;
+			
+			// 댓글 정보 받아오기
+			map = service.selectCommentList(boardNo, cp);
+
+			// ----------------------------------------------------------------
 			// 내글이아닌 게시글 조회시 조회수 증가	(아직전체증가 미완성)					
 			int result = service.updateRead(boardNo);
 				
 				
 			req.setAttribute("board", board);
-			req.setAttribute("commentList", commentList);
+			req.setAttribute("map", map);
 			req.getRequestDispatcher(path).forward(req, resp);
 			
 				

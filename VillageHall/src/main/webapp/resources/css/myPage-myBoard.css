@@ -1,3 +1,14 @@
+/* a태그 공통 설정 */
+.right-body a{
+    text-decoration: none;
+    color : black;
+}
+
+.right-body a:hover{
+    text-decoration: underline;
+}
+
+
 .right-body > h3 {
   padding: 5px 15px 15px 10px;
 
@@ -72,4 +83,34 @@ div > .tab {
 .commentTable span:nth-of-type(3) {
   font-size: smaller;
   color: #aaa;
+}
+
+/* 페이지네이션(Pagination) */
+.pagination{
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    justify-content: center;
+}
+
+.pagination > li{
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.pagination a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* letter-spacing : -2px; */
+}
+
+/* 현재 페이지 번호 */
+.pagination .current{
+    background-color: #55710f;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
 }

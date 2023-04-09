@@ -23,7 +23,6 @@ public class PopularBoardServlet extends HttpServlet {
 	
 		String sortBy = req.getParameter("sortBy");
 		
-		System.out.println(sortBy);
 		
 		try {
 			BoardService service = new BoardService();
@@ -31,6 +30,7 @@ public class PopularBoardServlet extends HttpServlet {
 			
 			List<Board> boardList = service.selectPopularBoard(sortBy);
 			
+			req.setAttribute("sortBy", sortBy);
 			req.setAttribute("boardList", boardList);
 			
 			

@@ -43,7 +43,9 @@
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
-        	<c:choose>
+        
+       
+            <c:choose>
         		<c:when test="${board == null}">
         			<h2>글 작성</h2>
         		</c:when>
@@ -51,10 +53,11 @@
         			<h2>게시글 수정</h2>
         		</c:otherwise>
         	</c:choose>
-          
-          <form action="${contextPath}/board/writeBoard" method="POST"  enctype="multipart/form-data"
+        	
+          <form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"  enctype="multipart/form-data"
           class="board-write" onsubmit="return writeValidate()">
             <hr />
+     
             <c:choose>
             	<c:when test="${board != null}">
             		<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
@@ -80,7 +83,7 @@
             		</select>
             	</c:otherwise>            	
             </c:choose>
-
+            
             <input
               type="text"
               name="boardTitle"
@@ -89,16 +92,19 @@
               size="125px" value="${board.boardTitle}"
             />
        
+
             <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
-            <img src="${contextPath}/${board.boardImg}" alt="게시글 이미지">
+            <img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
+
             
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
-            	<c:if test="${param.mode == 'insert'}">
-	                <button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
-	            </c:if>
+				
+				<c:if test="${param.mode == 'insert'}">
+	                	<button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
+	           </c:if>
 	            <c:if test="${param.mode == 'update'}">
-	                <button type="submit" id="writebtn" onclick="saveContent(this.form)">수정</button>
+	                	<button type="submit" id="writebtn" onclick="saveContent(this.form)">수정</button>
 	            </c:if>
                 <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>

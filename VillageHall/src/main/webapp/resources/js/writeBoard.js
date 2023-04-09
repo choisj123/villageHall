@@ -2,7 +2,6 @@ console.log("js loaded");
  
 
 // 썸머노트 호출
-
 $("#summernote").summernote({
     placeholder: "내용을 입력해주세요",
     tabsize: 2,
@@ -11,8 +10,8 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-    imageUploadUrl: "/board/writeBoard",
-    imagePath: '/images/boardImg',
+    /*
+    imageUploadUrl: "writeBoard",
     callbacks: {
     onImageUpload: function(file) {
         var formData = new FormData();
@@ -31,7 +30,8 @@ $("#summernote").summernote({
         }
     });
     }
-    },
+    },*/
+  
     toolbar: [
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
@@ -110,10 +110,8 @@ $(function() {
   // Submit 버튼 클릭 이벤트 처리
   $("#writebtn").on("click", function(e) {
     e.preventDefault(); // Submit 버튼의 기본 동작인 폼 전송을 막음
-
     // form 데이터를 FormData 객체로 생성
     var formData = new FormData($("#boardWriteForm")[0]);
-
     // Ajax로 서버에 데이터 전송
     $.ajax({
       url: "board/writeBoard",
@@ -160,4 +158,3 @@ function writeValidate(){
 
     return true;
 }
-
