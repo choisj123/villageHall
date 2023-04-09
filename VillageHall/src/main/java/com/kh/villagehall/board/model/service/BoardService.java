@@ -49,7 +49,7 @@ public class BoardService {
 		List<Board> boardList = dao.selectMyLike(conn, userNo);
 		
 		close(conn);
-		
+	
 		return boardList;
 	}
 	
@@ -59,13 +59,13 @@ public class BoardService {
 	 * @throws Exception
 	 */
 	public Board selectBoardDetail(int boardNo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-	
+
 		return board;
 	}  
 
