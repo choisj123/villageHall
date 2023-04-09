@@ -11,36 +11,29 @@
         var $wIcon = data.weather[0].icon;
 
 
-        var box123 = document.querySelector(".box123");
+        var box = document.querySelector(".box");
 
         var img = (window.getComputedStyle(document.querySelector(".box")).getPropertyValue("background-image"))
      
         const main = document.querySelector(".main");
         
-      function getText($main) {
+        function getText($main) {
             if($main === "Haze" || $main === "Clouds"){
-                box123.style.backgroundImage = "url('../resources/images/cloud.jpg')";
+                box.style.backgroundImage = "url(/src/cloud.jpg)";
                 main.innerText = "흐림";
-                console.log("1");
             } else if($main === "Clear"){
-             box123.style.backgroundImage = "url('../resources/images/sunny.jpg')"; 
+                box.style.backgroundImage = "url(/src/sunny.jpg)";
                 main.innerText ="맑음";
-                 console.log("2");
             } else if($main === "Snow"){
-             box123.style.backgroundImage = "url('../resources/images/snow.jpg')";
+                box.style.backgroundImage = "url(/src/snow.jpg)";
                 main.innerText = "눈";
-                 console.log("3");
             } else if($main === "Rain"){
-			 box123.style.backgroundImage = "url('../resources/images/rain.jpg')";
+                box.style.backgroundImage = "url(/src/rain.jpg)";
                 main.innerText = "비";
-                 console.log("4");
             } else {
-			   main.innerText = '번개';
-                console.log("6");
-             box123.style.backgroundImage = "url('../resources/images/rain.jpg')";
-                
+                main.innerText = '번개';
             }
-        }     
+        }
 
 
         $('.clowtemp').append($minTemp);
@@ -69,3 +62,5 @@
         aqi.innerText = "매우 나쁨";
         } 
     });
+
+
