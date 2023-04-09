@@ -1,6 +1,5 @@
 package com.kh.villagehall.board.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,28 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
-import com.google.gson.Gson;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 import com.kh.villagehall.user.model.vo.User;
 
 @WebServlet("/board/writeBoard")
-@MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024, // 1MB
-	    maxFileSize = 1024 * 1024 * 50, // 50MB
-	    maxRequestSize = 1024 * 1024 * 100 // 100MB
-	)
-public class WriteBoardServlet extends HttpServlet{
-	
-	
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1MB
+		maxFileSize = 1024 * 1024 * 50, // 50MB
+		maxRequestSize = 1024 * 1024 * 100 // 100MB
+)
+public class WriteBoardServlet extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String path = "/WEB-INF/views/board/writeBoard.jsp";
+		
 		try {
-			
+		
 			// insert / update 구분
 			String mode = req.getParameter("mode");
 			// insert는 별도 처리없이 위임
@@ -52,38 +48,28 @@ public class WriteBoardServlet extends HttpServlet{
 				
 			}
 			
-			String path = "/WEB-INF/views/board/writeBoard.jsp";
-						
 			req.getRequestDispatcher(path).forward(req, resp);
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		 req.setCharacterEncoding("UTF-8");
-	     resp.setContentType("text/html;charset=UTF-8");
-	 
-	     Part part = req.getPart("file");
-	     String fileName = getFileName(part);
-	     String realPath = req.getSession().getServletContext().getRealPath("/resources/images/boardImg/");
-	     String filePath = realPath + File.separator + fileName;
-	     part.write(fileName);
+		HttpSession session = req.getSession();
 		
+
 		int result = 0;
 	
 		try {
+		
 			
 			
-			System.out.println("servlet : " + req.getParameter("latitude"));
-			System.out.println("servlet : " + req.getParameter("longitude"));
-			
-			double latitude = Double.parseDouble(req.getParameter("latitude"));
-			double longitude = Double.parseDouble(req.getParameter("longitude"));
+//			double latitude = Double.parseDouble(req.getParameter("latitude"));
+//			double longitude = Double.parseDouble(req.getParameter("longitude"));
 				
 			
 			int categoryNo = Integer.parseInt(req.getParameter("category"));
@@ -91,10 +77,8 @@ public class WriteBoardServlet extends HttpServlet{
 			String boardTitle = req.getParameter("boardTitle");
 			String boardContent = req.getParameter("boardContent");
 			
-			System.out.println("writeBoardServlet : " + latitude +longitude ) ;
 			  
 			// ** 로그인 회원 번호 얻어오기 **
-			HttpSession session = req.getSession();
 			// 로그인 정보 얻어오기
 			User loginUser = (User)( session.getAttribute("loginUser") ) ;
   			
@@ -106,15 +90,12 @@ public class WriteBoardServlet extends HttpServlet{
 			board.setBoardContent(boardContent);
 			board.setCategoryNo(categoryNo);
 			board.setUserNo(userNo);
-			board.setLatitude(latitude);
-			board.setLongtitude(longitude);
-			board.setBoardImg(filePath);
 			
 			
 			BoardService service = new BoardService();
 			
 			// 모드가 insert일 경우
-			String mode = mpReq.getParameter("mode");
+			String mode = req.getParameter("mode");
 			
 			if(mode.equals("insert")) {
 				
@@ -137,15 +118,15 @@ public class WriteBoardServlet extends HttpServlet{
 				}
 				
 				req.setAttribute("board", board);
-//				req.getRequestDispatcher(path).forward(req, resp);
+//							req.getRequestDispatcher(path).forward(req, resp);
 				resp.sendRedirect(path);
-//				resp.getWriter().print(result);
+//							resp.getWriter().print(result);
 			}
 			
 			
 			if(mode.equals("update")) {
 				
-				int boardNo = Integer.parseInt(mpReq.getParameter("boardNo"));
+				int boardNo = Integer.parseInt(req.getParameter("boardNo"));
 				
 				board.setBoardNo(boardNo);
 				
@@ -164,9 +145,9 @@ public class WriteBoardServlet extends HttpServlet{
 				}
 				
 				req.setAttribute("board", board);
-//				req.getRequestDispatcher(path).forward(req, resp);
+//							req.getRequestDispatcher(path).forward(req, resp);
 				resp.sendRedirect(path);
-//				resp.getWriter().print(result);
+//							resp.getWriter().print(result);
 				
 			}
 			
@@ -177,17 +158,6 @@ public class WriteBoardServlet extends HttpServlet{
 		
 	
 	
-	}
 	
-    private String getFileName(Part part) {
-        String contentDispositionHeader = part.getHeader("content-disposition");
-        String[] elements = contentDispositionHeader.split(";");
-        for (String element : elements) {
-            if (element.trim().startsWith("filename")) {
-                return element.substring(element.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return "";
-
-    }
+	}
 }

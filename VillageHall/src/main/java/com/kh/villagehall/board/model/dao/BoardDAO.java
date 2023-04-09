@@ -559,12 +559,11 @@ public class BoardDAO {
 			
 			pstmt.setString(1, board.getBoardTitle());
 			pstmt.setString(2, board.getBoardContent());
-			pstmt.setDouble(3, board.getLatitude());
-			pstmt.setDouble(4, board.getLongtitude());
+//			pstmt.setDouble(3, board.getLatitude());
+//			pstmt.setDouble(4, board.getLongtitude());
 			
-			pstmt.setInt(5, board.getCategoryNo());
-			pstmt.setInt(6, board.getUserNo());
-			pstmt.setString(7, board.getBoardImg());
+			pstmt.setInt(3, board.getCategoryNo());
+			pstmt.setInt(4, board.getUserNo());
 			
 			result = pstmt.executeUpdate();
 			
