@@ -216,3 +216,14 @@
 .fave {
   height: 80%;
 }
+
+
+/* a태그 공통 설정 */
+.right-body a{
+    text-decoration: none;
+    color : black;
+}
+
+.right-body a:hover{
+    text-decoration: underline;
+}

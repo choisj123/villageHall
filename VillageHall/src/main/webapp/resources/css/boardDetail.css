@@ -1,3 +1,13 @@
+/* a태그 공통 설정 */
+.right-body a{
+    text-decoration: none;
+    color : black;
+}
+
+.right-body a:hover{
+    text-decoration: underline;
+}
+
 img {
 	width : 50px;
 	height : 50px;
@@ -11,26 +21,30 @@ img {
 
 
 .commentDetail > div:nth-of-type(1) {
-	flex-basis: 10%;
+	flex-basis: 15%;
 	padding: 10px;
 }
 
 .commentDetail > div:nth-of-type(2) {
-	flex-basis: 70%;
+	flex-basis: 60%;
 	padding: 10px 0px 10px 0px; 
 }
 
-.commentDetail > div:nth-of-type(2) span:nth-of-type(2),
-.commentDetail > div:nth-of-type(2) span:nth-of-type(3) {
+.commentDetail > div:nth-of-type(3) span:nth-of-type(1) {
 	font-size: smaller;
   	color: #aaa;
 }
 
 .commentDetail > div:nth-of-type(3) {
+	flex-basis: 10%
+}
+
+.commentDetail > div:nth-of-type(4) {
 	display:flex;
-	padding: 25px;
+	padding-top: 25px;
+	padding-bottom: 25px;
 	
-	flex-basis: 20%;
+	flex-basis: 15%;
 }
 
 .insertComment {
@@ -43,7 +57,7 @@ img {
 	
 }
 
-#commentContent {
+#insertCommentContent {
 	width: 100%;
 	border-color:#ccc;
 	resize:none;
@@ -59,3 +73,33 @@ img {
 	width: 100%;
 	height:100%;
 }
+	
+/* 페이지네이션(Pagination) */
+.pagination{
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    justify-content: center;
+}
+
+.pagination > li{
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.pagination a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* letter-spacing : -2px; */
+}
+
+/* 현재 페이지 번호 */
+.pagination .current{
+    background-color: #55710f;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+}	

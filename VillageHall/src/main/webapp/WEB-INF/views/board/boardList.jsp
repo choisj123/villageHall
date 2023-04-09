@@ -53,12 +53,14 @@
           				<table class="boardListTable">
           					<thead>
           						<tr>
-	                    			<th>카테고리</th>
+          							<th>카테고리</th>
 	                    			<th>제목</th>	                    
 	                    			<th>작성자</th>
 	                    			<th>작성일</th>
 	                    			<th>조회수</th>
-	                    			<th>좋아요</th>
+	                    			<c:if test="${param.type == 3}">
+	                    				<th>좋아요</th>
+	                    			</c:if>	                    			
 	               				</tr>
           					</thead>
           		
@@ -66,7 +68,15 @@
           						<c:choose>
           							<c:when test="${empty boardList}">
 	                					<tr>
-	                						<th colspan="6">게시글이 존재하지 않습니다.</th>
+	                						<c:choose>
+	                							<c:when test="${param.type == 3}">
+	                								<th colspan="6">게시글이 존재하지 않습니다.</th>
+	                							</c:when>
+	                							<c:otherwise>
+	                								<th colspan="5">게시글이 존재하지 않습니다.</th>
+	                							</c:otherwise>
+	                						</c:choose>
+	                						
 	                					</tr>
 	                				</c:when>
 	                	
@@ -78,7 +88,9 @@
 	                							<td>${board.userNickname}</td>
 	                							<td>${board.boardCreateDate}</td>	                				
 	                							<td>${board.readCount}</td>
-	                							<td>${board.likeCount}</td>
+	                							<c:if test="${param.type == 3}">
+	                								<td>${board.likeCount}</td>
+	                							</c:if>	                							
 	                						</tr>
 	                					</c:forEach>
 	                				</c:otherwise>
@@ -155,22 +167,7 @@
 
             <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
 
-            <form action="list" method="get" id="boardSearch" onsubmit="return searchValidate()">
-                <input type="hidden" name="type" value="${param.type}">
-
-                <select name="key" id="search-key">
-                    <option value="t">제목</option>
-                  	<option value="c">내용</option>
-                    <option value="tc">제목+내용</tion>
-                    <option value="w">작성자</option>
-                </select>
-
-                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
-
-                <button>검색</button>
-            </form>
-            
-            
+ 
           </section>
         </section>
         
