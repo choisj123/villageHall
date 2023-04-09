@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.mail.Part;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +15,11 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.common.MyRenamePolicy;
 import com.kh.villagehall.user.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 @WebServlet("/board/writeBoard")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1MB

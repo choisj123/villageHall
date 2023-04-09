@@ -1,32 +1,5 @@
 console.log("signUp.js loaded");
 
-/************* 카카오 api 추가************************** */
-/*
-Kakao.init('34ad775971ebe3c5fd57f7e310f7c21c'); //발급받은 키 중 javascript키를 사용해준다.
-console.log(Kakao.isInitialized()); // sdk초기화여부판단
-//카카오로그인
-function kakaoLogin() {
-  window.Kakao.Auth.login({
-      scope: 'profile_nickname,   profile_image,account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-      success: function(response) {
-          console.log(response) // 로그인 성공하면 받아오는 데이터
-          window.Kakao.API.request({ // 사용자 정보 가져오기 
-              url: '/v2/user/me',
-              success: (res) => {
-                  const kakao_account = res.kakao_account;
-                  console.log(kakao_account)
-              }
-          });
-          // window.location.href='/ex/kakao_login.html' //리다이렉트 되는 코드
-      },
-      fail: function(error) {
-          console.log(error);
-      }
-  });
-}
-*/
-
-
 // 유효성 검사 여부를 기록할 객체 생성
 const checkObj = {
 	
@@ -40,7 +13,8 @@ const checkObj = {
                               // 2) -> 맞으면 ajax 통신(중복검사)
                               // 3) 통과하면 true
     "userTel" : false, // 정규표현식 체크 + 중복검사(할 수 있으면)
-    "sendEmail" : false
+    "sendEmail" : false,
+    "checkNum" :false
 }
 
 
@@ -114,7 +88,7 @@ userEmail.addEventListener("input", function(){
         emailMessage.classList.add("error");
         emailMessage.classList.remove("confirm");
 
-        checkObj.userEmail = false; // 유효 X 기록
+        // 유효 X 기록
     }
 
 }); 
@@ -228,12 +202,15 @@ cBtn.addEventListener("click", function(){
                         cMessage.innerText = "인증되었습니다.";
                         cMessage.classList.add("confirm");
                         cMessage.classList.remove("error");
+                        checkObj.checkNum = true;
 
                     } else if(result == 2){
                         alert("만료된 인증 번호 입니다.");
+                        checkObj.checkNum = false;
 
                     } else{ // 3
                         alert("인증 번호가 일치하기 않습니다.");
+                        checkObj.checkNum = false;
                     }
 
 
@@ -249,10 +226,12 @@ cBtn.addEventListener("click", function(){
         } else { // 6자리 아님
             alert("인증번호를 정확하게 입력해주세요.");
             cNumber.focus();
+            checkObj.checkNum = false;
         }
 
     }else{ // 인증번호를 안받은 경우
         alert("인증번호 받기 버튼을 먼저 클릭해주세요.");
+        checkObj.checkNum = false;
     }
 
 });
@@ -454,21 +433,28 @@ function signUpValidate(){
         if( !checkObj[key] ){ 
 
             switch(key){
-            case "userEmail":     str="이메일이"; break;
-            case "userPw":        str="비밀번호가"; break;    
-            case "userPwConfirm": str="비밀번호 확인이"; break;
-            case "userNickname":  str="닉네임이"; break;
-            case "userTel":       str="전화번호가"; break;
+            case "userEmail":      alert("이메일이 유효하지 않습니다."); break;
+            case "userPw":        alert("비밀번호가 유효하지 않습니다."); break;    
+            case "userPwConfirm": alert("비밀번호 확인이 유효하지 않습니다."); break;
+            case "userNickname":  alert("닉네임이 유효하지 않습니다."); break;
+            case "userTel":       alert("전화번호가 유효하지 않습니다."); break;
             }
 
-            str += " 유효하지 않습니다.";
+            //str += " 유효하지 않습니다.";
 
-            alert(str);
+            //alert(str);
 
             document.getElementById(key).focus();
             
             return false; // form태그 기본 이벤트 제거
         }
+        
+        if(!checkObj.checkNum){
+		
+			alert("인증번호가 유효하지 않습니다.");			
+			//checkObj.checkNum = false;
+			return false;	
+		}
     }
 
     return true; // form태그 기본 이벤트 수행

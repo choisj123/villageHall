@@ -196,7 +196,6 @@ public class BoardDAO {
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
 				board.setBoardImg(rs.getString(9));
-				board.setCategoryNo(rs.getInt(10));
 			}
 			
 		} finally {
@@ -454,11 +453,10 @@ public class BoardDAO {
 			
 			while(rs.next()) {
 				Comment comment = new Comment();
-				comment.setCommentNo(rs.getInt(1));
-				comment.setProfileImg(rs.getString(2));
-				comment.setUserNickname(rs.getString(3));
-				comment.setCommentContent(rs.getString(4));
-				comment.setCommentCreateDate(rs.getString(5));
+				comment.setProfileImg(rs.getString(1));
+				comment.setUserNickname(rs.getString(2));
+				comment.setCommentContent(rs.getString(3));
+				comment.setCommentCreateDate(rs.getString(4));
 				
 				commentList.add(comment);				
 			}
@@ -611,7 +609,7 @@ public class BoardDAO {
 		
 		return boardList;
 	}
-
+	
 	/** 게시판 이름 조회 DAO
 	 * @param conn
 	 * @param type
@@ -699,10 +697,8 @@ public class BoardDAO {
 			int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
 			int end = start + pagination.getLimit() - 1;
 			
-			pstmt = conn.prepareStatement(sql);
-			
-			
-			pstmt.setInt(1, type);			
+			pstmt = conn.prepareStatement(sql);				
+			pstmt.setInt(1, type);						
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);			
 			
@@ -730,9 +726,10 @@ public class BoardDAO {
 	}
 	
 	public int searchListCount(Connection conn, int category, String condition) {
-		// TODO Auto-generated method stub
+		// 
 		return 0;
 	}
+
 
 	public int updateBoard(Connection conn, Board board) throws Exception {
 
@@ -822,7 +819,10 @@ public class BoardDAO {
 
 
 
+
+}
+
 	
 
 
-}
+

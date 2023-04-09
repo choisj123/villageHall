@@ -55,7 +55,7 @@
           		<p>조회수 좋아요수 작성일 </p>
             
           		<c:if test="${loginUser.userNickname == board.userNickname}">
-          			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?boardNo=${board.boardNo}'" >수정</button>
           			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
           		</c:if>
             
@@ -88,7 +88,7 @@
           						<c:if test="${loginUser.userNickname == comment.userNickname}">
           							<div>
           								<button type="button">수정</button>&nbsp;&nbsp;
-          								<a href="${contextPath}/comment/deleteComment?commentNo=${comment.commentNo}&userNo=${loginUser.userNo}&boardNo=${board.boardNo}">삭제</a>
+          								<a href="#">삭제</a>
           							</div>
           						</c:if>
           						
@@ -102,7 +102,7 @@
           		<div>
           			
           			<br><hr>
-          			<form action="${contextPath}/comment/insertComment?boardNo=${board.boardNo}&userNo=${loginUser.userNo}" method="post">
+          			<form>
           				<div class="insertComment">
           				<div>
           					<textarea id="commentContent" name="commentContent" ></textarea>
