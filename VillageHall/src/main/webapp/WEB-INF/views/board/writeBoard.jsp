@@ -87,8 +87,10 @@ out.print(imageUrl);
               size="125px"
             />
        
+
             <textarea id="summernote" name="boardContent"></textarea>
             <img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
+
             
             <!-- 버튼 영역 -->
             <div class="board-btn-area">

@@ -14,8 +14,29 @@ $("#summernote").summernote({
     callbacks: {
     onImageUpload: function(files) {
             sendFile(files[0], $(this));
+            
+    /*
+    imageUploadUrl: "writeBoard",
+    callbacks: {
+    onImageUpload: function(file) {
+        var formData = new FormData();
+	    formData.append("file", file[0]);
+	    console.log(typeof file);
+	    
+	    $.ajax({
+	        url: "writeBoard",
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	        success: function(response) {
+                    var imagePath = response.trim();
+                    $('#summernote').summernote('insertImage', imagePath);
+        }
+    });
     }
-  },
+    },*/
+  
     toolbar: [
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
@@ -24,7 +45,12 @@ $("#summernote").summernote({
       ["table", ["table"]],
       ["insert", ["link", "picture"]],
       ["view", ["fullscreen", "codeview", "help"]],
-    ],
+    ]
+    
+    }
+    
+    }
+    
   });
   
 function sendFile(file, editor) {
@@ -44,7 +70,6 @@ function sendFile(file, editor) {
         }
     });
 }
-
 
 
     var latitude = 0;

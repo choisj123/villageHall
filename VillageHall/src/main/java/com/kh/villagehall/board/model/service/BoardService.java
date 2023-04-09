@@ -28,13 +28,14 @@ public class BoardService {
 	public List<Board> selectMyBoard(int userNo) throws Exception {
 		
 		Connection conn = getConnection();
-		
+				
 		List<Board> boardList = dao.selectMyBoard(conn, userNo);
 		
 		close(conn);
 		
 		return boardList;
-	}
+	}	
+	
 
 	/** 내좋아요 목록 조회 Service
 	 * @param userNo 
@@ -46,21 +47,6 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		List<Board> boardList = dao.selectMyLike(conn, userNo);
-		
-		close(conn);
-		
-		return boardList;
-	}
-
-	/** 전체 게시글 목록 조회 Service
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectAllBoard() throws Exception {
-
-		Connection conn = getConnection();
-		
-		List<Board> boardList = dao.selectAllBoard(conn);
 		
 		close(conn);
 		
@@ -96,25 +82,6 @@ public class BoardService {
 		
 		return kakaoMapList;
 	}
-	
-
-
-	/** FAQ 게시글 조회 service
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectFAQBoard() throws Exception {
-		
-		Connection conn = getConnection();
-		
-		List<Board> boardList = dao.selectFAQBoard(conn);
-		
-		close(conn);
-		
-		return boardList;
-	}
-  
-  
 	
 
 
@@ -409,6 +376,12 @@ public class BoardService {
 		close(conn);
 	
 		return map;
+	}
+
+
+	public int updateBoard(Board board) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
