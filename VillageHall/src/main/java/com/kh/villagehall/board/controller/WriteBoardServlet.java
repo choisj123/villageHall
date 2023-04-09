@@ -1,6 +1,8 @@
 package com.kh.villagehall.board.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 import com.kh.villagehall.user.model.vo.User;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @WebServlet("/board/writeBoard")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1MB
@@ -24,7 +28,6 @@ public class WriteBoardServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String path = "/WEB-INF/views/board/writeBoard.jsp";
 		
 		try {
 		
@@ -47,7 +50,8 @@ public class WriteBoardServlet extends HttpServlet {
 				req.setAttribute("board", board);
 				
 			}
-			
+			String path = "/WEB-INF/views/board/writeBoard.jsp";
+		
 			req.getRequestDispatcher(path).forward(req, resp);
 
 		} catch (Exception e) {
@@ -55,18 +59,47 @@ public class WriteBoardServlet extends HttpServlet {
 		}
 
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
 		
 
+		// 파일을 저장할 경로
+	    String uploadPath = req.getServletContext().getRealPath("/resources/images/boardImg");
+	    File uploadDir = new File(uploadPath);
+	    if (!uploadDir.exists()) {
+	        uploadDir.mkdirs();
+	    }
+	    // 파일 업로드 처리
+	    MultipartRequest multi = new MultipartRequest(
+	            req, // HttpServletRequest
+	            uploadPath, // 저장할 디렉토리 경로
+	            10 * 1024 * 1024, // 최대 업로드 파일 크기 (10MB)
+	            "UTF-8", // 인코딩
+	            new DefaultFileRenamePolicy() // 중복된 파일명 처리
+	    );
+
+	    // 업로드된 파일 정보 가져오기
+	    File file = multi.getFile("file");
+
+	    // 파일 저장 후 파일 경로 반환
+	    String savedFilePath = null;
+	    if (file != null) {
+	        String originalFilename = multi.getOriginalFileName("file"); // 원래 파일명
+	        String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1); // 확장자
+	        String savedFilename = UUID.randomUUID() + "." + extension; // 저장할 파일명
+	        File savedFile = new File(uploadPath, savedFilename); // 저장할 파일 객체
+	        file.renameTo(savedFile); // 업로드된 파일을 저장할 파일로 이동
+	        savedFilePath = req.getContextPath() + "/resources/images/boardImg/" + savedFilename; // 저장된 파일의 경로
+	    }
+	    
+
 		int result = 0;
 	
 		try {
 		
-			
 			
 //			double latitude = Double.parseDouble(req.getParameter("latitude"));
 //			double longitude = Double.parseDouble(req.getParameter("longitude"));
@@ -90,6 +123,7 @@ public class WriteBoardServlet extends HttpServlet {
 			board.setBoardContent(boardContent);
 			board.setCategoryNo(categoryNo);
 			board.setUserNo(userNo);
+			board.setBoardImg(savedFilePath);
 			
 			
 			BoardService service = new BoardService();
@@ -113,7 +147,7 @@ public class WriteBoardServlet extends HttpServlet {
 					
 					session.setAttribute("message", "게시글 등록을 실패했습니다. 잠시 후 다시 시도해주세요." );
 					
-					path =  req.getContextPath() + "/board/writeBoard";
+					path =  req.getContextPath() + "/board/writeBoard.jsp";
 					
 				}
 				

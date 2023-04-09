@@ -2,6 +2,7 @@ console.log("js loaded");
  
 
 // 썸머노트 호출
+
 $("#summernote").summernote({
     placeholder: "내용을 입력해주세요",
     tabsize: 2,
@@ -10,8 +11,8 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-    /*
-    imageUploadUrl: "writeBoard",
+    imageUploadUrl: "/board/writeBoard",
+    imagePath: '/images/boardImg',
     callbacks: {
     onImageUpload: function(file) {
         var formData = new FormData();
@@ -30,8 +31,7 @@ $("#summernote").summernote({
         }
     });
     }
-    },*/
-  
+    },
     toolbar: [
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
