@@ -101,8 +101,6 @@
       <!-- 내부 접근 절대 경로 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
-   
-  
       <!-- jQuery 라이브러리 추가 -->
       <script
         src="https://code.jquery.com/jquery-3.6.0.js"
@@ -110,6 +108,9 @@
         crossorigin="anonymous"
       ></script>
   
+      <!-- main.js 연결 -->
+      <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
+
 		
 </body>
 </html>

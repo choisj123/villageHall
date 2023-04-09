@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(function(){
     $("#summernote").summernote({
         placeholder: "내용을 입력해주세요",
@@ -35,6 +32,23 @@ $(document).ready(function(){
             console.log("제목 : " + title);
             console.log("내용 : " + content);
           }
-          
+function updateBoard() {
+	$.ajax({
+		url : "board/updateBoard",
+		data : {"boardNo" : boardNo.value},
+		type : "get",		
+		dateType : "json",
+		success : function(board) {
+			console.log(board)
+		},
+		error : function(request, status, error){
+            console.log("AJAX 에러 발생");
+            console.log("상태코드 : " + request.status); // 404, 500
+        }
+		
+	});
+}
 
-
+(function() {
+	updateBoard();
+})();

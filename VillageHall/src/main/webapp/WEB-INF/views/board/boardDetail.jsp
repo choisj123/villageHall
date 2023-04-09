@@ -58,7 +58,7 @@
           		<p>조회수 좋아요수 작성일 </p>
             
           		<c:if test="${loginUser.userNickname == board.userNickname}">
-          			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?boardNo=${board.boardNo}'" >수정</button>
           			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
           		</c:if>
             
@@ -178,8 +178,7 @@
 	          	</c:if>
 	          	
           	</c:if>
-          	
-          	
+            
             
           </section>
         </section>

@@ -1,0 +1,8 @@
+.confirm{ color : green;}
+.error{  color : red;  }
+
+.pwFind-message{
+    font-size: 12px;
+    letter-spacing: -1px; /* 자간 */
+}
+

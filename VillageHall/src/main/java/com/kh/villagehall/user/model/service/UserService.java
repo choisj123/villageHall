@@ -250,5 +250,26 @@ public class UserService {
 	}
 
 
+	/** 비밀번호 찾기 Service
+	 * @param user
+	 * @return
+	 */
+	public int pwFind(String userEmail, String newPw) throws Exception {
+		
+		Connection conn = getConnection(); // DBCP에서 얻어옴
+		
+		int result = dao.pwFind(conn, userEmail, newPw);
+		
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
+		
+	}
+
+
 	
 }

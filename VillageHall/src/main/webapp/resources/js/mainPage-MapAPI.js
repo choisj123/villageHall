@@ -170,4 +170,3 @@ error : function(request, status, error){
 }
 
 });
-

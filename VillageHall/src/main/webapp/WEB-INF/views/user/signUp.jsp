@@ -40,6 +40,7 @@
           enctype="multipart/form-data" 
           onsubmit="return signUpValidate()"
         >
+        
           <label for="userEmail">
             <span class="required">*</span> 아이디(이메일)
           </label>
@@ -157,6 +158,35 @@
         </form>
       </section>
     </main>
+    
+    <!-- 카카오 스크립트 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+	Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
+	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+	
+	   //카카오로그인
+	   function kakaoLogin() {
+        	Kakao.Auth.login({
+      	    success: function (response) {
+        	    Kakao.API.request({
+          	     url: '/v2/user/me',
+          	     success: function (response) {
+        	                console.log(response)
+          		},
+          
+        		fail: function (error) {
+                      		console.log(error)
+          		},
+       		 })
+      		},
+      		fail: function (error) {
+        		console.log(error)
+     		 },
+   		 })
+  		}
+
+	</script>
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -170,5 +200,7 @@
 
     <!-- signUp.js 연결 -->
     <script src="${contextPath}/resources/js/signUp.js"></script>
+    
+    
   </body>
 </html>
