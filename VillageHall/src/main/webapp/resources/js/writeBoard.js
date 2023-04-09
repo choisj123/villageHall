@@ -1,5 +1,5 @@
 console.log("js loaded");
-	    
+ 
 
 // 썸머노트 호출
 $("#summernote").summernote({
@@ -10,12 +10,28 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-   	imageUploadUrl: '/writeBoard',
+    /*
+    imageUploadUrl: "writeBoard",
     callbacks: {
-    onImageUpload: function(files) {
-            sendFile(files[0], $(this));
+    onImageUpload: function(file) {
+        var formData = new FormData();
+	    formData.append("file", file[0]);
+	    console.log(typeof file);
+	    
+	    $.ajax({
+	        url: "writeBoard",
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	        success: function(response) {
+                    var imagePath = response.trim();
+                    $('#summernote').summernote('insertImage', imagePath);
+        }
+    });
     }
-  },
+    },*/
+  
     toolbar: [
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
@@ -27,23 +43,6 @@ $("#summernote").summernote({
     ],
   });
   
-function sendFile(file, editor) {
-    var formData = new FormData();
-    formData.append("file", file);
-    $.ajax({
-        url: "board/writeBoard",
-        type: "POST",
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-            var imageUrl = data.imageUrl;
-            console.log(data.imageUrl);
-            editor.summernote('insertImage', imageUrl);
-        }
-    });
-}
 
 
 
@@ -141,19 +140,19 @@ function writeValidate(){
     const boardContent = document.querySelector("[name='boardContent']");
 	
 	if(category.value == "" ){
-		alert("카테고리를 선택해주세요")
+		alert("카테고리를 선택해주세요.")
 		return false;
 	}
 
     if(boardTitle.value.trim().length == 0){
-        alert("제목을 입력해주세요!!!");
+        alert("제목을 입력해주세요.");
         boardTitle.value = "";
         boardTitle.focus();
         return false;
     }
 
     if(boardContent.value.trim().length == 0){
-        alert("내용을 입력해주세요!!!");
+        alert("내용을 입력해주세요.");
         boardContent.value = "";
         boardContent.focus();
         return false;
@@ -161,5 +160,4 @@ function writeValidate(){
 
     return true;
 }
-
 

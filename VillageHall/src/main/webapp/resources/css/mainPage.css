@@ -26,18 +26,21 @@
   left: 10px;
   z-index: 3; /* 검색 폼이 지도 위에 나타나도록 z-index 값 조정 */
   border: 1px solid black;
+  width : 300px;
   height: 480px;
   overflow: auto;
-  width: 100px;
-  
+  background-color:rgba(255, 255, 255, 0.7);
 }
+
 
 #placesList{
   margin: auto;
 }
 
-#placesList > li {
+.map-wrap > #placesList > ul > li {
   list-style-type: none;
+
+
 }
 
 

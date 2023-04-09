@@ -28,13 +28,14 @@ public class BoardService {
 	public List<Board> selectMyBoard(int userNo) throws Exception {
 		
 		Connection conn = getConnection();
-		
+				
 		List<Board> boardList = dao.selectMyBoard(conn, userNo);
 		
 		close(conn);
 		
 		return boardList;
-	}
+	}	
+	
 
 	/** 내좋아요 목록 조회 Service
 	 * @param userNo 
@@ -51,21 +52,6 @@ public class BoardService {
 		
 		return boardList;
 	}
-
-	/** 전체 게시글 목록 조회 Service
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectAllBoard() throws Exception {
-
-		Connection conn = getConnection();
-		
-		List<Board> boardList = dao.selectAllBoard(conn);
-		
-		close(conn);
-		
-		return boardList;
-	}
 	
 	/** 게시글 상세조회 service
 	 * @param boardNo
@@ -73,15 +59,15 @@ public class BoardService {
 	 * @throws Exception
 	 */
 	public Board selectBoardDetail(int boardNo) throws Exception {
-
+		
 		Connection conn = getConnection();
 		
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-		
+	
 		return board;
-	}
+	}  
 
   /** 카카오맵 조회 service
 	 * @return kakaoMapList
@@ -96,25 +82,6 @@ public class BoardService {
 		
 		return kakaoMapList;
 	}
-	
-
-
-	/** FAQ 게시글 조회 service
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectFAQBoard() throws Exception {
-		
-		Connection conn = getConnection();
-		
-		List<Board> boardList = dao.selectFAQBoard(conn);
-		
-		close(conn);
-		
-		return boardList;
-	}
-  
-  
 	
 
 
@@ -409,6 +376,64 @@ public class BoardService {
 		close(conn);
 	
 		return map;
+	}
+
+	/** 게시글 수정 Service
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateBoard(Board board) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.updateBoard(conn, board);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	
+	/** 댓글 등록 Service
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertComment(Comment comment) throws Exception {
+
+		Connection conn = getConnection();
+		
+		int result = dao.insertComment(conn, comment);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/** 댓글 삭제 Service
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Comment comment) throws Exception {
+
+		Connection conn = getConnection();
+		
+		int result = dao.deleteComment(conn, comment);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 
 

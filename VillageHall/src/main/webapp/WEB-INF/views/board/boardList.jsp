@@ -45,54 +45,72 @@
           <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
   
           <!-- 메인 콘텐츠 -->
-          <section class="board-list">
-          <h2>${boardName}</h2>
-          <div id="boardList">
-          	<table class="boardListTable">
-          		<thead>
-          			<tr>
-	                    <th>카테고리</th>
-	                    <th>제목</th>	                    
-	                    <th>작성자</th>
-	                    <th>작성일</th>
-	                    <th>조회수</th>
-	                    <th>좋아요</th>
-	               </tr>
-          		</thead>
+          <section class="right-body">
+			<h2>${boardName}</h2>
+          	<c:choose>
+				<c:when test="${param.type == 1 || param.type == 3}">
+					<div id="boardList">
+          				<table class="boardListTable">
+          					<thead>
+          						<tr>
+	                    			<th>카테고리</th>
+	                    			<th>제목</th>	                    
+	                    			<th>작성자</th>
+	                    			<th>작성일</th>
+	                    			<th>조회수</th>
+	                    			<th>좋아요</th>
+	               				</tr>
+          					</thead>
           		
-          		<tbody id="noticeBoardList">
-          			<c:choose>
-          				<c:when test="${empty boardList}">
-	                		<tr>
-	                			<th colspan="6">게시글이 존재하지 않습니다.</th>
-	                		</tr>
-	                	</c:when>
+          					<tbody id="noticeBoardList">
+          						<c:choose>
+          							<c:when test="${empty boardList}">
+	                					<tr>
+	                						<th colspan="6">게시글이 존재하지 않습니다.</th>
+	                					</tr>
+	                				</c:when>
 	                	
-	                	<c:otherwise>
-	                		<c:forEach var="board" items="${boardList}">
-	                			<tr>
-	                				<td>${board.categoryName}</td>	                				
-	                				<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a></td>
-	                				<td>${board.userNickname}</td>
-	                				<td>${board.boardCreateDate}</td>	                				
-	                				<td>${board.readCount}</td>
-	                				<td>${board.likeCount}</td>
-	                			</tr>
-	                		</c:forEach>
-	                	</c:otherwise>
-          			</c:choose>
-          		</tbody>
-          	</table>
-          </div>
+	                				<c:otherwise>
+	                					<c:forEach var="board" items="${boardList}">
+	                						<tr>
+	                							<td>${board.categoryName}</td>	                				
+	                							<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a></td>
+	                							<td>${board.userNickname}</td>
+	                							<td>${board.boardCreateDate}</td>	                				
+	                							<td>${board.readCount}</td>
+	                							<td>${board.likeCount}</td>
+	                						</tr>
+	                					</c:forEach>
+	                				</c:otherwise>
+          						</c:choose>
+          					</tbody>
+          				</table>
+          			</div>
+				</c:when>
+				<c:otherwise>
+					<p>여기 로 FAQ작업하시면됩니</p>
+					<article class="FAQ-board-article">
+					<c:forEach var="board" items="${boardList}">
+						<div class="FAQ-board" id="signUp">
+                  			<ul class="FAQ-Ul">                   
+                  				<li>제목</li>    
+                  			</ul>
+                  			<hr>
+                  			<ul class="FAQ-Ul FAQ-Ul1">
+                				<li>${board.boardTitle}</li>
+                  			</ul>
+                  
+                  			<div class="p">
+                  				<hr>
+                    			<pre>${board.boardContent}</pre>
+                    			<hr>       
+                			</div>      
+            			</div>
+					</c:forEach>			
+				</article> 
+				</c:otherwise>
+          	</c:choose>
           
-          <div class="btn-area">
-
-                <c:if test="${!empty loginMember}">
-                    <!-- /community/board/write -->
-                    <button id="insertBtn" onclick="location.href='writeBoard?mode=insert&type=${param.type}&cp=${param.cp}'">글쓰기</button>                     
-                </c:if>
-
-            </div>
             
             
          <div class="pagination-area">
@@ -172,6 +190,8 @@
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
-	<script src="${contextPath}/resources/js/board.js"></script>
+	<c:if test="${param.type == 2}">
+		<script src="${contextPath}/resources/js/boardList.js"></script>
+	</c:if>
 </body>
 </html>

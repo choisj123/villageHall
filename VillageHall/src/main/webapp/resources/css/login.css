@@ -55,7 +55,7 @@ header > section:nth-of-type(2){
 .search-area fieldset{
     padding: 2px;
     margin : 0;
-    border : 2px solid #455ba8;
+    border : 2px solid #55710f;
     border-radius: 5px;
 
     display: flex;
@@ -236,7 +236,7 @@ form[name="login-form"] > label{
 
 
 #id-pw-area button:hover{
-    background-color: #455ba8;
+    background-color: #55710f;
     color: white;
 }
 
