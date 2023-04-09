@@ -71,13 +71,13 @@ public class BoardService {
 	 * @throws Exception
 	 */
 	public Board selectBoardDetail(int boardNo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-	
+
 		return board;
 	}  
 

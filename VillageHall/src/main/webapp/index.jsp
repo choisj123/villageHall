@@ -114,7 +114,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="box">
               <!-- 날짜 -->
               <div class="FirstBox">
-                <h1 class="date">오늘의날씨</h1>
+                <h1 class="date"> 오늘의날씨</h1>
               </div>
               <!-- 날씨 입력 -->
               <div class="SecondBox">
