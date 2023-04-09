@@ -128,7 +128,7 @@
 	<!-- 게시글 등록 -->
 	<entry key="insertBoard">
 		INSERT INTO "BOARD"(BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, READ_COUNT, LATITUDE, LONGITUDE, BOARD_DELETE_FG ,CATEGORY_NO, USER_NO, BOARD_IMG ) 
-       	VALUES( ? , ?, SYSDATE,  DEFAULT,  ? , ?, DEFAULT, ? , ?, ?)
+       	VALUES( ? , ?, SYSDATE,  DEFAULT,  0 , 0, DEFAULT, ? , ?, '00')
 	
 	</entry>
 	

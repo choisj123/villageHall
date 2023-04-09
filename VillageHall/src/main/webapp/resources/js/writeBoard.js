@@ -10,12 +10,28 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-   	imageUploadUrl: "writeBoard",
+    /*
+    imageUploadUrl: "writeBoard",
     callbacks: {
     onImageUpload: function(file) {
-            sendFile(file[0], $(this));
+        var formData = new FormData();
+	    formData.append("file", file[0]);
+	    console.log(typeof file);
+	    
+	    $.ajax({
+	        url: "writeBoard",
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	        success: function(response) {
+                    var imagePath = response.trim();
+                    $('#summernote').summernote('insertImage', imagePath);
+        }
+    });
     }
-  },
+    },*/
+  
     toolbar: [
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
@@ -27,23 +43,6 @@ $("#summernote").summernote({
     ],
   });
   
-function sendFile(file, editor) {
-    var formData = new FormData();
-    formData.append("file", file);
-    $.ajax({
-        url: "writeBoard",
-        type: "POST",
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-            var imageUrl = data.imageUrl;
-            console.log(data.imageUrl);
-            editor.summernote('insertImage', imageUrl);
-        }
-    });
-}
 
 
 
@@ -97,7 +96,6 @@ function saveContent(form) {
     let boardContent = form.boardContent.value;
     latitude = form.latitude.value;
     longitude = form.longitude.value;
-    let boardImg = 
     //let boardContent = $("#summernote").summernote("code");
     
     console.log("카테고리 : " + category);
