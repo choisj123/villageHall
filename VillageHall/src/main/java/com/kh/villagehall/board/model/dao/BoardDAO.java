@@ -111,43 +111,7 @@ public class BoardDAO {
 		}
 		return boardList;
 	}
-	
-	/** 전체글 조회 DAO
-	 * @param conn
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Board> selectAllBoard(Connection conn) throws Exception {
-		
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectAllBoard");
-			
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				Board board = new Board();
-				board.setBoardNo(rs.getInt(1));
-				board.setBoardTitle(rs.getString(2));
-				board.setBoardCreateDate(rs.getString(3));
-				board.setUserNickname(rs.getString(4));
-				board.setReadCount(rs.getInt(5));
-				board.setLikeCount(rs.getInt(6));
-				board.setCategoryName(rs.getString(7));
-								
-				boardList.add(board);	
-			}
 
-			
-		} finally {
-			close(rs);
-			close(stmt);
-		}
-		
-		return boardList;
-	}
 	
 	/** 인기글 게시판 조회 DAO
 	 * @param conn
@@ -232,6 +196,7 @@ public class BoardDAO {
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
 				board.setBoardImg(rs.getString(9));
+				board.setCategoryNo(rs.getInt(10));
 			}
 			
 		} finally {
@@ -280,45 +245,6 @@ public class BoardDAO {
 		
 		return kakaoMapList;
 	}
-
-
-
-  /** FAQ 게시글 조회 DAO
-	 * @param conn
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectFAQBoard(Connection conn) throws Exception {
-		
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectFAQBoard");
-			
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				Board board = new Board();
-				
-				board.setBoardTitle(rs.getString(1));
-				board.setBoardContent(rs.getString(2));
-				
-				boardList.add(board);
-			}
-			
-		}finally{
-			close(rs);
-			close(pstmt);
-		}
-		
-		return boardList;
-	}
-  
-  
-
-	
   
 
 	/** 조회수 증가 dao
@@ -528,10 +454,11 @@ public class BoardDAO {
 			
 			while(rs.next()) {
 				Comment comment = new Comment();
-				comment.setProfileImg(rs.getString(1));
-				comment.setUserNickname(rs.getString(2));
-				comment.setCommentContent(rs.getString(3));
-				comment.setCommentCreateDate(rs.getString(4));
+				comment.setCommentNo(rs.getInt(1));
+				comment.setProfileImg(rs.getString(2));
+				comment.setUserNickname(rs.getString(3));
+				comment.setCommentContent(rs.getString(4));
+				comment.setCommentCreateDate(rs.getString(5));
 				
 				commentList.add(comment);				
 			}
@@ -562,12 +489,11 @@ public class BoardDAO {
 			
 			pstmt.setString(1, board.getBoardTitle());
 			pstmt.setString(2, board.getBoardContent());
-			pstmt.setDouble(3, board.getLatitude());
-			pstmt.setDouble(4, board.getLongtitude());
+//			pstmt.setDouble(3, board.getLatitude());
+//			pstmt.setDouble(4, board.getLongtitude());
 			
-			pstmt.setInt(5, board.getCategoryNo());
-			pstmt.setInt(6, board.getUserNo());
-			pstmt.setString(7, board.getBoardImg());
+			pstmt.setInt(3, board.getCategoryNo());
+			pstmt.setInt(4, board.getUserNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -684,7 +610,7 @@ public class BoardDAO {
 		
 		return boardList;
 	}
-	
+
 	/** 게시판 이름 조회 DAO
 	 * @param conn
 	 * @param type
@@ -722,7 +648,7 @@ public class BoardDAO {
 		
 		return boardName;
 	}
-
+	
 	/** 특정 게시판 전체 게시글 수 조회 DAO
 	 * @param conn
 	 * @param category
@@ -757,7 +683,7 @@ public class BoardDAO {
 	/** 특정 게시판에서 일정한 범위의 목록 조회 DAO
 	 * @param conn
 	 * @param pagination
-	 * @param category
+	 * @param type
 	 * @return boardList
 	 * @throws Exception
 	 */
@@ -773,8 +699,9 @@ public class BoardDAO {
 			int end = start + pagination.getLimit() - 1;
 			
 			pstmt = conn.prepareStatement(sql);
-						
-			pstmt.setInt(1, type);						
+			
+			
+			pstmt.setInt(1, type);			
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);			
 			
@@ -805,6 +732,94 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public int updateBoard(Connection conn, Board board) throws Exception {
+
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateBoard");
+			
+			pstmt = conn.prepareStatement(sql);
+						
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setDouble(3, board.getLatitude());
+			pstmt.setDouble(4, board.getLongtitude());
+			pstmt.setInt(5, board.getCategoryNo());
+			pstmt.setString(6, board.getBoardImg());
+			pstmt.setInt(7, board.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 댓글 등록 DAO
+	 * @param conn
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertComment(Connection conn, Comment comment) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("insertComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comment.getCommentContent());
+			pstmt.setInt(2, comment.getUserNo());
+			pstmt.setInt(3, comment.getBoardNo());
+			
+			result = pstmt.executeUpdate();			
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 댓글 삭제 DAO
+	 * @param conn
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Connection conn, Comment comment) throws Exception {
+
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, comment.getUserNo());
+			pstmt.setInt(2, comment.getBoardNo());
+			pstmt.setInt(3, comment.getCommentNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
 
 	
 

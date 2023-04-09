@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib prefix = "c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,10 @@
     ></script>
 
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <main>
@@ -41,12 +45,14 @@
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
-          메인게시판확인
           <!-- 지도 부분 -->
           <section>
             <div>
               <label for="category" class="category">카테고리:</label>
-              <select onchange="showMarkersByCategory(this.value)" id="categorySelect">
+              <select
+                onchange="showMarkersByCategory(this.value)"
+                id="categorySelect"
+              >
                 <option value="전체">전체글</option>
                 <option value="이슈">이슈</option>
                 <option value="맛집">맛집</option>
@@ -56,12 +62,15 @@
                 <option value="기타">기타</option>
               </select>
             </div>
-            
+
             <div class="map-wrap">
-              <div id="map" style="width: auto; height: 500px; margin-left: 15px">
+              <div
+                id="map"
+                style="width: auto; height: 500px; margin-left: 15px"
+              >
                 <div class="map-nav">
-                <div class="map-header"></div>
-                 <ul id="placesList"></ul>
+                  <div class="map-header"></div>
+                  <ul id="placesList"></ul>
                 </div>
               </div>
             </div>
@@ -79,9 +88,7 @@
                       <th>조회수</th>
                     </tr>
                   </thead>
-                  <tbody id="noticeTbody">
-               
-                  </tbody>
+                  <tbody id="noticeTbody"></tbody>
                 </table>
               </div>
             </div>
@@ -96,9 +103,7 @@
                       <th>조회수</th>
                     </tr>
                   </thead>
-                  <tbody id="popularTbody">
-                    
-                  </tbody>
+                  <tbody id="popularTbody"></tbody>
                 </table>
               </div>
             </div>
@@ -148,6 +153,5 @@
     <script src="${contextPath}/resources/js/mainPage-MapAPI.js"></script>
     <script src="${contextPath}/resources/js/mainPage.js"></script>
     <script src="${contextPath}/resources/js/weather.js"></script>
-
   </body>
 </html>
