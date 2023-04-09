@@ -111,43 +111,7 @@ public class BoardDAO {
 		}
 		return boardList;
 	}
-	
-	/** 전체글 조회 DAO
-	 * @param conn
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Board> selectAllBoard(Connection conn) throws Exception {
-		
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectAllBoard");
-			
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				Board board = new Board();
-				board.setBoardNo(rs.getInt(1));
-				board.setBoardTitle(rs.getString(2));
-				board.setBoardCreateDate(rs.getString(3));
-				board.setUserNickname(rs.getString(4));
-				board.setReadCount(rs.getInt(5));
-				board.setLikeCount(rs.getInt(6));
-				board.setCategoryName(rs.getString(7));
-								
-				boardList.add(board);	
-			}
 
-			
-		} finally {
-			close(rs);
-			close(stmt);
-		}
-		
-		return boardList;
-	}
 	
 	/** 인기글 게시판 조회 DAO
 	 * @param conn
@@ -281,45 +245,6 @@ public class BoardDAO {
 		
 		return kakaoMapList;
 	}
-
-
-
-  /** FAQ 게시글 조회 DAO
-	 * @param conn
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectFAQBoard(Connection conn) throws Exception {
-		
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectFAQBoard");
-			
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				Board board = new Board();
-				
-				board.setBoardTitle(rs.getString(1));
-				board.setBoardContent(rs.getString(2));
-				
-				boardList.add(board);
-			}
-			
-		}finally{
-			close(rs);
-			close(pstmt);
-		}
-		
-		return boardList;
-	}
-  
-  
-
-	
   
 
 	/** 조회수 증가 dao
@@ -682,13 +607,51 @@ public class BoardDAO {
 		return boardList;
 	}
 
+	/** 게시판 이름 조회 DAO
+	 * @param conn
+	 * @param type
+	 * @return boardName;
+	 * @throws Exception
+	 */
+	public String selectBoardName(Connection conn, int type) throws Exception {
+		int typeNo = 0;
+		String boardName = null;
+		
+		try {
+			String sql = prop.getProperty("selectBoardName");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, type);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				typeNo = rs.getInt(1);
+				if(typeNo == 1) {
+					boardName = "공지사항 게시판";
+				} else if (typeNo == 2) {
+					boardName = "FAQ 게시판";
+				} else {
+					boardName = "전체 게시판";
+				}
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return boardName;
+	}
+	
 	/** 특정 게시판 전체 게시글 수 조회 DAO
 	 * @param conn
 	 * @param category
 	 * @return listCount
 	 * @throws Exception
 	 */
-	public int getListCount(Connection conn, int category) throws Exception{
+	public int getListCount(Connection conn, int type) throws Exception{
 		int listCount = 0;
 		
 		try {
@@ -697,7 +660,7 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, category);
+			pstmt.setInt(1, type);
 			
 			rs = pstmt.executeQuery();
 			
@@ -716,11 +679,11 @@ public class BoardDAO {
 	/** 특정 게시판에서 일정한 범위의 목록 조회 DAO
 	 * @param conn
 	 * @param pagination
-	 * @param category
+	 * @param type
 	 * @return boardList
 	 * @throws Exception
 	 */
-	public List<Board> selectBoardList(Connection conn, Pagination pagination, int category) throws Exception {
+	public List<Board> selectBoardList(Connection conn, Pagination pagination, int type) throws Exception {
 		// 리스트 객체 생성
 		List<Board> boardList = new ArrayList<>();
 		
@@ -733,13 +696,8 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			if(category == 1 || category == 2) {
-				pstmt.setInt(1, category);
-			} else {
-				String category2 = "3,4,5,6,7,8";
-				pstmt.setString(1, category2);
-			}
 			
+			pstmt.setInt(1, type);			
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);			
 			
@@ -856,6 +814,8 @@ public class BoardDAO {
 		
 		return result;
 	}
+
+
 
 	
 

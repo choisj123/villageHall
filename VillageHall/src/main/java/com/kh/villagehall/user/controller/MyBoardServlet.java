@@ -2,6 +2,7 @@ package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,7 +31,8 @@ public class MyBoardServlet extends HttpServlet {
 		
 		
 		// 내글목록 데이터 불러오기
-		try {
+		try {		
+						
 			BoardService service = new BoardService();
 			
 			List<Board> boardList = service.selectMyBoard(userNo);

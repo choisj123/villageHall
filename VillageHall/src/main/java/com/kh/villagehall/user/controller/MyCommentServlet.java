@@ -2,6 +2,7 @@ package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,10 +27,10 @@ public class MyCommentServlet extends HttpServlet {
 		int userNo = loginUser.getUserNo();
 		
 		String path = "/WEB-INF/views/mypage/myComment.jsp";
-		
-		
+				
 		// 내댓글 목록 데이터 불러오고 저장
 		try {
+			
 			CommentService service = new CommentService();
 			
 			List<Comment> commentList = service.selectMyComment(userNo);

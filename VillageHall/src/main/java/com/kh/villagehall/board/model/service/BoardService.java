@@ -28,13 +28,14 @@ public class BoardService {
 	public List<Board> selectMyBoard(int userNo) throws Exception {
 		
 		Connection conn = getConnection();
-		
+				
 		List<Board> boardList = dao.selectMyBoard(conn, userNo);
 		
 		close(conn);
 		
 		return boardList;
-	}
+	}	
+	
 
 	/** 내좋아요 목록 조회 Service
 	 * @param userNo 
@@ -46,21 +47,6 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		List<Board> boardList = dao.selectMyLike(conn, userNo);
-		
-		close(conn);
-		
-		return boardList;
-	}
-
-	/** 전체 게시글 목록 조회 Service
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectAllBoard() throws Exception {
-
-		Connection conn = getConnection();
-		
-		List<Board> boardList = dao.selectAllBoard(conn);
 		
 		close(conn);
 		
@@ -96,25 +82,6 @@ public class BoardService {
 		
 		return kakaoMapList;
 	}
-	
-
-
-	/** FAQ 게시글 조회 service
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectFAQBoard() throws Exception {
-		
-		Connection conn = getConnection();
-		
-		List<Board> boardList = dao.selectFAQBoard(conn);
-		
-		close(conn);
-		
-		return boardList;
-	}
-  
-  
 	
 
 
@@ -343,7 +310,7 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		// 게시판 이름 조회 DAO 호출
-//		String boardName = dao.selectBoardName(conn, type);
+		String boardName = dao.selectBoardName(conn, type);
 		
 		// 1. 특정 게시판 전체 게시글 수 조회 DAO 호출
 		int listCount = dao.getListCount(conn, type);
@@ -357,7 +324,7 @@ public class BoardService {
 		// 4. Map 객체를 생성하여 1,2 결과 객체를 모두 저장
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-//		map.put("boardName", boardName);
+		map.put("boardName", boardName);
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
 		

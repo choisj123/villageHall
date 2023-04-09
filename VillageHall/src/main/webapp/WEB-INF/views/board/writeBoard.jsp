@@ -111,7 +111,7 @@ out.print(imageUrl);
               size="125px" value="${board.boardTitle}"
             />
        
-            <textarea id="summernote" name="boardContent"></textarea>
+            <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
             <img src="${contextPath}/${board.boardImg}" alt="게시글 이미지">
             
             <!-- 버튼 영역 -->
