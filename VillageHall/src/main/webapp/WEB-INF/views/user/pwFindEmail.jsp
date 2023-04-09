@@ -26,9 +26,8 @@
        <form action="pwFindEmail"
        		 method="POST"
        		 name="pwFind-form"
-       		 enctype="multipart/form-data"
-       		  onsubmit="return pwFindValidate()"
-       		  >
+       		 onsubmit="return pwFindValidate()">
+       		 
        <section class="content1">
        
        	<h1>비밀번호 찾기</h1>
@@ -80,8 +79,8 @@
         
             <input
               type="password"
-              id="userPw"
-              name="userPw"
+              id="newPw"
+              name="newPw"
               placeholder=" 새 비밀번호"   
               maxlength="30">
               
@@ -90,7 +89,8 @@
         <div class="pwFind-input-area">
             <input
               type="password"
-              id="userPwConfirm"
+              id="newPwConfirm"
+              name="newPwConfirm"
               placeholder="새 비밀번호 확인"
               maxlength="30">
         </div>
@@ -100,7 +100,7 @@
         
         <br>
         
-        <button>변경하기</button>
+        <button id="info-update-btn" >변경하기</button>
         
         
   	  </form>

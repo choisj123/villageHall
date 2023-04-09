@@ -18,7 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 @WebServlet("/user/pwFindEmail")
 public class PwFindEmailServlet extends HttpServlet{
 	
-	UserService service = new UserService();
+
 	
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -31,13 +31,18 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 
 	// 파라미터를 모두 변수에 저장
 	String userEmail = req.getParameter("userEmail");
-	String userPw = req.getParameter("userPw");
+	String newPw = req.getParameter("newPw");
+	
+	HttpSession session = req.getSession();
 
 	// 파라미터를 하나의 Member 객체에 저장
 	User user = new User();
 	
 	user.setUserEmail(userEmail);
-	user.setUserPw(userPw);
+	user.setUserPw(newPw);
+	
+	System.out.println(userEmail);
+	System.out.println(newPw);
 
 	
 	
@@ -45,24 +50,21 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		
 		UserService service = new UserService();
 		
-		// 회원가입 서비스 호출 후 결과 반환 받기
-		int result = service.pwFind(user);
+		// 서비스 호출 후 결과 반환 받기
+		int result = service.pwFind(userEmail,newPw);
 		
 		// 서비스 결과에 따라서 message를 다르게하여 메인 페이지 재요청(redirect)
 		
 		//HttpSession session = req.getSession();
-		
-		resp.setContentType("text/html; charset=UTF-8");
- 		PrintWriter out = resp.getWriter();
+	
 		
 		if(result > 0) { // 성공
-			out.println("<script>alert('비밀번호 변경이 완료되었습니다.');location.href='login';</script>");
-			out.flush();
+			
+			session.setAttribute("message", "새 비밀번호로 변경이 완료되었습니다.");
 			
 		}else { // 실패
 			
-			out.println("<script>alert('비밀번호 변경이 실패하였습니다.') location.href='pwFindEmail';</script>");
-			out.flush();
+			session.setAttribute("message", "새 비밀번호로 변경을 실패하였습니다.");
 		}
 		
 		resp.sendRedirect( req.getContextPath() );

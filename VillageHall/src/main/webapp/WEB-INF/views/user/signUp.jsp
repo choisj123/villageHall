@@ -40,6 +40,7 @@
           enctype="multipart/form-data" 
           onsubmit="return signUpValidate()"
         >
+        
           <label for="userEmail">
             <span class="required">*</span> 아이디(이메일)
           </label>

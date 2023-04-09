@@ -4,9 +4,11 @@ console.log("FindPw.js loaded");
 const checkObj = {
 
 	"userEmail" : false,
-    "userPw" : false,
-    "userPwConfirm" : false,
+    "newPw" : false,
+    "newPwConfirm" : false,
     "sendEmail" : false,
+    "checkNum" :false
+    
 }
 
 
@@ -28,6 +30,8 @@ function check(){
     if( userEmail.value.length == 0 ){
         
         alert("이메일을 입력해주세요.");
+        
+        checkObj.userEmail = false;
         return;
     }
     
@@ -52,15 +56,11 @@ function check(){
         
             		
             		console.log("해당 이메일 확인됨");
+            		checkObj.userEmail = true;
             		
             		
             		const cMessage = document.getElementById("cMessage");
             		
-            		
-            		/*// 타이머에 사용될 변수
-					let checkInterval; // setInterval을 저장할 변수
-					let min = 4;
-					let sec = 59; */
             	
             		
             		$.ajax({
@@ -116,6 +116,7 @@ function check(){
                 } else { // 중복 X
                 
                   	 alert("입력하신 정보로 가입 된 회원은 존재하지 않습니다.");
+                  	 checkObj.userEmail = false; 
      
                 }
             },
@@ -130,6 +131,7 @@ function check(){
 	}else{
 		
         alert("이메일 형식이 유효하지 않습니다.");
+        checkObj.userEmail = false;
    
     }
 
@@ -171,12 +173,15 @@ cBtn.addEventListener("click", function(){
                         cMessage.innerText = "인증되었습니다.";
                         cMessage.classList.add("confirm");
                         cMessage.classList.remove("error");
+                        checkObj.checkNum = true;
 
                     } else if(result == 2){
                         alert("만료된 인증 번호 입니다.");
+                        checkObj.checkNum = false;
 
                     } else{ // 3
                         alert("인증 번호가 일치하기 않습니다.");
+                        checkObj.checkNum = false;
                     }
 
 
@@ -192,10 +197,12 @@ cBtn.addEventListener("click", function(){
         } else { // 6자리 아님
             alert("인증번호를 정확하게 입력해주세요.");
             cNumber.focus();
+            checkObj.checkNum = false;
         }
 
     }else{ // 인증번호를 안받은 경우
         alert("인증번호 받기 버튼을 먼저 클릭해주세요.");
+        checkObj.checkNum = false;
     }
 
 });
@@ -204,28 +211,28 @@ cBtn.addEventListener("click", function(){
 /********************* 비밀번호 확인 ************************************* */
 
 // 비밀번호 유효성 검사
-const userPw = document.getElementById("userPw");
-const userPwConfirm = document.getElementById("userPwConfirm");
+const newPw = document.getElementById("newPw");
+const newPwConfirm = document.getElementById("newPwConfirm");
 const pwMessage = document.getElementById("pwMessage");
 
-userPw.addEventListener("input", function(){
+newPw.addEventListener("input", function(){
 
-    if(userPw.value.length == 0){
+    if(newPw.value.length == 0){
         pwMessage.innerText = "영어, 숫자, 특수문자($,!,%,*,#,?,&)포함 8~30글자 사이로 작성해주세요.";
         pwMessage.classList.remove("confirm", "error");
 
-        checkObj.userPw = false; // 유효 X 기록
+        checkObj.newPw = false; // 유효 X 기록
         return;
     }
 
     const regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
 
-    if( regExp.test(userPw.value) ){ // 비밀번호 유효
+    if( regExp.test(newPw.value) ){ // 비밀번호 유효
 
-        checkObj.userPw = true; // 유효 O 기록
-        console.log(userPw.value)
+        checkObj.newPw = true; // 유효 O 기록
+        console.log(newPw.value)
 
-        if(userPwConfirm.value.length == 0){ // 비밀번호 유효, 확인 작성 X
+        if(newPwConfirm.value.length == 0){ // 비밀번호 유효, 확인 작성 X
             pwMessage.innerText = "안전한 비밀번호 입니다.";
             pwMessage.classList.add("confirm");
             pwMessage.classList.remove("error");
@@ -249,28 +256,76 @@ userPw.addEventListener("input", function(){
 
 // 함수명() : 함수 호출(수행)
 // 함수명   : 함수에 작성된 코드 반환
-userPwConfirm.addEventListener("input", checkPw );
+newPwConfirm.addEventListener("input", checkPw );
 // -> 이벤트가 발생 되었을 때 정의된 함수를 호출하겠다
 
 
 function checkPw(){ // 비밀번호 일치 검사
     // 비밀번호 / 비밀번호 확인이 같을 경우
-    if(userPw.value == userPwConfirm.value){
+    if(newPw.value == newPwConfirm.value){
         pwMessage.innerText = "비밀번호가 일치합니다.";
         pwMessage.classList.add("confirm");
         pwMessage.classList.remove("error");
 
-        checkObj.userPwConfirm = true; // 유효 O 기록
+        checkObj.newPwConfirm = true; // 유효 O 기록
 
     } else{
         pwMessage.innerText = "비밀번호가 일치하지 않습니다.";
         pwMessage.classList.add("error");
         pwMessage.classList.remove("confirm");
 
-        checkObj.userPwConfirm = false; // 유효 X 기록
+        checkObj.newPwConfirm = false; // 유효 X 기록
     }
     
 }
+
+/**********************변경 가능 확인************************* */
+
+
+// 회원가입 버튼 클릭 시 유효성 검사가 완료 되었는지 확인하는 함수
+
+
+function pwFindValidate(){
+
+    // checkObj에 있는 모든 속성을 반복 접근하여
+    // false가 하나라도 있는 경우에는 form태그 기본 이벤트 제거
+
+    let str;
+
+    for( let key  in checkObj ){ // 객체용 향상된 for문
+
+        // 현재 접근 중인 key의 value가 false인 경우
+        if( !checkObj[key] ){ 
+
+            switch(key){
+            case "userEmail":     alert("이메일이 유효하지 않습니다."); break;
+            case "newPw":        alert("새 비밀번호가 유효하지 않습니다."); break;    
+            case "newPwConfirm": alert("새 비밀번호 확인이 유효하지 않습니다."); break;
+   
+            }
+
+           // str += " 유효하지 않습니다.";
+
+            //alert(str);
+
+            document.getElementById(key).focus();
+            
+            return false; // form태그 기본 이벤트 제거
+        }
+        
+        if(!checkObj.checkNum){
+		
+			alert("인증번호가 유효하지 않습니다.");			
+			//checkObj.checkNum = false;
+			return false;	
+		}
+		
+    }
+
+    return true; // form태그 기본 이벤트 수행
+
+} 
+
 
 
 
