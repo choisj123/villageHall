@@ -106,42 +106,52 @@ for (var i = 0; i < markersData.length; i++) {
 let category = "전체";
 
 function showMarkersByCategory(newCategory) {
-    category = newCategory; // 전역 변수인 category 값을 업데이트
-    for (var i = 0; i < markersData.length; i++) {
-      if (category === "전체" || markersData[i].category === category) {
-        markers[i].setVisible(true);
-        navData[i].setVisible(true);
-        
-      } else {
-        markers[i].setVisible(false);
-        navData[i].setVisible(false);
-      }
+  category = newCategory; // 전역 변수인 category 값을 업데이트
+  const filteredNavData = navData.filter((item) => {
+    return category === "전체" || item.category === category;
+  });
+  
+  
+  const placesList = document.getElementById("placesList");
+  placesList.innerHTML = ""; // 이전 목록 삭제
+  for (let i = 0; i < filteredNavData.length; i++) {
+    const li = document.createElement("li");
+    const content =
+      "<p>" +
+      filteredNavData[i].name +
+      "</p>" +
+      "<p>" +
+      filteredNavData[i].title +
+      "</p>" +
+      "<p>" +
+      filteredNavData[i].createAt +
+      "</p>" +
+      "<hr>";
+    li.innerHTML = content;
+    placesList.appendChild(li);
+  }
+  
+  for (var i = 0; i < markersData.length; i++) {
+    if (category === "전체" || markersData[i].category === category) {
+      markers[i].setVisible(true);
+    } else {
+      markers[i].setVisible(false);
     }
   }
   
-// option 이벤트 리스너 
-document.getElementById("categorySelect").addEventListener('change', function(){
+  
+    // 스크롤을 맨 위로 올리는 코드
+    const mapNav = document.getElementById("map-nav");
+    mapNav.scrollTop = 0;
+}
+
+// option 이벤트 리스너
+document.getElementById("categorySelect").addEventListener("change", function () {
   const newCategory = this.value;
   showMarkersByCategory(newCategory);
 });
 
 
-const placesList = document.getElementById("placesList");
-placesList.innerHTML = ""; // 이전 목록 삭제
-
-for (let i = 0; i < navData.length; i++) {
-  if (category === "전체" || navData[i].category === category) {
-    const li = document.createElement("li");
-	const content = 
-	  '<p>' + navData[i].name +'</p>' +
-	  '<p>'+ navData[i].title +'</p>' +
-	  '<p>' + navData[i].createAt + '</p>' +
-	  '<hr>';
-    li.innerHTML = content;
-    placesList.appendChild(li);
-  }
-}
- 
 
 
 
