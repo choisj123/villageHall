@@ -54,7 +54,7 @@ if (navigator.geolocation) {
 	       latitude = position.coords.latitude; // 위도
 	       longitude = position.coords.longitude; // 경도
 
-			console.log("위도경도 받아오기" + latitude, longitude)
+			console.log("위도경도 받아오기 " + latitude, longitude)
 
   });
 }
