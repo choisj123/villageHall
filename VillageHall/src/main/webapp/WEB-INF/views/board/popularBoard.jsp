@@ -43,11 +43,14 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          <h2>인기게시판</h2>          
+          	<h2>인기게시판</h2>
+            
+            <% String sortBy = (String)request.getAttribute("sortBy"); %>
+                
           	<form id="sortBy">
             	<select id="sortBySelect" name="sortBy" onchange="this.form.submit()">
-             		<option value="like">좋아요순</option>
-              		<option value="read">조회수순</option>              		
+             		<option value="like" <% if(sortBy.equals("like")) { %> selected <% } %>>좋아요순</option>
+              		<option value="read" <% if(sortBy.equals("read")) { %> selected <% } %>>조회수순</option>              		
             	</select>
             </form>
           
