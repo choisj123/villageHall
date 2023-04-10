@@ -129,7 +129,7 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		return board;
-	}
+	} 
 
   
   /** 카카오 맵 DAO
@@ -437,6 +437,7 @@ public class BoardDAO {
 		
 		return result;
 	}
+
 
 
 	
@@ -920,6 +921,9 @@ public class BoardDAO {
 		
 		return result;
 	}
+
+
+
 
 
 }
