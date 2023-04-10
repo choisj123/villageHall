@@ -56,15 +56,17 @@
               required
             />
 
-            &nbsp;<button type="button" id="sendBtn">인증번호 받기</button>
+            &nbsp;<button type="button" id="sendBtn">인증번호</button>
           </div>
 
           <span class="signUp-message" id="emailMessage"
             ></span>
 
+		<!--  
           <label for="emailCheck">
             인증번호<span class="required">•</span>
-          </label>
+          </label> 
+          -->
 
           <div class="signUp-input-area">
      
@@ -147,7 +149,7 @@
           </label>
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
                      
-          <button type="submit" id="signUp-btn">가입하기</button>  
+          <button type="submit" id="signUp-btn">일반 회원가입</button>  
                   
                   
            <a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin();">
