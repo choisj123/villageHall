@@ -23,9 +23,6 @@ public class InsertCommentServlet extends HttpServlet {
 			int userNo = Integer.parseInt(req.getParameter("userNo"));
 			String commentContent = req.getParameter("commentContent");
 			
-			System.out.println(boardNo);
-			System.out.println(userNo);
-			
 			Comment comment = new Comment();
 			
 			comment.setBoardNo(boardNo);

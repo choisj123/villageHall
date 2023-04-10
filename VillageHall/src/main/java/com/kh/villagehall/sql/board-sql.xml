@@ -188,6 +188,12 @@
 	
 	</entry>
 	
+	<!-- 게시글 수정 -->
+	<entry key="updateBoard">
+		UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, CATEGORY_NO = ?, BOARD_IMG = ?
+		WHERE BOARD_NO = ?
+	</entry>
+	
 		<!-- 게시글 번호 얻어오기 -->
 	<entry key="getBoardNo">
 		SELECT BOARD_NO 
@@ -251,7 +257,7 @@
 				SELECT B.BOARD_NO, B.BOARD_TITLE, 
 					TO_CHAR(B.BOARD_CREATE_DATE, 'YYYY-MM-DD HH24:MI') AS BOARD_CREATE_DATE,
 					USER_NICKNAME ,B.READ_COUNT, COUNT(L.BOARD_NO) AS LIKE_COUNT, 
-					CATEGORY_NAME
+					CATEGORY_NAME, BOARD_CONTENT
 				FROM BOARD B
 				JOIN "USER" U ON B.USER_NO = U.USER_NO
 				LEFT JOIN "LIKE" L ON B.BOARD_NO = L.BOARD_NO
@@ -259,7 +265,7 @@
 				WHERE BOARD_DELETE_FG = 'N' 
 				AND TYPE_NO = ?
 				GROUP BY B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CREATE_DATE, 
-					USER_NICKNAME, B.READ_COUNT, CATEGORY_NAME
+					USER_NICKNAME, B.READ_COUNT, CATEGORY_NAME, BOARD_CONTENT
 				ORDER BY B.BOARD_NO DESC
 			) A
 		)
@@ -276,6 +282,12 @@
 	<entry key="deleteComment">
 		UPDATE "COMMENT" SET COMMENT_DELETE_FG = 'Y'
 		WHERE USER_NO = ? AND BOARD_NO = ? AND COMMENT_NO = ?
+	</entry>
+	
+	<!-- 댓글 수 -->
+	<entry key="updateComment">
+		UPDATE "COMMENT" SET COMMENT_CONTENT = ?
+		WHERE USER_NO = ? AND COMMENT_NO = ?
 	</entry>
 
 </properties>

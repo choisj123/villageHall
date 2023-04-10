@@ -42,6 +42,7 @@ public class WriteBoardServlet extends HttpServlet {
 				
 				board.setBoardContent(board.getBoardContent().replaceAll("<br>", "\n"));
 				
+				req.setAttribute("boardNo", board.getBoardNo());
 				req.setAttribute("categoryNo", board.getCategoryNo());
 				req.setAttribute("board", board);
 				
@@ -115,7 +116,7 @@ public class WriteBoardServlet extends HttpServlet {
 					
 					int boardNo = service.getBoardNo(board);
 					
-					path = req.getContextPath() + "/board/writeBoard?boardNo=" + boardNo;
+					path = req.getContextPath() + "/board/boardDetail?boardNo=" + boardNo;
 					
 				}else {
 					
@@ -135,8 +136,8 @@ public class WriteBoardServlet extends HttpServlet {
 			if(mode.equals("update")) {
 				
 				int boardNo = Integer.parseInt(req.getParameter("boardNo"));
-				
 				board.setBoardNo(boardNo);
+				System.out.println(board);
 				
 				result = service.updateBoard(board);
 				
@@ -148,7 +149,7 @@ public class WriteBoardServlet extends HttpServlet {
 					
 					session.setAttribute("message", "게시글 수정에 실패했습니다. 잠시 후 다시 시도해주세요." );
 					
-					path =  req.getContextPath() + "/board/writeBoard?boardNo=" + boardNo;
+					path =  req.getContextPath() + "/board/writeBoard?mode=update&boardNo=" + boardNo;
 					
 				}
 				
