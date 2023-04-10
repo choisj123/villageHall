@@ -40,11 +40,14 @@ img {
 }
 
 .commentDetail > div:nth-of-type(4) {
-	display:flex;
+	display:flex;	
+	flex-basis: 15%;
 	padding-top: 25px;
 	padding-bottom: 25px;
+}
+
+#updateCommentButton, #deleteCommentButton {
 	
-	flex-basis: 15%;
 }
 
 .insertComment {

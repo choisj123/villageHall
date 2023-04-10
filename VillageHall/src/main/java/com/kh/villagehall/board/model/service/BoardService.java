@@ -488,6 +488,26 @@ public class BoardService {
 	}
 
 
+	/** 댓글 수정 Service
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateComment(Comment comment) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.updateComment(conn, comment);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
 
 
 
