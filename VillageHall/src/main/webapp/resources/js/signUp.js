@@ -30,7 +30,7 @@ userEmail.addEventListener("input", function(){
 
     // 입력이 되지 않은 경우
     if( userEmail.value.length == 0 ){
-        emailMessage.innerText = "메일을 받을 수 있는 이메일을 입력해주세요.";
+        //emailMessage.innerText = "메일을 받을 수 있는 이메일을 입력해주세요.";
         emailMessage.classList.remove("confirm", "error");
 
         checkObj.userEmail = false; // 유효 X 기록
@@ -247,14 +247,15 @@ const pwMessage = document.getElementById("pwMessage");
 userPw.addEventListener("input", function(){
 
     if(userPw.value.length == 0){
-        pwMessage.innerText = "영어, 숫자, 특수문자($,!,%,*,#,?,&)포함 8~30글자 사이로 작성해주세요.";
+        //pwMessage.innerText = "영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.";
         pwMessage.classList.remove("confirm", "error");
 
         checkObj.userPw = false; // 유효 X 기록
         return;
     }
 
-    const regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
+    
+    const regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,30}$/;
 
     if( regExp.test(userPw.value) ){ // 비밀번호 유효
 
@@ -267,6 +268,7 @@ userPw.addEventListener("input", function(){
             pwMessage.classList.remove("error");
         
         } else { // 비밀번호 유효, 확인 작성 O
+        
             checkPw(); // 비밀번호 일치 검사 함수 호출()
         }
 
@@ -274,7 +276,6 @@ userPw.addEventListener("input", function(){
         pwMessage.innerText = "비밀번호 형식이 유효하지 않습니다.";
         pwMessage.classList.add("error");
         pwMessage.classList.remove("confirm");
-
         checkObj.userPw = false; // 유효 X 기록
     }
 });
@@ -319,7 +320,7 @@ userNickname.addEventListener("input", function(){
 
     // 입력되지 않은 경우
     if(userNickname.value.length == 0){
-        nicknameMessage.innerText = "영어/숫자/한글 2~10글자 사이로 작성해주세요.";
+        //nicknameMessage.innerText = "영어/숫자/한글 2~10글자 사이로 작성해주세요.";
         nicknameMessage.classList.remove("confirm", "error");
 
         checkObj.userNickname = false; // 유효 X 기록
@@ -385,7 +386,7 @@ userTel.addEventListener("input", function(){
 
     // 입력이 되지 않은 경우
     if(userTel.value.length == 0){
-        telMessage.innerText = "전화번호를 입력해주세요.(- 제외)";
+        //telMessage.innerText = "전화번호를 입력해주세요.(- 제외)";
 
         //telMessage.classList.remove("confirm");
         //telMessage.classList.remove("error");
