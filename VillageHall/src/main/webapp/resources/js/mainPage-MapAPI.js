@@ -139,11 +139,7 @@ function showMarkersByCategory(newCategory) {
     }
   }
   
-  
-    // 스크롤을 맨 위로 올리는 코드
-    const mapNav = document.getElementById("map-nav");
-    mapNav.scrollTop = 0;
-}
+ 
 
 // option 이벤트 리스너
 document.getElementById("categorySelect").addEventListener("change", function () {

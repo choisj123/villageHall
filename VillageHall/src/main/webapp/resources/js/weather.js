@@ -13,25 +13,24 @@
 
         var box = document.querySelector(".box");
 
-        var img = (window.getComputedStyle(document.querySelector(".box")).getPropertyValue("background-image"))
-     
+        
         const main = document.querySelector(".main");
         
         function getText($main) {
             if($main === "Haze" || $main === "Clouds"){
-                box.style.backgroundImage = "url(/src/cloud.jpg)";
+                box.style.backgroundImage = "url(`../resources/images/cloud.jpg`)";
                 main.innerText = "흐림";
             } else if($main === "Clear"){
-                box.style.backgroundImage = "url(/src/sunny.jpg)";
+                box.style.backgroundImage = "url(`../resources/images/sunny.jpg`)";
                 main.innerText ="맑음";
             } else if($main === "Snow"){
-                box.style.backgroundImage = "url(/src/snow.jpg)";
+                box.style.backgroundImage = "url(`../resources/images/snow.jpg`)";
                 main.innerText = "눈";
             } else if($main === "Rain"){
-                box.style.backgroundImage = "url(/src/rain.jpg)";
+                box.style.backgroundImage = "url(`../resources/images/rain.jpg`)";
                 main.innerText = "비";
             } else {
-                main.innerText = '번개';
+                main.innerText = '흐림';
             }
         }
 

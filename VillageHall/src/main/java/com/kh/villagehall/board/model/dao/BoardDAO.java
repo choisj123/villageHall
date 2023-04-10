@@ -744,6 +744,7 @@ public class BoardDAO {
 				board.setReadCount(rs.getInt(6));
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
+				board.setBoardContent(rs.getString(9));
 				
 				boardList.add(board);
 			}
@@ -877,11 +878,9 @@ public class BoardDAO {
 						
 			pstmt.setString(1, board.getBoardTitle());
 			pstmt.setString(2, board.getBoardContent());
-			pstmt.setDouble(3, board.getLatitude());
-			pstmt.setDouble(4, board.getLongtitude());
-			pstmt.setInt(5, board.getCategoryNo());
-			pstmt.setString(6, board.getBoardImg());
-			pstmt.setInt(7, board.getBoardNo());
+			pstmt.setInt(3, board.getCategoryNo());
+			pstmt.setString(4, board.getBoardImg());
+			pstmt.setInt(5, board.getBoardNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -949,6 +948,36 @@ public class BoardDAO {
 		}
 		
 		
+		return result;
+	}
+
+
+	/** 댓글 수정 dao
+	 * @param conn
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateComment(Connection conn, Comment comment) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comment.getCommentContent());
+			pstmt.setInt(2, comment.getUserNo());
+			pstmt.setInt(3, comment.getCommentNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally {
+			close(pstmt);
+		}
 		return result;
 	}
 
