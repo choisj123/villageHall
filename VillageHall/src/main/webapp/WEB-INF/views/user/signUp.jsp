@@ -11,27 +11,21 @@
     <title>마을회관</title>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/signUp.css" />
+    <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <main>
+    <main>   
       <!-- hedaer include -->
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
       <!-- 회원가입  -->
-      <section class="signUp-content">
-        <!-- 회원가입 화면 전환 주소(GET)와 같은 주소로 
-                실제 회원가입을 요청(POST)
-                -> 요청 주소가 같아도 데이터 전달 방식이 다르면 중복 허용
-            -->
+  <section class="signUp-content">
 
-        <!-- 
-                절대경로 : /community/member/signUp
-                상대경로 : signUp
-             -->
+         
 
         <form
           action="signUp"
@@ -40,8 +34,15 @@
           enctype="multipart/form-data" 
           onsubmit="return signUpValidate()"
         >
+
+
+        
+            <div class="villageHall">
+                마을회관
+             </div>
+        
           <label for="userEmail">
-            <span class="required">*</span> 아이디(이메일)
+            아이디(이메일)<span class="required">•</span>
           </label>
 
           <div class="signUp-input-area">
@@ -55,22 +56,18 @@
               required
             />
 
-            <!-- autocomplete="off" : 자동완성 미사용 -->
-            <!-- required : 필수 작성 input 태그 -->
-
-            <!-- 자바스크립로 코드 추가 예정 -->
-            <button type="button" id="sendBtn">인증번호 받기</button>
+            &nbsp;<button type="button" id="sendBtn">인증번호 받기</button>
           </div>
 
           <span class="signUp-message" id="emailMessage"
-            >메일을 받을 수 있는 이메일을 입력해주세요.</span>
+            ></span>
 
           <label for="emailCheck">
-            <span class="required">*</span> 인증번호
+            인증번호<span class="required">•</span>
           </label>
 
           <div class="signUp-input-area">
-            <!-- cNumber -->
+     
             <input
               type="text"
               id="cNumber"
@@ -79,20 +76,20 @@
               autocomplete="off"
             />
 
-            <button type="button" id="cBtn">인증하기</button>
+            &nbsp;<button type="button" id="cBtn">인증하기</button>
           </div>
 
-          <!-- 5:00 타이머 / 인증되었습니다(녹색) / 인증 시간이 만료되었습니다.(빨간색) -->
+         
           <span class="signUp-message" id="cMessage"></span>
 
-          <label for="userPw"> <span class="required">*</span> 비밀번호 </label>
+          <label for="userPw">  비밀번호 <span class="required">•</span></label>
 
           <div class="signUp-input-area">
             <input
               type="password"
               id="userPw"
               name="userPw"
-              placeholder="비밀번호"
+              placeholder="영어, 숫자, 특수문자 최소6글자"
               maxlength="30"
             />
           </div>
@@ -107,11 +104,11 @@
           </div>
 
           <span class="signUp-message" id="pwMessage"
-            >영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.</span
+            ></span
           >
 
           <label for="userNickname">
-            <span class="required">*</span> 닉네임
+            닉네임<span class="required">•</span>
           </label>
 
           <div class="signUp-input-area">
@@ -119,17 +116,17 @@
               type="text"
               id="userNickname"
               name="userNickname"
-              placeholder="닉네임"
+              placeholder="영어/숫자/한글 최소2글자"
               maxlength="10"
             />
           </div>
 
           <span class="signUp-message" id="nicknameMessage"
-            >영어/숫자/한글 2~10글자 사이로 작성해주세요.</span
+            ></span
           >
 
           <label for="userTel">
-            <span class="required">*</span> 전화번호
+            전화번호<span class="required">•</span>
           </label>
 
           <div class="signUp-input-area">
@@ -143,9 +140,11 @@
           </div>
 
           <span class="signUp-message" id="telMessage"
-            >전화번호를 입력해주세요.(- 제외)</span> <br><br>
+            ></span>
            
-          <span id="profile-message">프로필 사진</span><br>
+          <label for="profile">
+            <span class="signUp-message"></span>프로필 사진
+          </label>
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
                      
           <button type="submit" id="signUp-btn">가입하기</button>  
@@ -156,7 +155,37 @@
            </a>
         </form>
       </section>
+
     </main>
+    
+    <!-- 카카오 스크립트 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+	Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
+	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+	
+	   //카카오로그인
+	   function kakaoLogin() {
+        	Kakao.Auth.login({
+      	    success: function (response) {
+        	    Kakao.API.request({
+          	     url: '/v2/user/me',
+          	     success: function (response) {
+        	                console.log(response)
+          		},
+          
+        		fail: function (error) {
+                      		console.log(error)
+          		},
+       		 })
+      		},
+      		fail: function (error) {
+        		console.log(error)
+     		 },
+   		 })
+  		}
+
+	</script>
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -170,5 +199,7 @@
 
     <!-- signUp.js 연결 -->
     <script src="${contextPath}/resources/js/signUp.js"></script>
+    
+    
   </body>
 </html>

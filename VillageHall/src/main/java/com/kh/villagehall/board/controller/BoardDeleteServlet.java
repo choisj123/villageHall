@@ -20,13 +20,17 @@ public class BoardDeleteServlet extends HttpServlet {
 		
 		int boardNo = Integer.parseInt(req.getParameter("boardNo"));
 		
+		
 		try {
 			
 			BoardService service = new BoardService();
 			
 			int result = service.deleteBoard(boardNo);
 			
-			resp.sendRedirect("/VillageHall/board/allBoard");
+
+			resp.sendRedirect("/VillageHall/board/list?type=3");
+
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

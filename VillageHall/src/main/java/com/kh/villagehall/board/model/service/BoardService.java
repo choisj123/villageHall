@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.kh.villagehall.board.model.dao.BoardDAO;
 import com.kh.villagehall.board.model.vo.Board;
@@ -20,38 +22,50 @@ public class BoardService {
 	
 	private BoardDAO dao = new BoardDAO();
 	
-	/** 내글 목록 조회 Service
-	 * @param userNo 
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectMyBoard(int userNo) throws Exception {
-		
-		Connection conn = getConnection();
-				
-		List<Board> boardList = dao.selectMyBoard(conn, userNo);
-		
-		close(conn);
-		
-		return boardList;
-	}	
 	
-
-	/** 내좋아요 목록 조회 Service
-	 * @param userNo 
-	 * @return boardList
+	
+	/** 내글 게시글 목록 조회 Service
+	 * @param type
+	 * @param cp
+	 * @param userNo
+	 * @return map
 	 * @throws Exception
 	 */
-	public List<Board> selectMyLike(int userNo) throws Exception {
+	public Map<String, Object> selectMyBoardList(int type, int cp, int userNo) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		List<Board> boardList = dao.selectMyLike(conn, userNo);
+		// 게시판 이름 조회 DAO 호출
+		String boardName = null;
+		if(type == 1) {
+			boardName = "내 글";
+		} else if (type == 2) {
+			boardName = "내 댓글";
+		} else {
+			boardName = "내 좋아요";
+		}
+		
+		// 1. 특정 게시판 전체 게시글 수 조회 DAO 호출
+		int ListCount = dao.getMyListCount(conn, type, userNo);
+		
+		// 2. 전체 게시글 수 + 현재 페이지(cp)를 이용해 페이지네이션 객체 생성
+		Pagination pagination = new Pagination(cp, ListCount);
+		
+		// 3. 게시글 목록 조
+		List<Object> list = dao.selectMyList(conn, pagination, type, userNo);
+		
+		// 4. Map 객체를 생성하여 1,2 결과 객체를 모두 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("boardName", boardName);
+		map.put("pagination", pagination);
+		map.put("list", list);
 		
 		close(conn);
 		
-		return boardList;
+		return map; // Map 객체 반
 	}
+	
 	
 	/** 게시글 상세조회 service
 	 * @param boardNo
@@ -59,15 +73,15 @@ public class BoardService {
 	 * @throws Exception
 	 */
 	public Board selectBoardDetail(int boardNo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		
 		Board board = dao.selectBoardDetail(conn, boardNo);
 		
 		close(conn);
-	
+
 		return board;
-	}  
+	}
 
   /** 카카오맵 조회 service
 	 * @return kakaoMapList
@@ -215,22 +229,31 @@ public class BoardService {
 		return kakaoBoardRecent;
 	}
 
-	/** 게시글 내 댓글 조회 service
+	/** 게시글 내 댓글 목록 조회 service
 	 * @param boardNo
-	 * @return commentList
+	 * @param cp
+	 * @return map
 	 * @throws Exception
 	 */
-	public List<Comment> selectAllComment(int boardNo) throws Exception {
+	public Map<String, Object> selectCommentList(int boardNo, int cp) throws Exception {
 
 		Connection conn = getConnection();
 		
-		List<Comment> commentList = dao.selectAllComment(conn, boardNo);
+		int listCount = dao.getCommentListCount(conn, boardNo);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		List<Comment> commentList = dao.selectCommentList(conn, pagination, boardNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("commentList", commentList);
 		
 		close(conn);
 		
-		return commentList;
+		return map;
 	}
-
 
 	
 	/** 게시글 등록 service
@@ -247,10 +270,9 @@ public class BoardService {
 		else			rollback(conn);
 		
 		close(conn);
-		
+	
 		return result;
 	
-		
 	}
 
 	/** 게시글 등록 후 게시글 번호 얻어오기 service
@@ -268,6 +290,35 @@ public class BoardService {
 		
 		return boardNo;
 	}
+	
+	
+	/** 썸머노트 사용 시 이미지 url 추출 service(html코드에서 img src 추출)
+	 * @param content
+	 * @return imageUrl
+	 * @throws Exception
+	 */
+	public String getImageList(String content) throws Exception{
+		
+	    Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+	    
+	    String imgUrl = "";
+	    Matcher matcher = nonValidPattern.matcher(content);
+	    
+	    while (matcher.find()) {
+	        imgUrl += matcher.group(1) + ",";
+	    }
+	    
+	    if (imgUrl.endsWith(",")) {
+	        imgUrl = imgUrl.substring(0, imgUrl.length() - 1);
+	    }
+	    
+	    System.out.println(imgUrl);//src 추출 확인
+	    
+	    return imgUrl;
+
+	}
+	
+	
 
 	/** 메인페이지 인기글 목록 조회 Service
 	 * @return boardList
@@ -378,6 +429,7 @@ public class BoardService {
 		return map;
 	}
 
+
 	/** 게시글 수정 Service
 	 * @param boardNo
 	 * @return result
@@ -396,7 +448,6 @@ public class BoardService {
 		
 		return result;
 	}
-
 	
 	/** 댓글 등록 Service
 	 * @param comment
@@ -435,6 +486,9 @@ public class BoardService {
 		
 		return result;
 	}
+
+
+
 
 
 }

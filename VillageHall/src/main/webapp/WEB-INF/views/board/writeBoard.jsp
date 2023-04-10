@@ -1,28 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="javax.servlet.http.*,java.util.*" %>
+    pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ page import="javax.servlet.http.HttpServletRequest" %>
-<%@ page import="java.io.*, java.util.*" %> --%>
-<%-- <%
-String uploadFolder = "/resources/images/boardImg/";
-String saveName = UUID.randomUUID().toString() + "_" + request.getParameter("file.name");
-String savePath = uploadFolder + saveName;
-
-Part filePart = request.getPart("file");
-InputStream fileContent = filePart.getInputStream();
-OutputStream os = new FileOutputStream(savePath);
-byte[] buffer = new byte[1024];
-int len;
-while ((len = fileContent.read(buffer)) != -1) {
-  os.write(buffer, 0, len);
-}
-os.close();
-fileContent.close();
-
-String imageUrl = request.getContextPath() + "/boardImg/" + saveName;
-out.print(imageUrl);
-%> --%>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,16 +34,14 @@ out.print(imageUrl);
     <main>
     	<!-- header include -->
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
-     
 
       <!-- 바디 부분 시작 -->
       <section class="body">
-        
          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
-        	<c:choose>
+            <c:choose>
         		<c:when test="${board == null}">
         			<h2>글 작성</h2>
         		</c:when>
@@ -73,10 +49,11 @@ out.print(imageUrl);
         			<h2>게시글 수정</h2>
         		</c:otherwise>
         	</c:choose>
-          
-          <form action="${contextPath}/board/writeBoard" method="POST"  enctype="multipart/form-data"
+        	
+          <form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"
           class="board-write" onsubmit="return writeValidate()">
             <hr />
+     
             <c:choose>
             	<c:when test="${board != null}">
             		<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
@@ -102,7 +79,7 @@ out.print(imageUrl);
             		</select>
             	</c:otherwise>            	
             </c:choose>
-
+            
             <input
               type="text"
               name="boardTitle"
@@ -111,14 +88,21 @@ out.print(imageUrl);
               size="125px" value="${board.boardTitle}"
             />
        
+
             <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
-            <img src="${contextPath}/${board.boardImg}" alt="게시글 이미지">
             
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
-                <button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
+				<c:if test="${param.mode == 'insert'}">
+	                	<button type="submit" id="writebtn">등록</button>
+	           </c:if>
+	            <c:if test="${param.mode == 'update'}">
+	                	<button type="submit" id="writebtn">수정</button>
+	            </c:if>
                 <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>
+            
+            <input type="hidden" name="mode" value="${param.mode}">
           </form>
         </section>
       </section>

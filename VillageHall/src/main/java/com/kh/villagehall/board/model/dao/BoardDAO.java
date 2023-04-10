@@ -15,6 +15,7 @@ import com.kh.villagehall.board.model.vo.Board;
 import com.kh.villagehall.board.model.vo.Pagination;
 import com.kh.villagehall.comment.model.vo.Comment;
 
+
 public class BoardDAO {
 
 	private Statement stmt;
@@ -34,82 +35,6 @@ public class BoardDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/** 내글 목록 조회 DAO
-	 * @param conn
-	 * @param userNo 
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectMyBoard(Connection conn, int userNo) throws Exception {
-
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectMyBoard");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userNo);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Board board = new Board();
-				
-				board.setBoardNo(rs.getInt(1));
-				board.setBoardTitle(rs.getString(2));
-				board.setBoardCreateDate(rs.getString(3));
-				board.setReadCount(rs.getInt(4));
-				board.setLikeCount(rs.getInt(5));
-				board.setCategoryName(rs.getString(6));
-				
-				boardList.add(board);				
-			}
-			
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return boardList;
-	}
-	
-	/** 내좋아요 목록 조회 DAO
-	 * @param conn
-	 * @param userNo 
-	 * @return boardList
-	 * @throws Exception
-	 */
-	public List<Board> selectMyLike(Connection conn, int userNo) throws Exception {
-		List<Board> boardList = new ArrayList<>();
-		
-		try {
-			String sql = prop.getProperty("selectMyLike");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userNo);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Board board = new Board();
-				
-				board.setBoardNo(rs.getInt(1));
-				board.setBoardTitle(rs.getString(2));
-				board.setBoardCreateDate(rs.getString(3));
-				board.setUserNickname(rs.getString(4));
-				board.setReadCount(rs.getInt(5));
-				board.setLikeCount(rs.getInt(6));
-				board.setCategoryName(rs.getString(7));
-								
-				boardList.add(board);				
-			}
-			
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return boardList;
 	}
 
 	
@@ -204,7 +129,7 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		return board;
-	}
+	} 
 
   
   /** 카카오 맵 DAO
@@ -392,6 +317,11 @@ public class BoardDAO {
 
 	
 	
+	/** 맵 NAV DAO
+	 * @param conn
+	 * @return kakaoBoardRecent
+	 * @throws Exception
+	 */
 	public List<Board> kakaoMapBoardRecent(Connection conn) throws Exception{
 		
 		List<Board> kakaoBoardRecent = new ArrayList<>();
@@ -429,31 +359,39 @@ public class BoardDAO {
 	
 	/** 게시글 내 댓글 조회 DAO
 	 * @param conn
+	 * @param pagination
 	 * @param boardNo
 	 * @return commentList
 	 * @throws Exception
 	 */
-	public List<Comment> selectAllComment(Connection conn, int boardNo) throws Exception {
+	public List<Comment> selectCommentList(Connection conn, Pagination pagination, int boardNo) throws Exception {
 
 		List<Comment> commentList = new ArrayList<>();
 		
 		try {
 			
-			String sql = prop.getProperty("selectAllComment");
+			String sql = prop.getProperty("selectCommentList");
+			
+			// BETWEEN 구문에 들어갈 범위 계산
+			int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
+			int end = start + pagination.getLimit() - 1;
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, boardNo);
+			pstmt.setInt(1, boardNo);		
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Comment comment = new Comment();
-				comment.setCommentNo(rs.getInt(1));
-				comment.setProfileImg(rs.getString(2));
-				comment.setUserNickname(rs.getString(3));
-				comment.setCommentContent(rs.getString(4));
-				comment.setCommentCreateDate(rs.getString(5));
+				comment.setCommentNo(rs.getInt(2));
+				comment.setProfileImg(rs.getString(3));
+				comment.setUserNickname(rs.getString(4));
+				comment.setCommentContent(rs.getString(5));
+				comment.setCommentCreateDate(rs.getString(6));
+
 				
 				commentList.add(comment);				
 			}
@@ -489,6 +427,7 @@ public class BoardDAO {
 			
 			pstmt.setInt(3, board.getCategoryNo());
 			pstmt.setInt(4, board.getUserNo());
+			pstmt.setString(5, board.getBoardImg());
 			
 			result = pstmt.executeUpdate();
 			
@@ -498,6 +437,7 @@ public class BoardDAO {
 		
 		return result;
 	}
+
 
 
 	
@@ -605,7 +545,7 @@ public class BoardDAO {
 		
 		return boardList;
 	}
-
+	
 	/** 게시판 이름 조회 DAO
 	 * @param conn
 	 * @param type
@@ -675,6 +615,70 @@ public class BoardDAO {
 		return listCount;
 	}
 	
+	public int getCommentListCount(Connection conn, int boardNo) throws Exception {
+
+		int listCount = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("getCommentListCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
+	/** 내 게시판 게시글 수 조회
+	 * @param conn
+	 * @param type
+	 * @param userNo
+	 * @return listCount
+	 * @throws Exception
+	 */
+	public int getMyListCount(Connection conn, int type, int userNo) throws Exception {
+
+		int listCount = 0;
+		
+		try {
+			
+			if(type == 1) {
+				String sql = prop.getProperty("getMyBoardListCount");
+				pstmt = conn.prepareStatement(sql);
+			} else if (type == 2) {
+				String sql = prop.getProperty("getMyCommentListCount");
+				pstmt = conn.prepareStatement(sql);
+			} else {
+				String sql = prop.getProperty("getMyLikeListCount");
+				pstmt = conn.prepareStatement(sql);
+			}
+			pstmt.setInt(1, userNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+						
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
 	/** 특정 게시판에서 일정한 범위의 목록 조회 DAO
 	 * @param conn
 	 * @param pagination
@@ -693,10 +697,8 @@ public class BoardDAO {
 			int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
 			int end = start + pagination.getLimit() - 1;
 			
-			pstmt = conn.prepareStatement(sql);
-			
-			
-			pstmt.setInt(1, type);			
+			pstmt = conn.prepareStatement(sql);				
+			pstmt.setInt(1, type);						
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);			
 			
@@ -723,8 +725,113 @@ public class BoardDAO {
       return boardList;
 	}
 	
+	
+	/** 내 게시글 목록 조회
+	 * @param conn
+	 * @param pagination
+	 * @param type
+	 * @param userNo
+	 * @return list
+	 * @throws Exception
+	 */
+	public List<Object> selectMyList(Connection conn, Pagination pagination, int type, int userNo) throws Exception {
+
+		// 리스트 객체 생성
+		List<Object> list = new ArrayList<>();
+		
+		try {
+			
+			if(type == 1) {
+				String sql = prop.getProperty("selectMyBoardList");
+				
+				// BETWEEN 구문에 들어갈 범위 계산
+				int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
+				int end = start + pagination.getLimit() - 1;
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, userNo);			
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);			
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next() ) {
+					Board board = new Board();
+					
+					board.setBoardNo(rs.getInt(2));
+					board.setBoardTitle(rs.getString(3));
+					board.setBoardCreateDate(rs.getString(4));
+					board.setReadCount(rs.getInt(5));
+					board.setLikeCount(rs.getInt(6));
+					board.setCategoryName(rs.getString(7));
+					
+					list.add(board);	
+				}
+			} else if (type == 2) {
+				String sql = prop.getProperty("selectMyCommentList");
+				
+				int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
+				int end = start + pagination.getLimit() - 1;
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, userNo);			
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);			
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next() ) {
+					Comment comment = new Comment();
+					
+					comment.setCommentContent(rs.getString(2));
+					comment.setCommentCreateDate(rs.getString(3));
+					comment.setBoardTitle(rs.getString(4));
+					comment.setBoardNo(rs.getInt(5));
+					
+					list.add(comment);
+				}
+			} else {
+				String sql = prop.getProperty("selectMyLikeList");
+				
+				int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
+				int end = start + pagination.getLimit() - 1;
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, userNo);			
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);			
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next() ) {
+					Board board = new Board();
+					
+					board.setBoardNo(rs.getInt(2));
+					board.setBoardTitle(rs.getString(3));
+					board.setBoardCreateDate(rs.getString(4));
+					board.setUserNickname(rs.getString(5));
+					board.setReadCount(rs.getInt(6));
+					board.setLikeCount(rs.getInt(7));
+					board.setCategoryName(rs.getString(8));
+									
+					list.add(board);
+				}
+			}
+			
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 	public int searchListCount(Connection conn, int category, String condition) {
-		// TODO Auto-generated method stub
+		// 
 		return 0;
 	}
 
@@ -817,7 +924,6 @@ public class BoardDAO {
 
 
 
-	
 
 
 }

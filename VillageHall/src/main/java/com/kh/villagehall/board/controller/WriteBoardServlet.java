@@ -3,7 +3,6 @@ package com.kh.villagehall.board.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,17 +13,17 @@ import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
 import com.kh.villagehall.user.model.vo.User;
 
+
 @WebServlet("/board/writeBoard")
-@MultipartConfig(fileSizeThreshold = 1024 * 1024, // 1MB
-		maxFileSize = 1024 * 1024 * 50, // 50MB
-		maxRequestSize = 1024 * 1024 * 100 // 100MB
-)
 public class WriteBoardServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	public WriteBoardServlet() {
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String path = "/WEB-INF/views/board/writeBoard.jsp";
 		
 		try {
 		
@@ -46,8 +45,12 @@ public class WriteBoardServlet extends HttpServlet {
 				req.setAttribute("categoryNo", board.getCategoryNo());
 				req.setAttribute("board", board);
 				
+				BoardImgServlet bImg = new BoardImgServlet();
+				
 			}
-			
+			String path = "/WEB-INF/views/board/writeBoard.jsp";
+		
+			req.setAttribute("mode", mode);
 			req.getRequestDispatcher(path).forward(req, resp);
 
 		} catch (Exception e) {
@@ -55,25 +58,24 @@ public class WriteBoardServlet extends HttpServlet {
 		}
 
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
 		
+		BoardService service = new BoardService();
 
+		
 		int result = 0;
 	
 		try {
-		
 			
 			
 //			double latitude = Double.parseDouble(req.getParameter("latitude"));
 //			double longitude = Double.parseDouble(req.getParameter("longitude"));
-				
-			
+		
 			int categoryNo = Integer.parseInt(req.getParameter("category"));
-			System.out.println(categoryNo);
 			String boardTitle = req.getParameter("boardTitle");
 			String boardContent = req.getParameter("boardContent");
 			
@@ -84,15 +86,21 @@ public class WriteBoardServlet extends HttpServlet {
   			
 			int userNo = loginUser.getUserNo(); // 로그인 회원 번호
 			
+			
+			//content에 있는 img 태그 내 src를 선택해 image url 목록 반환 받기
+			String imgUrl = service.getImageList(boardContent);
+			
+			
 			Board board = new Board();
 			  
 			board.setBoardTitle(boardTitle);
 			board.setBoardContent(boardContent);
 			board.setCategoryNo(categoryNo);
 			board.setUserNo(userNo);
+			board.setBoardImg(imgUrl);
+			System.out.println(imgUrl);
+//			System.out.println("board확인용" + board);
 			
-			
-			BoardService service = new BoardService();
 			
 			// 모드가 insert일 경우
 			String mode = req.getParameter("mode");
@@ -107,13 +115,13 @@ public class WriteBoardServlet extends HttpServlet {
 					
 					int boardNo = service.getBoardNo(board);
 					
-					path = req.getContextPath() + "/board/boardDetail?boardNo=" + boardNo;
+					path = req.getContextPath() + "/board/writeBoard?boardNo=" + boardNo;
 					
 				}else {
 					
 					session.setAttribute("message", "게시글 등록을 실패했습니다. 잠시 후 다시 시도해주세요." );
 					
-					path =  req.getContextPath() + "/board/writeBoard";
+					path =  req.getContextPath() + "/board/writeBoard.jsp";
 					
 				}
 				
@@ -154,6 +162,11 @@ public class WriteBoardServlet extends HttpServlet {
 		}catch(Exception e) {
 			System.out.println("WriteBoardServlet 수행 중 에러 발생");
 			e.printStackTrace();
+			
+			String message = "파일 서버 업로드 과정에서 에러 발생";
+			
+//			path = "/WEB-INF/views/common/errorPage.jsp";
+			req.setAttribute("message", message);
 		}
 		
 	

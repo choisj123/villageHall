@@ -1,3 +1,6 @@
+console.log("myPage-changePw.js loaded");
+
+
 // 비밀번호 변경 제출 시 유효성 검사
 function changePwValidate(){
 	console.log("js loaded..")

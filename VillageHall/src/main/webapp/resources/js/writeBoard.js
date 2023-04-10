@@ -10,29 +10,9 @@ $("#summernote").summernote({
     maxHeight: null, // set maximum height of editor
     focus: true,
     lang: "ko-KR",
-    /*
-    imageUploadUrl: "writeBoard",
-    callbacks: {
-    onImageUpload: function(file) {
-        var formData = new FormData();
-	    formData.append("file", file[0]);
-	    console.log(typeof file);
-	    
-	    $.ajax({
-	        url: "writeBoard",
-	        type: "POST",
-	        data: formData,
-	        contentType: false,
-	        processData: false,
-	        success: function(response) {
-                    var imagePath = response.trim();
-                    $('#summernote').summernote('insertImage', imagePath);
-        }
-    });
-    }
-    },*/
-  
     toolbar: [
+	  ['fontname', ['fontname']],
+	  ['fontsize', ['fontsize']],
       ["style", ["style"]],
       ["font", ["bold", "underline", "clear"]],
       ["color", ["color"]],
@@ -41,9 +21,44 @@ $("#summernote").summernote({
       ["insert", ["link", "picture"]],
       ["view", ["fullscreen", "codeview", "help"]],
     ],
+      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+	  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+	   /* 이미지 삽입 후 서버에 저장을 위한 callback */
+	  callbacks: {
+        			onImageUpload : function(files, editor, welEditable) {
+		            for (var i = files.length - 1; i >= 0; i--) {
+		            	sendFile(files[i], this);
+		            }
+							} 
+        	}
   });
   
+  
+  /* 이미지 서버 저장 후 url 반환 받는 함수 */  
+	function sendFile(file, el) {
+	var form_data = new FormData();
+	form_data.append('file', file);
 
+		$.ajax({
+   	data: form_data,
+   	type: "POST",
+   	url: 'boardImg',
+   	cache: false,
+   	contentType: false,
+   	enctype: 'multipart/form-data',
+   	dataType : "json",
+   	processData: false,
+   	success: function(image) {
+  		//filePath == url : 서버에 업로드된 url을 반환받아 <img> 태그 src에 저장
+  			var imageUrl = image.filePath + "/" + image.fileName
+     		$(el).summernote('editor.insertImage', imageUrl);
+  			console.log("서버 업로드 성공");
+  			console.log(image);
+  			console.log(image.filePath);
+  			console.log(image.fileName);
+   	}
+ 	});
+} 
 
 
     var latitude = 0;
@@ -54,7 +69,7 @@ if (navigator.geolocation) {
 	       latitude = position.coords.latitude; // 위도
 	       longitude = position.coords.longitude; // 경도
 
-			console.log("위도경도 받아오기" + latitude, longitude)
+			console.log("위도경도 받아오기 " + latitude, longitude)
 
   });
 }
@@ -84,55 +99,7 @@ setTimeout(ajaxDo,10000);
 */
 
 
-$(document).on("click", "#writebtn", function () {
-        saveContent();
-      });
-
-
-    // 저장 
-function saveContent(form) {
-	let category = form.category.value;
-    let boardTitle = form.boardTitle.value;
-    let boardContent = form.boardContent.value;
-    latitude = form.latitude.value;
-    longitude = form.longitude.value;
-    //let boardContent = $("#summernote").summernote("code");
-    
-    console.log("카테고리 : " + category);
-    console.log("제목 : " + boardTitle);
-    console.log("내용 : " + boardContent);
-    
-	
-  }
   
-  /*
-$(function() {
-  // Submit 버튼 클릭 이벤트 처리
-  $("#writebtn").on("click", function(e) {
-    e.preventDefault(); // Submit 버튼의 기본 동작인 폼 전송을 막음
-
-    // form 데이터를 FormData 객체로 생성
-    var formData = new FormData($("#boardWriteForm")[0]);
-
-    // Ajax로 서버에 데이터 전송
-    $.ajax({
-      url: "board/writeBoard",
-      type: "POST",
-      enctype: "multipart/form-data",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(data) {
-        // 게시글 등록 성공 시 게시글 상세 페이지로 이동
-        location.href = "boardDetail?boardNo=" + data.boardNo;
-      },
-      error: function(xhr, status, error) {
-        console.log(xhr.responseText);
-        alert("게시글 등록에 실패했습니다.");
-      }
-    });
-  });
-     */ 
 
       // 게시글 작성 유효성 검사
 function writeValidate(){
@@ -141,23 +108,18 @@ function writeValidate(){
 	
 	if(category.value == "" ){
 		alert("카테고리를 선택해주세요.")
-		return false;
 	}
 
     if(boardTitle.value.trim().length == 0){
         alert("제목을 입력해주세요.");
         boardTitle.value = "";
         boardTitle.focus();
-        return false;
     }
 
     if(boardContent.value.trim().length == 0){
         alert("내용을 입력해주세요.");
         boardContent.value = "";
         boardContent.focus();
-        return false;
     }
 
-    return true;
 }
-

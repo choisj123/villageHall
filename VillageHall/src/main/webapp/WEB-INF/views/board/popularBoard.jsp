@@ -43,12 +43,14 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          <h2>인기게시판</h2>      
+          	<h2>인기게시판</h2>
+            
+            <% String sortBy = (String)request.getAttribute("sortBy"); %>
                 
           	<form id="sortBy">
             	<select id="sortBySelect" name="sortBy" onchange="this.form.submit()">
-             		<option value="like">좋아요순</option>
-              		<option value="read">조회수순</option>              		
+             		<option value="like" <% if(sortBy.equals("like")) { %> selected <% } %>>좋아요순</option>
+              		<option value="read" <% if(sortBy.equals("read")) { %> selected <% } %>>조회수순</option>              		
             	</select>
             </form>
           
@@ -99,8 +101,6 @@
       <!-- 내부 접근 절대 경로 -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
-   
-  
       <!-- jQuery 라이브러리 추가 -->
       <script
         src="https://code.jquery.com/jquery-3.6.0.js"
@@ -108,6 +108,9 @@
         crossorigin="anonymous"
       ></script>
   
+      <!-- main.js 연결 -->
+      <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
+
 		
 </body>
 </html>
