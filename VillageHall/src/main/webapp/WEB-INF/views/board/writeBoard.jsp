@@ -49,9 +49,16 @@
         			<h2>게시글 수정</h2>
         		</c:otherwise>
         	</c:choose>
-        	
-          <form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"
-          class="board-write" onsubmit="return writeValidate()">
+      
+        	<c:choose>
+        		<c:when test="${param.mode == insert}">
+        		
+        		</c:when>
+        	</c:choose>
+      
+        	<form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"		
+          class="board-write" onsubmit="return writeValidate()">          
+          <input type="hidden" name="boardNo" value="${board.boardNo}">
             <hr />
      
             <c:choose>
@@ -104,6 +111,8 @@
             
             <input type="hidden" name="mode" value="${param.mode}">
           </form>
+
+          
         </section>
       </section>
     </main>

@@ -30,7 +30,11 @@
     <script
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
-    ></script>   
+    ></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+    crossorigin="anonymous"></script>   
 </head>
 <body>
     <main>
@@ -99,27 +103,32 @@
           				</table>
           			</div>
 				</c:when>
+				
+				
 				<c:otherwise>
-					<p>여기 로 FAQ작업하시면됩니</p>
-					<article class="FAQ-board-article">
 					<c:forEach var="board" items="${boardList}">
-						<div class="FAQ-board" id="signUp">
-                  			<ul class="FAQ-Ul">                   
-                  				<li>제목</li>    
-                  			</ul>
-                  			<hr>
-                  			<ul class="FAQ-Ul FAQ-Ul1">
-                				<li>${board.boardTitle}</li>
-                  			</ul>
-                  
-                  			<div class="p">
-                  				<hr>
-                    			<pre>${board.boardContent}</pre>
-                    			<hr>       
-                			</div>      
-            			</div>
-					</c:forEach>			
-				</article> 
+						<div class="FAQTitle">${board.boardTitle}</div>
+                    	<p class="contents">${board.boardContent}</p>
+                    			
+					</c:forEach>
+					
+					<script>
+        				$(function() {
+            				$("div").on("click", function() {
+
+                				if($(this).next("p").css("display") == 'none') {
+
+                    				$(this).siblings("p.contents").slideUp();
+                    				// 다음 요소는 내려라
+                    				$(this).next().slideDown();
+
+                				} else {
+                    				$(this).next().slideUp();
+                				}
+                
+            				});
+        				});
+    				</script>			
 				</c:otherwise>
           	</c:choose>
           
@@ -187,8 +196,5 @@
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
 
-	<c:if test="${param.type == 2}">
-		<script src="${contextPath}/resources/js/boardList.js"></script>
-	</c:if>
 </body>
 </html>

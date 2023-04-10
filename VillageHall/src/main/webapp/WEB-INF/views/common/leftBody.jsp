@@ -53,7 +53,7 @@ pageEncoding="UTF-8"%>
         <a href="${contextPath}/board/list?type=3">전체글</a>
       </li>
       <li>
-        <i class="fa-solid fa-bookmark" id="nav-popular"></i>
+      <i class="fa-regular fa-thumbs-up" id="nav-popular"></i>
         <a href="${contextPath}/board/popularBoard?sortBy=like">인기글</a>
       </li>
       <li>
