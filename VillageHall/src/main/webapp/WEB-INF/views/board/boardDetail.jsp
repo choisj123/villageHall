@@ -81,7 +81,7 @@
 	          			<c:otherwise>
 	          				<c:forEach var="comment" items="${commentList}">
 	          					
-	          					<div class="commentDetail">
+	          					<div class="commentDetail" id="commentDetail-${comment.commentNo}">
 	          						
 	          						<div>
 	          							<img src="${contextPath}${comment.profileImg}"><br>
@@ -95,7 +95,7 @@
 	          						</div>
 	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
 	          							<div>
-	          								<button type="button" id="updateCommentButton">수정</button>&nbsp;&nbsp;
+	          								<button onclick="updateComment(${comment.commentNo})">수정</button>&nbsp;&nbsp;
 	          								<a href="${contextPath}/comment/deleteComment?commentNo=${comment.commentNo}&userNo=${loginUser.userNo}&boardNo=${board.boardNo}">삭제</a>
 	          							</div>
 	          						</c:if>
@@ -105,6 +105,39 @@
 	          			</c:otherwise>
 	          		</c:choose>
 	          	</div>
+	          	
+	          	<!-- 수정할 댓글창 출력 -->
+	          	<div id="updateComment" style="display: none;">
+	          		<textarea id="updateCommentContent"></textarea>
+	          		<button onclick="saveComment()">저장</button>
+	          		<button onclick="cancelComment()">취소</button>
+	          	</div>
+	          	
+	          	<script>
+	          		function updateComment(commentNo) {
+	          			let commentElement = document.getElementById("commentDetail-" + commentNo);
+	          			let commentContent = document.getElementById("commentContent").innerText;
+	          			let updateCommentTextarea = document.getElementById("updateComentContent");
+	          			updateCommentTextarea.value = commentContent;
+	          			commentElement.innerHTML = "";
+	          			
+	          			//수정할 댓글창 표시
+	          			const updateComment = document.getElementById("updateComment");
+	          			updateComment.style.display = "block";
+	          			
+	          			function saveComment() {
+	          			  // 선택한 댓글 요소의 ID를 가져와서 해당 요소의 내용을 변경
+	          			  const commentNo = ...; // 선택한 댓글의 ID를 가져옴
+	          			  const commentElement = document.getElementById("comment-" + commentNo);
+	          			  const updateCommentTextarea = document.getElementById("updateComentContent");
+	          			  const commentContent = updateCommentTextarea.value;
+	          			  commentElement.innerHTML = '<span>' + commentContent + '</span>';
+	          			  
+	          			 // 수정할 댓글창 숨기기
+	          			  const updateComment = document.getElementById("updateComment");
+	          			  updateComment.style.display = "none";
+	          		}
+	          	</script>
 	          	
 	          	<c:if test="${loginUser != null}">          		
 	          		<div>	          			
