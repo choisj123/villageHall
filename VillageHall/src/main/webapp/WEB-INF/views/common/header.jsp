@@ -11,12 +11,12 @@
   <section>
     <article class="search-area">	
       <!-- form 내부 input 태그 값을 서버 또는 페이지로 전달 -->
-      <form action="#" name="search-form">
+      <form action="./index.jsp" metho="get" name="search-form">
         <fieldset>
           <input
-            type="search"
+            type="text"
             id="query"
-            name="query"
+            name="search"
             autocomplete="off"
             placeholder="검색어를 입력해주세요"
           />
