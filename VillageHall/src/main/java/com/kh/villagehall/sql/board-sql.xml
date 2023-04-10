@@ -183,11 +183,16 @@
 	
 	<!-- 게시글 등록 -->
 	<entry key="insertBoard">
-		INSERT INTO "BOARD"(BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, READ_COUNT, LATITUDE, LONGITUDE, BOARD_DELETE_FG ,CATEGORY_NO, USER_NO, BOARD_IMG ) 
-       	VALUES( ? , ?, SYSDATE,  DEFAULT,  0 , 0, DEFAULT, ? , ?, ?)
+		INSERT INTO "BOARD"(BOARD_TITLE, BOARD_CONTENT, BOARD_CREATE_DATE, READ_COUNT, LATITUDE, LONGITUDE, BOARD_DELETE_FG ,CATEGORY_NO, USER_NO) 
+       	VALUES( ? , ?, SYSDATE,  DEFAULT,  0 , 0, DEFAULT, ? , ?)
 	
 	</entry>
 	
+	<!-- 게시글 IMAGE 이미지 삽입 -->
+	<entry key="insertImage">
+	  INSERT INTO BOARD_IMAGE(FILE_NAME, FILE_PATH, BOARD_NO) VALUES( ?, ?, ?)
+  </entry>
+  
 	<!-- 게시글 수정 -->
 	<entry key="updateBoard">
 		UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, CATEGORY_NO = ?, BOARD_IMG = ?
@@ -289,5 +294,8 @@
 		UPDATE "COMMENT" SET COMMENT_CONTENT = ?
 		WHERE USER_NO = ? AND COMMENT_NO = ?
 	</entry>
+
+
+
 
 </properties>

@@ -6,14 +6,17 @@ import static com.kh.villagehall.common.JDBCTemplate.getConnection;
 import static com.kh.villagehall.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.kh.villagehall.board.controller.FileInsertFailedException;
 import com.kh.villagehall.board.model.dao.BoardDAO;
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.board.model.vo.BoardImg;
 import com.kh.villagehall.board.model.vo.Pagination;
 import com.kh.villagehall.comment.model.vo.Comment;
 
@@ -257,14 +260,40 @@ public class BoardService {
 
 	
 	/** 게시글 등록 service
-	 * @param board
+	 * @param map
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertBoard(Board board) throws Exception{
+	public int insertBoard(Map<String, Object> map, Board board) throws Exception{
 		Connection conn = getConnection();
 		
-		int result = dao.insertBoard(conn, board);
+		int boardNo = getBoardNo(board);
+		
+		int result = dao.insertBoard(conn, map);
+		
+		if(result > 0) {
+			//4. 이미지 파일 목록 iList 꺼내서 향상된 for문으로 하나씩 dao 호출
+			List<BoardImg> iList = (List<BoardImg>)map.get("iList");
+			
+			if(result > 0 && !iList.isEmpty()) {
+				result = 0;//result 재활용2
+				
+				for(BoardImg img : iList) {
+					//Image 객체에 글번호 추가
+					img.setBoardNo(boardNo);
+					
+					result = dao.insertImage(conn, img);
+					
+					if(result == 0) {
+						//삽입 실패 시 강제로 예외를 발생 시켜 
+						//catch문에서 파일 삭제를 진행해야함
+						throw new FileInsertFailedException("이미지 정보 삽입 실패");
+						//밑에 있는 catch문에서 잡음
+					}
+				}//이미지 삽입 for문 끝
+			}//이미지 삽입 if문 끝
+			
+		}
 		
 		if(result > 0) commit(conn);
 		else			rollback(conn);
@@ -297,25 +326,20 @@ public class BoardService {
 	 * @return imageUrl
 	 * @throws Exception
 	 */
-	public String getImageList(String content) throws Exception{
+	public List<String> getImageList(String content) throws Exception{
+		//자바 정규표현식을 사용하여 <img>태그의 src 가져오기
+		Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+	
+		List<String> imgUrl = new ArrayList<String>();
+		Matcher matcher = nonValidPattern.matcher(content);
+	
+		while (matcher.find()) {
+			imgUrl.add(matcher.group(1));
+		}
 		
-	    Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
-	    
-	    String imgUrl = "";
-	    Matcher matcher = nonValidPattern.matcher(content);
-	    
-	    while (matcher.find()) {
-	        imgUrl += matcher.group(1) + ",";
-	    }
-	    
-	    if (imgUrl.endsWith(",")) {
-	        imgUrl = imgUrl.substring(0, imgUrl.length() - 1);
-	    }
-	    
-	    System.out.println(imgUrl);//src 추출 확인
-	    
-	    return imgUrl;
-
+		//System.out.println(imgUrl);//src 추출 확인
+	
+		return imgUrl;
 	}
 	
 	

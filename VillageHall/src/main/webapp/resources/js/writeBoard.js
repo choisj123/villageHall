@@ -50,7 +50,7 @@ $("#summernote").summernote({
    	processData: false,
    	success: function(image) {
   		//filePath == url : 서버에 업로드된 url을 반환받아 <img> 태그 src에 저장
-  			var imageUrl = image.filePath + "/" + image.fileName
+  			var imageUrl = image.filePath + image.fileName
      		$(el).summernote('editor.insertImage', imageUrl);
   			console.log("서버 업로드 성공");
   			console.log(image);
