@@ -1,6 +1,10 @@
 package com.kh.villagehall.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.board.model.vo.BoardImg;
 import com.kh.villagehall.user.model.vo.User;
 
 
@@ -45,7 +50,6 @@ public class WriteBoardServlet extends HttpServlet {
 				req.setAttribute("categoryNo", board.getCategoryNo());
 				req.setAttribute("board", board);
 				
-				BoardImgServlet bImg = new BoardImgServlet();
 				
 			}
 			String path = "/WEB-INF/views/board/writeBoard.jsp";
@@ -88,26 +92,60 @@ public class WriteBoardServlet extends HttpServlet {
 			
 			
 			//content에 있는 img 태그 내 src를 선택해 image url 목록 반환 받기
-			String imgUrl = service.getImageList(boardContent);
+			List<String> imgUrl = service.getImageList(boardContent);
 			
+			//imgUrl을 사용하여 DB에 저장할 이미지 데이터 목록 만들기
+			List<BoardImg> iList = new ArrayList<BoardImg>(); 
+			
+			if(!imgUrl.isEmpty()) {//imgUrl 있을 때 == 이미지가 첨부되었을 때
+
+				int level = 0; //사진 레벨 -> 사진 순서(레벨 0은 썸네일)
+
+				for(String url : imgUrl){
+					int slash = url.lastIndexOf('/'); 
+					//src에서 뒤에서부터 첫번째 '/'인 index 뽑기 
+					// => '경로 / 파일명.확장자' 의 경계선인 '/'의 index 확인 가능
+	
+					BoardImg temp = new BoardImg(); 
+	
+					//substring(start) ~ start인덱스부터 마지막 인덱스까지 잘라내서 저장
+					//substring(start, end) ~ start인덱스부터 end인덱스 전까지 잘라내서 저장
+					temp.setFileName(url.substring(slash+1)); 
+							//ex) uploadImages/image1.jpg → image1.jpg
+					temp.setFilePath(url.substring(0, slash+1)); 
+							//ex) uploadImages/image1.jpg → uploadImages/
+
+					iList.add(temp); 
+				}//iList 목록 만들기 끝
+			}
+			
+			
+			//사진 삽입 실패 시 사진 삭제할 기본 주소 추가
+			String root = req.getSession().getServletContext().getRealPath("/");
+
+			//입력 내용 + 이미지 List Map에 담아서 service로 호출 삽입 결과 반환
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("boardTitle", boardTitle);
+			map.put("boardContent", boardContent);
+			map.put("categoryNo", categoryNo);//자유 카테고리
+			map.put("userNo", userNo);//회원번호 == 작성자
+			map.put("iList", iList);
+			map.put("root", root);
 			
 			Board board = new Board();
-			  
+			
 			board.setBoardTitle(boardTitle);
 			board.setBoardContent(boardContent);
 			board.setCategoryNo(categoryNo);
 			board.setUserNo(userNo);
-			board.setBoardImg(imgUrl);
-			System.out.println(imgUrl);
-//			System.out.println("board확인용" + board);
 			
-			
+
 			// 모드가 insert일 경우
 			String mode = req.getParameter("mode");
 			
 			if(mode.equals("insert")) {
 				
-				result = service.insertBoard(board);
+				result = service.insertBoard(map, board);
 				
 				String path = null;
 				
@@ -115,7 +153,7 @@ public class WriteBoardServlet extends HttpServlet {
 					
 					int boardNo = service.getBoardNo(board);
 					
-					path = req.getContextPath() + "/board/writeBoard?boardNo=" + boardNo;
+					path = req.getContextPath() + "/board/boardDetail?boardNo=" + boardNo;
 					
 				}else {
 					
@@ -130,7 +168,7 @@ public class WriteBoardServlet extends HttpServlet {
 				resp.sendRedirect(path);
 //							resp.getWriter().print(result);
 			}
-			
+		
 			
 			if(mode.equals("update")) {
 				

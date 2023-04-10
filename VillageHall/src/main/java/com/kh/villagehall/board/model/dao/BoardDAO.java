@@ -9,9 +9,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.kh.villagehall.board.model.vo.Board;
+import com.kh.villagehall.board.model.vo.BoardImg;
 import com.kh.villagehall.board.model.vo.Pagination;
 import com.kh.villagehall.comment.model.vo.Comment;
 
@@ -407,11 +409,11 @@ public class BoardDAO {
 	
 	/** 게시글 등록 DAO
 	 * @param conn
-	 * @param board
+	 * @param map
 	 * @return
 	 * @throws Exception
 	 */
-	public int insertBoard(Connection conn, Board board) throws Exception{
+	public int insertBoard(Connection conn, Map<String, Object> map) throws Exception{
 		int result = 0;
 		
 		
@@ -420,14 +422,13 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, board.getBoardTitle());
-			pstmt.setString(2, board.getBoardContent());
+			pstmt.setString(1, (String)map.get("boardTitle"));
+			pstmt.setString(2, (String)map.get("boardContent"));
 //			pstmt.setDouble(3, board.getLatitude());
 //			pstmt.setDouble(4, board.getLongtitude());
 			
-			pstmt.setInt(3, board.getCategoryNo());
-			pstmt.setInt(4, board.getUserNo());
-			pstmt.setString(5, board.getBoardImg());
+			pstmt.setInt(3, (int)map.get("categoryNo"));
+			pstmt.setInt(4, (int)map.get("userNo"));
 			
 			result = pstmt.executeUpdate();
 			
@@ -440,6 +441,35 @@ public class BoardDAO {
 
 
 
+	/** BOARD_IMG에 이미지 삽입
+	 * @param conn
+	 * @param img
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertImage(Connection conn, BoardImg img) throws Exception{
+		
+		int result = 0;
+		
+		
+		try {
+			String sql = prop.getProperty("insertImage");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, img.getFileName());
+			pstmt.setString(2, img.getFilePath());
+			pstmt.setInt(3, img.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	
+	}
 	
 	/** 게시글 등록 - 게시글 번호 얻어오기 
 	 * @param conn
@@ -921,6 +951,9 @@ public class BoardDAO {
 		
 		return result;
 	}
+
+
+
 
 
 

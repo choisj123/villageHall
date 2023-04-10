@@ -3,6 +3,7 @@ package com.kh.villagehall.board.controller;
 import java.io.IOException;
 import java.util.Enumeration;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.BoardImg;
 import com.kh.villagehall.common.MyRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
@@ -19,17 +19,21 @@ import com.oreilly.servlet.MultipartRequest;
 public class BoardImgServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
-	
 	public BoardImgServlet() {
+		super();
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("imgServlet");
+		//컨트롤러 내에서 공용으로 사용할 변수 미리 선언
+		String path = null; //forward 또는 redirect 경로를 저장할 변수
+		RequestDispatcher view = null; //요청 위임 객체
 		
-		BoardService service = new BoardService();
+		//에러 메시지 전달용 변수
+		String message = null;
 		
 		try {
-			
 			//파일 서버에 저장하고 summernote에 다시 보내기 (글작성 과정에서 서버 저장만 진행 DB저장X)
 			//1. MultipartRequest객체 생성
 			//1) 전송 파일 용량 지정(byte 단위)
@@ -57,7 +61,6 @@ public class BoardImgServlet extends HttpServlet{
 
 			//시스템파일명에 접근하기 위해 name 속성을 가져와 진행
 			Enumeration<String> files = multiRequest.getFileNames();
-			
 			while(files.hasMoreElements()) {//다음 요소가 있다면
 				//현재 접근한 요소 값 반환
 				//name에는 파일의 name 속성이 담겨있고
@@ -65,30 +68,37 @@ public class BoardImgServlet extends HttpServlet{
 				String name = files.nextElement();//img0
 				if(multiRequest.getFilesystemName(name) != null) {
 					fileName = multiRequest.getFilesystemName(name);
-//							System.out.println("파일명 가져오기");
-//							System.out.println(fileName);
+//									System.out.println("파일명 가져오기");
+//									System.out.println(fileName);
 				}
 			}
 			
 			BoardImg image = new BoardImg();
 			
-			image.setFilePath("/resources/images/boardImg/");
+			image.setFilePath("/webapp/resources/images/boardImg/");
 			image.setFileName(fileName);
-			
 			
 			//2. ajax로 반환(gson 사용) : file을 보내서 filePath와 fileName을 사용해야 함
 			new Gson().toJson(image, resp.getWriter());
-		
-	}catch(Exception e ) {
-		e.printStackTrace();
-	}
-	
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
-	
-	}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			//예외 발생 시 errorPage.jsp로 요청 위임
+			
+			message = "파일 서버 업로드 과정에서 에러 발생";
+			
+//			path = "/WEB-INF/views/common/errorPage.jsp";
+//			request.setAttribute("errorMsg", errorMsg);
+//			view = request.getRequestDispatcher(path);
+//			view.forward(request, response);
+				}
+
+			}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+			
+
+		}
 }
