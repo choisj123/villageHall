@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.kh.villagehall.board.model.dao.BoardDAO;
 import com.kh.villagehall.board.model.vo.Board;
@@ -268,10 +270,9 @@ public class BoardService {
 		else			rollback(conn);
 		
 		close(conn);
-		
+	
 		return result;
 	
-		
 	}
 
 	/** 게시글 등록 후 게시글 번호 얻어오기 service
@@ -289,6 +290,35 @@ public class BoardService {
 		
 		return boardNo;
 	}
+	
+	
+	/** 썸머노트 사용 시 이미지 url 추출 service(html코드에서 img src 추출)
+	 * @param content
+	 * @return imageUrl
+	 * @throws Exception
+	 */
+	public String getImageList(String content) throws Exception{
+		
+	    Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+	    
+	    String imgUrl = "";
+	    Matcher matcher = nonValidPattern.matcher(content);
+	    
+	    while (matcher.find()) {
+	        imgUrl += matcher.group(1) + ",";
+	    }
+	    
+	    if (imgUrl.endsWith(",")) {
+	        imgUrl = imgUrl.substring(0, imgUrl.length() - 1);
+	    }
+	    
+	    System.out.println(imgUrl);//src 추출 확인
+	    
+	    return imgUrl;
+
+	}
+	
+	
 
 	/** 메인페이지 인기글 목록 조회 Service
 	 * @return boardList
@@ -456,6 +486,9 @@ public class BoardService {
 		
 		return result;
 	}
+
+
+
 
 
 }

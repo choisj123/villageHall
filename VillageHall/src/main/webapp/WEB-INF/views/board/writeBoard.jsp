@@ -34,17 +34,13 @@
     <main>
     	<!-- header include -->
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
-     
 
       <!-- 바디 부분 시작 -->
       <section class="body">
-        
          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
-        
-       
             <c:choose>
         		<c:when test="${board == null}">
         			<h2>글 작성</h2>
@@ -54,7 +50,7 @@
         		</c:otherwise>
         	</c:choose>
         	
-          <form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"  enctype="multipart/form-data"
+          <form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"
           class="board-write" onsubmit="return writeValidate()">
             <hr />
      
@@ -94,17 +90,14 @@
        
 
             <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
-            <img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
-
             
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
-				
 				<c:if test="${param.mode == 'insert'}">
-	                	<button type="submit" id="writebtn" onclick="saveContent(this.form)">등록</button>
+	                	<button type="submit" id="writebtn">등록</button>
 	           </c:if>
 	            <c:if test="${param.mode == 'update'}">
-	                	<button type="submit" id="writebtn" onclick="saveContent(this.form)">수정</button>
+	                	<button type="submit" id="writebtn">수정</button>
 	            </c:if>
                 <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>
