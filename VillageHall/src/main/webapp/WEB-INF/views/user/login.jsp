@@ -10,15 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인창</title>
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/login.css">
+   <!-- <link rel="stylesheet" href="${contextPath}/resources/css/login.css">-->
+     <link rel="stylesheet" href="${contextPath}/resources/css/main.css">
 
     <script src="https://kit.fontawesome.com/a2e8ca0ae3.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
     <main>
+        <!-- hedaer include -->
+      <jsp:include page="/WEB-INF/views/common/header.jsp" />
+      
+     		 <div class="villageHall">
+                마을회관
+             </div>
 
-            <section class="content-2">
+            <section class="login-content">
+           
             
             	<%-- if - else --%>
             	<c:choose>  
@@ -33,9 +41,9 @@
 		                    <fieldset id="id-pw-area">
 		        
 		                        <section>
-		                            <input type="text" name="userEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}">     
+		                            <input type="text" id="input-area" name="userEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}"><br>
                                                                                                  <%-- 현재 페이지 쿠키 중 "saveId"의 내용을 출력--%>                   
-		                            <input type="password" name="userPw" placeholder="비밀번호">
+		                            <input type="password" id="input-area" name="userPw" placeholder="비밀번호">
 		                        </section>
 		        
 		                        <section>
@@ -86,6 +94,9 @@
             	</c:choose>
                 
             </section>
+            
+            <!-- footer include -->
+   			 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
 
     </main>
