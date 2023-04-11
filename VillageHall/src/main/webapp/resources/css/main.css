@@ -103,7 +103,7 @@ header > section:nth-of-type(3) {
 }
 
 #signup {
-  border: 6px solid #55710f;
+  border: 5px solid #55710f;
   border-radius: 15px;
   background-color: #55710f;
   color: white;
@@ -235,7 +235,7 @@ nav ul li table td {
 }
 
 .right-body {
-	width : 912px;
+  width : 912px;
   flex-basis: 80%;
   border: none;
 

@@ -2,8 +2,11 @@
     pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
-double latitude = Double.parseDouble(request.getParameter("latitude"));
-double longitude = Double.parseDouble(request.getParameter("longitude"));
+String latitude = request.getParameter("latitude");
+String longitude = request.getParameter("longitude");
+
+System.out.println(latitude);
+System.out.println(longitude);
 %>
 
 <!DOCTYPE html>
@@ -92,7 +95,6 @@ double longitude = Double.parseDouble(request.getParameter("longitude"));
             		</select>
             	</c:otherwise>            	
             </c:choose>
-            
             <input
               type="text"
               name="boardTitle"
@@ -114,8 +116,8 @@ double longitude = Double.parseDouble(request.getParameter("longitude"));
 	            </c:if>
                 <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>
-            <input type="hidden" name="latitude" value="<%= latitude %>" />
-    		<input type="hidden" name="longitude" value="<%= longitude %>" />
+             <input type="hidden" name="latitude" value="<%= latitude %>" />
+    		<input type="hidden" name="longitude" value="<%= longitude %>" /> 
             
             <input type="hidden" name="mode" value="${param.mode}">
           </form>

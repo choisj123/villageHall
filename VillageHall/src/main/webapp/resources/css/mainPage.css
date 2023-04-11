@@ -213,16 +213,32 @@ align-items: center;
 .map {
   height: 40%;
   border: 1px solid rgb(207, 41, 41);
+  
+}
+
+
+.main-container{
+	display:flex;
+	flex-direction: row;
+	
+}
+.map-wrap{
+	flex-basis : 50%;
 }
 
 .notice-fave {
-  justify-content: space-evenly;
-  height: 30%;
+  justify-content: space-around;
+  flex-basis: 30%;
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: center;
   border-radius: 5px;
+}
+
+.weather{
+	height:20%;
+	  flex-basis: 20%
 }
 
 .notice-box {
@@ -291,4 +307,8 @@ align-items: center;
 
 .right-body a:hover {
   text-decoration: underline;
+}
+
+.weather{
+	
 }

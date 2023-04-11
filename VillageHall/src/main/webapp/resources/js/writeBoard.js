@@ -114,7 +114,7 @@ function writeValidate(){
     }
     
     return true;
-   /* 
+  /* 
     function processData(latitude, longitude) {
   	// 데이터 처리 로직
  	 $.ajax({
@@ -132,7 +132,7 @@ function writeValidate(){
 	          console.log("상태코드 : " + request.status); // 404, 500
 	      }
       });
-}*/
-    
+}
+  */  
 
 }
