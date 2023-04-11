@@ -25,6 +25,19 @@ font-family: 'IBM Plex Sans KR', sans-serif;;
 #map {
   position: relative;
 }
+.spin-container {
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.fa-10x {
+    animation: spin 3s linear infinite;
+    width: 80px;
+    height: 80px;
+}
 
 .map-nav {
   position: absolute;
