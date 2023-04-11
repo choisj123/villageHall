@@ -128,16 +128,17 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
                 <div class="ctemp"></div>
                 <div class="main"></div>
-                <div>서울<div>
+                <div><h3>서울</h3></div>
+               </div>
                  <div class="thirdBox">
-                <div class="clowtemp"></div>
-                <div class="humidity"></div>
+                <div class="clowtemp">최저온도</div>
+                <div class="humidity">습도</div>
                 <div class="mi">
                   <h3>미세먼지</h3>
                   <div class="aqi"></div>
                   </div>
                 </div>
-              </div>
+             
             </div>
           </section>
         </section>
