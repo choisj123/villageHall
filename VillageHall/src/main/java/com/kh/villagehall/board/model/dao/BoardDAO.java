@@ -867,6 +867,7 @@ public class BoardDAO {
 	}
 
 
+
 	public int updateBoard(Connection conn, Board board) throws Exception {
 
 		int result = 0;

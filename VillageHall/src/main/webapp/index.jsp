@@ -119,20 +119,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="box">
               <!-- 날짜 -->
               <div class="FirstBox">
-                <h1 class="date"> 오늘의날씨</h1>
+                <h1 class="date"></h1>
               </div>
               <!-- 날씨 입력 -->
               <div class="SecondBox">
                 <div class="Sbox1">
                   <div class="cicon"></div>
-                  <div class="main"></div>
                 </div>
-                <div class="ctemp"><h4>현재온도</h4></div>
-                <div class="clowtemp"><h4>최저온도</h4></div>
-                <div class="humidity"><h4>습도</h4></div>
+                <div class="ctemp"></div>
+                <div class="main"></div>
+                <div>서울<div>
+                 <div class="thirdBox">
+                <div class="clowtemp"></div>
+                <div class="humidity"></div>
                 <div class="mi">
-                  <h4>미세먼지</h4>
+                  <h3>미세먼지</h3>
                   <div class="aqi"></div>
+                  </div>
                 </div>
               </div>
             </div>
