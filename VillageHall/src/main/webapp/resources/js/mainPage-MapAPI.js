@@ -42,18 +42,19 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     location: new kakao.maps.LatLng(kakaoMapList[i].latitude, kakaoMapList[i].longtitude),
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
-    like : kakaoMapList[i].boardNo,
+    boardNo : kakaoMapList[i].boardNo,
     photoUrl : kakaoMapList[i].profileImg
   });
 }
 
 for(var i = 0; i < kakaoBoardRecent.length; i++){
 	navData.push({
+		
 		name : kakaoBoardRecent[i].userNickname,
 		title : kakaoBoardRecent[i].boardTitle,
 		createAt : kakaoBoardRecent[i].boardCreateDate,
 		category : kakaoBoardRecent[i].categoryName,
-		like : kakaoBoardRecent[i].boardNo,
+		boardNo : kakaoBoardRecent[i].boardNo,
 		photoUrl : kakaoBoardRecent[i].profileImg
 	});
 }
@@ -78,6 +79,7 @@ for (var i = 0; i < markersData.length; i++) {
               content: 
               '<div class="infowindow-container">' +
               '<div class="infowindow-header">' + 
+
                 '<div class="inwi-left"><img src='+ markersData[i].photoUrl +' class= "profile"></div>' +
                 '<div class="inwi-right">' +
                  ' <div>' + markersData[i].name + '</div>' +
@@ -89,7 +91,7 @@ for (var i = 0; i < markersData.length; i++) {
               '<div class="info-title">' + markersData[i].title + '</div>' +
               '<div class="info-content">' + markersData[i].content + '</div>' +
               '</div>'+
-              '<div class="infowindow-footer">❤️' + markersData[i].like + '</div>'+
+              '<div class="infowindow-footer">❤️' + markersData[i].boardNo + '</div>'+
             '</div>'
             
           });
@@ -116,10 +118,14 @@ function showMarkersByCategory(newCategory) {
   placesList.innerHTML = ""; // 이전 목록 삭제
   for (let i = 0; i < filteredNavData.length; i++) {
     const li = document.createElement("li");
-    const content =
-      "<p>" +
+const content =
+      "<a href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
+      filteredNavData[i].boardNo +
+      "&cp=1&type=3' onclick ='clickBoardFunction(" +
+      filteredNavData[i].boardNo +
+      "); '>" +
       filteredNavData[i].name +
-      "</p>" +
+      "</a>" +
       "<p>" +
       filteredNavData[i].title +
       "</p>" +
@@ -130,6 +136,12 @@ function showMarkersByCategory(newCategory) {
     li.innerHTML = content;
     placesList.appendChild(li);
   }
+  
+  function clickBoardFunction(boardNo) {
+  const boardUrl = `http://localhost:8080/VillageHall/board/boardDetail?boardNo=${boardNo}&cp=1&type=3`;
+  window.location.href = boardUrl;
+}
+
   
   for (var i = 0; i < markersData.length; i++) {
     if (category === "전체" || markersData[i].category === category) {
@@ -146,6 +158,8 @@ document.getElementById("categorySelect").addEventListener("change", function ()
   const newCategory = this.value;
   showMarkersByCategory(newCategory);
 });
+
+
 
 
 

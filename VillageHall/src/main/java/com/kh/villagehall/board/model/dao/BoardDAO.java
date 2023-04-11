@@ -158,7 +158,6 @@ public class BoardDAO {
 				boardList.setLatitude(rs.getDouble(4));
 				boardList.setLongtitude(rs.getDouble(5));
 				boardList.setCategoryName(rs.getString(6));
-
 				boardList.setUserNickname(rs.getString(7));
 				boardList.setBoardNo(rs.getInt(8));
 				boardList.setProfileImg(rs.getString(9));
@@ -339,6 +338,7 @@ public class BoardDAO {
 			while(rs.next()) {
 				Board boardList = new Board();
 				
+			
 				boardList.setBoardTitle(rs.getString(1));
 				boardList.setBoardCreateDate(rs.getString(2));
 				boardList.setCategoryName(rs.getString(3));
