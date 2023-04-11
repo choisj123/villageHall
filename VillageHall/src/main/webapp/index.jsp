@@ -15,7 +15,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="resources/css/main.css" />
     <link rel="stylesheet" href="resources/css/mainPage.css" />
     <link rel="stylesheet" href="resources/css/weather.css" />
-
+    
+    <!-- 글꼴 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
     <!-- 정훈씨꺼 지도 api key -->
     <script
       type="text/javascript"
@@ -79,7 +83,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <section class="notice-fave">
             <!-- 공지사항 -->
             <div class="notice-box">
-              <div><p><i class="fa-regular fa-bell"></i> 공지사항               
+              <div><p><i class="fa-regular fa-bell"></i> 공지사항
                <a href="${contextPath}/board/list?type=1"><i class="fa-solid fa-angles-right" id="link"></i></a></p>
               </div>
               <div>
@@ -96,9 +100,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <!-- 인기글 -->
             <div class="fave-box">
-              <div><p><i class="fa-regular fa-thumbs-up"></i> 인기글
-              <a href="${contextPath}/board/popularBoard?sortBy=like" name="link" type="hidden"><i class="fa-solid fa-angles-right" id="link" for="link"></i></a>
-              </p></div>
+              <div><p><i class="fa-regular fa-thumbs-up"></i> 인기글   
+              <a href="${contextPath}/board/popularBoard?sortBy=like"> <i class="fa-solid fa-angles-right" id="link"></i></a></p></div>
               <div>
                 <table class="fave-content">
                   <thead>
@@ -118,20 +121,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="box">
               <!-- 날짜 -->
               <div class="FirstBox">
-                <h1 class="date"> 오늘의날씨</h1>
+                <h1 class="date"></h1>
               </div>
               <!-- 날씨 입력 -->
               <div class="SecondBox">
                 <div class="Sbox1">
                   <div class="cicon"></div>
-                  <div class="main"></div>
                 </div>
-                <div class="ctemp"><h4>현재온도</h4></div>
-                <div class="clowtemp"><h4>최저온도</h4></div>
-                <div class="humidity"><h4>습도</h4></div>
+                <div class="ctemp"></div>
+                <div class="main"></div>
+                <div>서울<div>
+                 <div class="thirdBox">
+                <div class="clowtemp"></div>
+                <div class="humidity"></div>
                 <div class="mi">
-                  <h4>미세먼지</h4>
+                  <h3>미세먼지</h3>
                   <div class="aqi"></div>
+                  </div>
                 </div>
               </div>
             </div>
