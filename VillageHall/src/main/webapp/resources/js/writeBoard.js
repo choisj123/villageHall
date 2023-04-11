@@ -65,38 +65,26 @@ $("#summernote").summernote({
     var longitude = 0;
     
 if (navigator.geolocation) {
-	    navigator.geolocation.getCurrentPosition(function(position) {
-	       latitude = position.coords.latitude; // 위도
-	       longitude = position.coords.longitude; // 경도
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      console.log("위도경도 받아오기 " + latitude, longitude)
+      
+      // 데이터 처리 함수 호출
+      processData(latitude, longitude);
+    },
+    function(error) {
+      console.log(error);
+    }
+  );
+}    
+    
 
-			console.log("위도경도 받아오기 " + latitude, longitude)
 
-  });
-}
+// JSP로 위도와 경도 값을 전달
+/*window.location.href = "writeBoard.jsp?latitude=" + latitude + "&longitude=" + longitude;*/
 
-/*
-let ajaxDo = function(){
-	if(latitude != 0){
-	 console.log("실행");
-	 
-	  $.ajax({
-	      url: "writeBoard",
-	      data: { latitude: latitude, longitude: longitude},
-	      type: "POST",
-	      success: function() {
-	          console.log("ajax : " + latitude, longitude);
-	          //document.getElementById("latitude").innerText = latitude;
-	      },
-	           error : function(request, status, error){
-	          console.log("AJAX 에러 발생");
-	          console.log("상태코드 : " + request.status); // 404, 500
-	      }
-	      });
-	}
-}
-	 
-setTimeout(ajaxDo,10000);
-*/
 
 
   
@@ -108,18 +96,43 @@ function writeValidate(){
 	
 	if(category.value == "" ){
 		alert("카테고리를 선택해주세요.")
+		return false;
 	}
 
     if(boardTitle.value.trim().length == 0){
         alert("제목을 입력해주세요.");
         boardTitle.value = "";
         boardTitle.focus();
+        return false;
     }
 
     if(boardContent.value.trim().length == 0){
         alert("내용을 입력해주세요.");
         boardContent.value = "";
         boardContent.focus();
+        return false;
     }
+    
+    return true;
+   /* 
+    function processData(latitude, longitude) {
+  	// 데이터 처리 로직
+ 	 $.ajax({
+	      url: "writeBoard",
+	      data: { "latitude": latitude, "longitude": longitude},
+	      type: "POST",
+	      success: function() {
+	          console.log("위치 정보가 저장되었습니");
+	          console.log(latitude, longitude);
+	          
+	          return true;
+	      },
+	           error : function(request, status, error){
+	          console.log("위치 정보 저장 실패");
+	          console.log("상태코드 : " + request.status); // 404, 500
+	      }
+      });
+}*/
+    
 
 }
