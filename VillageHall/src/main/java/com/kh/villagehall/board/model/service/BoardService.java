@@ -459,11 +459,11 @@ public class BoardService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int updateBoard(Board board) throws Exception {
+	public int updateBoard(Map<String, Object> map) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.updateBoard(conn, board);
+		int result = dao.updateBoard(conn, map);
 		
 		if(result > 0) commit(conn);
 		else			rollback(conn);
