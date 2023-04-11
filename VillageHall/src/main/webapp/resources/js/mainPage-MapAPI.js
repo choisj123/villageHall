@@ -43,7 +43,7 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
     boardNo : kakaoMapList[i].boardNo,
-    photoUrl : kakaoMapList[i].boardImg
+    photoUrl : kakaoMapList[i].profileImg
   });
 }
 
@@ -55,7 +55,7 @@ for(var i = 0; i < kakaoBoardRecent.length; i++){
 		createAt : kakaoBoardRecent[i].boardCreateDate,
 		category : kakaoBoardRecent[i].categoryName,
 		boardNo : kakaoBoardRecent[i].boardNo,
-		photoUrl : kakaoBoardRecent[i].boardImg
+		photoUrl : kakaoBoardRecent[i].profileImg
 	});
 }
 
@@ -79,7 +79,8 @@ for (var i = 0; i < markersData.length; i++) {
               content: 
               '<div class="infowindow-container">' +
               '<div class="infowindow-header">' + 
-                '<div class="inwi-left"><img src= ${contextPath}' + markersData[i].photoUrl +'"width="58" height="58"></div>' +
+
+                '<div class="inwi-left"><img src='+ markersData[i].photoUrl +' class= "profile"></div>' +
                 '<div class="inwi-right">' +
                  ' <div>' + markersData[i].name + '</div>' +
                  ' <div class="time">' + markersData[i].createAt + '</div>' + 
@@ -90,7 +91,7 @@ for (var i = 0; i < markersData.length; i++) {
               '<div class="info-title">' + markersData[i].title + '</div>' +
               '<div class="info-content">' + markersData[i].content + '</div>' +
               '</div>'+
-              '<div class="infowindow-footer">좋아요 : ' + markersData[i].boardNo + '</div>'+
+              '<div class="infowindow-footer">❤️' + markersData[i].boardNo + '</div>'+
             '</div>'
             
           });

@@ -174,10 +174,12 @@ public class WriteBoardServlet extends HttpServlet {
 			if(mode.equals("update")) {
 				
 				int boardNo = Integer.parseInt(req.getParameter("boardNo"));
-				board.setBoardNo(boardNo);
-				System.out.println(board);
 				
-				result = service.updateBoard(board);
+				map.put("boardNo", boardNo);
+//				board.setBoardNo(boardNo);
+//				System.out.println(board);
+				
+				result = service.updateBoard(map);
 				
 				String path = null;
 				

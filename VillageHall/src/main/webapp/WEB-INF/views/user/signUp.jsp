@@ -188,6 +188,9 @@
   		}
 
 	</script>
+	
+	
+	<a href="${contextPath}/user/kakaoTest">카카오TEST</a>
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
