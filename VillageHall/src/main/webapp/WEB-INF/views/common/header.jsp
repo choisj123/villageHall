@@ -11,12 +11,15 @@
   <section>
     <article class="search-area">	
       <!-- form 내부 input 태그 값을 서버 또는 페이지로 전달 -->
-      <form action="./index.jsp" metho="get" name="search-form">
+      <form action="${contextPath}/board/list" method="get" name="boardSearch" onsubmit="return searchValidate()">
+        <input type="hidden" name="type" value="3">
+        <input type="hidden" name="key" value="t">
+        
         <fieldset>
           <input
             type="text"
             id="query"
-            name="search"
+            name="query"
             autocomplete="off"
             placeholder="검색어를 입력해주세요"
           />
@@ -51,3 +54,5 @@
     </c:otherwise>
   </c:choose>
 </header>
+
+<script src="${contextPath}/resources/js/header.js"></script>

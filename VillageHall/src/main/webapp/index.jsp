@@ -79,9 +79,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <section class="notice-fave">
             <!-- 공지사항 -->
             <div class="notice-box">
-              <div><p><i class="fa-regular fa-bell"></i> 공지사항
-               <i class="fa-solid fa-angles-right" id="link">
-               <a href="${contextPath}/board/list?type=1"></a></i></p>
+              <div><p><i class="fa-regular fa-bell"></i> 공지사항               
+               <a href="${contextPath}/board/list?type=1"><i class="fa-solid fa-angles-right" id="link"></i></a></p>
               </div>
               <div>
                 <table class="notice-content">
@@ -98,8 +97,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <!-- 인기글 -->
             <div class="fave-box">
               <div><p><i class="fa-regular fa-thumbs-up"></i> 인기글
-              <i class="fa-solid fa-angles-right" id="link" for="link">
-              <a href="${contextPath}/board/popularBoard?sortBy=like" name="link" type="hidden"> 클릭</a></i></p></div>
+              <a href="${contextPath}/board/popularBoard?sortBy=like" name="link" type="hidden"><i class="fa-solid fa-angles-right" id="link" for="link"></i></a>
+              </p></div>
               <div>
                 <table class="fave-content">
                   <thead>

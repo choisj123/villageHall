@@ -71,7 +71,8 @@
 }
 
 
-        .FAQTitle {
+/* FAQ 게시판 스타일*/
+.FAQTitle {
             width: 300px;
             height: 30px;
             background-color: yellowgreen;
@@ -81,11 +82,11 @@
             line-height: 30px;
             border: 1px solid green;
             cursor: pointer;
-        }
+}
 
-        p.contents {
+p.contents {
             border: 1px solid lightgray;
             width: 300px;
             height: 200px;
             display: none; /* 화면에서 보이지 않음 */
-        }
+}
