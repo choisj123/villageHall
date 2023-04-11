@@ -161,6 +161,7 @@ public class BoardDAO {
 
 				boardList.setUserNickname(rs.getString(7));
 				boardList.setBoardNo(rs.getInt(8));
+				boardList.setProfileImg(rs.getString(9));
 				
 				kakaoMapList.add(boardList);
 			}
@@ -343,7 +344,7 @@ public class BoardDAO {
 				boardList.setCategoryName(rs.getString(3));
 				boardList.setUserNickname(rs.getString(4));
 				boardList.setBoardNo(rs.getInt(5));
-				boardList.setBoardImg(rs.getString(6));
+				boardList.setProfileImg(rs.getString(6));
 				
 				kakaoBoardRecent.add(boardList);
 			}
@@ -867,7 +868,7 @@ public class BoardDAO {
 	}
 
 
-	public int updateBoard(Connection conn, Board board) throws Exception {
+	public int updateBoard(Connection conn, Map<String, Object> map) throws Exception {
 
 		int result = 0;
 		
@@ -876,11 +877,11 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 						
-			pstmt.setString(1, board.getBoardTitle());
-			pstmt.setString(2, board.getBoardContent());
-			pstmt.setInt(3, board.getCategoryNo());
-			pstmt.setString(4, board.getBoardImg());
-			pstmt.setInt(5, board.getBoardNo());
+			pstmt.setString(1, (String)map.get("boardTitle"));
+			pstmt.setString(2, (String)map.get("boardContent"));
+			pstmt.setInt(3, (int)map.get("categoryNo"));
+			pstmt.setString(4, (String)map.get("boardImg"));
+			pstmt.setInt(5, (int)map.get("boardNo"));
 			
 			result = pstmt.executeUpdate();
 			

@@ -43,7 +43,7 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
     like : kakaoMapList[i].boardNo,
-    photoUrl : 'https://media.tenor.com/7bS_ec1TjfEAAAAi/%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EB%A1%9C%EC%95%84%EC%BD%98-%EB%AA%A8%EC%BD%94%EC%BD%94.gif'
+    photoUrl : kakaoMapList[i].profileImg
   });
 }
 
@@ -54,7 +54,7 @@ for(var i = 0; i < kakaoBoardRecent.length; i++){
 		createAt : kakaoBoardRecent[i].boardCreateDate,
 		category : kakaoBoardRecent[i].categoryName,
 		like : kakaoBoardRecent[i].boardNo,
-		photoUrl : 'https://media.tenor.com/7bS_ec1TjfEAAAAi/%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EB%A1%9C%EC%95%84%EC%BD%98-%EB%AA%A8%EC%BD%94%EC%BD%94.gif'
+		photoUrl : kakaoBoardRecent[i].profileImg
 	});
 }
 
@@ -78,7 +78,7 @@ for (var i = 0; i < markersData.length; i++) {
               content: 
               '<div class="infowindow-container">' +
               '<div class="infowindow-header">' + 
-                '<div class="inwi-left"><img src='+ markersData[i].photoUrl +'"width="58" height="58"></div>' +
+                '<div class="inwi-left"><img src='+ markersData[i].photoUrl +' class= "profile"></div>' +
                 '<div class="inwi-right">' +
                  ' <div>' + markersData[i].name + '</div>' +
                  ' <div class="time">' + markersData[i].createAt + '</div>' + 
@@ -89,7 +89,7 @@ for (var i = 0; i < markersData.length; i++) {
               '<div class="info-title">' + markersData[i].title + '</div>' +
               '<div class="info-content">' + markersData[i].content + '</div>' +
               '</div>'+
-              '<div class="infowindow-footer">좋아요 : ' + markersData[i].like + '</div>'+
+              '<div class="infowindow-footer">❤️' + markersData[i].like + '</div>'+
             '</div>'
             
           });
