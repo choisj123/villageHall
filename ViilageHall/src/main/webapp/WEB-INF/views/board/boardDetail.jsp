@@ -44,12 +44,12 @@
           	<div id="boardContainer">
 
           		<%--여기부!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-				<table>
+				<table border="1" >
 					<tr>
-						<td>카테고리 : ${board.categoryName}</td>
+						<td colspan="4">카테고리 : ${board.categoryName}</td>
 					</tr>
 					<tr>
-						<th>제목 : ${board.boardTitle}</th>
+						<th colspan="4">제목 : ${board.boardTitle}</th>
 					</tr>
 					<tr>
 						<td>작성자 : ${board.userNickname}</td>
@@ -58,7 +58,7 @@
 						<td>좋아요수 : ${board.likeCount}</td>
 					</tr>
 					<tr>
-						<td>내용 : ${board.boardContent}</td>
+						<td colspan="4">내용 : ${board.boardContent}</td>
 					</tr>
 				</table>
 
@@ -68,17 +68,9 @@
 				<br>
 				<br>
 				<br>
-          		
-          		<span>제목 : ${board.boardTitle}</span> <br>
-          		<span>작성자 : ${board.userNickname}</span><br>
-          		<span>내용 : ${board.boardContent}</span>
-          		<span>작성일 : ${board.boardCreateDate}</span>
-          		<span>조회수 : ${board.readCount}</span>
-          		<span>좋아요수 : ${board.likeCount}</span>
-          		<span>카테고리 : ${board.categoryName}</span>
+
           		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
-          		
-          		<p>조회수 좋아요수 작성일 </p>
+
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
           		<c:if test="${loginUser.userNickname == board.userNickname}">
           			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>

@@ -111,20 +111,21 @@ img {
 #boardContainer {
 	margin: 45px;
 }
-.newPost{
-	border: 1px solid gray;
-	background-color: #ccc;
-}
 
 table{
-	border: 1px solid gray;
+	border: 1px solid rgba(32, 33, 36, .28);
+	border-radius: 3px;
 	width: 800px;
-	height: 476px;
+	height: 890px;
 	padding: 16px 16px;
+	text-align: center;
 }
 
-tbod{
-	border: 1px solid gray;
+table tr :nth-of-type(1) {
+	text-align: left;
+	padding-left: 16px;
 }
 
-
+table tr:nth-of-type(4) {
+	height:690px;
+}
