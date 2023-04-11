@@ -138,7 +138,7 @@ function showMarkersByCategory(newCategory) {
       markers[i].setVisible(false);
     }
   }
-  
+}  
  
 
 // option 이벤트 리스너
