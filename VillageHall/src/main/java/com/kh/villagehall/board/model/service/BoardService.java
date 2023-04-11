@@ -377,10 +377,11 @@ public class BoardService {
 	/** 게시글 목록 조회 Service
 	 * @param type
 	 * @param cp
+	 * @param categoryNo
 	 * @return map
 	 * @throws Exception
 	 */
-	public Map<String, Object> selectBoardList(int type, int cp) throws Exception {
+	public Map<String, Object> selectBoardList(int type, int cp, int categoryNo) throws Exception {
 		
 		Connection conn = getConnection();
 		
@@ -388,13 +389,13 @@ public class BoardService {
 		String boardName = dao.selectBoardName(conn, type);
 		
 		// 1. 특정 게시판 전체 게시글 수 조회 DAO 호출
-		int listCount = dao.getListCount(conn, type);
+		int listCount = dao.getListCount(conn, type, categoryNo);
 		
 		// 2. 전체 게시글 수 + 현재 페이지(cp)를 이용해 페이지네이션 객체 생성
 		Pagination pagination = new Pagination(cp, listCount);
 		
 		// 3. 게시글 목록 조
-		List<Board> boardList = dao.selectBoardList(conn, pagination, type);
+		List<Board> boardList = dao.selectBoardList(conn, pagination, type, categoryNo);
 		
 		// 4. Map 객체를 생성하여 1,2 결과 객체를 모두 저장
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -402,6 +403,7 @@ public class BoardService {
 		map.put("boardName", boardName);
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
+		map.put("categoryNo", categoryNo);
 		
 		close(conn);
 		
@@ -413,10 +415,11 @@ public class BoardService {
 	 * @param cp
 	 * @param key
 	 * @param query
+	 * @param categoryNo
 	 * @return map
 	 * @throws Exception
 	 */
-	public Map<String, Object> searchBoardList(int type, int cp, String key, String query) throws Exception {
+	public Map<String, Object> searchBoardList(int type, int cp, String key, String query, int categoryNo) throws Exception {
 		
 		Connection conn = getConnection();
 		
@@ -435,14 +438,14 @@ public class BoardService {
 		}
 		
 		// 3-1. 특정 게시판에서 조건을 만족하는 게시글 수 조회
-		int listCount = dao.searchListCount(conn, type, condition);
+		int listCount = dao.searchListCount(conn, type, condition, categoryNo);
 				
 		// 3-2. listCount  + 현재 페이지(cp)를 이용해 페이지네이션 객체 생성
 		Pagination pagination = new Pagination(cp, listCount);		
 		
 		
 		// 4. 특정 게시판에서 조건을 만족하는 게시글 목록 조회
-		List<Board> boardList = dao.searchBoardList(conn, pagination, type, condition);
+		List<Board> boardList = dao.searchBoardList(conn, pagination, type, condition, categoryNo);
 		
 		// 5. 결과 값을 하나의 Map에 모아서 반환
 		Map<String, Object> map = new HashMap<>();
@@ -450,6 +453,7 @@ public class BoardService {
 		map.put("boardName", boardName);
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
+		map.put("categoryNo", categoryNo);
 		
 		close(conn);
 	

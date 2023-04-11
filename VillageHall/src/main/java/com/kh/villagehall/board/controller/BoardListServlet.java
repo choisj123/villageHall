@@ -20,8 +20,15 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 						
 		try {
+			
+			//int categoryNo = Integer.parseInt(req.getParameter("categoryNo"));
+			//System.out.println(categoryNo);
 			//쿼리스트링 얻어오기 == 파라미터 얻어오기
 			int type = Integer.parseInt(req.getParameter("type"));
+			
+			int categoryNo = Integer.parseInt(req.getParameter("categoryNo"));
+			
+			
 			
 			// nav 메뉴(공지사항, 자유게시판, 질문게시판) 선택 시
 			// 쿼리스트링에 cp가 없음 --> cp = 1 고정
@@ -39,19 +46,19 @@ public class BoardListServlet extends HttpServlet {
 			Map<String, Object> map = null;
 								
 			if( req.getParameter("key") == null ) { // 일반 목록 조회
-							
-				map = service.selectBoardList(type, cp);
-							
+				map = service.selectBoardList(type, cp, categoryNo);
+											
 			}else { // 검색 목록 조회
 				String key = req.getParameter("key");
 				String query = req.getParameter("query");
 							
-				map = service.searchBoardList(type, cp, key, query);
+				map = service.searchBoardList(type, cp, key, query, categoryNo);
 							
 			}
 			
 			// request 범위로 map을 세팅
 			req.setAttribute("map", map);
+			req.setAttribute("categoryNo", categoryNo);
 			
 			String path = "/WEB-INF/views/board/boardList.jsp";
 

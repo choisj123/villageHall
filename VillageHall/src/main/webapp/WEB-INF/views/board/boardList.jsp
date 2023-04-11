@@ -5,6 +5,7 @@
 <c:set var="boardName" value="${map.boardName}" />
 <c:set var="pagination" value="${map.pagination}" />
 <c:set var="boardList" value="${map.boardList}" />
+<c:set var="categoryNo" value="${map.categoryNo}" />
 
 
 <!DOCTYPE html>
@@ -61,6 +62,40 @@
 			<c:if test="${!empty param.key}">
                 <h3 style="margin-left:30px;"> "${param.query}" 검색 결과  </h3>
             </c:if>
+            
+			<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
+            <c:if test="${param.type == 3 && param.query == null}">
+            	<form id="category">
+            		<input type="hidden" name="type" value="3">
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()">
+              			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
+              			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
+              			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
+              			<option value="5" <% if(categoryNo == 5) { %> selected <% } %> id="hobby">취미 🏂 </option>
+              			<option value="6" <% if(categoryNo == 6) { %> selected <% } %> id="friend">친목 👫</option>
+              			<option value="7" <% if(categoryNo == 7) { %> selected <% } %> id="recommend">추천 👍</option>
+              			<option value="8" <% if(categoryNo == 8) { %> selected <% } %> id="etc">기타 😎</option>
+            		</select>
+            	</form>
+            </c:if>
+            
+            <c:if test="${param.type == 3 && param.query != null}">
+            	<form id="category">
+            		<input type="hidden" name="type" value="3">
+            		<input type="hidden" name="key" value="${param.key}">
+            		<input type="hidden" name="query" value="${param.query}">
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()">
+              			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
+              			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
+              			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
+              			<option value="5" <% if(categoryNo == 5) { %> selected <% } %> id="hobby">취미 🏂 </option>
+              			<option value="6" <% if(categoryNo == 6) { %> selected <% } %> id="friend">친목 👫</option>
+              			<option value="7" <% if(categoryNo == 7) { %> selected <% } %> id="recommend">추천 👍</option>
+              			<option value="8" <% if(categoryNo == 8) { %> selected <% } %> id="etc">기타 😎</option>
+            		</select>
+            	</form>
+            </c:if>
+
 			
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
@@ -148,7 +183,12 @@
          <div class="pagination-area">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
-                <c:set var="url" value="list?type=${param.type}&cp="/>
+                
+                
+                <c:set var="url" value="list?type=${param.type}&categoryNo=${categoryNo}&cp="/>
+                	
+                	
+                
 
 
                 <ul class="pagination">

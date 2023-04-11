@@ -35,6 +35,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
     ></script>
+     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> 
   </head>
   <body>
     <main>
@@ -69,9 +70,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
             <div class="map-wrap">
               <div
-                id="map"
-                style="width: auto; height: 500px; margin-left: 15px"
-              >
+                id="map" style="width: auto; height: 500px; margin-left: 15px">
+             	  <div class="spin-container">
+      				<i class="fas fa-spinner fa-10x fa-spin"></i>
+  				  </div>
                 <div class="map-nav">
                   <div class="map-header"></div>
                   <ul id="placesList"></ul>
