@@ -28,7 +28,7 @@ public class BoardDeleteServlet extends HttpServlet {
 			int result = service.deleteBoard(boardNo);
 			
 
-			resp.sendRedirect("/VillageHall/board/list?type=3");
+			resp.sendRedirect("/VillageHall/board/list?type=3&categoryNo=0");
 
 			
 			
