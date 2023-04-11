@@ -149,8 +149,6 @@ document.getElementById("categorySelect").addEventListener("change", function ()
 
 
 
-
-
   },
  error : function(request, status, error){
             console.log("2번째 AJAX 에러 발생");
