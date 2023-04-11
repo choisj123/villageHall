@@ -268,7 +268,7 @@
 	</entry>
 	
 	<!-- 게시글 목록 조회 -->
-	<entry key="selectBoardList">
+	<entry key="selectBoardList1">
 		SELECT * FROM(
 			SELECT ROWNUM RNUM, A.* FROM(
 				SELECT B.BOARD_NO, B.BOARD_TITLE, 
@@ -281,7 +281,11 @@
 				JOIN CATEGORY USING(CATEGORY_NO)
 				WHERE BOARD_DELETE_FG = 'N' 
 				AND TYPE_NO = ?
-				GROUP BY B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CREATE_DATE, 
+				
+	</entry>
+	
+	<entry key="selectBoardList2">
+		GROUP BY B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CREATE_DATE, 
 					USER_NICKNAME, B.READ_COUNT, CATEGORY_NAME, BOARD_CONTENT
 				ORDER BY B.BOARD_NO DESC
 			) A

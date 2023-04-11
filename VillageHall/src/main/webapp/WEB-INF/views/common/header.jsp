@@ -11,8 +11,9 @@
   <section>
     <article class="search-area">	
       <!-- form 내부 input 태그 값을 서버 또는 페이지로 전달 -->
-      <form action="${contextPath}/board/list" method="get" name="boardSearch" onsubmit="return searchValidate()">
+      <form action="${contextPath}/board/list" method="get" name="boardSearch" onsubmit="return searchValidate()">      	
         <input type="hidden" name="type" value="3">
+        <input type="hidden" name="categoryNo" value="0">
         <input type="hidden" name="key" value="t">
         
         <fieldset>
