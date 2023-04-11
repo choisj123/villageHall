@@ -599,11 +599,11 @@ public class BoardDAO {
 				
 				typeNo = rs.getInt(1);
 				if(typeNo == 1) {
-					boardName = "공지사항 게시판";
+					boardName = "공지사항";
 				} else if (typeNo == 2) {
-					boardName = "FAQ 게시판";
+					boardName = "FAQ";
 				} else {
-					boardName = "전체 게시판";
+					boardName = "전체글";
 				}
 			}
 			
@@ -862,9 +862,82 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public int searchListCount(Connection conn, int category, String condition) {
-		// 
-		return 0;
+	/** 검색한 게시글 수 조회 DAO
+	 * @param conn
+	 * @param type
+	 * @param condition
+	 * @return listCount
+	 * @throws Exception
+	 */
+	public int searchListCount(Connection conn, int type, String condition) throws Exception {
+		
+		int listCount = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("searchListCount") + condition;
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, type);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return listCount;
+	}
+	
+	public List<Board> searchBoardList(
+			Connection conn, Pagination pagination, int type, String condition) throws Exception {
+
+		List<Board> boardList = new ArrayList<Board>();
+		
+		try {
+			
+			String sql = prop.getProperty("searchBoardList1")
+					   + condition
+					   + prop.getProperty("searchBoardList2");
+			
+			// BETWEEN 구문에 들어갈 범위 계산
+			int start =  ( pagination.getCurrentPage() - 1 ) * pagination.getLimit() + 1;
+			int end = start + pagination.getLimit() - 1;
+						
+			pstmt = conn.prepareStatement(sql);
+						
+			pstmt.setInt(1, type);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+						
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Board board = new Board();
+												
+				board.setBoardNo(rs.getInt(2));
+				board.setBoardTitle(rs.getString(3));
+				board.setBoardCreateDate(rs.getString(4));
+				board.setUserNickname(rs.getString(5));				
+				board.setReadCount(rs.getInt(6));
+				board.setLikeCount(rs.getInt(7));
+				board.setCategoryName(rs.getString(8));
+				board.setBoardContent(rs.getString(9));
+				
+				boardList.add(board);
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return boardList;
 	}
 
 
@@ -982,6 +1055,9 @@ public class BoardDAO {
 		}
 		return result;
 	}
+
+
+
 
 
 

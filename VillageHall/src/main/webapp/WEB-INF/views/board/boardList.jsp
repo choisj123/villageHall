@@ -46,11 +46,22 @@
         <!-- 바디 부분 시작 -->
         <section class="body">
           
-          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" /> 
-  
+          <jsp:include page="/WEB-INF/views/common/leftBody.jsp" />
+          
+          <%-- 검색을 진행한 경우 key, query를 쿼리스트링 형태로 저장한 변수 생성 --%>
+        <c:if test="${!empty param.key}">
+            <c:set var="sURL" value="&key=${param.key}&query=${param.query}" />
+        </c:if>
+          
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
+          
 			<h2>${boardName}</h2>
+			
+			<c:if test="${!empty param.key}">
+                <h3 style="margin-left:30px;"> "${param.query}" 검색 결과  </h3>
+            </c:if>
+			
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
 					<div id="boardList">

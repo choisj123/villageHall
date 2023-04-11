@@ -100,8 +100,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <!-- 인기글 -->
             <div class="fave-box">
-              <div><p><i class="fa-regular fa-thumbs-up"></i> 인기글
-              
+              <div><p><i class="fa-regular fa-thumbs-up"></i> 인기글   
               <a href="${contextPath}/board/popularBoard?sortBy=like"> <i class="fa-solid fa-angles-right" id="link"></i></a></p></div>
               <div>
                 <table class="fave-content">
