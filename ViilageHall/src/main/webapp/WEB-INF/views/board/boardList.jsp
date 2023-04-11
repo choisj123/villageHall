@@ -115,13 +115,19 @@
           			</div>
 				</c:when>
 				
-				
+				<%-- 여기부터 faq영역 --%>
 				<c:otherwise>
+				
+          <hr>
+          
+					<div class=faqSection>
+				
 					<c:forEach var="board" items="${boardList}">
 						<div class="FAQTitle">${board.boardTitle}</div>
-                    	<p class="contents">${board.boardContent}</p>
+                    		<p class="contents">${board.boardContent}</p>
                     			
-					</c:forEach>
+						</c:forEach>
+					</div>
 					
 					<script>
         				$(function() {
@@ -141,6 +147,7 @@
         				});
     				</script>			
 				</c:otherwise>
+				<%-- 여기까 faq영역 --%>
           	</c:choose>
           
             

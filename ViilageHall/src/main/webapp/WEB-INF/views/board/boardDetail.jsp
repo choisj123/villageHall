@@ -42,9 +42,32 @@
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
           	<div id="boardContainer">
-          		게시글조회 확인용
-          		
-          		
+
+          		<%--여기부!!!!!!!!!!!!!!!!!!!!!!!!! --%>
+				<table>
+					<tr>
+						<td>카테고리 : ${board.categoryName}</td>
+					</tr>
+					<tr>
+						<th>제목 : ${board.boardTitle}</th>
+					</tr>
+					<tr>
+						<td>작성자 : ${board.userNickname}</td>
+						<td>작성일 : ${board.boardCreateDate}</td>
+						<td>조회수 : ${board.readCount}</td>
+						<td>좋아요수 : ${board.likeCount}</td>
+					</tr>
+					<tr>
+						<td>내용 : ${board.boardContent}</td>
+					</tr>
+				</table>
+
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
           		
           		<span>제목 : ${board.boardTitle}</span> <br>
           		<span>작성자 : ${board.userNickname}</span><br>
@@ -56,7 +79,7 @@
           		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
           		
           		<p>조회수 좋아요수 작성일 </p>
-            
+            <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
           		<c:if test="${loginUser.userNickname == board.userNickname}">
           			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
           			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>

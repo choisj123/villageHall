@@ -106,3 +106,25 @@ img {
     color: white;
     font-weight: bold;
 }	
+
+/* newPost*/
+#boardContainer {
+	margin: 45px;
+}
+.newPost{
+	border: 1px solid gray;
+	background-color: #ccc;
+}
+
+table{
+	border: 1px solid gray;
+	width: 800px;
+	height: 476px;
+	padding: 16px 16px;
+}
+
+tbod{
+	border: 1px solid gray;
+}
+
+
