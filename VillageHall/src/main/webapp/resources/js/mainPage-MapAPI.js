@@ -42,7 +42,7 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     location: new kakao.maps.LatLng(kakaoMapList[i].latitude, kakaoMapList[i].longtitude),
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
-    boardNo : kakaoMapList[i].boardNo,
+    like : kakaoMapList[i].likeCount,
     photoUrl : kakaoMapList[i].profileImg
   });
 }
@@ -80,21 +80,25 @@ var openedInfowindow = null;
           var infowindow = new kakao.maps.InfoWindow({
               content: 
               '<div class="infowindow-container">' +
-              '<div class="infowindow-header">' + 
-                '<div class="inwi-left"><img src= "resources/images/userProfile/'+ markersData[i].photoUrl +'"width="58" height="58"></div>' +
-                '<div class="inwi-right">' +
-                 ' <div>' + markersData[i].name + '</div>' +
-                 ' <div class="time">' + markersData[i].createAt + '</div>' + 
-                 ' <div> #' +  markersData[i].category + '</div>' +
-                '</div>' +
-              '</div>' +
-             ' <div class="infowindow-content">' +
-              '<div class="info-title">' + markersData[i].title + '</div>' +
-              '<div class="info-content">' + markersData[i].content + '</div>' +
-              '</div>'+
-              '<div class="infowindow-footer">좋아요 : ' + markersData[i].boardNo + '</div>'+
-            '</div>'
-            
+              	'<div class="infowindow-header">' + 
+                	'<div class="inwi-left">' +
+                		'<div class="map-profile-area">' +
+                			'<img class= "profile" src="' + markersData[i].photoUrl + '">' +
+                		'</div>' +
+                  '</div>' +
+                	'<div class="inwi-right">' +
+						        '<div>' + markersData[i].name + '</div>' +
+                 		'<div class="time">' + markersData[i].createAt + '</div>' + 
+                 		'<div class="category"> #' +  markersData[i].category + '</div>' +
+                	'</div>' +
+              	'</div>' +
+            	  '<div class="infowindow-content">' +
+              		'<div class="info-title">' + markersData[i].title + '</div>' +
+              		'<div class="info-content">' + markersData[i].content + '</div>' +
+               '</div>'+
+               '<div class="infowindow-footer">❤️' + markersData[i].like + '</div>'+
+             '</div>'
+
           });
           // 인포윈도우가 null이 아닐때 인포윈도우를 닫음
           if(openedInfowindow !== null){

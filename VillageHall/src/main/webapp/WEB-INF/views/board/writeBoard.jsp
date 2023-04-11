@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+double latitude = Double.parseDouble(request.getParameter("latitude"));
+double longitude = Double.parseDouble(request.getParameter("longitude"));
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,26 +45,28 @@
 
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
+
             <c:choose>
         		<c:when test="${board == null}">
         			<h2>글 작성</h2>
+              
         		</c:when>
         		<c:otherwise>
         			<h2>게시글 수정</h2>
         		</c:otherwise>
         	</c:choose>
-      
+     
+
         	<c:choose>
         		<c:when test="${param.mode == insert}">
         		
         		</c:when>
         	</c:choose>
       
-        	<form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="POST"		
+        	<form action="${contextPath}/board/writeBoard?mode=${param.mode}" 
           class="board-write" onsubmit="return writeValidate()">          
           <input type="hidden" name="boardNo" value="${board.boardNo}">
             <hr />
-     
             <c:choose>
             	<c:when test="${board != null}">
             		<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
@@ -101,13 +107,15 @@
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
 				<c:if test="${param.mode == 'insert'}">
-	                	<button type="submit" id="writebtn">등록</button>
+	                	<button type="submit" id="writebtn" onclick="">등록</button>
 	           </c:if>
 	            <c:if test="${param.mode == 'update'}">
 	                	<button type="submit" id="writebtn">수정</button>
 	            </c:if>
                 <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>
+            <input type="hidden" name="latitude" value="<%= latitude %>" />
+    		<input type="hidden" name="longitude" value="<%= longitude %>" />
             
             <input type="hidden" name="mode" value="${param.mode}">
           </form>

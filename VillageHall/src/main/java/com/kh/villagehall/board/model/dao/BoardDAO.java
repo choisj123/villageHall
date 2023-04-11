@@ -152,15 +152,16 @@ public class BoardDAO {
 			while(rs.next()) {
 				Board boardList = new Board();
 				
-				boardList.setBoardTitle(rs.getString(1));
-				boardList.setBoardContent(rs.getString(2));
-				boardList.setBoardCreateDate(rs.getString(3));
-				boardList.setLatitude(rs.getDouble(4));
-				boardList.setLongtitude(rs.getDouble(5));
-				boardList.setCategoryName(rs.getString(6));
-				boardList.setUserNickname(rs.getString(7));
-				boardList.setBoardNo(rs.getInt(8));
+				boardList.setBoardNo(rs.getInt(1));
+				boardList.setBoardTitle(rs.getString(2));
+				boardList.setBoardContent(rs.getString(3));
+				boardList.setBoardCreateDate(rs.getString(4));
+				boardList.setLatitude(rs.getDouble(5));
+				boardList.setLongtitude(rs.getDouble(6));
+				boardList.setCategoryName(rs.getString(7));
+				boardList.setUserNickname(rs.getString(8));
 				boardList.setProfileImg(rs.getString(9));
+				boardList.setLikeCount(rs.getInt(10));
 				
 				kakaoMapList.add(boardList);
 			}
@@ -425,11 +426,11 @@ public class BoardDAO {
 			
 			pstmt.setString(1, (String)map.get("boardTitle"));
 			pstmt.setString(2, (String)map.get("boardContent"));
-//			pstmt.setDouble(3, board.getLatitude());
-//			pstmt.setDouble(4, board.getLongtitude());
+			pstmt.setDouble(3, (double)map.get("latitude"));
+			pstmt.setDouble(4, (double)map.get("longtitude"));
 			
-			pstmt.setInt(3, (int)map.get("categoryNo"));
-			pstmt.setInt(4, (int)map.get("userNo"));
+			pstmt.setInt(5, (int)map.get("categoryNo"));
+			pstmt.setInt(6, (int)map.get("userNo"));
 			
 			result = pstmt.executeUpdate();
 			
