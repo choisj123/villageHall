@@ -16,6 +16,12 @@
 
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
+* {
+  box-sizing: border-box;
+font-family: 'IBM Plex Sans KR', sans-serif;;
+
+}
+
 #map {
   position: relative;
 }
@@ -45,13 +51,14 @@
 
 
 .infowindow-contaioner {
-  border: 1px solid black;
+  border: none;
 }
 
 .category {
   margin-left: 20px;
 }
 .infowindow-header {
+  border-bottom: 1px solid #ccc;
   display: flex;
   height: 60px;
 }
@@ -59,8 +66,14 @@
   text-align: end;
 }
 
+.profile{
+	width: 58px;
+	height:58px;
+	
+}
+
 .inwi-left {
-  border: 1px solid black;
+  border: none;
   flex-basis: 20%;
   width: 50px;
   height: auto;
@@ -69,13 +82,13 @@
   flex-basis: 80%;
   width: 50px;
   height: auto;
+  padding-top : 10px
 }
 
 .infowindow-content {
-  border: 1px solid black;
+ border: none;
   height: 150px;
   width: 300px;
-  background-color: #e4dddd;
 }
 
 .infowindow-footer {
@@ -148,7 +161,7 @@
 }
 
 .infowindow-container {
-  border: 1px solid black;
+  border: 1px solid ddd;
 }
 
 /* ************여기까지 지도 API SECTION 가급적 건들지 말아주세요 ㅠ퓨ㅠ**************/

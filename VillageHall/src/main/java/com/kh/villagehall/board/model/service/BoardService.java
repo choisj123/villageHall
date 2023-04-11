@@ -421,7 +421,9 @@ public class BoardService {
 		Connection conn = getConnection();
 		
 		// 기존 목록 조회 Service, DAO, SQL을 참고하면서 진행
-				
+		// 게시판 이름 조회 DAO 호출
+		String boardName = dao.selectBoardName(conn, type);	
+		
 		// 1. SQL 조건절에 추가될 구문 가공(key, query 사용)
 		String condition = null;// 조건
 		
@@ -429,7 +431,7 @@ public class BoardService {
 		case "t"  : condition = " AND BOARD_TITLE LIKE '%"+query+"%' ";  break;
 		case "c"  : condition = " AND BOARD_CONTENT LIKE '%"+query+"%' ";  break;
 		case "tc" : condition = " AND (BOARD_TITLE LIKE '%"+query+"%' OR BOARD_CONTENT LIKE '%"+query+"%') ";  break;
-		case "w"  : condition = " AND MEMBER_NICK LIKE '%"+query+"%' "; break;
+		case "w"  : condition = " AND USER_NICKNAME LIKE '%"+query+"%' "; break;
 		}
 		
 		// 3-1. 특정 게시판에서 조건을 만족하는 게시글 수 조회
@@ -440,13 +442,14 @@ public class BoardService {
 		
 		
 		// 4. 특정 게시판에서 조건을 만족하는 게시글 목록 조회
-//		List<Board> boardList = dao.searchBoardList(conn, pagination, category, condition);
+		List<Board> boardList = dao.searchBoardList(conn, pagination, type, condition);
 		
 		// 5. 결과 값을 하나의 Map에 모아서 반환
 		Map<String, Object> map = new HashMap<>();
 		
+		map.put("boardName", boardName);
 		map.put("pagination", pagination);
-//		map.put("boardList", boardList);
+		map.put("boardList", boardList);
 		
 		close(conn);
 	
@@ -459,11 +462,11 @@ public class BoardService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int updateBoard(Board board) throws Exception {
+	public int updateBoard(Map<String, Object> map) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.updateBoard(conn, board);
+		int result = dao.updateBoard(conn, map);
 		
 		if(result > 0) commit(conn);
 		else			rollback(conn);
