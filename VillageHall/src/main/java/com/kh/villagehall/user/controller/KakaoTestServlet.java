@@ -13,7 +13,7 @@ import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 
 @WebServlet("/user/kakaoTest")
-public class kakaoTestServlet extends HttpServlet {
+public class KakaoTestServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
