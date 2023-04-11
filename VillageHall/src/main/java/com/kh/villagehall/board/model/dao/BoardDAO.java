@@ -868,6 +868,7 @@ public class BoardDAO {
 	}
 
 
+
 	public int updateBoard(Connection conn, Map<String, Object> map) throws Exception {
 
 		int result = 0;
