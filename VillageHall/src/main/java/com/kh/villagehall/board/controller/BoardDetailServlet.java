@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.board.model.vo.Board;
@@ -51,20 +52,26 @@ public class BoardDetailServlet extends HttpServlet {
 			
 			// 댓글 정보 받아오기
 			map = service.selectCommentList(boardNo, cp);
-
-			// ----------------------------------------------------------------
-			// 내글이아닌 게시글 조회시 조회수 증가	(아직전체증가 미완성)					
-			int result = service.updateRead(boardNo);
-				
-				
+			
 			req.setAttribute("board", board);
 			req.setAttribute("map", map);
-			req.getRequestDispatcher(path).forward(req, resp);
-			
-				
-			
-			
-			
+
+			// ----------------------------------------------------------------
+			// 게시글 조회시 한번만 조회수 증가
+						
+			HttpSession session = req.getSession();
+			User loginUser = (User) session.getAttribute("loginUser");
+
+			if(loginUser != null && loginUser.getUserNo() == board.getUserNo()) {
+			    req.getRequestDispatcher(path).forward(req, resp);
+			} else {
+			    Boolean alreadyRead = (Boolean) session.getAttribute("alreadyRead" + boardNo);
+			    if (alreadyRead == null || !alreadyRead) {
+			        int result = service.updateRead(boardNo);
+			        session.setAttribute("alreadyRead" + boardNo, true);
+			    }
+			    req.getRequestDispatcher(path).forward(req, resp);
+			}
 			
 			
 		} catch(Exception e) {

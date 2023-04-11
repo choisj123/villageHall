@@ -226,7 +226,21 @@
             <!-- /board/list?type=1&cp=3 -->
 
             <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
+			<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
+                <input type="hidden" name="type" value="${param.type}">
+                <input type="hidden" name="categoryNo" value="0">
 
+                <select name="key" id="search-key">
+                    <option value="t">제목</option>
+                  	<option value="c">내용</option>
+                    <option value="tc">제목+내용</option>
+                    <option value="w">작성자</option>
+                </select>
+
+                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
+
+                <button>검색</button>
+            </form>
  
           </section>
         </section>
@@ -246,6 +260,6 @@
   
       <!-- main.js 연결 -->
       <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
-
+		<script src="${contextPath}/resources/js/board.js"></script>
 </body>
 </html>
