@@ -109,7 +109,7 @@ var openedInfowindow = null;
           openedInfowindow = infowindow;
           map.addListener('click',  function() {
             infowindow.close();
-            openInfowindow = null;
+            openedInfowindow = null;
           });
       }
   })(marker, i));
