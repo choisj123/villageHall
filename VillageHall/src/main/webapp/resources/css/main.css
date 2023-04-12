@@ -4,9 +4,18 @@ font-family: 'IBM Plex Sans KR', sans-serif;;
 
 }
 
+html{
+	position: relative;
+	min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
+  
+  height: calc(100vh -150px);
+  
+  margin-bottom: 150px;
 }
 
 main {
@@ -250,6 +259,7 @@ nav ul li table td {
 /* ----------------- 푸터----------------- */
 
 footer {
+/*  position: fixed;  */
   background-color: #d0d3c6;
   height: 150px;
 
@@ -257,6 +267,14 @@ footer {
   align-content: center;
   text-align: center;
   padding-top: 30px;
+  
+  bottom: 0;
+  left:0;
+  width: 100%;
+  
+  position: absolute;
+  
+  
 }
 
 footer p {

@@ -59,7 +59,6 @@ System.out.println(longitude);
         		</c:otherwise>
         	</c:choose>
      
-
         	<c:choose>
         		<c:when test="${param.mode == insert}">
         		
@@ -131,7 +130,6 @@ System.out.println(longitude);
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
     
-    <script src="${contextPath}/resources/js/mainPage.js"></script>
     <script src="${contextPath}/resources/js/writeBoard.js"></script>
   </body>
 </html>

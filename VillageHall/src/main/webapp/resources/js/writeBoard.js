@@ -60,43 +60,13 @@ $("#summernote").summernote({
  	});
 } 
  
- 
+ 	let latitude = 0;
+	let longitude = 0;
 
-function getlatitude() {
-	if (navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(
-	    function(position) {
-	      let latitude = position.coords.latitude;
-	      console.log("위도 받아오기 " + latitude)
-	     
-			return latitude;
-	    },
-	    function(error) {
-	      console.log(error);
-	    }
-	  );
-	}   
-}
-
-function getlongitude() {
-	if (navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(
-	    function(position) {
-	      let longitude = position.coords.longitude;
-	      console.log("경도 받아오기 " + longitude)
-	     return longitude;
-	    },
-	    function(error) {
-	      console.log(error);
-	    }
-	  );
-	}   
-	
-}
 
 (function() {
-	let latitude = 0;
-	let longitude = 0;
+	
+
 	
 	if (navigator.geolocation) {
 	  navigator.geolocation.getCurrentPosition(
@@ -104,14 +74,15 @@ function getlongitude() {
 	      	latitude = position.coords.latitude;
        		longitude = position.coords.longitude;
 	      	console.log("위도 경도 받아오기 ", latitude, longitude)
+	      	console.log("위도 경도 받아오기 ", typeof latitude, typeof longitude)
 	     
 		     
-		      $("#latitude").val(latitude)
-			 console.log( $("#latitude").val() );
-			 console.log( typeof $("#latitude").val() );
+		     $("#latitude").val(latitude)
+			 console.log( $("#latitude").val(latitude));
+			 console.log(typeof $("#latitude").val(latitude));
 			 
 			 $("#longitude").val(longitude)
-			 console.log( $("#longitude").val() );
+			 console.log( $("#longitude").val(longitude) );
 		
 	    },
 	    function(error) {
@@ -123,37 +94,6 @@ function getlongitude() {
 	
 	
 })();
-
-/*
-$(document).ready(function(){
-	 $("#latitude").val(getlatitude())
-	 console.log( $("#latitude").val() );
- })
- 
- $(document).ready(function(){
-	 $("#longitude").val(getlongitude())
-	 console.log( $("#longitude").val() );
- })
- */
-
-/*
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-      console.log("위도경도 받아오기 " + latitude, longitude)
-     
-    },
-    function(error) {
-      console.log(error);
-    }
-  );
-} */   
-    
-
-// JSP로 위도와 경도 값을 전달
-/*window.location.href = "writeBoard.jsp?latitude=" + latitude + "&longitude=" + longitude;*/
 
 
 
@@ -183,26 +123,12 @@ function writeValidate(){
         return false;
     }
     
+    if(latitude == 0 || longitude == 0){
+		alert("위치 정보를 받아오는 중입니다. 잠시 후 다시 시도해주세요.");
+		return false;
+		
+	}
+    
     return true;
-  /* 
-    function processData(latitude, longitude) {
-  	// 데이터 처리 로직
- 	 $.ajax({
-	      url: "writeBoard",
-	      data: { "latitude": latitude, "longitude": longitude},
-	      type: "POST",
-	      success: function() {
-	          console.log("위치 정보가 저장되었습니");
-	          console.log(latitude, longitude);
-	          
-	          return true;
-	      },
-	           error : function(request, status, error){
-	          console.log("위치 정보 저장 실패");
-	          console.log("상태코드 : " + request.status); // 404, 500
-	      }
-      });
-}
-  */  
-
+  
 }

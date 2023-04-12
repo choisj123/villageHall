@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage.css" />
     
     <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
+  
+  
+  
   </head>
   <body>
     <main>

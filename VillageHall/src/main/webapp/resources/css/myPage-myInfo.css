@@ -1,3 +1,9 @@
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
+
 .right-body {
   flex-basis: 71%;
 
@@ -32,6 +38,7 @@ div > .tab {
   color: white;
   border-radius: 15px;
 }
+
 
 
 .tabContent {
