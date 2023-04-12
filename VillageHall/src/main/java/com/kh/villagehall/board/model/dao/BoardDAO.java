@@ -122,8 +122,7 @@ public class BoardDAO {
 				board.setReadCount(rs.getInt(6));
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
-				board.setBoardImg(rs.getString(9));
-				board.setCategoryNo(rs.getInt(10));
+				board.setCategoryNo(rs.getInt(9));
 			}
 			
 		} finally {
@@ -434,6 +433,7 @@ public class BoardDAO {
 			
 			result = pstmt.executeUpdate();
 			
+
 		} finally {
 			close(pstmt);
 		}
@@ -464,6 +464,8 @@ public class BoardDAO {
 			pstmt.setInt(3, img.getBoardNo());
 			
 			result = pstmt.executeUpdate();
+			
+		   
 			
 		} finally {
 			close(pstmt);
