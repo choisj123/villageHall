@@ -142,6 +142,7 @@ table{
 table tr :nth-of-type(1) {
 	text-align: left;
 	padding-left: 16px;
+	line-height: normal;
 }
 
 table tr:nth-of-type(1) {
@@ -163,6 +164,50 @@ table tr:nth-of-type(3) td {
 table tr:nth-of-type(4) {
 	height:690px;
 }
+/* 새로운 보드 디테일 (임시) */
+.boardBox{
+	border: 1px solid  rgba(32, 33, 36, .28);
+	border-radius: 5px;
+	width: 800px;
+	height: 690px;
+	padding: 6px 6px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+.boardBox div {
+	/* border: 1px solid  rgba(32, 33, 36, .28); */
+	/* border-radius: 5px; */
+	margin: 5px 5px 5px 5px;
+}
+.boardBoxHeader{
+	flex-basis: 10%;
+}
+.tboardBoxTitle{
+	background-color: #efefef;
+	flex-basis: 12% ;
+}
+.boardBoxEtc{
+	flex-basis: 8%;
+	display: flex;
+}
+.boardBoxEtc :nth-of-type(1){
+	flex-basis: 25%;
+}
+.boardBoxEtc :nth-of-type(2){
+	flex-basis: 50%;
+}
+.boardBoxEtc :nth-of-type(3){
+	flex-basis: 15%;
+}
+.boardBoxEtc :nth-of-type(4){
+	flex-basis: 10%;
+}
+.boardBoxContent{
+	border-top: 3px solid rgb(67, 101, 86);
+	flex-basis: 70%;
+}
 
+/* **************** */
 
 

@@ -44,30 +44,18 @@
           	<div id="boardContainer">
 
           		<%--여기부!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-				<table>
-					<tr>
-						<td colspan="4">카테고리 : ${board.categoryName}</td>
-					</tr>
-					<tr>
-						<th colspan="4">제목 : ${board.boardTitle}</th>
-					</tr>
-					<tr>
-						<td>작성자 : ${board.userNickname}</td>
-						<td>작성일 : ${board.boardCreateDate}</td>
-						<td>조회수 : ${board.readCount}</td>
-						<td>좋아요수 : ${board.likeCount}</td>
-					</tr>
-					<tr>
-						<td colspan="4">내용 : ${board.boardContent}</td>
-					</tr>
-				</table>
+				<div class="boardBox">
+					<div class="boardBoxHeader">카테고리 : ${board.categoryName}</div>
+					<div class="boardBoxTitle">제목 : ${board.boardTitle}</div>
+					<div class="boardBoxEtc">
+						<div >작성자 : ${board.userNickname}</div>
+						<div>작성일 : ${board.boardCreateDate}</div>
+						<div>조회수 : ${board.readCount}</div>
+						<div>좋아요수 : ${board.likeCount}</div>
+					</div>
+					<div class="boardBoxContent">내용 : ${board.boardContent}</div>
+				</div>
 
-
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
 
           		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
 
