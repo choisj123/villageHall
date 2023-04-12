@@ -109,12 +109,7 @@
 	          						</div>
 	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
 	          							<div>
-	          								<form action="${contextPath}/comment/updateCommentButton" method="post">
-	          								    <input type="hidden" name ="rno" id="rno">
-	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
-	          									<input type="hidden" name="userNo" value="${loginUser.userNo}">
-	          									<input type="hidden" name="boardNo" value="${board.boardNo}">
-	          								<button class = "updateCommentButton" data-rno="${replyVo.rno}" id="updateCommentButton">수정</button>&nbsp;
+	          								<button id="updateCommentButton">수정</button>&nbsp;
 	          										          								
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
@@ -211,30 +206,7 @@
   
       <!-- footer include -->
       <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-  	  <!-- 댓글 수정  -->
-  	  <script>
-  	  $(function(){
-  		  //댓글 수정과 취소 버튼 보이지 않게 처리
-  	  	$("#updateCommentButton, #cancelReplyUpdateBtn").hide();
-  	  	
-  		  //각각의 댓글에 있는 수정 버튼 이벤트
-  	  	$(".updateCommentButton").click(function(){
-  	  		$("#replyWriteBtn").hide();
-  	  		$("#updateCommentButton, #cancelReplyUpdateBtn").show();
-  	  		//클릭한 데이터의 rno 찾아오기 tag 안에 속성으로 data-rno="10"형식으로 들어가 있따.
-  	  		var rno = $(this).data("rno");
-  	  		$
-  	  	});
-  		  
-  		  //댓글 등록 버튼 이벤트
-  		  $("#cancelReplyUpdateBtn").click(function(){
-  			  $("#replyWriteBtn").show();
-  			  $("#replyUpdateBtn, #cancelReplyUpdateBtn").hide();
-  			  
-  		  })
-  	  });
-  	  </script>
-  	  
+  
       <!-- jQuery 라이브러리 추가 -->
       <script
         src="https://code.jquery.com/jquery-3.6.0.js"
