@@ -14,6 +14,7 @@
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   border-bottom-left-radius: 35px;
+  /*background-image : url(../images/sunny.jpg);*/
 }
 .date{
  	margin-top: auto;
@@ -30,7 +31,6 @@
   width: 700px;
   height: 110px;
   display: flex;
-  background-image : url(`../resources/images/sunny.png`);
 }
 
 .secondBox-1{
