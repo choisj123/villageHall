@@ -141,6 +141,8 @@ public class WriteBoardServlet extends HttpServlet {
 			
 			Board board = new Board();
 			
+			
+			
 			board.setBoardTitle(boardTitle);
 			board.setBoardContent(boardContent);
 			board.setCategoryNo(categoryNo);
@@ -158,7 +160,7 @@ public class WriteBoardServlet extends HttpServlet {
 				
 				if(result > 0) {
 					
-					int boardNo = service.getBoardNo(board);
+					int boardNo = (int)map.get("boardNo");
 					
 					path = req.getContextPath() + "/board/boardDetail?boardNo=" + boardNo;
 					
