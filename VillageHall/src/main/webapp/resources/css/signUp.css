@@ -78,9 +78,9 @@ form[name="signUp-form"] > label{
 /* button 태그 */
 .signUp-input-area > button{
     width: 30%;
-    height: 70%;
+    height: 40px; 
     background-color: #55710F;
-    border : 1px solid gray;
+    border : 1px solid #55710F;
     border-radius: 5px;
     color: white;
     cursor: pointer;

@@ -87,6 +87,9 @@
 		                        <span>|</span>
 		                        <a href="${contextPath}/user/pwFindEmail">비밀번호 찾기</a>
 		                    </article>
+		                    
+		                    <button>카카오로 시작하기 TEST</button>
+		                    
 		                </form>
             		
             		</c:when>
@@ -100,6 +103,7 @@
   
 
     </main>
+    
 
 	
 
