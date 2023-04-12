@@ -1,3 +1,9 @@
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
+
 .login-content{
     display: flex;
     justify-content: center;

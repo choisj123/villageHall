@@ -27,7 +27,40 @@
     <script
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
-    ></script>   
+    ></script>
+    
+    <c:choose>
+    	<c:when test="${param.type == 1}">
+    		<style>
+    			.tab > a:first-of-type {
+					background-color: #55710f;
+  					color: white;
+  					text-decoration: none;
+ 					border-radius: 15px;
+				}
+    		</style>
+    	</c:when>
+    	<c:when test="${param.type == 2}">
+    		<style>
+    			.tab > a:nth-of-type(2) {
+					background-color: #55710f;
+  					color: white;
+  					text-decoration: none;
+ 					border-radius: 15px;
+				}
+    		</style>
+    	</c:when>
+    	<c:otherwise>
+    		<style>
+    			.tab > a:nth-of-type(3) {
+					background-color: #55710f;
+  					color: white;
+  					text-decoration: none;
+ 					border-radius: 15px;
+				}
+    		</style>
+    	</c:otherwise>
+    </c:choose>
 </head>
 <body>
     <main>

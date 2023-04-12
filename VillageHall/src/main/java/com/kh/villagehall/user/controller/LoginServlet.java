@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 			user.setUserEmail(inputEmail);
 			user.setUserPw(inputPw);
 			
-			
 			 
 			try {  
 				 

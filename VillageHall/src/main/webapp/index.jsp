@@ -51,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <!-- 메인 콘텐츠 -->
         <section class="right-body">
           <!-- 지도 부분 -->
-          <section>
+          <section class="main-container">
             <div>
               <label for="category" class="category">카테고리:</label>
               <select

@@ -21,6 +21,15 @@
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
     ></script>
+    
+    <style>
+    	.tab > a:nth-of-type(2) {
+			background-color: #55710f;
+  			color: white;
+  			text-decoration: none;
+ 			border-radius: 15px;
+		}
+    </style>
   </head>
   <body>
     <main>

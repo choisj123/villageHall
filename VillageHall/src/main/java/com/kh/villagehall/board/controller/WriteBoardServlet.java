@@ -76,17 +76,18 @@ public class WriteBoardServlet extends HttpServlet {
 	
 		try {
 			
-			
-		
 			int categoryNo = Integer.parseInt(req.getParameter("category"));
 			String boardTitle = req.getParameter("boardTitle");
 			String boardContent = req.getParameter("boardContent");
-//			double latitude = Double.parseDouble(req.getParameter("latitude"));
-//			double longitude = Double.parseDouble(req.getParameter("longitude"));
-//			System.out.println("위도/경도 : " + latitude +"/"+ longitude );
+			String latitude = "";
+			String longitude = "";
+			latitude = req.getParameter("latitude"); 
+			longitude = req.getParameter("longitude");
+			
+			System.out.println("위도/경도 : " + latitude +"/"+ longitude );
 			System.out.println(req.getParameter("latitude"));
 			System.out.println(req.getParameter("longitude"));
-			
+		
 			  
 			// ** 로그인 회원 번호 얻어오기 **
 			// 로그인 정보 얻어오기
@@ -135,8 +136,8 @@ public class WriteBoardServlet extends HttpServlet {
 			map.put("userNo", userNo);//회원번호 == 작성자
 			map.put("iList", iList);
 			map.put("root", root);
-			//map.put("latitude", latitude);
-			//map.put("longitude", longitude);
+			map.put("latitude", latitude);
+			map.put("longitude", longitude);
 			
 			Board board = new Board();
 			
@@ -163,6 +164,7 @@ public class WriteBoardServlet extends HttpServlet {
 					
 				}else {
 					
+					
 					session.setAttribute("message", "게시글 등록을 실패했습니다. 잠시 후 다시 시도해주세요." );
 					
 					path =  req.getContextPath() + "/board/writeBoard.jsp";
@@ -171,7 +173,7 @@ public class WriteBoardServlet extends HttpServlet {
 				
 				req.setAttribute("board", board);
 //							req.getRequestDispatcher(path).forward(req, resp);
-				//	resp.sendRedirect(path);
+					resp.sendRedirect(path);
 //							resp.getWriter().print(result);
 			}
 		
