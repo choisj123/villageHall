@@ -160,6 +160,24 @@ align-items: center;
 .option {
   margin-left: 20px;
 }
+
+
+/* 핀게시글 리스트 */
+.listName{
+	text-align: center;
+}
+
+.listTitle{
+	text-align: center;
+	font-weight: bold;
+}
+
+.listCreateDate{
+	text-align: center;
+	
+}
+
+
 /* 커스텀 오버레이 스타일링 */
 .overlay {
   position: relative;

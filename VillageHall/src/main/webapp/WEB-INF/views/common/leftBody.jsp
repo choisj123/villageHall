@@ -26,14 +26,24 @@ pageEncoding="UTF-8"%>
         </c:if>
         <div id="profile-info-area">
 	        <span id="left-user-name"><strong>${loginUser.userNickname}님</strong></span>
-	        <span>
-	          <a href="${contextPath}/mypage/myPage" id="updateMyInfo">내 정보 수정</a> |
-	        	<a href="${contextPath}/mypage/myList?type=1" id="selectMyBoard"> 내 글 목록</a> 
-	        </span>
+	        
+	        <c:choose>
+	        	<c:when test="${sessionScope.loginUser.kakaoUserKey == null}">
+	        		<span>
+	          			<a href="${contextPath}/mypage/myPage" id="updateMyInfo">내 정보 수정</a> |
+	        			<a href="${contextPath}/mypage/myList?type=1" id="selectMyBoard"> 내 글 목록</a> 
+	        		</span>
+	        	</c:when>
+	        	<c:otherwise>
+	        		<span>
+	          			<a href="${contextPath}/mypage/changeInfo" id="updateMyInfo">내 정보 수정</a> |
+	        			<a href="${contextPath}/mypage/myList?type=1" id="selectMyBoard"> 내 글 목록</a> 
+	       			 </span>		
+	        	</c:otherwise>
+	        </c:choose>
         </div>
           <button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'" >글쓰기</button>
       </c:otherwise>
-		
     </c:choose>
   </article>
   

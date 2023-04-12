@@ -69,7 +69,6 @@
 				<br>
 				<br>
 
-          		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
 
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
           		<c:if test="${loginUser.userNickname == board.userNickname}">
