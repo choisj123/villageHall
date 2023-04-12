@@ -165,6 +165,10 @@
     
  
 <!--***********************카카오로 시작하기 script *************************  -->
+
+
+
+
 	<script>
 	
 	Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
@@ -249,8 +253,8 @@
 	
 	</script>
 	
-	
-	<a href="${contextPath}/user/kakaoTest">카카오TEST</a>
+
+
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

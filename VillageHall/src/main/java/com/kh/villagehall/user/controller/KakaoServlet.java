@@ -14,7 +14,7 @@ import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
 
 @WebServlet("/user/kakaoTest")
-public class KakaoTestServlet extends HttpServlet {
+public class KakaoServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,7 +41,6 @@ public class KakaoTestServlet extends HttpServlet {
 		user.setUserEmail(userEmail);
 		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
 		user.setUserNickname(userNickname);
-		user.setUserTel("01012345678");
 		user.setKakaoUserKey(kakaoUserKey);
 		
 		
@@ -66,6 +65,7 @@ public class KakaoTestServlet extends HttpServlet {
 	 		HttpSession session = req.getSession();
 	 		
 	 		if(loginUser == null) {
+	 			
 	 			
 	 			// 회원가입 서비스 호출 후 결과 반환 받기
 				int result = service.kakaoLogin(user);
