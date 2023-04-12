@@ -463,48 +463,36 @@ public class UserDAO {
 		return result;
 	}
 
-	public int kakaoLogin(Connection conn, User user) throws Exception {
-		
-			System.out.println("DAO");
-		
-		   int result = 0; // 결과 저장용 변수
-		      
-		      try {
-		         String sql = prop.getProperty("kakaoLogin");
-		         
-		         pstmt = conn.prepareStatement(sql);
-		         
-		         pstmt.setString(1, user.getUserEmail());
-		         pstmt.setString(2, user.getUserPw());
-		         pstmt.setString(3, user.getUserNickname());      
-		         pstmt.setString(4, user.getUserTel());  
-		         pstmt.setString(5, user.getKakaoUserKey());  
-		        
-		         
-		         System.out.println(user);
-
-		         
-		      
-		         result = pstmt.executeUpdate();
-		         
-		      }finally {
-		         close(pstmt);
-		      }
-		      
-		      
-		      // 결과 반환
-		      return result;
-		     
-		      
-		    
-	}
-
-	/** 카카오로그인 DAO
+	/**카카오 회원가입 DAO
 	 * @param conn
 	 * @param user
 	 * @return
-	 * @throws Exception
 	 */
+	public int kakaoSignUp(Connection conn, User user) throws Exception {
+		int result = 0; // 결과 저장용 변수
+	      
+	      try {
+	         String sql = prop.getProperty("kakaoSignUp");
+	         
+	         pstmt = conn.prepareStatement(sql);
+	         
+	         pstmt.setString(1, user.getUserEmail());
+	         pstmt.setString(2, user.getUserPw());
+	         pstmt.setString(3, user.getUserNickname());         
+	         pstmt.setString(4, user.getKakaoUserKey());
+	         
+	      
+	         result = pstmt.executeUpdate();
+	         
+	      }finally {
+	         close(pstmt);
+	      }
+	      
+	      
+	      // 결과 반환
+	      return result;
+	}
+
 
 
 	

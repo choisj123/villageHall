@@ -25,7 +25,14 @@
     <script
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
-    ></script>   
+    ></script>
+    
+    <style>
+    	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  		* {
+    		font-family: 'IBM Plex Sans KR', sans-serif;
+  		}
+    </style>   
     
     <script src="${contextPath}/resources/js/popularBoard.js"></script>
 </head>

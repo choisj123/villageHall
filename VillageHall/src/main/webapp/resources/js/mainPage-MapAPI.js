@@ -130,19 +130,19 @@ function showMarkersByCategory(newCategory) {
   for (let i = 0; i < filteredNavData.length; i++) {
     const li = document.createElement("li");
 	const content =
-      "<a href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
+	  "<div class='listName'>" +
+      filteredNavData[i].name +
+      "</div>" +
+      "<div class='listTitle'><a class='listTitle' href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
       filteredNavData[i].boardNo +
       "&cp=1&type=3' onclick ='clickBoardFunction(" +
       filteredNavData[i].boardNo +
-      "); '>" +
-      filteredNavData[i].name +
-      "</a>" +
-      "<p>" +
+      "); '>" + 
       filteredNavData[i].title +
-      "</p>" +
-      "<p>" +
+      "</a></div>" +
+      "<div class='listCreateDate'>" +
       filteredNavData[i].createAt +
-      "</p>" +
+      "</div>" +
       "<hr>";
     li.innerHTML = content;
     placesList.appendChild(li);

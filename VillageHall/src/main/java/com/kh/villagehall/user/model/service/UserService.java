@@ -273,43 +273,42 @@ public class UserService {
 	}
 
 
-	/** 카카오로그인 Service
+	/**카카오로가입하기 Service
 	 * @param user
 	 * @return
-	 * @throws Exception
 	 */
-	public int kakaoLogin(User user) throws Exception {
-		
+	public int kakaoSignUp(User user) throws Exception {
 
-		
-		 System.out.println("Service");
-		 System.out.println(user);
-	
+		// 1) 커넥션 얻어오기
 		Connection conn = getConnection(); // DBCP 에서 얻어옴
-	
+				
 		// 2) DAO 메소드 호출 후 결과 반환 받기
-		int result = dao.kakaoLogin(conn, user);
+		int result = dao.kakaoSignUp(conn, user);
 		
-		
-		
-		
-		
-		
-
-	
+		System.out.println("Service" + user);
+				 
 		// 3) 트랜잭션 처리
 		// result가 0인 경우 -> DAO return 구문 잘못 작성
-	
+				
 		if(result > 0)	commit(conn);  
 		else			rollback(conn);
-	
+				
 		// 4) conn 반환(DBCP로 돌려주기)
 		close(conn);
-	
+				
 		// 5) 결과 반환
 		return result;
+	}
+
+
+	public User kakaologin(User user) throws Exception {
+		
+		// TODO Auto-generated method stub
+		return null;
 		
 	}
+
+
 
 
 

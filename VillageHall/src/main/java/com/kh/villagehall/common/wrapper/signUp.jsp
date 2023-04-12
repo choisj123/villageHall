@@ -165,6 +165,10 @@
     
  
 <!--***********************카카오로 시작하기 script *************************  -->
+
+
+
+
 	<script>
 	
 	Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
@@ -215,7 +219,7 @@
 	function process(userEmail, userNickname, kakaoUserKey){
 			
 		$.ajax({
-	           url:"kakaoTest",
+	           url:"kakaoSignUp",
 	           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
 	           type:"post",
 	           //dataType:"JSON",
@@ -227,9 +231,19 @@
 	              console.log("aJax",userEmail);
 	              console.log("aJax",userNickname);   
 	              console.log("aJax",kakaoUserKey);   
-	                   
-	              alert("성공");
-	              location.href='login';
+	              
+	              if(kakaoUserKey > 0){
+	            	  
+	            	  alert("이미 가입된 회원입니다. 로그인을 해주시기 바랍니다.");
+	            	  location.href='login';
+	            	  
+	              } else{
+	            	  
+	            	  alert("가입이 완료되었습니다. 로그인을 해주시기 바랍니다.");
+		              location.href='login';
+	            	  
+	              }
+     
 	              
 	            },                            
 	                   
@@ -249,8 +263,8 @@
 	
 	</script>
 	
-	
-	<a href="${contextPath}/user/kakaoTest">카카오TEST</a>
+
+
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
