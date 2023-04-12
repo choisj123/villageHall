@@ -232,13 +232,10 @@
 	
 		<!-- 게시글 번호 얻어오기 -->
 	<entry key="getBoardNo">
-		SELECT BOARD_NO 
-		FROM BOARD 
-		WHERE BOARD_TITLE = ? 
-		AND BOARD_CONTENT =? 
-		AND CATEGORY_NO = ? 
-		AND USER_NO = ? 
-		AND BOARD_DELETE_FG = 'N' 
+		SELECT BOARD_NO
+		FROM (SELECT * FROM board 
+		ORDER BY BOARD_CREATE_DATE DESC) 
+		WHERE rownum=1
 	</entry>
 	
 	<!-- 메인페이지 인기게시글 목록 조회 -->

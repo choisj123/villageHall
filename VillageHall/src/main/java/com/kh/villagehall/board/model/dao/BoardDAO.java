@@ -488,14 +488,9 @@ public class BoardDAO {
 			
 			String sql = prop.getProperty("getBoardNo");
 			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, board.getBoardTitle());
-			pstmt.setString(2, board.getBoardContent());
-			pstmt.setInt(3, board.getCategoryNo());
-			pstmt.setInt(4, board.getUserNo());
-			
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+	
+			rs = stmt.executeQuery(sql);
 			
 			if(rs.next()) {
 				boardNo = rs.getInt(1);

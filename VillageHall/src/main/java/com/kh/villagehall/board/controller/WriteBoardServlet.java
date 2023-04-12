@@ -84,10 +84,6 @@ public class WriteBoardServlet extends HttpServlet {
 			latitude = req.getParameter("latitude"); 
 			longitude = req.getParameter("longitude");
 			
-			System.out.println("위도/경도 : " + latitude +"/"+ longitude );
-			System.out.println(req.getParameter("latitude"));
-			System.out.println(req.getParameter("longitude"));
-		
 			  
 			// ** 로그인 회원 번호 얻어오기 **
 			// 로그인 정보 얻어오기

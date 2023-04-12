@@ -267,97 +267,87 @@ public class BoardService {
 	public int insertBoard(Map<String, Object> map, Board board) throws Exception{
 		Connection conn = getConnection();
 		
-//		System.out.println("insertBoard : " + boardNo);
 		int result = dao.insertBoard(conn, map);
 		
-		int boardNo = dao.getBoardNo(conn, board);
+		int boardNo = 0;
 		
-		if(boardNo > 0) {
-			map.put("boardNo", boardNo);
-			//스크립팅 방지, 개행문자 처리 안함!!!!!!(content가 html코드이기 때문)
-		}
-		
-		System.out.println("insertBoard : " + boardNo);
-		
-		if(result > 0) {
-			//4. 이미지 파일 목록 iList 꺼내서 향상된 for문으로 하나씩 dao 호출
+		try {
+			boardNo = dao.getBoardNo(conn, board);
+			
+			if(boardNo > 0) {
+				map.put("boardNo", boardNo);
+				//스크립팅 방지, 개행문자 처리 안함!!!!!!(content가 html코드이기 때문)
+			}
+			
+			
+			if(result > 0) {
+				//4. 이미지 파일 목록 iList 꺼내서 향상된 for문으로 하나씩 dao 호출
+				List<BoardImg> iList = (List<BoardImg>)map.get("iList");
+				
+				
+				if(result > 0 && !iList.isEmpty()) {
+					result = 0;//result 재활용2
+					
+					for(BoardImg img : iList) {
+						//Image 객체에 글번호 추가
+						img.setBoardNo(boardNo);
+						
+						result = dao.insertImage(conn, img);
+						
+						if(result == 0) {
+							//삽입 실패 시 강제로 예외를 발생 시켜 
+							//catch문에서 파일 삭제를 진행해야함
+							throw new FileInsertFailedException("이미지 정보 삽입 실패");
+							//밑에 있는 catch문에서 잡음
+						}
+					}//이미지 삽입 for문 끝
+				}//이미지 삽입 if문 끝
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
 			List<BoardImg> iList = (List<BoardImg>)map.get("iList");
 			
-			
-			if(result > 0 && !iList.isEmpty()) {
-				result = 0;//result 재활용2
-				
+			if(!iList.isEmpty()) {
 				for(BoardImg img : iList) {
-					//Image 객체에 글번호 추가
-					img.setBoardNo(boardNo);
-					System.out.println("service img" + boardNo);
-					
-					result = dao.insertImage(conn, img);
-					
-					if(result == 0) {
-						//삽입 실패 시 강제로 예외를 발생 시켜 
-						//catch문에서 파일 삭제를 진행해야함
-						throw new FileInsertFailedException("이미지 정보 삽입 실패");
-						//밑에 있는 catch문에서 잡음
+					if(!img.getFilePath().contains("http")) {//인터넷 주소로 연결한 img의 경우 삭제 진행X
+						//현재 썸머 노트를 통해 저장된 이미지의 주소는 ../resource/uploadImages 
+						//(썸머노트에서 src에 하려면 이 주소만 되어서 상대주소로 작성..)
+						//→ 이미지 삭제를 위해 필요한 주소는 C:/workspace/semi/Chooru_Pj\semiProject\WebContent\resources/uploadImages
+						//→ 바꿔줘야 함
+						String filePath = (String)map.get("root");
+						filePath += img.getFilePath().substring(3);
+						
+						String fileName = img.getFileName();
+						
+						File deleteFile = new File(filePath + fileName);
+						//해당 파일의 전체 주소 : filePath + fileName
+						//File 객체는 전체 주소에 있는 파일 객체를 선택할 때 사용함
+						// → filePath+fileName인 파일이 없다면 deleteFile은 null 값.
+						
+						if(deleteFile.exists()) deleteFile.delete();
 					}
-				}//이미지 삽입 for문 끝
-			}//이미지 삽입 if문 끝
-			
-		}
-		List<BoardImg> iList = (List<BoardImg>)map.get("iList");
-		
-		if(!iList.isEmpty()) {
-			for(BoardImg img : iList) {
-				if(!img.getFilePath().contains("http")) {//인터넷 주소로 연결한 img의 경우 삭제 진행X
-					//현재 썸머 노트를 통해 저장된 이미지의 주소는 ../resource/uploadImages 
-					//(썸머노트에서 src에 하려면 이 주소만 되어서 상대주소로 작성..)
-					//→ 이미지 삭제를 위해 필요한 주소는 C:/workspace/semi/Chooru_Pj\semiProject\WebContent\resources/uploadImages
-					//→ 바꿔줘야 함
-					String filePath = (String)map.get("root");
-					filePath += img.getFilePath().substring(3);
-					
-					String fileName = img.getFileName();
-					
-					File deleteFile = new File(filePath + fileName);
-					//해당 파일의 전체 주소 : filePath + fileName
-					//File 객체는 전체 주소에 있는 파일 객체를 선택할 때 사용함
-					// → filePath+fileName인 파일이 없다면 deleteFile은 null 값.
-					
-					if(deleteFile.exists()) deleteFile.delete();
 				}
 			}
+				
+		}finally{
+			
+			if(result > 0) {
+				commit(conn);
+				result = boardNo;
+			}
+			else rollback(conn);
+			
+			close(conn);
+			
 		}
-		
-		
-		if(result > 0) {
-			commit(conn);
-			result = boardNo;
-		}
-		else			rollback(conn);
-		
-		close(conn);
-	
+				
 		return result;
 	
 	}
 
-//	/** 게시글 등록 후 게시글 번호 얻어오기 service
-//	 * @param board
-//	 * @return boardNo
-//	 * @throws Exception
-//	 */
-//	public int getBoardNo(Board board) throws Exception{
-//		Connection conn = getConnection();
-//		
-//		int boardNo = dao.getBoardNo(conn, board);
-//		System.out.println("getBoardNo : " + boardNo);
-//		
-//		
-//		close(conn);
-//		
-//		return boardNo;
-//	}
-	
 	
 	/** 썸머노트 사용 시 이미지 url 추출 service(html코드에서 img src 추출)
 	 * @param content
@@ -375,8 +365,6 @@ public class BoardService {
 			imgUrl.add(matcher.group(1));
 		}
 		
-		System.out.println(imgUrl);//src 추출 확인
-	
 		return imgUrl;
 	}
 	

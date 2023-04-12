@@ -42,22 +42,18 @@
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
           	<div id="boardContainer">
-
-          		<%--여기부!!!!!!!!!!!!!!!!!!!!!!!!! --%>
 				<div class="boardBox">
-					<div class="boardBoxHeader">카테고리 : ${board.categoryName}</div>
-					<div class="boardBoxTitle">제목 : ${board.boardTitle}</div>
+					<div class="boardBoxHeader">#${board.categoryName}</div>
+					<div class="boardBoxTitle">${board.boardTitle}</div>
 					<div class="boardBoxEtc">
-						<div >작성자 : ${board.userNickname}</div>
-						<div>작성일 : ${board.boardCreateDate}</div>
-						<div>조회수 : ${board.readCount}</div>
-						<div>좋아요수 : ${board.likeCount}</div>
+						<div >${board.userNickname}</div>
+						<div>${board.boardCreateDate}</div>
+						<div>${board.readCount}</div>
+						<div><i class="fa-regular fa-heart"></i>${board.likeCount}</div>
 					</div>
 					<div class="boardBoxContent">내용 : ${board.boardContent}</div>
 				</div>
 
-
-          		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
 
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
           		<c:if test="${loginUser.userNickname == board.userNickname}">
@@ -86,7 +82,7 @@
 	          					
 	          					<div class="commentDetail" id="commentDetail-${comment.commentNo}">	          						
 	          						<div>
-	          							<img src="${contextPath}${comment.profileImg}"><br>
+	          							<img class ="profile-img" src="${contextPath}${comment.profileImg}"><br>
 	          							<span>${comment.userNickname}</span>
 	          						</div>
 	          						<div id="commentContent">

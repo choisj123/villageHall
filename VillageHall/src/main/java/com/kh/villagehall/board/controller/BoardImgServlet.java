@@ -31,7 +31,7 @@ public class BoardImgServlet extends HttpServlet{
 		System.out.println("imgServlet");
 		//컨트롤러 내에서 공용으로 사용할 변수 미리 선언
 		String path = null; //forward 또는 redirect 경로를 저장할 변수
-		RequestDispatcher view = null; //요청 위임 객체
+		RequestDispatcher dispatcher = null; //요청 위임 객체
 		
 		//에러 메시지 전달용 변수
 		String message = null;
@@ -49,6 +49,8 @@ public class BoardImgServlet extends HttpServlet{
 			//배포되고 있는 최상위 경로의 실제 경로(WebContent)
 			//화면에 보여지는 주소는 .....semiProject/
 			String filePath = root + "resources/images/boardImg/";
+			System.out.println("root: " + root);
+			System.out.println(filePath);
 			
 			//3) 파일명 변환을 위한 클래스 사용
 			//MyFileRenamePolicy()
@@ -70,10 +72,11 @@ public class BoardImgServlet extends HttpServlet{
 				//name에는 파일의 name 속성이 담겨있고
  			    //파일의 name 속성을 알면 파일의 정보를 다 구할 수 있음
 				String name = files.nextElement();//img0
+				System.out.println("name!!!!! " + name);
 				if(multiRequest.getFilesystemName(name) != null) {
 					fileName = multiRequest.getFilesystemName(name);
-//									System.out.println("파일명 가져오기");
-//									System.out.println(fileName);
+									System.out.println("파일명 가져오기");
+									System.out.println(fileName);
 				}
 			}
 			
@@ -94,8 +97,8 @@ public class BoardImgServlet extends HttpServlet{
 			
 //			path = "/WEB-INF/views/common/errorPage.jsp";
 //			request.setAttribute("errorMsg", errorMsg);
-//			view = request.getRequestDispatcher(path);
-//			view.forward(request, response);
+			dispatcher = req.getRequestDispatcher(path);
+			dispatcher.forward(req, resp);
 				}
 
 			}
