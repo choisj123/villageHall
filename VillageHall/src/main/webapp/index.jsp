@@ -121,24 +121,40 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <!-- 날씨 -->
           <section class="weather">
             <div class="box">
-              <!-- 날짜 -->
+            <link rel="stylesheet" href ="${contextPath}/resources/images/humidity.png"/>
+              <!-- 첫번째 사장 -->
               <div class="FirstBox">
                 <h1 class="date"></h1>
               </div>
-              <!-- 날씨 입력 -->
+              <!-- 두번째 상자 -->
               <div class="SecondBox">
-                <div class="Sbox1">
+              <div class = "secondBox-1">
                   <div class="cicon"></div>
                 </div>
+                <div class = "secondBox-2">
                 <div class="ctemp"></div>
                 <div class="main"></div>
-                <div><h3>서울</h3></div>
+                <div class="name"></div>
                </div>
+               </div>
+               <!-- 세번째 상자 -->
                  <div class="thirdBox">
-                <div class="clowtemp">최저온도</div>
-                <div class="humidity">습도</div>
+                 <div class="wi">
+                 <a href="${contextPath}">
+      			<img src="${contextPath}/resources/images/wind.png" id="wind-logo" />
+    			</a>
+                 <div class="speed"></div>
+                 </div>
+                 <div class = "hu">
+				<a href="${contextPath}">
+      			<img src="${contextPath}/resources/images/humidity.png" id="humidity-logo" />
+    			</a>
+    			<div class="humidity"></div>
+				</div>
                 <div class="mi">
-                  <h3>미세먼지</h3>
+                <a href="${contextPath}">
+      			<img src="${contextPath}/resources/images/aqi.png" id="aqi-logo" />
+    			</a>
                   <div class="aqi"></div>
                   </div>
                 </div>
