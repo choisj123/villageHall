@@ -1,3 +1,19 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
+/*  overflow 속성 */
+.right-body {
+	overflow-y: auto;
+}
+/* overflow 스크롤 숨기 */
+.right-body::-webkit-scrollbar {
+    display: none;
+}
+
+
 /* a태그 공통 설정 */
 .right-body a{
     text-decoration: none;
@@ -16,6 +32,8 @@ img {
 .commentDetail {
 	display: flex;
 	border-top: 1px solid #ccc;
+	background-color: red;
+
 	
 }
 
@@ -138,7 +156,13 @@ table tr:nth-of-type(2) {
 table tr:nth-of-type(3) {
 	font-weight: 100;
 }
+table tr:nth-of-type(3) td {
+ 	border-bottom: 3px solid rgb(67, 101, 86);
+}
 
 table tr:nth-of-type(4) {
 	height:690px;
 }
+
+
+

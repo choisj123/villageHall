@@ -3,6 +3,7 @@ console.log(Kakao.isInitialized()); // sdk초기화여부판단
 	
 var userEmail;
 var userNickname;
+var kakaoUserKey;
 	
 //카카오로그인
 function kakaoLogin() {
@@ -17,11 +18,13 @@ function kakaoLogin() {
 	           
 	            userEmail = JSON.stringify(response.kakao_account.email);
 	            userNickname = JSON.stringify(response.properties.nickname);
+	            kakaoUserKey = response.id;
 	            
 	            console.log("userEmail",userEmail);
 	            console.log("userNickname", userNickname);
+	            console.log("kakaoUserKey", kakaoUserKey);
 	            
-	           	process(userEmail, userNickname);
+	           	process(userEmail, userNickname, kakaoUserKey);
 		            
 	
 		          
@@ -40,20 +43,25 @@ function kakaoLogin() {
 	}
 });
 		
-function process(userEmail, userNickname){
+function process(userEmail, userNickname, kakaoUserKey){
 		
 	$.ajax({
            url:"kakaoTest",
-           data:{"userEmail": userEmail, "userNickname":userNickname },
+           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
            type:"post",
            //dataType:"JSON",
            success:function(data){
            //성공적으로 하고나면 이동할 url
+           	
                 
               console.log("data",data);  
               console.log("aJax",userEmail);
-              console.log("aJax",userNickname);        
+              console.log("aJax",userNickname);   
+              console.log("aJax",kakaoUserKey);   
+                   
               alert("성공");
+              location.href='login';
+              
             },                            
                    
             error: function(error,status) {
@@ -69,5 +77,12 @@ function process(userEmail, userNickname){
 		
 		
 }
+
+
+
+
+
+
+
 	
 	     

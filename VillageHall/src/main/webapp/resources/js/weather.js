@@ -6,9 +6,11 @@
         var $main = data.weather[0].main;
         var $humidity = data.main.humidity + '%';
         var $now = new Date($.now());
+        var $speed = Math.floor(data.wind.speed) + 'm/s';
         var $cDate = $now.getMonth() + 1 + '월' + $now.getDate() + '일';
         //  + $now.getHours()+ '시간' + $now.getMinutes() + '분';
         var $wIcon = data.weather[0].icon;
+        var $name = data.name;
 
 
         var box = document.querySelector(".box");
@@ -18,16 +20,16 @@
         
         function getText($main) {
             if($main === "Haze" || $main === "Clouds"){
-                box.style.backgroundImage = "url(`../resources/images/cloud.jpg`)";
+                box.style.backgroundImage = "url(`./resources/images/cloud.jpg`)";
                 main.innerText = "흐림";
             } else if($main === "Clear"){
-                box.style.backgroundImage = "url(`../resources/images/sunny.jpg`)";
+                box.style.backgroundImage = "url(`./resources/images/sunny.jpg`)";
                 main.innerText ="맑음";
             } else if($main === "Snow"){
-                box.style.backgroundImage = "url(`../resources/images/snow.jpg`)";
+                box.style.backgroundImage = "url(`./resources/images/snow.jpg`)";
                 main.innerText = "눈";
             } else if($main === "Rain"){
-                box.style.backgroundImage = "url(`../resources/images/rain.jpg`)";
+                box.style.backgroundImage = "url(`./resources/images/rain.jpg`)";
                 main.innerText = "비";
             } else {
                 main.innerText = '흐림';
@@ -40,6 +42,8 @@
         $('.main').append(getText($main));
         $('.ctemp').append($cTemp);
         $('.humidity').append($humidity);
+        $('.speed').append($speed);
+        $('.name').append($name);
         $('.cicon').append(' <img src="http://openweathermap.org/img/wn/'+ $wIcon + '.png"/>');
          
         

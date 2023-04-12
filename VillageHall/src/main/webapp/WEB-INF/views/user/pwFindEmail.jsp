@@ -21,90 +21,105 @@
     
     	<!-- header -->
      	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-    
-        
-       <form action="pwFindEmail"
+     	
+    <form action="pwFindEmail"
        		 method="POST"
        		 name="pwFind-form"
        		 onsubmit="return pwFindValidate()">
-       		 
-       <section class="content1">
-       
-       	<h1>비밀번호 찾기</h1>
-
-          <label for="pwFind">
-            이메일(아이디)로 인증
-         </label>
-       			
-        <div class="pwFind-input-area">
-          <input
-            type="email"
-            id="userEmail"
-            name="userEmail"
-            placeholder="아이디(이메일)"
-            maxlength="30"
-            autocomplete="off"
-            required
-          />
-
-          <!-- autocomplete="off" : 자동완성 미사용 -->
-          <!-- required : 필수 작성 input 태그 -->
-
-          <!-- 자바스크립로 코드 추가 예정 -->
-          <button type="button" id="sendBtn" onclick="check()">인증번호 받기</button>
-
-          <div class="pwFind-input-area">
-            <!-- cNumber -->
-            <input
-              type="text"
-              id="cNumber"
-              placeholder="인증번호 입력"
-              maxlength="6"
-              autocomplete="off"
-            />
-          <button type="button" id="cBtn">인증하기</button>
-          </div>
-  
-          <!-- 5:00 타이머 / 인증되었습니다(녹색) / 인증 시간이 만료되었습니다.(빨간색) -->
-          <span class="pwFind-message" id="cMessage"></span>
+    
         
-        </div>
+   
+  <fieldset id="pwFind-field"> 
+  <div class="pwFind-content">
 
+    <div class="pwText">
+      비밀번호 찾기
+   </div>
 
-        <label for="pwFind">
-            비밀번호 변경
-         </label>
+     <label for="pwFind" class="pwFind">
+       <span>•</span>이메일(아이디)로 인증
+    </label>
+        
+   <div class="pwFind-input-area">
+     <input
+       type="email"
+       id="userEmail"
+       name="userEmail"
+       placeholder="아이디(이메일)"
+       maxlength="30"
+       autocomplete="off"
+       required
+     />
 
-        <div class="pwFind-input-area">
-        
-            <input
-              type="password"
-              id="newPw"
-              name="newPw"
-              placeholder=" 새 비밀번호"   
-              maxlength="30">
-              
-        </div>
+     <!-- autocomplete="off" : 자동완성 미사용 -->
+     <!-- required : 필수 작성 input 태그 -->
 
-        <div class="pwFind-input-area">
-            <input
-              type="password"
-              id="newPwConfirm"
-              name="newPwConfirm"
-              placeholder="새 비밀번호 확인"
-              maxlength="30">
-        </div>
+     <!-- 자바스크립로 코드 추가 예정 -->
+     <button type="button" id="sendBtn" onclick="check()">인증번호</button>
 
-        <span class="pwFind-message" id="pwMessage">
-        영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.</span>
-        
-        <br>
-        
-        <button id="info-update-btn" >변경하기</button>
-        
-        
-  	  </form>
-      </section>
+     <div class="pwFind-input-area">
+       <!-- cNumber -->
+       <input
+         type="text"
+         id="cNumber"
+         placeholder="인증번호 입력"
+         maxlength="6"
+         autocomplete="off"
+       />
+     <button type="button" id="cBtn">인증하기</button>
+     </div>
+
+     <!-- 5:00 타이머 / 인증되었습니다(녹색) / 인증 시간이 만료되었습니다.(빨간색) -->
+     <span class="pwFind-message" id="cMessage"></span>
+   
+   </div>
+   
+<div id="display" style="display:none;">
+
+   <label for="pwFind" class="pwFind">
+    <span>•</span>비밀번호 변경
+    </label>
+    
+   
+
+  <div class="pwFind-input-area">
+   
+       <input
+         type="password"
+         id="newPw"
+         name="newPw"
+         placeholder=" 새 비밀번호"   
+         maxlength="30">
+         
+   </div>
+   
+
+   <div class="pwFind-input-area">
+       <input
+         type="password"
+         id="newPwConfirm"
+         name="newPwConfirm"
+         placeholder="새 비밀번호 확인"
+         maxlength="30">
+   </div>
+
+   <span class="pwFind-message" id="pwMessage">
+   영어, 숫자, 특수문자 6~30글자 사이로 작성해주세요.</span>
+   
+   <br>
+   
+   <button id="info-update-btn" >변경 하기</button>
+   
+</div>
+
+   
+ </form>
+
+</div>
+
+</fieldset>   
+ 
+
     	
     	
    	 	<!-- 푸터 -->
@@ -113,6 +128,7 @@
     </main>
 
 	
+
 
 
     <!-- jQuery 라이브러리 추가 -->

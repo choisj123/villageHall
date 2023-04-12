@@ -148,12 +148,6 @@ public class ChangeProfileServlet extends HttpServlet{
 			
 			
 			
-			
-			
-			
-			
-			
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

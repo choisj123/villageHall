@@ -35,7 +35,6 @@ function infoValidate(){
 
         
     return true; // true를 반환해서 form 제출 수행
-    
 
 
     
@@ -48,9 +47,6 @@ function printAlert(el, message){ // 매개변수 el은 요소
     el.focus();
     return false;
 }
-
-
-
 
 
 

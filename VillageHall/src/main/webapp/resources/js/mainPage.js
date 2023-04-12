@@ -10,7 +10,6 @@ function selectMainPagePopularBoard() {
 		
 		success : function(boardList) {
 			
-			
 			popularTbody.innerHTML = "";
 			for(let item of boardList) {
 				const tr = document.createElement("tr");

@@ -174,7 +174,8 @@ cBtn.addEventListener("click", function(){
                         cMessage.classList.add("confirm");
                         cMessage.classList.remove("error");
                         checkObj.checkNum = true;
-
+                        $("#display").show();
+                       
                     } else if(result == 2){
                         alert("만료된 인증 번호 입니다.");
                         checkObj.checkNum = false;
@@ -208,6 +209,8 @@ cBtn.addEventListener("click", function(){
 });
 
 
+/*************************다음 버튼 클릭시 이벤트***************************** */
+
 /********************* 비밀번호 확인 ************************************* */
 
 // 비밀번호 유효성 검사
@@ -218,14 +221,14 @@ const pwMessage = document.getElementById("pwMessage");
 newPw.addEventListener("input", function(){
 
     if(newPw.value.length == 0){
-        pwMessage.innerText = "영어, 숫자, 특수문자($,!,%,*,#,?,&)포함 8~30글자 사이로 작성해주세요.";
+        pwMessage.innerText = "영어, 숫자, 특수문자 6~30글자 사이로 작성해주세요.";
         pwMessage.classList.remove("confirm", "error");
 
         checkObj.newPw = false; // 유효 X 기록
         return;
     }
 
-    const regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
+    const regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,30}$/;
 
     if( regExp.test(newPw.value) ){ // 비밀번호 유효
 
