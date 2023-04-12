@@ -85,9 +85,9 @@ var openedInfowindow = null;
                 		'<div class="map-profile-area">' +
                 			'<img class= "profile" src="' + markersData[i].photoUrl + '">' +
                 		'</div>' +
-                  '</div>' +
+                 	'</div>' +
                 	'<div class="inwi-right">' +
-						        '<div>' + markersData[i].name + '</div>' +
+						'<div>' + markersData[i].name + '</div>' +
                  		'<div class="time">' + markersData[i].createAt + '</div>' + 
                  		'<div class="category"> #' +  markersData[i].category + '</div>' +
                 	'</div>' +
@@ -130,9 +130,7 @@ function showMarkersByCategory(newCategory) {
   for (let i = 0; i < filteredNavData.length; i++) {
     const li = document.createElement("li");
 	const content =
-	  "<div class='listName'>" +
-      filteredNavData[i].name +
-      "</div>" +
+	  "<div class='listCategory'>#" + filteredNavData[i].category + "</div>" +
       "<div class='listTitle'><a class='listTitle' href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
       filteredNavData[i].boardNo +
       "&cp=1&type=3' onclick ='clickBoardFunction(" +
