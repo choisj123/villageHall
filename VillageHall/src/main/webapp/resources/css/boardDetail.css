@@ -125,46 +125,7 @@ img {
     font-weight: bold;
 }	
 
-/* newPost*/
-#boardContainer {
-	margin: 45px;
-}
-
-table{
-	border: 1px solid rgba(32, 33, 36, .28);
-	border-radius: 5px;
-	width: 800px;
-	height: 890px;
-	padding: 6px 6px;
-	text-align: center;
-}
-
-table tr :nth-of-type(1) {
-	text-align: left;
-	padding-left: 16px;
-	line-height: normal;
-}
-
-table tr:nth-of-type(1) {
-	font-weight: 300;
-}
-
-table tr:nth-of-type(2) {
-	border: none;
-    background-color: #efefef;
-    font-weight: 700;
-}
-table tr:nth-of-type(3) {
-	font-weight: 100;
-}
-table tr:nth-of-type(3) td {
- 	border-bottom: 3px solid rgb(67, 101, 86);
-}
-
-table tr:nth-of-type(4) {
-	height:690px;
-}
-/* 새로운 보드 디테일 (임시) */
+/* 보드 디테일 */
 .boardBox{
 	border: 1px solid  rgba(32, 33, 36, .28);
 	border-radius: 5px;
@@ -182,14 +143,29 @@ table tr:nth-of-type(4) {
 }
 .boardBoxHeader{
 	flex-basis: 10%;
+	text-align: left;
+	font-size: smaller;
+	font-weight: 500;
+    padding: 0px 15px;
+    color: green;
+    line-height: 62px;
+	
 }
-.tboardBoxTitle{
-	background-color: #efefef;
+.boardBoxTitle{
+	background-color: rgba(32, 33, 36, .28);
 	flex-basis: 12% ;
+	border-radius: 5px;
+	vertical-align: middle;
+	line-height: 75px;
+    color: white;
+	font-weight: 700;
 }
 .boardBoxEtc{
 	flex-basis: 8%;
 	display: flex;
+	font-weight: 100;
+    font-size: smaller;
+    padding: 15px;
 }
 .boardBoxEtc :nth-of-type(1){
 	flex-basis: 25%;
@@ -206,6 +182,7 @@ table tr:nth-of-type(4) {
 .boardBoxContent{
 	border-top: 3px solid rgb(67, 101, 86);
 	flex-basis: 70%;
+	padding: 20px 2px;
 }
 
 /* **************** */
