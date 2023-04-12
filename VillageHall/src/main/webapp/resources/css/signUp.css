@@ -54,6 +54,7 @@ form[name="signUp-form"] > label{
 /* input에 포커스가 맞춰졌을 때 밑줄 색 변화 */
 /* :focus-within  : 내부 input에 포커스가 맞춰졌을 때  */
 .signUp-input-area > input:focus-within  {
+	
     border: 2px solid #55710F; 
 }
 
