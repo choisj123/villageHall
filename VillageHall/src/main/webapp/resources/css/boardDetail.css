@@ -139,7 +139,7 @@ table tr:nth-of-type(3) {
 	font-weight: 100;
 }
 table tr:nth-of-type(3) td {
- 	border-bottom: 3px solid #036;
+ 	border-bottom: 3px solid rgb(67, 101, 86);
 }
 
 table tr:nth-of-type(4) {
