@@ -15,16 +15,19 @@ import com.kh.villagehall.board.model.vo.BoardImg;
 import com.kh.villagehall.common.MyRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
-@WebServlet("/boardImg")
+@WebServlet("/board/boardImg")
 public class BoardImgServlet extends HttpServlet{
+	
+	
 	private static final long serialVersionUID = 1L;
+	
 	
 	public BoardImgServlet() {
 		super();
-	}
+	}    
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("imgServlet");
 		//컨트롤러 내에서 공용으로 사용할 변수 미리 선언
 		String path = null; //forward 또는 redirect 경로를 저장할 변수
@@ -32,7 +35,7 @@ public class BoardImgServlet extends HttpServlet{
 		
 		//에러 메시지 전달용 변수
 		String message = null;
-		
+		   
 		try {
 			//파일 서버에 저장하고 summernote에 다시 보내기 (글작성 과정에서 서버 저장만 진행 DB저장X)
 			//1. MultipartRequest객체 생성
@@ -40,6 +43,7 @@ public class BoardImgServlet extends HttpServlet{
 			int maxSize = 20 * 1024 * 1024; 
 			
 			//2) 서버에 업로드된 파일을 저장할 경로 지정
+			//..webapp/
 			String root = req.getSession().getServletContext().getRealPath("/");
 			
 			//배포되고 있는 최상위 경로의 실제 경로(WebContent)
@@ -75,7 +79,7 @@ public class BoardImgServlet extends HttpServlet{
 			
 			BoardImg image = new BoardImg();
 			
-			image.setFilePath("/webapp/resources/images/boardImg/");
+			image.setFilePath("../resources/images/boardImg/");
 			image.setFileName(fileName);
 			
 			//2. ajax로 반환(gson 사용) : file을 보내서 filePath와 fileName을 사용해야 함
@@ -96,9 +100,6 @@ public class BoardImgServlet extends HttpServlet{
 
 			}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-			
 
-		}
+		
 }

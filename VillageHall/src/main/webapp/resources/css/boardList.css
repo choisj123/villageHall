@@ -1,3 +1,8 @@
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
 /* a태그 공통 설정 */
 .right-body a{
     text-decoration: none;
@@ -97,3 +102,4 @@ p.contents {
             height: 200px;
             padding: 40px;
 }
+

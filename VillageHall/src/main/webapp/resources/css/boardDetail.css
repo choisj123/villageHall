@@ -1,3 +1,9 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
 /*  overflow 속성 */
 .right-body {
 	overflow-y: auto;
@@ -6,6 +12,7 @@
 .right-body::-webkit-scrollbar {
     display: none;
 }
+
 
 /* a태그 공통 설정 */
 .right-body a{
@@ -156,3 +163,6 @@ table tr:nth-of-type(3) td {
 table tr:nth-of-type(4) {
 	height:690px;
 }
+
+
+

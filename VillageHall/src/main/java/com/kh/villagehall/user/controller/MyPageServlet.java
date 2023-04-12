@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.villagehall.user.model.service.UserService;
 import com.kh.villagehall.user.model.vo.User;
@@ -20,6 +21,8 @@ public class MyPageServlet extends HttpServlet {
 	// 내 정보 수정 클릭 -> myPage 이동
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		String path = "/WEB-INF/views/mypage/myPage.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
@@ -29,38 +32,51 @@ public class MyPageServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = null;
+		HttpSession session = req.getSession();
 		
 		User loginUser = (User)req.getSession().getAttribute("loginUser");
 		
-		int userNo = loginUser.getUserNo();
-		String inputPw = req.getParameter("inputPw");
-		
-		int result = 0;
-		
-		try {
+		if(loginUser != null) {
 			
-			result = service.myInfoCheckPw(userNo, inputPw);
+			int userNo = loginUser.getUserNo();
+			String inputPw = req.getParameter("inputPw");
 			
-			System.out.println("servlet result" + result);
+			int result = 0;
 			
-			if(result == 1) {
+			try {
 				
-				path = "/WEB-INF/views/mypage/changeInfo.jsp";
+				result = service.myInfoCheckPw(userNo, inputPw);
 				
+				System.out.println("servlet result" + result);
 				
-			}else {
+				if(result == 1) {
+					
+					path = "/WEB-INF/views/mypage/changeInfo.jsp";
+			
+					
+				}else {
+					
+					path = "/WEB-INF/views/mypage/myPage.jsp";
+					
+					req.setAttribute("result", result);
+				}
 				
-				path = "/WEB-INF/views/mypage/myPage.jsp";
+				req.getRequestDispatcher(path).forward(req, resp);
 				
-				req.setAttribute("result", result);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}else {
+			session.setAttribute("message", "로그인 후 이용해주세요.");
+			path = "/WEB-INF/views/user/login.jsp";
+			req.getRequestDispatcher(path).forward(req, resp);
+			
 		}
 		
+		
+		
 	
-		req.getRequestDispatcher(path).forward(req, resp);
 	
 	
 	}

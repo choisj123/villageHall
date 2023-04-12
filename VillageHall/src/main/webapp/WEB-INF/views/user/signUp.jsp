@@ -42,7 +42,7 @@
              </div>
         
           <label for="userEmail">
-            아이디(이메일)<span class="required">•</span>
+            아이디(이메일)<span class="fa-thick fa-asterisk fa-sm required"></span>
           </label>
 
           <div class="signUp-input-area">
@@ -84,7 +84,7 @@
          
           <span class="signUp-message" id="cMessage"></span>
 
-          <label for="userPw">  비밀번호 <span class="required">•</span></label>
+          <label for="userPw">  비밀번호 <span class="fa-thick fa-asterisk fa-sm required"></span></label>
 
           <div class="signUp-input-area">
             <input
@@ -110,7 +110,7 @@
           >
 
           <label for="userNickname">
-            닉네임<span class="required">•</span>
+            닉네임<span class="required"><span class="fa-thick fa-asterisk fa-sm required"></span></span>
           </label>
 
           <div class="signUp-input-area">
@@ -128,7 +128,7 @@
           >
 
           <label for="userTel">
-            전화번호<span class="required">•</span>
+            전화번호<span class="required"></span>
           </label>
 
           <div class="signUp-input-area">

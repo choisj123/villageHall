@@ -426,8 +426,8 @@ public class BoardDAO {
 			
 			pstmt.setString(1, (String)map.get("boardTitle"));
 			pstmt.setString(2, (String)map.get("boardContent"));
-			pstmt.setDouble(3, (double)map.get("latitude"));
-			pstmt.setDouble(4, (double)map.get("longtitude"));
+			pstmt.setString(3, (String)map.get("latitude"));
+			pstmt.setString(4, (String)map.get("longitude"));
 			
 			pstmt.setInt(5, (int)map.get("categoryNo"));
 			pstmt.setInt(6, (int)map.get("userNo"));
