@@ -36,6 +36,26 @@ public class UserService {
 		return loginUser;
 	}
 	
+	/** 카카오 로그인 서비스
+	 * @param kakaoUserKey
+	 * @return loginUser
+	 * @throws Exception 
+	 */
+	public User kakaoLogin(String kakaoUserKey) throws Exception{
+		
+		// Connection 얻어오기
+		Connection conn = getConnection();
+		
+		// DAO 수행
+		User loginUser = dao.kakaoLogin(conn, kakaoUserKey);
+		
+		// Connection 반환
+		close(conn);
+		
+		// 결과 반환
+		return loginUser;
+	}
+	
 	
 	/** 회원가입 Service
 	 * @param user
