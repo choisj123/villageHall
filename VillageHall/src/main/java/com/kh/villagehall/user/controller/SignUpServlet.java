@@ -34,22 +34,22 @@ public class SignUpServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		
-		int maxSize = 1024 * 1024 * 20;
+		//int maxSize = 1024 * 1024 * 20;
 		
 		
 		HttpSession session = req.getSession(); 
-		String root = session.getServletContext().getRealPath("/");
+		//String root = session.getServletContext().getRealPath("/");
 		
-		String folderPath = "/resources/images/userProfile/";
+		//String folderPath = "/resources/images/userProfile/";
 		
-		String filePath = root + folderPath;
+		//String filePath = root + folderPath;
 		
-		String encoding = "UTF-8";
+		//String encoding = "UTF-8";
 		
-		MultipartRequest mpReq = new MultipartRequest(req, filePath, maxSize, encoding, new MyRenamePolicy());
+		//MultipartRequest mpReq = new MultipartRequest(req, filePath, maxSize, encoding, new MyRenamePolicy());
 		
-		System.out.println( mpReq.getOriginalFileName("profileImage")  );
-		System.out.println( mpReq.getFilesystemName("profileImage") );
+		//System.out.println( mpReq.getOriginalFileName("profileImage")  );
+		//System.out.println( mpReq.getFilesystemName("profileImage") );
 		
 		
 		// 파라미터를 모두 변수에 저장
@@ -60,7 +60,7 @@ public class SignUpServlet extends HttpServlet{
 		String userNickname = req.getParameter("userNickname");
 		String userTel = req.getParameter("userTel");
 		
-		String profileImg = folderPath + mpReq.getFilesystemName("profileImage");
+		//String profileImg = folderPath + mpReq.getFilesystemName("profileImage");
 		
 		// 파라미터를 하나의 User 객체에 저장
 		User user = new User();
@@ -69,7 +69,7 @@ public class SignUpServlet extends HttpServlet{
 		user.setUserPw(userPw);
 		user.setUserNickname(userNickname);
 		user.setUserTel(userTel);
-		user.setProfileImg(profileImg);
+		//user.setProfileImg(profileImg);
 		
 
 		try {
