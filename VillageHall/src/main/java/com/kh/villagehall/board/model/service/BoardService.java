@@ -26,7 +26,6 @@ public class BoardService {
 	private BoardDAO dao = new BoardDAO();
 	
 	
-	
 	/** 내글 게시글 목록 조회 Service
 	 * @param type
 	 * @param cp
