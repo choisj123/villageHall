@@ -1,4 +1,4 @@
-// 검색 유효성 검사(검색어를 입력 했는지 확인)
+/* 검색 유효성 검사(검색어를 입력 했는지 확인)
 function searchValidate(){
 
     const query = document.getElementById("search-query");
@@ -11,4 +11,4 @@ function searchValidate(){
     }
 
     return true;
-}
+} */

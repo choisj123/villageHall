@@ -2,8 +2,8 @@
     pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
-double latitude = Double.parseDouble(request.getParameter("latitude"));
-double longitude = Double.parseDouble(request.getParameter("longitude"));
+String latitude = request.getParameter("latitude");
+String longitude = request.getParameter("longitude");
 %>
 
 <!DOCTYPE html>

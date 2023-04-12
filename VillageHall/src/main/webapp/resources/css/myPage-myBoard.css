@@ -38,6 +38,7 @@ div > .tab {
 .tab > a:hover {
   background-color: #55710f;
   color: white;
+  text-decoration: none;
   border-radius: 15px;
 }
 
