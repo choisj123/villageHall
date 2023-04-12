@@ -2,19 +2,19 @@
   border: 1px solid black;
   box-sizing: border-box;
   width: 700px;
-  height: 200px;
+  height: 210px;
   margin: 7px 100px;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   border-bottom-left-radius: 35px;
+  box-shadow: 10px 10px 10px grey;
 }
-
 .date{
-	margin-left: 10px;
  	margin-top: auto;
-    font-size: large;
+    font-size: 30px;
     text-align: center;
+    padding: 10px 10px 10px 10px;
 }
 
 .FirstBox{
@@ -25,7 +25,7 @@
   width: 700px;
   height: 110px;
   display: flex;
-  background-color : skyblue;
+  background-image : url(`../resources/images/sunny.png`);
 }
 
 .secondBox-1{
@@ -49,7 +49,7 @@
 }
 
 .main{
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
   display: block;
 }
@@ -72,7 +72,7 @@
 #humidity-logo {
     width: 30px;
     height: 30px;
-    margin: 0px 200px;
+    margin: 0px 150px;
 
 }
 
@@ -80,7 +80,6 @@
     width: 30px;
     height: 30px;
 }
-
 
 .speed{
   text-align: center;

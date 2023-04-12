@@ -121,6 +121,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <!-- 날씨 -->
           <section class="weather">
             <div class="box">
+            <link rel="stylesheet" href ="${contextPath}/resources/images/humidity.png"/>
               <!-- 첫번째 사장 -->
               <div class="FirstBox">
                 <h1 class="date"></h1>
