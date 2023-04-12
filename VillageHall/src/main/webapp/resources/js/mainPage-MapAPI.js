@@ -43,7 +43,7 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
     like : kakaoMapList[i].likeCount,
-    photoUrl : kakaoMapList[i].profileImg
+    photoUrl : kakaoMapList[i].profileImg ? kakaoMapList[i].profileImg.substr(1) : ""
   });
 }
 
@@ -55,7 +55,7 @@ for(var i = 0; i < kakaoBoardRecent.length; i++){
 		createAt : kakaoBoardRecent[i].boardCreateDate,
 		category : kakaoBoardRecent[i].categoryName,
 		boardNo : kakaoBoardRecent[i].boardNo,
-		photoUrl : kakaoBoardRecent[i].profileImg
+		photoUrl : kakaoBoardRecent[i].profileImg ? kakaoBoardRecent[i].profileImg.substr(1) : ""
 	});
 }
 
