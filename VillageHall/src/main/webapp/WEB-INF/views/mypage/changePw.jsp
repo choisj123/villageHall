@@ -29,6 +29,11 @@
   			text-decoration: none;
  			border-radius: 15px;
 		}
+		
+		@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  		* {
+    		font-family: 'IBM Plex Sans KR', sans-serif;
+  		}
     </style>
   </head>
   <body>
