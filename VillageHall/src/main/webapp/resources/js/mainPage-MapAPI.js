@@ -16,7 +16,7 @@ $.ajax({
 // map 함수 정의 
 var mapContainer = document.getElementById('map'),
     mapOption = { 
-        center: new kakao.maps.LatLng(37.523907, 126.981245), 
+        center: new kakao.maps.LatLng("37.578743", "127.003588"), 
         level: 8
     }; 
 // kakao library 메서드
@@ -129,7 +129,7 @@ function showMarkersByCategory(newCategory) {
   placesList.innerHTML = ""; // 이전 목록 삭제
   for (let i = 0; i < filteredNavData.length; i++) {
     const li = document.createElement("li");
-const content =
+	const content =
       "<a href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
       filteredNavData[i].boardNo +
       "&cp=1&type=3' onclick ='clickBoardFunction(" +
@@ -148,6 +148,7 @@ const content =
     placesList.appendChild(li);
   }
   
+  
   function clickBoardFunction(boardNo) {
   const boardUrl = `http://localhost:8080/VillageHall/board/boardDetail?boardNo=${boardNo}&cp=1&type=3`;
   window.location.href = boardUrl;
@@ -162,12 +163,13 @@ const content =
     }
   }
 }  
- 
+   showMarkersByCategory("전체");
 
 // option 이벤트 리스너
 document.getElementById("categorySelect").addEventListener("change", function () {
   const newCategory = this.value;
   showMarkersByCategory(newCategory);
+  
 });
 
 
