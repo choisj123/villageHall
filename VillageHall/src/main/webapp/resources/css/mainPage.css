@@ -272,6 +272,16 @@ align-items: center;
   /* height: 280px; */
 }
 
+
+
+fave-content tbody td, notice-content tbody td {
+	text-align: left;
+}
+
+
+
+
+
 #popularTbody {
   text-align: left;
   padding-top: 5px;
