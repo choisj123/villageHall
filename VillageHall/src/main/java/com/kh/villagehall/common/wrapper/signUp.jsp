@@ -219,7 +219,7 @@
 	function process(userEmail, userNickname, kakaoUserKey){
 			
 		$.ajax({
-	           url:"kakaoTest",
+	           url:"kakaoSignUp",
 	           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
 	           type:"post",
 	           //dataType:"JSON",
@@ -231,9 +231,19 @@
 	              console.log("aJax",userEmail);
 	              console.log("aJax",userNickname);   
 	              console.log("aJax",kakaoUserKey);   
-	                   
-	              alert("성공");
-	              location.href='login';
+	              
+	              if(kakaoUserKey > 0){
+	            	  
+	            	  alert("이미 가입된 회원입니다. 로그인을 해주시기 바랍니다.");
+	            	  location.href='login';
+	            	  
+	              } else{
+	            	  
+	            	  alert("가입이 완료되었습니다. 로그인을 해주시기 바랍니다.");
+		              location.href='login';
+	            	  
+	              }
+     
 	              
 	            },                            
 	                   

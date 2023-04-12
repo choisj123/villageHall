@@ -88,9 +88,12 @@
 		                        <a href="${contextPath}/user/pwFindEmail">비밀번호 찾기</a>
 		                    </article>
 		                    
+		                    		
 		                     		<a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
         								 <img src="${contextPath}/resources/images/kakao_login_medium_wide.png">
     								</a>
+    								
+    								
     
        						 <!-- 카카오 스크립트 -->
 						<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -111,6 +114,8 @@
 		
 	//카카오로그인
 	function kakaoLogin() {
+		
+		
 		   
 		Kakao.Auth.login({
 		    success: function (response) {
@@ -150,7 +155,7 @@
 	function process(userEmail, userNickname, kakaoUserKey){
 			
 		$.ajax({
-	           url:"kakaoTest",
+	           url:"kakaoLogin",
 	           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
 	           type:"post",
 	           //dataType:"JSON",
@@ -162,9 +167,13 @@
 	              console.log("aJax",userEmail);
 	              console.log("aJax",userNickname);   
 	              console.log("aJax",kakaoUserKey);   
-	                   
-	              alert("성공");
-	              location.href='login';
+	                  
+	       
+	            	  alert("성공");
+		              location.href='login';
+	            	  
+	         
+	        
 	              
 	            },                            
 	                   
