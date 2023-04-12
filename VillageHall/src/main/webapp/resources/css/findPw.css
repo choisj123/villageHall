@@ -1,8 +1,96 @@
 .confirm{ color : green;}
 .error{  color : red;  }
 
+.pwFind-input-area > input:focus-within{
+	
+     border: 2px solid #55710F; 
+    
+}
+
+#pwFind-field {
+	
+	height: 700px;
+	border: 1px solid lightgray;
+}
+
 .pwFind-message{
     font-size: 12px;
     letter-spacing: -1px; /* 자간 */
+}
+
+.pwFind-content{
+    padding-left: 400px;
+}
+
+.pwFind{
+
+    display: flex;
+    font-size: 17px;
+    padding-top:50px;
+    
+}
+
+.pwFind > span{
+    color:red;
+    padding : 0 5px;
+}
+
+.pwText{
+    
+    font-size : 30px;
+    font-weight: bold;
+    color:#55710F;
+    margin-top: 70px;
+    padding-bottom: 10px;
+    padding-left: 70px;
+}
+
+
+.pwFind-input-area > input{
+
+    width: 350px;
+    height: 40px;
+    background-color: rgb(240, 244, 240);
+    border: 1px  rgb(240, 244, 240);
+    margin-bottom: 8px;
+    border-radius: 5px;
+
+}
+
+#userEmail, #cNumber{
+    width: 280px;
+    height: 40px;
+}
+
+
+
+
+#sendBtn, #cBtn {
+    height: 40px;
+    background-color: #55710F;
+    border : 1px solid gray;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    
+
+}
+
+.pwFind-message{
+    font-size: small;
+
+}
+
+
+#info-update-btn{
+    background-color: #55710F;
+    height: 40px;
+    width: 360px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    border : 1px solid  gray;
 }
 

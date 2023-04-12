@@ -1,6 +1,7 @@
 package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,49 +30,69 @@ public class KakaoTestServlet extends HttpServlet {
 		
 		String userEmail = req.getParameter("userEmail");
 		String userNickname = req.getParameter("userNickname");
+		String kakaoUserKey = req.getParameter("kakaoUserKey");
+		
+		userEmail = userEmail.replaceAll("\"","");
+		userNickname = userNickname.replaceAll("\"","");
 		
 		
 		User user = new User();
 		
 		user.setUserEmail(userEmail);
+		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
 		user.setUserNickname(userNickname);
+		user.setUserTel("01012345678");
+		user.setKakaoUserKey(kakaoUserKey);
+		
+		
 		
 		System.out.println(userEmail);
 		System.out.println(userNickname);
+		System.out.println(kakaoUserKey);
 		
 		try {
 			
 			UserService service = new UserService();
 			
-			// 회원가입 서비스 호출 후 결과 반환 받기
-			int result = service.kakaoLogin(userEmail,userNickname);
 			
 			// 서비스 결과에 따라서 message를 다르게하여 메인 페이지 재요청(redirect)
 			
-			HttpSession session = req.getSession();
+			/*가입과 동시에 로그인*/
+			User loginUser = service.login(user);
 			
-			if(result > 0) { // 성공
-				session.setAttribute("message", "회원 가입 성공!!");
-				
-			}else { // 실패
-				session.setAttribute("message", "회원 가입 실패...");
-				
-			}
 			
-			//resp.sendRedirect( req.getContextPath() );
+			resp.setContentType("text/html; charset=UTF-8");
+	 		PrintWriter out = resp.getWriter();
+	 		HttpSession session = req.getSession();
+	 		
+	 		if(loginUser == null) {
+	 			
+	 			// 회원가입 서비스 호출 후 결과 반환 받기
+				int result = service.kakaoLogin(user);
+	 			
+	 		}
+	 		
+	 		if(loginUser != null){
+	 			
+	 			session.setAttribute("loginUser", loginUser);
+				
+				session.setMaxInactiveInterval(3600);
+	 			
+	 		} else {
+	 			
+	 			session.setAttribute("message", "실패");
+	 			
+	 		}
+	 		
+			
+			
+			
+			resp.sendRedirect( req.getContextPath() );
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
+				
 	}
-	
-	
 
 }
