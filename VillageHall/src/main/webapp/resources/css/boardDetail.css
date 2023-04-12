@@ -1,3 +1,12 @@
+/*  overflow 속성 */
+.right-body {
+	overflow-y: auto;
+}
+/* overflow 스크롤 숨기 */
+.right-body::-webkit-scrollbar {
+    display: none;
+}
+
 /* a태그 공통 설정 */
 .right-body a{
     text-decoration: none;
@@ -16,6 +25,8 @@ img {
 .commentDetail {
 	display: flex;
 	border-top: 1px solid #ccc;
+	background-color: red;
+
 	
 }
 
