@@ -1,11 +1,9 @@
 package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,9 +39,7 @@ public class KakaoLoginServelet extends HttpServlet {
 		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
 		
 		
-		
 		try {  
-			
 		
 			 
 			UserService service = new UserService();
@@ -51,7 +47,6 @@ public class KakaoLoginServelet extends HttpServlet {
 			User loginUser = service.login(user);
 			
 			HttpSession session = req.getSession();
-			
 			
 		
 			System.out.println("로그인2" + loginUser);

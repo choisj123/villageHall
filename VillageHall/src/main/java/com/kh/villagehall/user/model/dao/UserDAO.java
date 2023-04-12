@@ -64,6 +64,7 @@ public class UserDAO {
 				loginUser.setUserTel(rs.getString("USER_TEL"));
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
+				loginUser.setKakaoUserKey(rs.getString("KAKAO_USER_KEY"));
 				
 				
 				

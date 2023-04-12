@@ -143,11 +143,12 @@
 
           <span class="signUp-message" id="telMessage"
             ></span>
-           
+          <!--  
           <label for="profile">
             <span class="signUp-message"></span>프로필 사진
           </label>
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
+          --> 
                      
           <button type="submit" id="signUp-btn">일반 회원가입</button>  
                   
@@ -215,7 +216,7 @@
 	function process(userEmail, userNickname, kakaoUserKey){
 			
 		$.ajax({
-	           url:"kakaoTest",
+	           url:"kakaoSignUp",
 	           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
 	           type:"post",
 	           //dataType:"JSON",
@@ -226,20 +227,14 @@
 	              console.log("data",data);  
 	              console.log("aJax",userEmail);
 	              console.log("aJax",userNickname);   
-	              console.log("aJax",kakaoUserKey);   
+	              console.log("aJax",kakaoUserKey); 
+	              
+
 	                   
 	              alert("성공");
 	              location.href='login';
 	              
-	            },                            
-	                   
-	            error: function(error,status) {
-	                		
-	                console.log(error, status);
-	            }
-	            
-	     	});
-			
+	             
 			
 		}
 		

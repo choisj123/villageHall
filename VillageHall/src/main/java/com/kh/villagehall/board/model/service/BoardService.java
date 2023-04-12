@@ -230,7 +230,7 @@ public class BoardService {
 		close(conn);
 		
 		return kakaoBoardRecent;
-	}
+	}  
 
 	/** 게시글 내 댓글 목록 조회 service
 	 * @param boardNo

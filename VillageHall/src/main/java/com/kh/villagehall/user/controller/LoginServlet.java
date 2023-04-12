@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 				UserService service = new UserService();
 				
 				User loginUser = service.login(user);
+				System.out.println(loginUser);
 				
 				HttpSession session = req.getSession();
 				
@@ -51,7 +52,6 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("loginUser", loginUser);
 					
 					session.setMaxInactiveInterval(3600);
-					
 					
 
 					// 쿠키 객체 생성
