@@ -44,7 +44,7 @@
           	<div id="boardContainer">
 
           		<%--여기부!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-				<table>
+				<table border="1" >
 					<tr>
 						<td colspan="4">카테고리 : ${board.categoryName}</td>
 					</tr>
