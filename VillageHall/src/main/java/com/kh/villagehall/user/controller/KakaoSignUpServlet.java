@@ -20,7 +20,7 @@ public class KakaoSignUpServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/user/kakaoSignUp.jsp";
+		String path = "/WEB-INF/views/user/SignUp.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 	
@@ -57,31 +57,22 @@ try {
 			// 회원가입 서비스 호출 후 결과 반환 받기
 			int result = service.kakaoSignUp(user);
 			
-			// 서비스 결과에 따라서 message를 다르게하여 메인 페이지 재요청(redirect)
-			
-			//HttpSession session = req.getSession();	
-			
-			resp.setContentType("text/html; charset=UTF-8");
-	 		PrintWriter out = resp.getWriter();
-	 		
-	 		if(kakaoUserKey != null) {
-	 			
-	 			out.println("<script>alert('이미 가입된 회원입니다. 로그인을 진행해주시기 바랍니다.');location.href='login';</script>");
-				out.flush();
-				
-	 		}
 			
 			
+			
+			HttpSession session = req.getSession();	
+			
+			/*resp.setContentType("text/html; charset=UTF-8");
+	 		PrintWriter out = resp.getWriter();*/
+
 			if(result > 0) { // 성공
 				
-				out.println("<script>alert('가입이 완료되었습니다. 환영합니다!');location.href='login';</script>");
-				out.flush();
+				session.setAttribute("message", "가입완료!!");
 				
 							
 			}else { // 실패
 				
-				out.println("<script>alert('가입이 실패하였습니다.') location.href='signUp';</script>");
-				out.flush();
+				session.setAttribute("message", "실패");
 			
 			}
 			
