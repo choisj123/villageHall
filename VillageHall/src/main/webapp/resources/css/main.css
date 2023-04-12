@@ -11,6 +11,7 @@ body {
 
 main {
   width: 1140px;
+  height: 1600px;
   margin: auto;
 }
 
@@ -236,6 +237,7 @@ nav ul li table td {
 
 .right-body {
   width : 912px;
+  height: auto;
   flex-basis: 80%;
   border: none;
 

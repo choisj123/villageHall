@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
+<%-- <% 
 String latitude = request.getParameter("latitude");
 String longitude = request.getParameter("longitude");
 
 System.out.println(latitude);
 System.out.println(longitude);
-%>
+%> --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@ System.out.println(longitude);
         		</c:when>
         	</c:choose>
       
-        	<form action="${contextPath}/board/writeBoard?mode=${param.mode}" 
+        	<form action="${contextPath}/board/writeBoard?mode=${param.mode}" method="post"
           class="board-write" onsubmit="return writeValidate()">          
           <input type="hidden" name="boardNo" value="${board.boardNo}">
             <hr />
@@ -116,8 +116,8 @@ System.out.println(longitude);
 	            </c:if>
                 <button type="button" onclick="location.href='${header.referer}'">이전으로</button>          
             </div>
-             <input type="hidden" name="latitude" value="<%= latitude %>" />
-    		<input type="hidden" name="longitude" value="<%= longitude %>" /> 
+             <input type="hidden" name="latitude" id="latitude"  />
+    		<input type="hidden" name="longitude" id="longitude"  /> 
             
             <input type="hidden" name="mode" value="${param.mode}">
           </form>

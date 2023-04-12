@@ -80,8 +80,8 @@ public class WriteBoardServlet extends HttpServlet {
 			String boardTitle = req.getParameter("boardTitle");
 			String boardContent = req.getParameter("boardContent");
 			
-			double latitude = Double.parseDouble(req.getParameter("latitude"));
-			double longitude = Double.parseDouble(req.getParameter("longitude"));
+			String latitude = req.getParameter("latitude");
+			String longitude = req.getParameter("longitude");
 			System.out.println("위도/경도 : " + latitude +"/"+ longitude );
 			System.out.println(req.getParameter("latitude"));
 			System.out.println(req.getParameter("longitude"));
