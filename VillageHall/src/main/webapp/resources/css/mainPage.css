@@ -61,6 +61,8 @@ align-items: center;
 
 .infowindow-contaioner {
   border: none;
+/*   border-radius: 15px;
+  background-color: red; */
 
 }
 
@@ -125,7 +127,8 @@ align-items: center;
 .time {
   text-align: end;
   font-size: 13px;
-  padding-left: 10px;
+  padding-right: 10px;
+  
 }
 
 /* 핀게시글 내용 */
@@ -163,8 +166,9 @@ align-items: center;
 
 
 /* 핀게시글 리스트 */
-.listName{
+.listCategory{
 	text-align: center;
+	font-size: 12px;
 }
 
 .listTitle{
@@ -174,6 +178,7 @@ align-items: center;
 
 .listCreateDate{
 	text-align: center;
+	font-size: 12px;
 	
 }
 
