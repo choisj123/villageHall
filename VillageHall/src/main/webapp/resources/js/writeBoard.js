@@ -2,63 +2,72 @@ console.log("js loaded");
  
 
 // 썸머노트 호출
-$("#summernote").summernote({
-    placeholder: "내용을 입력해주세요",
-    tabsize: 2,
-    height: 500,
-    minHeight: null, // set minimum height of editor
-    maxHeight: null, // set maximum height of editor
-    focus: true,
-    lang: "ko-KR",
-    toolbar: [
-	  ['fontname', ['fontname']],
-	  ['fontsize', ['fontsize']],
-      ["style", ["style"]],
-      ["font", ["bold", "underline", "clear"]],
-      ["color", ["color"]],
-      ["para", ["ul", "ol", "paragraph"]],
-      ["table", ["table"]],
-      ["insert", ["link", "picture"]],
-      ["view", ["fullscreen", "codeview", "help"]],
-    ],
-      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-	  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-	   /* 이미지 삽입 후 서버에 저장을 위한 callback */
-	  callbacks: {
-        			onImageUpload : function(files, editor, welEditable) {
-		            for (var i = files.length - 1; i >= 0; i--) {
-		            	sendFile(files[i], this);
-		            }
-							} 
-        	}
-  });
-  
-  
-  /* 이미지 서버 저장 후 url 반환 받는 함수 */  
-	function sendFile(file, el) {
-	var form_data = new FormData();
-	form_data.append('file', file);
 
-	$.ajax({
-	   	data: form_data,
-	   	type: "POST",
-	   	url: 'boardImg',
-	   	cache: false,
-	   	contentType: false,
-	   	enctype: 'multipart/form-data',
-	   	dataType : "json",
-	   	processData: false,
-	   	success: function(image) {
-  		//filePath == url : 서버에 업로드된 url을 반환받아 <img> 태그 src에 저장
-  			var imageUrl = image.filePath + image.fileName
-     		$(el).summernote('editor.insertImage', imageUrl);
-  			console.log("서버 업로드 성공");
-  			console.log(image);
-  			console.log(image.filePath);
-  			console.log(image.fileName);
-   	}
- 	});
-} 
+$(document).ready(function() {
+	$("#summernote").summernote({
+	    placeholder: "내용을 입력해주세요",
+	    tabsize: 2,
+	    height: 500,
+	    minHeight: null, // set minimum height of editor
+	    maxHeight: null, // set maximum height of editor
+	    focus: true,
+	    lang: "ko-KR",
+	    toolbar: [
+		  ['fontname', ['fontname']],
+		  ['fontsize', ['fontsize']],
+	      ["style", ["style"]],
+	      ["font", ["bold", "underline", "clear"]],
+	      ["color", ["color"]],
+	      ["para", ["ul", "ol", "paragraph"]],
+	      ["table", ["table"]],
+	      ["insert", ["link", "picture"]],
+	      ["view", ["fullscreen", "codeview", "help"]],
+	    ],
+	      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+		  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		   /* 이미지 삽입 후 서버에 저장을 위한 callback */
+		  callbacks: {
+	        			onImageUpload : function(files, editor, welEditable) {
+							
+							console.log("callback");
+			            for (var i = files.length - 1; i >= 0; i--) {
+			            	sendFile(files[i], this);
+			            }
+								} 
+	        	}
+	  });
+	  
+	  
+	    /* 이미지 서버 저장 후 url 반환 받는 함수 */  
+	function sendFile(file, el) {
+		var form_data = new FormData();
+		form_data.append('file', file);
+	
+		console.log("boardImg!!!!")
+		$.ajax({
+		   	data: form_data,
+		   	type: "POST",
+		   	url: 'boardImg',
+		   	cache: false,
+		   	contentType: false,
+		   	enctype: 'multipart/form-data',
+		   	dataType : "json",
+		   	processData: false,
+		   	success: function(image) {
+	  		//filePath == url : 서버에 업로드된 url을 반환받아 <img> 태그 src에 저장
+	  			var imageUrl = image.filePath + image.fileName
+	     		$(el).summernote('editor.insertImage', imageUrl);
+	  			console.log("서버 업로드 성공");
+	  			console.log(image);
+	  			console.log(image.filePath);
+	  			console.log(image.fileName);
+	   		}
+	 	});
+	} 
+	  
+ });
+  
+
  
  	let latitude = 0;
 	let longitude = 0;
