@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <% 
-String latitude = request.getParameter("latitude");
-String longitude = request.getParameter("longitude");
-
-System.out.println(latitude);
-System.out.println(longitude);
-%> --%>
 
 <!DOCTYPE html>
 <html lang="en">
