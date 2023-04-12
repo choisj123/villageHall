@@ -59,6 +59,7 @@ $(document).ready(function() {
 	     		$(el).summernote('editor.insertImage', imageUrl);
 	  			console.log("서버 업로드 성공");
 	  			console.log(image);
+	  			console.log(imageUrl);
 	  			console.log(image.filePath);
 	  			console.log(image.fileName);
 	   		}

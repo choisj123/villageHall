@@ -43,6 +43,7 @@ public class BoardImgServlet extends HttpServlet{
 			int maxSize = 20 * 1024 * 1024; 
 			
 			//2) 서버에 업로드된 파일을 저장할 경로 지정
+			//..webapp/
 			String root = req.getSession().getServletContext().getRealPath("/");
 			
 			//배포되고 있는 최상위 경로의 실제 경로(WebContent)
@@ -78,7 +79,7 @@ public class BoardImgServlet extends HttpServlet{
 			
 			BoardImg image = new BoardImg();
 			
-			image.setFilePath("/webapp/resources/images/boardImg/");
+			image.setFilePath("../resources/images/boardImg/");
 			image.setFileName(fileName);
 			
 			//2. ajax로 반환(gson 사용) : file을 보내서 filePath와 fileName을 사용해야 함
