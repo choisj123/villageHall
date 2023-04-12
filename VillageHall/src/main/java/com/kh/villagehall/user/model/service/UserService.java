@@ -278,16 +278,20 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int kakaoLogin(String userEmail, String userNickname) throws Exception {
+	public int kakaoLogin(User user) throws Exception {
 		
 
 		
-		
+		 System.out.println("Service");
+		 System.out.println(user);
 	
 		Connection conn = getConnection(); // DBCP 에서 얻어옴
 	
 		// 2) DAO 메소드 호출 후 결과 반환 받기
-		int result = dao.kakaoLogin(conn, userEmail, userNickname);
+		int result = dao.kakaoLogin(conn, user);
+		
+		
+		
 		
 		
 		
