@@ -37,7 +37,8 @@ public class SignUpServlet extends HttpServlet{
 		//int maxSize = 1024 * 1024 * 20;
 		
 		
-		HttpSession session = req.getSession(); 
+		//HttpSession session = req.getSession(); 
+		
 		//String root = session.getServletContext().getRealPath("/");
 		
 		//String folderPath = "/resources/images/userProfile/";
@@ -54,9 +55,7 @@ public class SignUpServlet extends HttpServlet{
 		
 		// 파라미터를 모두 변수에 저장
 		String userEmail = req.getParameter("userEmail");
-		System.out.println(userEmail);
 		String userPw = req.getParameter("userPw");
-		System.out.println(userPw);
 		String userNickname = req.getParameter("userNickname");
 		String userTel = req.getParameter("userTel");
 		
@@ -103,6 +102,7 @@ public class SignUpServlet extends HttpServlet{
 			resp.sendRedirect( req.getContextPath() );
 			
 		}catch (Exception e) {
+			
 			System.out.println("SignUpServlet에서 예외 발생");
 			e.printStackTrace();
 		}

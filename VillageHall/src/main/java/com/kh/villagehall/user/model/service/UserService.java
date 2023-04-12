@@ -301,12 +301,6 @@ public class UserService {
 	}
 
 
-	public User kakaologin(User user) throws Exception {
-		
-		// TODO Auto-generated method stub
-		return null;
-		
-	}
 
 
 

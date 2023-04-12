@@ -29,9 +29,12 @@ public class KakaoSignUpServlet extends HttpServlet {
 	
 		System.out.println("servlet");
 		
+		String path = null;
+		
 		String userEmail = req.getParameter("userEmail");
 		String userNickname = req.getParameter("userNickname");
 		String kakaoUserKey = req.getParameter("kakaoUserKey");
+		String administer = req.getParameter("administer");
 		
 		userEmail = userEmail.replaceAll("\"","");
 		userNickname = userNickname.replaceAll("\"","");
@@ -44,8 +47,7 @@ public class KakaoSignUpServlet extends HttpServlet {
 		user.setUserNickname(userNickname);
 		user.setKakaoUserKey(kakaoUserKey);
 		
-		
-		
+
 		System.out.println(userEmail);
 		System.out.println(userNickname);
 		System.out.println(kakaoUserKey);
@@ -57,17 +59,21 @@ try {
 			// 회원가입 서비스 호출 후 결과 반환 받기
 			int result = service.kakaoSignUp(user);
 			
-			
-			
-			
+		
 			HttpSession session = req.getSession();	
 			
 			/*resp.setContentType("text/html; charset=UTF-8");
 	 		PrintWriter out = resp.getWriter();*/
+			
+			 //Member m = new MemberService().memberLogin(id);
+		
+
 
 			if(result > 0) { // 성공
 				
-				session.setAttribute("message", "가입완료!!");
+							
+				session.setAttribute("message", "가입이 완료되었습니다. 로그인을 해주시기 바랍니다.");
+				
 				
 							
 			}else { // 실패
@@ -79,8 +85,13 @@ try {
 			resp.sendRedirect( req.getContextPath() );
 			
 		}catch (Exception e) {
+			
 			System.out.println("SignUpServlet에서 예외 발생");
 			e.printStackTrace();
+			
+			HttpSession session = req.getSession();	
+			session.setAttribute("message", "이미 가입된 회원입니다. 로그인을 해주시기 바랍니다.");
+			
 		}
 				
 	}
