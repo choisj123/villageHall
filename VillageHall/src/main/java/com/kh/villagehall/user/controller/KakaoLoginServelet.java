@@ -27,16 +27,7 @@ public class KakaoLoginServelet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String userEmail = req.getParameter("userEmail");
-		
-		userEmail = userEmail.replaceAll("\"","");
-		
-		
-		
-
-		User user = new User();
-		user.setUserEmail(userEmail);
-		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
+		String kakaoUserKey = req.getParameter("kakaoUserKey");
 		
 		
 		try {  
@@ -44,7 +35,7 @@ public class KakaoLoginServelet extends HttpServlet {
 			 
 			UserService service = new UserService();
 			
-			User loginUser = service.login(user);
+			User loginUser = service.kakaoLogin(kakaoUserKey);
 			
 			HttpSession session = req.getSession();
 			

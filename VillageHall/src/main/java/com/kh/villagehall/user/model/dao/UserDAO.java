@@ -76,6 +76,48 @@ public class UserDAO {
 
 		return loginUser;
 	}
+	
+	/** 카카오 로그인 DAO
+	 * @param conn
+	 * @param kakaoUserKey
+	 * @return loginUser
+	 * @throws Exception
+	 */
+	public User kakaoLogin(Connection conn, String kakaoUserKey) throws Exception{
+
+		User loginUser = null; // 결과 저장용 변수
+		
+		try {
+			String sql = prop.getProperty("kakaoLogin");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, kakaoUserKey);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				loginUser = new User();
+				
+				loginUser.setUserNo(rs.getInt("USER_NO"));
+				loginUser.setUserEmail(rs.getString("USER_EMAIL"));
+				loginUser.setUserNickname(rs.getString("USER_NICKNAME"));
+				loginUser.setUserTel(rs.getString("USER_TEL"));
+				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
+				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
+				loginUser.setKakaoUserKey(rs.getString("KAKAO_USER_KEY"));
+				
+				
+				
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return loginUser;
+	}
 
 	
 

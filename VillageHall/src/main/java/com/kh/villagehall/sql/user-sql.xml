@@ -13,6 +13,15 @@
 		AND USER_DELETE_FG = 'N'
 	</entry>
 	
+	<!-- 카카오 로그인  -->
+	<entry key="kakaoLogin">
+		SELECT USER_NO, USER_EMAIL, USER_NICKNAME, USER_TEL, 
+		TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE, PROFILE_IMG, KAKAO_USER_KEY 
+		FROM "USER"
+		WHERE KAKAO_USER_KEY = ?
+		AND USER_DELETE_FG = 'N'
+	</entry>
+	
 	
    <!-- 회원가입 -->
    <entry key="signUp">
