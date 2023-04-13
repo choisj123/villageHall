@@ -66,8 +66,8 @@
 			<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
             <c:if test="${param.type == 3 && param.query == null}">
             	<form id="category">
-            		<input type="hidden" name="type" value="3">
-            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()">
+            		<input type="hidden" name="type" value="3" >
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()" style="margin-left: 30px;">
               			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
               			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
               			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
@@ -80,11 +80,11 @@
             </c:if>
             
             <c:if test="${param.type == 3 && param.query != null}">
-            	<form id="category">
+            	<form id="category" >
             		<input type="hidden" name="type" value="3">
             		<input type="hidden" name="key" value="${param.key}">
             		<input type="hidden" name="query" value="${param.query}">
-            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()">
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()" style="margin-left: 30px;">
               			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
               			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
               			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>

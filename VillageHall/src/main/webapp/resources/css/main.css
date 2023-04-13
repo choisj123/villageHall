@@ -6,7 +6,7 @@ font-family: 'IBM Plex Sans KR', sans-serif;;
 
 html{
 	position: relative;
-	min-height: 100%;
+	min-height: 600px;;
 }
 
 body {
@@ -20,8 +20,9 @@ body {
 
 main {
   width: 1140px;
-  height: 1600px;
+  height: auto;
   margin: auto;
+  min-height: 100%
 }
 
 header {
@@ -147,14 +148,18 @@ header > section:nth-of-type(3) {
 
 .body {
   display: flex;
-  height: 1140px;
+  height: auto;
+  
 }
 
 
 .left-body {
+	height: auto;
+	position: relative;	
   flex-basis: 20%;
   border-right: 1px solid #55710f;
   flex-direction: column;
+  
 }
 
 .left-body article {
@@ -259,12 +264,15 @@ nav ul li table td {
   display: flex;
   flex-direction: column;
   padding: 20px 0px 10px 30px;
+  position: relative;
+  margin: auto;
+  
 }
 
 /* ----------------- 푸터----------------- */
 
 footer {
-/*  position: fixed;  */
+	position: static;
   background-color: #d0d3c6;
   height: 150px;
 

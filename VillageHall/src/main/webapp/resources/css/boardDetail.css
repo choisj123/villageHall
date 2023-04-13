@@ -6,12 +6,12 @@
 
 /*  overflow 속성 */
 .right-body {
-	overflow-y: auto;
+	/* overflow: auto; */
 }
 /* overflow 스크롤 숨기 */
-.right-body::-webkit-scrollbar {
+/* .right-body::-webkit-scrollbar {
     display: none;
-}
+}  */
 
 
 /* a태그 공통 설정 */
@@ -24,37 +24,66 @@
     text-decoration: underline;
 }
 
- profile-img {
-	width : 50px;
-	height : 50px;
+
+
+#commentContainer{
+	height:auto;
+}
+
+
+.profile-image-area{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+
+}
+
+ .profile-img {
+	width : 100%;
+	height : 100%;
+	border-radius: 50%;
 } 
 
 .commentDetail {
 	display: flex;
 	border-top: 1px solid #ccc;
-	background-color: red;
 
-	
 }
 
 
+.comment-userName{
+	text-align: center;
+	/* padding-left: 15px; */
+	font-size: 15px;
+}
+
+
+
+/* 프로필 이미지 영역 */
 .commentDetail > div:nth-of-type(1) {
 	flex-basis: 15%;
-	padding: 10px;
+	padding: 5px 0px 0px 10px;
 }
 
+/* 댓글 내용 */
 .commentDetail > div:nth-of-type(2) {
 	flex-basis: 60%;
 	padding: 10px 0px 10px 0px; 
 }
 
+/* 댓글 날짜 */
 .commentDetail > div:nth-of-type(3) span:nth-of-type(1) {
 	font-size: smaller;
   	color: #aaa;
+  	
 }
 
+/* 댓글 날짜 */
 .commentDetail > div:nth-of-type(3) {
-	flex-basis: 10%
+	flex-basis: 10%;
+	padding-top: 27px; 
+	
 }
 
 .commentDetail > div:nth-of-type(4) {
@@ -64,7 +93,24 @@
 	padding-bottom: 25px;
 }
 
-#updateCommentButton, #deleteCommentButton {
+#updateCommentButton{
+	
+	background-color: #55710f;
+    color : white;
+    border-radius: 5px;
+    border: 0;
+    width: 40px;
+    height: 25px;
+	
+}
+
+#deleteCommentButton {
+	color: #55710f;
+	border: 1px solid #55710f;
+	border-radius: 5px;
+	width: 40px;
+    height: 25px;
+	
 	
 }
 
@@ -125,53 +171,62 @@
     font-weight: bold;
 }	
 
+
+
+
 /* 보드 디테일 */
+.boardContainer{
+	margin:auto;
+}
 .boardBox{
 	border: 1px solid  rgba(32, 33, 36, .28);
 	border-radius: 5px;
 	width: 800px;
-	height: 690px;
+	min-height: 800px;
+	height: auto;
 	padding: 6px 6px;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
+	margin:auto;
 }
 .boardBox div {
 	/* border: 1px solid  rgba(32, 33, 36, .28); */
 	/* border-radius: 5px; */
-	margin: 5px 5px 5px 5px;
+	/* margin: 5px 5px 5px 5px; */
 }
 .boardBoxHeader{
+	
 	flex-basis: 10%;
 	text-align: left;
-	font-size: smaller;
+	font-size: 15px;
 	font-weight: 500;
-    padding: 0px 15px;
-    color: green;
-    line-height: 62px;
+    padding: 35px 0 0 50px;
+    color: #55710F;
+    /* line-height: 62px; */
+    /* border-bottom: 1px dotted #ddd; */
 	
 }
 .boardBoxTitle{
-	background-color: rgba(32, 33, 36, .28);
+	
 	flex-basis: 12% ;
 	border-radius: 5px;
-	vertical-align: middle;
-	line-height: 75px;
-    color: white;
-	font-weight: 700;
+	/* line-height: 75px; */
+    color: black;
+	font-weight: 500;
+	font-size: 35px;
+	text-align:left;
+	padding-left: 50px;
+	/* border-bottom: 1px dotted #ddd; */
 }
 
-.boardBoxContent > img{
-	height:100%;
-	width:100%;
-	
-}
+
 .boardBoxEtc{
 	flex-basis: 8%;
 	display: flex;
 	font-weight: 100;
-    font-size: smaller;
-    padding: 15px;
+    font-size: 15px;
+    padding: 20px 50px 0 20px;
 }
 .boardBoxEtc :nth-of-type(1){
 	flex-basis: 25%;
@@ -186,9 +241,31 @@
 	flex-basis: 10%;
 }
 .boardBoxContent{
-	border-top: 3px solid rgb(67, 101, 86);
+	border-top: 3px solid 55710F;
 	flex-basis: 70%;
-	padding: 20px 2px;
+	padding: 20px 10px 10px 50px;
+	text-align: left;
+	
+}
+
+
+.boardBoxContent > img{
+	height:100%;
+	width:100%;
+	text-align: center;
+	
+}
+
+#deleteBoard{
+	
+	background-color: #55710f;
+    color : white;
+    border-radius: 5px;
+    border: 0;
+    width: 40px;
+    height: 25px;
+	
+	
 }
 
 /* **************** */
