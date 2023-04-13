@@ -161,18 +161,19 @@
 		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 		
 		
-		<!-- 
+	
 		<script>
 		
 		Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
 		console.log(Kakao.isInitialized()); // sdk초기화여부판단
 
-		var userEmail;
-		var userNickname;
+		var kakaoEmail;
+		var kakaoNickname;
 		var kakaoUserKey;
 			
 		//카카오로그인
 		function kakaoLogin() {
+		
 			   
 			Kakao.Auth.login({
 			    success: function (response) {
@@ -182,15 +183,15 @@
 			            //console.log(response)
 			           
 			           
-			            userEmail = JSON.stringify(response.kakao_account.email);
-			            userNickname = JSON.stringify(response.properties.nickname);
+			            kakaoEmail = JSON.stringify(response.kakao_account.email);
+			            kakaoNickname = JSON.stringify(response.properties.nickname);
 			            kakaoUserKey = response.id;
 			            
-			            console.log("userEmail",userEmail);
-			            console.log("userNickname", userNickname);
+			            console.log("kakaoEmail",kakaoEmail);
+			            console.log("kakaoNickname", kakaoNickname);
 			            console.log("kakaoUserKey", kakaoUserKey);
 			            
-			           	process(userEmail, userNickname, kakaoUserKey);
+			           	process(kakaoEmail, kakaoNickname, kakaoUserKey);
 				            
 			
 				          
@@ -209,11 +210,11 @@
 			}
 		});
 				
-		function process(userEmail, userNickname, kakaoUserKey){
+		function process(kakaoEmail, kakaoNickname, kakaoUserKey){
 				
 			$.ajax({
 		           url:"kakaoSignUp",
-		           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
+		           data:{"kakaoEmail": kakaoEmail, "kakaoNickname":kakaoNickname, "kakaoUserKey":kakaoUserKey },
 		           type:"post",
 		           //dataType:"JSON",
 		           success:function(data){
@@ -221,8 +222,8 @@
 		           	
 		                
 		              console.log("data",data);  
-		              console.log("aJax",userEmail);
-		              console.log("aJax",userNickname);   
+		              console.log("aJax",kakaoEmail);
+		              console.log("aJax",kakaoNickname);   
 		              console.log("aJax",kakaoUserKey);   
 		                   
 		              
@@ -244,7 +245,7 @@
 				
 		}
 		
-		</script> -->
+		</script> 
 		
 		
 		

@@ -31,25 +31,25 @@ public class KakaoSignUpServlet extends HttpServlet {
 		
 		String path = null;
 		
-		String userEmail = req.getParameter("userEmail");
-		String userNickname = req.getParameter("userNickname");
+		String kakaoEmail = req.getParameter("kakaoEmail");
+		String kakaoNickname = req.getParameter("kakaoNickname");
 		String kakaoUserKey = req.getParameter("kakaoUserKey");
 		
 		
-		userEmail = userEmail.replaceAll("\"","");
-		userNickname = userNickname.replaceAll("\"","");
+		kakaoEmail = kakaoEmail.replaceAll("\"","");
+		kakaoNickname = kakaoNickname.replaceAll("\"","");
 		
 		
 		User user = new User();
 		
-		user.setUserEmail(userEmail);
+		user.setUserEmail(kakaoEmail);
 		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
-		user.setUserNickname(userNickname);
+		user.setUserNickname(kakaoNickname);
 		user.setKakaoUserKey(kakaoUserKey);
 		
 
-		System.out.println(userEmail);
-		System.out.println(userNickname);
+		System.out.println(kakaoEmail);
+		System.out.println(kakaoNickname);
 		System.out.println(kakaoUserKey);
 		
 try {

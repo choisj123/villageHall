@@ -64,8 +64,8 @@ public class SignUpServlet extends HttpServlet{
 					
 					resp.setContentType("text/html; charset=UTF-8");
 			 		PrintWriter out = resp.getWriter();
-					
-					
+			 		
+						
 					
 					
 					if(result > 0) { // 성공
