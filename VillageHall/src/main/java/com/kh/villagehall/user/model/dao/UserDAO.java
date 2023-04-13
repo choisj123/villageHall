@@ -65,6 +65,7 @@ public class UserDAO {
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
 				loginUser.setKakaoUserKey(rs.getString("KAKAO_USER_KEY"));
+				loginUser.setAdminister(rs.getString("ADMINISTER"));
 				
 				
 				
@@ -107,6 +108,7 @@ public class UserDAO {
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
 				loginUser.setKakaoUserKey(rs.getString("KAKAO_USER_KEY"));
+				loginUser.setAdminister(rs.getString("ADMINISTER"));
 				
 				
 				

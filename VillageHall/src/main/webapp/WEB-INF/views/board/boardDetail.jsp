@@ -56,9 +56,9 @@
 
 
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-          		<c:if test="${loginUser.userNickname == board.userNickname}">
+          		<c:if test="${loginUser.userNickname == board.userNickname || loginUser.administer == 'Y'}">
           			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
-          			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
+          			<button type="button" id="deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
           		</c:if>
             
           		<c:if test="${loginUser != null && board.categoryNo != 1 && board.categoryNo != 2}"> 

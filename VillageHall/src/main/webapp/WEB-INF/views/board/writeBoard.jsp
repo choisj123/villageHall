@@ -67,6 +67,10 @@
             		<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
             		<select name="category" id="category">
               			<option value="">카테고리</option>
+              			<c:if test="${loginUser.administer == 'Y'}">
+              				<option value="1" <% if(categoryNo == 1) { %> selected <% } %> id="notice">공지사항</option>
+              				<option value="2" <% if(categoryNo == 2) { %> selected <% } %> id="FAQ">FAQ</option>
+              			</c:if>
               			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
               			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
               			<option value="5" <% if(categoryNo == 5) { %> selected <% } %> id="hobby">취미 🏂 </option>
@@ -76,8 +80,12 @@
             		</select>
             	</c:when>
             	<c:otherwise>
-            		<select name="category" id="category">
+            		<select name="category" id="category">            			
               			<option value="">카테고리</option>
+              			<c:if test="${loginUser.administer == 'Y'}">
+              				<option value="1" id="notice">공지사항</option>
+              				<option value="2" id="FAQ">FAQ</option>
+              			</c:if>
               			<option value="3" id="issue">이슈 🔍️</option>
               			<option value="4" id="delicious">맛집 🍽️</option>
               			<option value="5" id="hobby">취미 🏂 </option>
