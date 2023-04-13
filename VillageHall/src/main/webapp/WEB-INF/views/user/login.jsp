@@ -153,18 +153,18 @@
 	           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
 	           type:"post",
 	           //dataType:"JSON",
-	           success:function(data){
+	           success:function(userNo){
 	           //성공적으로 하고나면 이동할 url
-	           	
-	                
-	              console.log("data",data);  
-	              console.log("aJax",userEmail);
-	              console.log("aJax",userNickname);   
-	              console.log("aJax",kakaoUserKey);   
-	                  
-	       
-	            	  alert("성공");
-		              location.href='login';
+
+	              
+	              if(userNo != 0) {
+	            	  location.href='${contextPath}';
+	              } else {
+	            	  location.href='${contextPath}/user/signUp';
+	              }
+	              
+	              
+	            			              
 	            	  
 	         
 	        
