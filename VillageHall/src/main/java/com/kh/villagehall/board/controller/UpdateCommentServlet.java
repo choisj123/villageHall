@@ -32,6 +32,7 @@ public class UpdateCommentServlet extends HttpServlet {
 			BoardService service = new BoardService();
 			
 			int result = service.updateComment(comment);
+			System.out.println(result);
 			
 			if(result > 0) {
 				new Gson().toJson(result, resp.getWriter() );

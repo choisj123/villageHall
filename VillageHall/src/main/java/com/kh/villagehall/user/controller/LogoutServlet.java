@@ -25,6 +25,12 @@ public class LogoutServlet extends HttpServlet {
 		
 		// 메인페이지로 돌아가기
 		
-		resp.sendRedirect(req.getContextPath());
+		String referer = req.getHeader("referer"); // 이전 페이지의 URL가져오기
+	    if (referer != null && !referer.isEmpty()) {
+	        resp.sendRedirect(referer); // 이전 페이지로 리다이렉트
+	    } else {
+	        resp.sendRedirect(req.getContextPath()); // 이전 페이지 URL이 없으면 기본 페이지로 이동
+	    }
+
 	}
 }
