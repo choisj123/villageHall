@@ -48,10 +48,10 @@
 					<div class="boardBoxEtc">
 						<div >${board.userNickname}</div>
 						<div>${board.boardCreateDate}</div>
-						<div>${board.readCount}</div>
-						<div><i class="fa-regular fa-heart"></i>${board.likeCount}</div>
+						<div><i class="fa-sharp fa-regular fa-eye"></i> ${board.readCount}</div>
+						<div><i class="fa-regular fa-heart"></i> ${board.likeCount}</div>
 					</div>
-					<div class="boardBoxContent">내용 : ${board.boardContent}</div>
+					<div class="boardBoxContent">${board.boardContent}</div>
 				</div>
 
 
@@ -62,7 +62,7 @@
           		</c:if>
             
           		<c:if test="${loginUser != null && board.categoryNo != 1 && board.categoryNo != 2}"> 
-          			<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like">좋아요</a>				
+          			<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like"><i class="fa-regular fa-heart fa-lg"></i></a>				
           		</c:if>
           	</div>
           	
@@ -76,20 +76,21 @@
 	          					<span>등록된 댓글이 없습니다.</span>
 	          				</div>
 	          			</c:when>
-	          		
 	          			<c:otherwise>
 	          				<c:forEach var="comment" items="${commentList}">
 	          					
 	          					<div class="commentDetail" id="commentDetail-${comment.commentNo}">	          						
 	          						<div>
-	          							<img class ="profile-img" src="${contextPath}${comment.profileImg}"><br>
-	          							<span>${comment.userNickname}</span>
+	          							<div class="profile-image-area">
+	          								<img class ="profile-img" src="${contextPath}${comment.profileImg}"><br>
+	          							</div>
+	          							<span class="comment-userName">${comment.userNickname}</span>
 	          						</div>
 	          						<div id="commentContent">
-	          							<span>${comment.commentContent}</span><br>		          								          							          							
+	          							<span class= "comment-content">${comment.commentContent}</span><br>		          								          							          							
 	          						</div>
 	          						<div>
-	          							<span>${comment.commentCreateDate}</span>
+	          							<span class= "comment-createDate">${comment.commentCreateDate}</span>
 	          						</div>
 	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
 	          							<div>
