@@ -24,10 +24,10 @@
     text-decoration: underline;
 }
 
-img {
+ profile-img {
 	width : 50px;
 	height : 50px;
-}
+} 
 
 .commentDetail {
 	display: flex;
@@ -159,6 +159,12 @@ img {
 	line-height: 75px;
     color: white;
 	font-weight: 700;
+}
+
+.boardBoxContent > img{
+	height:100%;
+	width:100%;
+	
 }
 .boardBoxEtc{
 	flex-basis: 8%;
