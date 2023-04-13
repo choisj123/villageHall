@@ -79,7 +79,7 @@ public class UserDAO {
 
 	
 
-	   /**회원가입 DAO
+	/**회원가입 DAO
 	    * @param conn
 	    * @param user
 	    * @return result
@@ -97,9 +97,8 @@ public class UserDAO {
 	         pstmt.setString(2, user.getUserPw());
 	         pstmt.setString(3, user.getUserNickname());         
 	         pstmt.setString(4, user.getUserTel());
-	         pstmt.setString(5, user.getProfileImg());
-	         
 	      
+	         
 	         result = pstmt.executeUpdate();
 	         
 	      }finally {
@@ -110,6 +109,7 @@ public class UserDAO {
 	      // 결과 반환
 	      return result;
 	   }
+
 
 	   /** 인증번호 생성 DAO
 	    * @param conn
@@ -473,25 +473,26 @@ public class UserDAO {
 		int result = 0; // 결과 저장용 변수
 	      
 	      try {
-	         String sql = prop.getProperty("kakaoSignUp");
-	         
-	         pstmt = conn.prepareStatement(sql);
-	         
-	         pstmt.setString(1, user.getUserEmail());
-	         pstmt.setString(2, user.getUserPw());
-	         pstmt.setString(3, user.getUserNickname());         
-	         pstmt.setString(4, user.getKakaoUserKey());
-	         
-	      
-	         result = pstmt.executeUpdate();
-	         
-	      }finally {
-	         close(pstmt);
-	      }
-	      
-	      
-	      // 결과 반환
-	      return result;
+	    	  String sql = prop.getProperty("signUp");
+		         
+		         pstmt = conn.prepareStatement(sql);
+		         
+		         pstmt.setString(1, user.getUserEmail());
+		         pstmt.setString(2, user.getUserPw());
+		         pstmt.setString(3, user.getUserNickname());         
+		         pstmt.setString(4, user.getKakaoUserKey());
+		         //pstmt.setString(5, user.getProfileImg());
+		         
+		      
+		         result = pstmt.executeUpdate();
+		         
+		      }finally {
+		         close(pstmt);
+		      }
+		      
+		      
+		      // 결과 반환
+		      return result;
 	}
 
 
