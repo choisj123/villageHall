@@ -152,20 +152,32 @@
 				
 				<%-- 여기부터 faq영역 --%>
 				<c:otherwise>
-				
+          
 				<!--FAQ 질문 검색 부분-->
           <article class="FAQ-search">
             <!--FAQ 질문 검색창-->
-            <form action="#" name="FAQ-search-form">
+            <form action="${contextPath}/board/list" name="FAQ-search-form" method="get" id="boardSearch" onsubmit="return searchValidate()">
               <h3 class="FAQ-text">FAQ 자주 묻는 질문</h3>
 
               <fieldset class="FAQ-search-fieldset">
+
+                <select name="key" id="search-key">
+                  <option value="t">제목</option>
+                  <option value="c">내용</option>
+                  <option value="tc">제목+내용</option>
+                  <option value="w">작성자</option>
+                 </select>
+                 
+                 <input type="hidden" name="type" value="${param.type}">
+                 <input type="hidden" name="categoryNo" value="0">
+
                 <input
-                  type="search"
-                  id="query"
+                  type="text"
+                  id="search-query"
                   name="query"
                   autocomplete="off"
                   placeholder="무엇이 궁금하실까요?"
+                  value="${param.type}"
                 />
 
                 <!--FAQ 질문 검색버튼-->
@@ -178,20 +190,14 @@
 
             <!--FAQ 카테고리-->
           </article>
-
-          <article class="category-article">
-            <a href="#" class="category" data-tab="signUp"> 회원가입 </a>
-            <a href="#" class="category" data-tab="logIn"> 로그인 </a>
-            <a href="#" class="category" data-tab="content"> 게시글 </a>
-            <a href="#" class="category" data-tab="etc"> 기타 </a>
-          </article>
+          
           <hr>
           
 					<div class=faqSection>
 				
 					<c:forEach var="board" items="${boardList}">
 						<div class="FAQTitle">${board.boardTitle}</div>
-                    	<p class="contents">${board.boardContent}</p>
+                    	<div class="contents">${board.boardContent}</div>
                     	
                     	<c:if test="${loginUser.administer == 'Y'}">
           					<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
@@ -203,11 +209,11 @@
 					
 					<script>
         				$(function() {
-            				$("div").on("click", function() {
+            				$("FAQTitle").on("click", function() {
 
-                				if($(this).next("p").css("display") == 'none') {
+                				if($(this).next("div").css("display") == 'none') {
 
-                    				$(this).siblings("p.contents").slideUp();
+                    				$(this).siblings("div.contents").slideUp();
                     				// 다음 요소는 내려라
                     				$(this).next().slideDown();
 
@@ -270,7 +276,7 @@
             <!-- /board/list?type=1&cp=3 -->
 
             <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
-			<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
+			      <form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
                 <input type="hidden" name="type" value="${param.type}">
                 <input type="hidden" name="categoryNo" value="0">
 
