@@ -28,10 +28,9 @@
          
 
         <form
-          action="signUp"
+          action="signUP"
           method="POST"
           name="signUp-form"
-          enctype="multipart/form-data" 
           onsubmit="return signUpValidate()"
         >
 
@@ -95,11 +94,13 @@
               maxlength="30"
             />
           </div>
-
+          
+          
           <div class="signUp-input-area">
             <input
               type="password"
               id="userPwConfirm"
+              name="userPw"
               placeholder="비밀번호 확인"
               maxlength="30"
             />
@@ -150,7 +151,11 @@
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
           --> 
                      
-          <button type="submit" id="signUp-btn">일반 회원가입</button>  
+          <button type="submit" id="signUp-btn">일반 회원가입</button>
+          
+          <script>
+          const btn = document.getElementI
+          </script>  
                   
                   
    		<a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">

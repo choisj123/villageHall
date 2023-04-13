@@ -31,63 +31,36 @@ public class KakaoLoginServelet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String kakaoUserKey = req.getParameter("kakaoUserKey");
-		
+
 	
 		try {  
 			
-			String path = "";
-					
-			 
+
 			UserService service = new UserService();
 			
 			User loginUser = service.kakaoLogin(kakaoUserKey);
 			
 			HttpSession session = req.getSession();
 			
-			resp.setContentType("text/html; charset=UTF-8");
-	 		PrintWriter out = resp.getWriter();
-			
-		
 			System.out.println("로그인" + loginUser);
-			
-			
-			if(loginUser == null) {
-				
-				
-				out.println("<script>alert('가입된 회원이 아닙니다. 회원가입을 해주시기 바랍니다.');location.href='signUp';</script>");
-				 
-				out.flush();
-								
-			}
-			
+		
 			if(loginUser != null) {
 				
 				
 				session.setAttribute("loginUser", loginUser);
 				
 				session.setMaxInactiveInterval(3600);
-				
-				
-				
-				
-				
-				
-				
-				 
+
+
 			} else {
 	
-				session.setAttribute("message", "가입된 회원이 아닙니다. 회원가입을 해주시기 바랍니다");
+				session.setAttribute("message", "가입된 회원이 아닙니다.");
 				
-							
-				
-			
 			}
-			
-			
-			
-			// redirect
-			resp.sendRedirect(req.getContextPath());
 
+			// redirect
+			//resp.sendRedirect(req.getContextPath());
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
