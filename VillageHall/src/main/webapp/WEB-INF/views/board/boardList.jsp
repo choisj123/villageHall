@@ -67,7 +67,7 @@
             <c:if test="${param.type == 3 && param.query == null}">
             	<form id="category">
             		<input type="hidden" name="type" value="3" >
-            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()" style="margin-left: 30px;">
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()" style="margin-left: 40px;">
               			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
               			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
               			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
@@ -270,21 +270,23 @@
             <!-- /board/list?type=1&cp=3 -->
 
             <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
-			<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
-                <input type="hidden" name="type" value="${param.type}">
-                <input type="hidden" name="categoryNo" value="0">
-
-                <select name="key" id="search-key">
-                    <option value="t">제목</option>
-                  	<option value="c">내용</option>
-                    <option value="tc">제목+내용</option>
-                    <option value="w">작성자</option>
-                </select>
-
-                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
-
-                <button>검색</button>
-            </form>
+            <div id="search-area">
+				<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
+	                <input type="hidden" name="type" value="${param.type}">
+	                <input type="hidden" name="categoryNo" value="0">
+	
+	                <select name="key" id="search-key">
+	                    <option value="t">제목</option>
+	                  	<option value="c">내용</option>
+	                    <option value="tc">제목+내용</option>
+	                    <option value="w">작성자</option>
+	                </select>
+	
+	                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
+	
+	                <button id="search-btn">검색</button>
+	            </form>
+            </div>
  
           </section>
         </section>

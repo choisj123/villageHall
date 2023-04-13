@@ -253,13 +253,21 @@ public class UserService {
 	/** 마이페이지 회원 탈퇴 service
 	 * @param userNo
 	 * @param userPw
+	 * @param kakaoUserKey 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int deleteUser(int userNo, String userPw) throws Exception{
+	public int deleteUser(int userNo, String userPw, String kakaoUserKey) throws Exception{
 		Connection conn = getConnection(); 
+		int result = 0;
 		
-		int result = dao.deleteUser(conn, userNo, userPw);
+		if(kakaoUserKey.equals("0")) {
+			result = dao.deleteUser(conn, userNo, userPw);
+			
+		}else {
+			result = dao.deleteKakaoUser(conn, userNo, kakaoUserKey);
+		}
+		
 		
 		if(result > 0)	commit(conn);
 		else			rollback(conn);

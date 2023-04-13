@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> <%@ taglib prefix = "c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" /> 
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마을회관</title>
@@ -14,35 +14,32 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
 
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
-    <main>   
+    <main>
       <!-- hedaer include -->
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
       <!-- 회원가입  -->
-  <section class="signUp-content">
-
-         
-
+      <section class="signUp-content">
         <form
           action="signUp"
           method="POST"
           name="signUp-form"
-          enctype="multipart/form-data" 
+          enctype="multipart/form-data"
           onsubmit="return signUpValidate()"
         >
+          <div class="villageHall">마을회관</div>
 
-
-        
-            <div class="villageHall">
-                마을회관
-             </div>
-        
           <label for="userEmail">
-            아이디(이메일)<span class="fa-thick fa-asterisk fa-sm required"></span>
+            아이디(이메일)<span
+              class="fa-thick fa-asterisk fa-sm required"
+            ></span>
           </label>
 
           <div class="signUp-input-area">
@@ -59,17 +56,15 @@
             &nbsp;<button type="button" id="sendBtn">인증번호</button>
           </div>
 
-          <span class="signUp-message" id="emailMessage"
-            ></span>
+          <span class="signUp-message" id="emailMessage"></span>
 
-		<!--  
+          <!--  
           <label for="emailCheck">
             인증번호<span class="required">•</span>
           </label> 
           -->
 
           <div class="signUp-input-area">
-     
             <input
               type="text"
               id="cNumber"
@@ -81,10 +76,11 @@
             &nbsp;<button type="button" id="cBtn">인증하기</button>
           </div>
 
-         
           <span class="signUp-message" id="cMessage"></span>
 
-          <label for="userPw">  비밀번호 <span class="fa-thick fa-asterisk fa-sm required"></span></label>
+          <label for="userPw">
+            비밀번호 <span class="fa-thick fa-asterisk fa-sm required"></span
+          ></label>
 
           <div class="signUp-input-area">
             <input
@@ -105,12 +101,12 @@
             />
           </div>
 
-          <span class="signUp-message" id="pwMessage"
-            ></span
-          >
+          <span class="signUp-message" id="pwMessage"></span>
 
           <label for="userNickname">
-            닉네임<span class="required"><span class="fa-thick fa-asterisk fa-sm required"></span></span>
+            닉네임<span class="required"
+              ><span class="fa-thick fa-asterisk fa-sm required"></span
+            ></span>
           </label>
 
           <div class="signUp-input-area">
@@ -123,13 +119,9 @@
             />
           </div>
 
-          <span class="signUp-message" id="nicknameMessage"
-            ></span
-          >
+          <span class="signUp-message" id="nicknameMessage"></span>
 
-          <label for="userTel">
-            전화번호<span class="required"></span>
-          </label>
+          <label for="userTel"> 전화번호<span class="required"></span> </label>
 
           <div class="signUp-input-area">
             <input
@@ -141,124 +133,95 @@
             />
           </div>
 
-          <span class="signUp-message" id="telMessage"
-            ></span>
+          <span class="signUp-message" id="telMessage"></span>
           <!--  
           <label for="profile">
             <span class="signUp-message"></span>프로필 사진
           </label>
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
-          --> 
-                     
-          <button type="submit" id="signUp-btn">일반 회원가입</button>  
-                  
-                  
-   		<a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
-        	 <img src="${contextPath}/resources/images/kakao_login_medium_wide.png">
-    	</a>
-     
-        <!-- 카카오 스크립트 -->
-		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-		
-		
-	
-		<script>
-		
-		Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
-		console.log(Kakao.isInitialized()); // sdk초기화여부판단
+          -->
 
-		var kakaoEmail;
-		var kakaoNickname;
-		var kakaoUserKey;
-			
-		//카카오로그인
-		function kakaoLogin() {
-		
-			   
-			Kakao.Auth.login({
-			    success: function (response) {
-				    Kakao.API.request({
-			  	     url: '/v2/user/me',
-			  	     success: function (response) {
-			            //console.log(response)
-			           
-			           
-			            kakaoEmail = JSON.stringify(response.kakao_account.email);
-			            kakaoNickname = JSON.stringify(response.properties.nickname);
-			            kakaoUserKey = response.id;
-			            
-			            console.log("kakaoEmail",kakaoEmail);
-			            console.log("kakaoNickname", kakaoNickname);
-			            console.log("kakaoUserKey", kakaoUserKey);
-			            
-			           	process(kakaoEmail, kakaoNickname, kakaoUserKey);
-				            
-			
-				          
-			          		
-			         //접속된 회원의 토큰값 출력됨
-			        //alert(JSON.stringify(authObj));
-			        
-			      },
-					fail: function(error) {
-						
-			    		console.log(error);
-			      }
-			      
-			    });
-				
-			}
-		});
-				
-		function process(kakaoEmail, kakaoNickname, kakaoUserKey){
-				
-			$.ajax({
-		           url:"kakaoSignUp",
-		           data:{"kakaoEmail": kakaoEmail, "kakaoNickname":kakaoNickname, "kakaoUserKey":kakaoUserKey },
-		           type:"post",
-		           //dataType:"JSON",
-		           success:function(data){
-		           //성공적으로 하고나면 이동할 url
-		           	
-		                
-		              console.log("data",data);  
-		              console.log("aJax",kakaoEmail);
-		              console.log("aJax",kakaoNickname);   
-		              console.log("aJax",kakaoUserKey);   
-		                   
-		              
-		              location.href='login';
-		              
-		            },                            
-		                   
-		            error: function(error,status) {
-		                		
-		                console.log(error, status);
-		            }
-		            
-		     	});
-				
-				
-			}
-			
-				
-				
-		}
-		
-		</script> 
-		
-		
-		
-		
-		
+          <button type="submit" id="signUp-btn">일반 회원가입</button>
+
+          <a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
+            <img
+              src="${contextPath}/resources/images/kakao_login_medium_wide.png"
+            />
+          </a>
+
+          <!-- 카카오 스크립트 -->
+          <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+          <script>
+            Kakao.init("f05c8b2913faad9659a18a205defef9c"); //발급받은 키 중 javascript키를 사용해준다.
+            console.log(Kakao.isInitialized()); // sdk초기화여부판단
+
+            var kakaoEmail;
+            var kakaoNickname;
+            var kakaoUserKey;
+
+            //카카오로그인
+            function kakaoLogin() {
+              Kakao.Auth.login({
+                success: function (response) {
+                  Kakao.API.request({
+                    url: "/v2/user/me",
+                    success: function (response) {
+                      //console.log(response)
+
+                      kakaoEmail = JSON.stringify(response.kakao_account.email);
+                      kakaoNickname = JSON.stringify(
+                        response.properties.nickname
+                      );
+                      kakaoUserKey = response.id;
+
+                      console.log("kakaoEmail", kakaoEmail);
+                      console.log("kakaoNickname", kakaoNickname);
+                      console.log("kakaoUserKey", kakaoUserKey);
+
+                      process(kakaoEmail, kakaoNickname, kakaoUserKey);
+
+                      //접속된 회원의 토큰값 출력됨
+                      //alert(JSON.stringify(authObj));
+                    },
+                    fail: function (error) {
+                      console.log(error);
+                    },
+                  });
+                },
+              });
+
+              function process(kakaoEmail, kakaoNickname, kakaoUserKey) {
+                $.ajax({
+                  url: "kakaoSignUp",
+                  data: {
+                    kakaoEmail: kakaoEmail,
+                    kakaoNickname: kakaoNickname,
+                    kakaoUserKey: kakaoUserKey,
+                  },
+                  type: "post",
+                  //dataType:"JSON",
+                  success: function (data) {
+                    //성공적으로 하고나면 이동할 url
+
+                    console.log("data", data);
+                    console.log("aJax", kakaoEmail);
+                    console.log("aJax", kakaoNickname);
+                    console.log("aJax", kakaoUserKey);
+
+                    location.href = "login";
+                  },
+
+                  error: function (error, status) {
+                    console.log(error, status);
+                  },
+                });
+              }
+            }
+          </script>
         </form>
       </section>
-
     </main>
-    
- 
-
-
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -272,8 +235,5 @@
 
     <!-- signUp.js 연결 -->
     <script src="${contextPath}/resources/js/signUp.js"></script>
-
-    
-    
   </body>
 </html>

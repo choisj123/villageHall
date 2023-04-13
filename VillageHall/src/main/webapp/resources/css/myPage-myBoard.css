@@ -24,7 +24,7 @@ div > .tab {
   overflow: hidden;
   border: 1px solid white;
   background-color: white;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .tab > a {
@@ -33,7 +33,7 @@ div > .tab {
   outline: none;
   text-decoration: none;
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 5px 10px;
   transition: 0.3s;
   font-size: 15px;
   font-weight: normal;
@@ -44,7 +44,7 @@ div > .tab {
   background-color: #55710f;
   color: white;
   text-decoration: none;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 
