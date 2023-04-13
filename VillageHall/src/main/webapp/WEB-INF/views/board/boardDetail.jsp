@@ -42,34 +42,18 @@
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
           	<div id="boardContainer">
+				<div class="boardBox">
+					<div class="boardBoxHeader">#${board.categoryName}</div>
+					<div class="boardBoxTitle">${board.boardTitle}</div>
+					<div class="boardBoxEtc">
+						<div >${board.userNickname}</div>
+						<div>${board.boardCreateDate}</div>
+						<div>${board.readCount}</div>
+						<div><i class="fa-regular fa-heart"></i>${board.likeCount}</div>
+					</div>
+					<div class="boardBoxContent">내용 : ${board.boardContent}</div>
+				</div>
 
-          		<%--여기부!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-				<table>
-					<tr>
-						<td colspan="4">카테고리 : ${board.categoryName}</td>
-					</tr>
-					<tr>
-						<th colspan="4">제목 : ${board.boardTitle}</th>
-					</tr>
-					<tr>
-						<td>작성자 : ${board.userNickname}</td>
-						<td>작성일 : ${board.boardCreateDate}</td>
-						<td>조회수 : ${board.readCount}</td>
-						<td>좋아요수 : ${board.likeCount}</td>
-					</tr>
-					<tr>
-						<td colspan="4">내용 : ${board.boardContent}</td>
-					</tr>
-				</table>
-
-
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-
-          		<img src="${contextPath}/webapp/${board.boardImg}" alt="게시글 이미지">
 
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
           		<c:if test="${loginUser.userNickname == board.userNickname}">
@@ -98,11 +82,15 @@
 	          					
 	          					<div class="commentDetail" id="commentDetail-${comment.commentNo}">	          						
 	          						<div>
-	          							<img src="${contextPath}${comment.profileImg}"><br>
+	          							<img class ="profile-img" src="${contextPath}${comment.profileImg}"><br>
 	          							<span>${comment.userNickname}</span>
 	          						</div>
 	          						<div id="commentContent">
-	          							<span>${comment.commentContent}</span><br>		          								          							          							
+	          							<span>${comment.commentContent}</span><br>	
+	          							<c:if test="${loginUser.userNickname == comment.userNickname}">
+	          							 <textarea>${comment.commentContent}</textarea>
+	          							 </c:if>	
+	          							       								          							          							
 	          						</div>
 	          						<div>
 	          							<span>${comment.commentCreateDate}</span>
@@ -113,7 +101,6 @@
 	          										          								
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
-	          									<input type="hidden" name="userNo" value="${loginUser.userNo}">
 	          									<input type="hidden" name="boardNo" value="${board.boardNo}">
 	          									<button id="deleteCommentButton">삭제</button>
 	          								</form>

@@ -122,8 +122,7 @@ public class BoardDAO {
 				board.setReadCount(rs.getInt(6));
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
-				board.setBoardImg(rs.getString(9));
-				board.setCategoryNo(rs.getInt(10));
+				board.setCategoryNo(rs.getInt(9));
 			}
 			
 		} finally {
@@ -434,6 +433,7 @@ public class BoardDAO {
 			
 			result = pstmt.executeUpdate();
 			
+
 		} finally {
 			close(pstmt);
 		}
@@ -465,6 +465,8 @@ public class BoardDAO {
 			
 			result = pstmt.executeUpdate();
 			
+		   
+			
 		} finally {
 			close(pstmt);
 		}
@@ -486,14 +488,9 @@ public class BoardDAO {
 			
 			String sql = prop.getProperty("getBoardNo");
 			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, board.getBoardTitle());
-			pstmt.setString(2, board.getBoardContent());
-			pstmt.setInt(3, board.getCategoryNo());
-			pstmt.setInt(4, board.getUserNo());
-			
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+	
+			rs = stmt.executeQuery(sql);
 			
 			if(rs.next()) {
 				boardNo = rs.getInt(1);
@@ -1093,9 +1090,8 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, comment.getUserNo());
-			pstmt.setInt(2, comment.getBoardNo());
-			pstmt.setInt(3, comment.getCommentNo());
+			pstmt.setInt(1, comment.getBoardNo());
+			pstmt.setInt(2, comment.getCommentNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -1126,8 +1122,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, comment.getCommentContent());
-			pstmt.setInt(2, comment.getUserNo());
-			pstmt.setInt(3, comment.getCommentNo());
+			pstmt.setInt(2, comment.getCommentNo());
 			
 			result = pstmt.executeUpdate();
 			

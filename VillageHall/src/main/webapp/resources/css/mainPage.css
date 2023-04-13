@@ -61,6 +61,8 @@ align-items: center;
 
 .infowindow-contaioner {
   border: none;
+/*   border-radius: 15px;
+  background-color: red; */
 
 }
 
@@ -125,7 +127,8 @@ align-items: center;
 .time {
   text-align: end;
   font-size: 13px;
-  padding-left: 10px;
+  padding-right: 10px;
+  
 }
 
 /* 핀게시글 내용 */
@@ -160,6 +163,26 @@ align-items: center;
 .option {
   margin-left: 20px;
 }
+
+
+/* 핀게시글 리스트 */
+.listCategory{
+	text-align: center;
+	font-size: 12px;
+}
+
+.listTitle{
+	text-align: center;
+	font-weight: bold;
+}
+
+.listCreateDate{
+	text-align: center;
+	font-size: 12px;
+	
+}
+
+
 /* 커스텀 오버레이 스타일링 */
 .overlay {
   position: relative;
@@ -253,6 +276,16 @@ align-items: center;
   width: 330px;
   /* height: 280px; */
 }
+
+
+
+fave-content tbody td, notice-content tbody td {
+	text-align: left;
+}
+
+
+
+
 
 #popularTbody {
   text-align: left;

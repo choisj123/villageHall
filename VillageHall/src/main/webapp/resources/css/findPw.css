@@ -6,16 +6,17 @@
 .confirm{ color : green;}
 .error{  color : red;  }
 
-.pwFind-input-area > input:focus-within{
+.main{
 	
-     border: 2px solid #55710F; 
-    
+	display: flex;
+    justify-content: center;
+	
 }
 
 #pwFind-field {
-	
 	height: 700px;
 	border: 1px solid lightgray;
+	margin-top: 30px;
 }
 
 .pwFind-message{
@@ -24,7 +25,9 @@
 }
 
 .pwFind-content{
-    padding-left: 400px;
+	
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .pwFind{
@@ -56,11 +59,15 @@
     width: 350px;
     height: 40px;
     background-color: rgb(240, 244, 240);
-    border: 1px  rgb(240, 244, 240);
+    border: 5px solid rgb(240, 244, 240);
     margin-bottom: 8px;
     border-radius: 5px;
+    outline-color: forestgreen;
 
 }
+
+
+
 
 #userEmail, #cNumber{
     width: 280px;
@@ -98,4 +105,5 @@
     border-radius: 5px;
     border : 1px solid  gray;
 }
+
 

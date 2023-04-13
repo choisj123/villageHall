@@ -28,7 +28,7 @@
        		 onsubmit="return pwFindValidate()">
     
         
-   
+<section class="main">
   <fieldset id="pwFind-field"> 
   <div class="pwFind-content">
 
@@ -45,6 +45,7 @@
        type="email"
        id="userEmail"
        name="userEmail"
+       class="input-text"
        placeholder="아이디(이메일)"
        maxlength="30"
        autocomplete="off"
@@ -62,6 +63,7 @@
        <input
          type="text"
          id="cNumber"
+         class="input-text"
          placeholder="인증번호 입력"
          maxlength="6"
          autocomplete="off"
@@ -88,6 +90,7 @@
          type="password"
          id="newPw"
          name="newPw"
+         class="input-text"
          placeholder=" 새 비밀번호"   
          maxlength="30">
          
@@ -99,6 +102,7 @@
          type="password"
          id="newPwConfirm"
          name="newPwConfirm"
+         class="input-text"
          placeholder="새 비밀번호 확인"
          maxlength="30">
    </div>
@@ -117,7 +121,9 @@
 
 </div>
 
-</fieldset>   
+</fieldset> 
+
+</section>     
  
 
     	

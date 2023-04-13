@@ -44,7 +44,7 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
     like : kakaoMapList[i].likeCount,
-    photoUrl : kakaoMapList[i].profileImg ? kakaoMapList[i].profileImg.substr(1) : ''
+    photoUrl : kakaoMapList[i].profileImg ? kakaoMapList[i].profileImg.substr(1) : ""
     // 여기서 ? 는 조건연산자로 null일경우 value1, 아닐경우 value2 반환 
   });
 }
@@ -56,7 +56,7 @@ for(var i = 0; i < kakaoBoardRecent.length; i++){
 		createAt : kakaoBoardRecent[i].boardCreateDate,
 		category : kakaoBoardRecent[i].categoryName,
 		boardNo : kakaoBoardRecent[i].boardNo,
-		photoUrl : kakaoBoardRecent[i].profileImg ? kakaoBoardRecent[i].profileImg.substr(1) : ''
+		photoUrl : kakaoBoardRecent[i].profileImg ? kakaoBoardRecent[i].profileImg.substr(1) : ""
 	});
 	
 }
@@ -91,9 +91,9 @@ var openedInfowindow = null;
                 		'<div class="map-profile-area">' +
                 			'<img class= "profile" src="' + markersData[i].photoUrl + '">' +
                 		'</div>' +
-                  '</div>' +
+                 	'</div>' +
                 	'<div class="inwi-right">' +
-						        '<div>' + markersData[i].name + '</div>' +
+						'<div>' + markersData[i].name + '</div>' +
                  		'<div class="time">' + markersData[i].createAt + '</div>' + 
                  		'<div class="category"> #' +  markersData[i].category + '</div>' +
                 	'</div>' +
@@ -140,19 +140,17 @@ function showMarkersByCategory(newCategory) {
   for (let i = 0; i < filteredNavData.length; i++) {
     const li = document.createElement("li");
 	const content =
-      "<a href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
+	  "<div class='listCategory'>#" + filteredNavData[i].category + "</div>" +
+      "<div class='listTitle'><a class='listTitle' href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
       filteredNavData[i].boardNo +
       "&cp=1&type=3' onclick ='clickBoardFunction(" +
       filteredNavData[i].boardNo +
-      "); '>" +
-      filteredNavData[i].name +
-      "</a>" +
-      "<p>" +
+      "); '>" + 
       filteredNavData[i].title +
-      "</p>" +
-      "<p>" +
+      "</a></div>" +
+      "<div class='listCreateDate'>" +
       filteredNavData[i].createAt +
-      "</p>" +
+      "</div>" +
       "<hr>";
     li.innerHTML = content;
     placesList.appendChild(li);
