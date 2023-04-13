@@ -156,10 +156,12 @@
    		<a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
         	 <img src="${contextPath}/resources/images/kakao_login_medium_wide.png">
     	</a>
-    
+     
         <!-- 카카오 스크립트 -->
 		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 		
+		
+		<!-- 
 		<script>
 		
 		Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
@@ -242,7 +244,9 @@
 				
 		}
 		
-		</script>
+		</script> -->
+		
+		
 		
 		
 		

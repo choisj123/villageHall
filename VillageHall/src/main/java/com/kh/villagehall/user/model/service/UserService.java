@@ -50,8 +50,6 @@ public class UserService {
 				
 		// 2) DAO 메소드 호출 후 결과 반환 받기
 		int result = dao.signUp(conn, user);
-		
-		System.out.println("Service" + user);
 				 
 		// 3) 트랜잭션 처리
 		// result가 0인 경우 -> DAO return 구문 잘못 작성

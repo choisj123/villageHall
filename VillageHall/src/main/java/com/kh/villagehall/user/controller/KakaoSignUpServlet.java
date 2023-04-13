@@ -34,7 +34,7 @@ public class KakaoSignUpServlet extends HttpServlet {
 		String userEmail = req.getParameter("userEmail");
 		String userNickname = req.getParameter("userNickname");
 		String kakaoUserKey = req.getParameter("kakaoUserKey");
-		String administer = req.getParameter("administer");
+		
 		
 		userEmail = userEmail.replaceAll("\"","");
 		userNickname = userNickname.replaceAll("\"","");
