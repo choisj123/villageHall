@@ -36,6 +36,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       crossorigin="anonymous"
     ></script>
      <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> 
+     
+     <link rel="stylesheet" href ="${contextPath}/resources/images/humidity.png"/>
   </head>
   <body>
     <main>
@@ -52,7 +54,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <section class="right-body">
           <!-- 지도 부분 -->
           <section class="main-container">
-            <div>
+            <div style="margin: 0  0 10px 15px; ">
               <label for="category" class="category">카테고리:</label>
               <select
                 onchange="showMarkersByCategory(this.value)"
@@ -119,9 +121,42 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </section>
 
           <!-- 날씨 -->
+         <section class="weather">
+            <div class="box">
+            	<div class="firstBox">
+            		<div class="left">
+            			<div class="cicon"></div>
+            		</div>
+            		<div class = "right">
+		                <div class="ctemp"></div>
+		                <div class="main"></div>
+		                <div class="name"></div>
+               		</div>
+            	</div>
+            	<div class="secondBox">
+	            	<div class="wi">
+		            	<img src="${contextPath}/resources/images/wind.png" id="wind-logo" />
+	            		 <div class="speed"></div>
+	            	</div>
+	            	<div class = "hu">
+		            	<img src="${contextPath}/resources/images/humidity.png" id="humidity-logo" />
+		            	<div class="humidity"></div>
+	            	</div>
+	            	<div class="mi">
+		            	<img src="${contextPath}/resources/images/dust.png" id="aqi-logo" />
+		            	<div class="aqi"></div>	
+	            	</div>
+            	
+            	</div>
+            
+            </div>
+         </section>
+          
+          
+          
+       <%--
           <section class="weather">
             <div class="box">
-            <link rel="stylesheet" href ="${contextPath}/resources/images/humidity.png"/>
               <!-- 첫번째 사장 -->
               <div class="FirstBox">
                 <h1 class="date"></h1>
@@ -153,7 +188,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 				</div>
                 <div class="mi">
                 <a href="${contextPath}">
-      			<img src="${contextPath}/resources/images/aqi.png" id="aqi-logo" />
+      			<img src="${contextPath}/resources/images/dust.png" id="aqi-logo" />
     			</a>
                   <div class="aqi"></div>
                   </div>
@@ -161,6 +196,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
              
             </div>
           </section>
+          --%>
         </section>
       </section>
     </main>

@@ -160,3 +160,24 @@ div.contents {
 }
 
 
+#search-area{
+	padding: 50px 0 20px 0;
+	text-align: center;
+	margin:auto;
+}
+
+#search-btn{
+	  border: 0;
+	  border-radius: 5px;
+	  background-color: #55710f;
+	  color: white;
+	  
+	  font-size:12px;
+/* 	  padding: 3px 10px;
+	  margin-top : 6px; */
+	  width: 50px;
+	  height: 25px;
+	  
+	  cursor: pointer;
+	
+}

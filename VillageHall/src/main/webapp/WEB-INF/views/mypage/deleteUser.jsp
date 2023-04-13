@@ -54,12 +54,14 @@
           <!-- 회원 탈퇴 -->
           <div id="deleteUser" class="tabContent">
           	 <form action="deleteUser" method="POST" name="myPage-form" onsubmit="return deleteUserValidate()" >
-
-                    <div class="myPage-row">
-                        <label>비밀번호</label>
-                        <input type="password" name="userPw" id="userPw" maxlength="30">              
-                    </div>
-
+				<c:choose>
+	        		<c:when test="${sessionScope.loginUser.kakaoUserKey == null}">
+	                    <div class="myPage-row">
+	                        <label>비밀번호</label>
+	                        <input type="password" name="userPw" id="userPw" maxlength="30">              
+	                    </div>
+	                 </c:when>
+				</c:choose>
                     
                     <div class="myPage-row info-title">
                         <label>회원 탈퇴 약관</label>

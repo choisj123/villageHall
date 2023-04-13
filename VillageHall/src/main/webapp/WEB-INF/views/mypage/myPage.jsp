@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> <%@ taglib prefix = "c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,16 +12,17 @@
 
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage.css" />
-    
-    <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
-  	<style>
-  		@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
-  		* {
-    		font-family: 'IBM Plex Sans KR', sans-serif;
-  		}
-  	</style>
-  
-  
+
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap");
+      * {
+        font-family: "IBM Plex Sans KR", sans-serif;
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -36,7 +37,8 @@
             <div>내 정보 수정</div>
             <form action="${contextPath}/mypage/myPage" method="post">
               <div id="box-body">
-                비밀번호 <input type="password" name="inputPw" id="inputPw" autofocus/>
+                비밀번호
+                <input type="password" name="inputPw" id="inputPw" autofocus />
                 <button type="submit" id="pwBtn" onclick="return pwNull()">
                   확인
                 </button>

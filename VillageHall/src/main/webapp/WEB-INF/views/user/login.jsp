@@ -16,13 +16,20 @@
 
     <script src="https://kit.fontawesome.com/a2e8ca0ae3.js" crossorigin="anonymous"></script>
 
+	<style>
+		header > section:nth-child(1){
+			boarder: none;
+		}
+	
+	</style>
+
+	
 </head>
 <body>
     <main>
         <!-- hedaer include -->
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       
-     		 
             <section class="login-content">
            
             
@@ -104,7 +111,7 @@
 
 	var userEmail;
 	var userNickname;
-	var kakaoUserKey;
+	var userUserKey;
 		
 	//카카오로그인
 	function kakaoLogin() {
@@ -146,25 +153,25 @@
 		}
 	});
 			
-	function process(userEmail, userNickname, kakaoUserKey){
+	function process(userEmail, userNickname, userUserKey){
 			
 		$.ajax({
 	           url:"kakaoLogin",
 	           data:{"userEmail": userEmail, "userNickname":userNickname, "kakaoUserKey":kakaoUserKey },
 	           type:"post",
 	           //dataType:"JSON",
-	           success:function(data){
+	           success:function(userNo){
 	           //성공적으로 하고나면 이동할 url
-	           	
-	                
-	              console.log("data",data);  
-	              console.log("aJax",userEmail);
-	              console.log("aJax",userNickname);   
-	              console.log("aJax",kakaoUserKey);   
-	                  
-	       
-	            	  alert("성공");
-		              location.href='login';
+
+	              
+	              if(userNo != 0) {
+	            	  location.href='${contextPath}';
+	              } else {
+	            	  location.href='${contextPath}/user/signUp';
+	              }
+	              
+	              
+	            			              
 	            	  
 	         
 	        

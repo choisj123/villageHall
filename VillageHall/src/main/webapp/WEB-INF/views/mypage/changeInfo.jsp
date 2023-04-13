@@ -26,7 +26,7 @@
 			background-color: #55710f;
   			color: white;
   			text-decoration: none;
- 			border-radius: 15px;
+ 			border-radius: 10px;
 		}
 		
   		@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');

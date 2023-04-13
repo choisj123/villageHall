@@ -474,6 +474,36 @@ public class UserDAO {
 		return result;
 	}
 
+	
+	/** 마이페이지 카카오톡 유저 회원 탈퇴
+	 * @param conn
+	 * @param userNo
+	 * @param kakaoUserKey
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteKakaoUser(Connection conn, int userNo, String kakaoUserKey) throws Exception{
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteKakadoUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, kakaoUserKey);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	/** 비밀번호 찾기 DAO
 	 * @param conn
 	 * @param user
@@ -538,6 +568,8 @@ public class UserDAO {
 		      // 결과 반환
 		      return result;
 	}
+
+
 
 
 

@@ -28,6 +28,7 @@
 
 #commentContainer{
 	height:auto;
+	margin-top: 40px;
 }
 
 
@@ -36,6 +37,8 @@
     height: 50px;
     border-radius: 50%;
     text-align: center;
+    margin-left: 10px;
+    margin-top: 5px;
 
 }
 
@@ -124,6 +127,18 @@
 	
 }
 
+#insertCommentBtn{
+	background-color: #55710f;
+    color : white;
+    border-radius: 5px;
+    border: 0;
+    width: 40px;
+    height: 25px;
+	
+	
+}
+
+
 #insertCommentContent {
 	width: 100%;
 	border-color:#ccc;
@@ -181,7 +196,7 @@
 .boardBox{
 	border: 1px solid  rgba(32, 33, 36, .28);
 	border-radius: 5px;
-	width: 800px;
+	width: auto;
 	min-height: 800px;
 	height: auto;
 	padding: 6px 6px;
@@ -189,6 +204,7 @@
 	display: flex;
 	flex-direction: column;
 	margin:auto;
+	
 }
 .boardBox div {
 	/* border: 1px solid  rgba(32, 33, 36, .28); */
@@ -256,14 +272,40 @@
 	
 }
 
-#deleteBoard{
+.board-btn-area{
+	float: right;
+	margin-right: 10px;	
+	margin-top: 15px;
+}
+
+#like{
 	
+	float: left;
+	margin-left: 10px;	
+	margin-top: 15px;
+	
+}
+
+#updateBtn{
 	background-color: #55710f;
     color : white;
     border-radius: 5px;
     border: 0;
-    width: 40px;
-    height: 25px;
+    width: 60px;
+    height: 30px;
+    font-size: 16px;
+    margin-right: 10px;
+	
+}
+
+#deleteBtn{
+	background-color: #55710f;
+    color : white;
+    border-radius: 5px;
+    border: 0;
+    width: 60px;
+    height: 30px;
+    font-size: 16px;
 	
 	
 }
