@@ -201,8 +201,9 @@
             		</c:when>
             
             	</c:choose>
-                
+            	  
             </section>
+           
             
             <!-- footer include -->
    			 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
