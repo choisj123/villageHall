@@ -123,6 +123,15 @@
 		AND USER_PW = ? 
 	</entry>
 	
+	<entry key="deleteKakadoUser">
+		UPDATE "USER" SET 
+		USER_DELETE_FG = 'Y' 
+		WHERE USER_NO = ? 
+		AND KAKAO_USER_KEY = ? 
+	</entry>
+	
+	
+	
 	<!-- 비밀번호 찾기 -->
 	<entry key="pwFind">
 		UPDATE "USER" SET 

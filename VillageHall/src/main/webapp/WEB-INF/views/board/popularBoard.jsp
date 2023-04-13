@@ -55,7 +55,7 @@
             <% String sortBy = (String)request.getAttribute("sortBy"); %>
                 
           	<form id="sortBy">
-            	<select id="sortBySelect" name="sortBy" onchange="this.form.submit()">
+            	<select id="sortBySelect" name="sortBy" onchange="this.form.submit()" style="margin-left: 40px;">
              		<option value="like" <% if(sortBy.equals("like")) { %> selected <% } %>>좋아요순</option>
               		<option value="read" <% if(sortBy.equals("read")) { %> selected <% } %>>조회수순</option>              		
             	</select>

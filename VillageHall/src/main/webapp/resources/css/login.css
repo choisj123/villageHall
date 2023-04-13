@@ -2,6 +2,8 @@
   * {
     font-family: 'IBM Plex Sans KR', sans-serif;
   }
+  
+  
 .login-content{
 	
     display: flex;
@@ -14,7 +16,7 @@
 	margin-top: 35px;
 	padding-left: 30px; 
 	padding-right: 30px; 
-    height: 700px;
+    height: 500px;
     border: 1px solid lightgray;
 }
 
@@ -46,6 +48,8 @@
     border: 1px solid #55710F;
     color: white;
     letter-spacing: 10px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .saveId{

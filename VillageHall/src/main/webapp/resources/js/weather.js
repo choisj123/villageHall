@@ -7,7 +7,7 @@
         var $humidity = data.main.humidity + '%';
         var $now = new Date($.now());
         var $speed = Math.floor(data.wind.speed) + 'm/s';
-        var $cDate = $now.getMonth() + 1 + '월' + $now.getDate() + '일';
+        var $cDate = $now.getMonth() + 1 + '월' + " " + $now.getDate() + '일';
         //  + $now.getHours()+ '시간' + $now.getMinutes() + '분';
         var $wIcon = data.weather[0].icon;
         var $name = data.name;
