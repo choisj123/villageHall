@@ -88,10 +88,11 @@
 	          						</div>
 	          						<div id="commentContent">
 	          							<span class= "comment-content">${comment.commentContent}</span><br>		          								          							          							
-	          							
-                          <c:if test="${loginUser.userNickname == comment.userNickname}">
-	          							 <textarea>${comment.commentContent}</textarea>
-	          							 </c:if>	
+	          							   <div class="commentEditForm" style="display:none;">
+										   <textarea style= resize:none id="updateCommentContent">${comment.commentContent}</textarea>
+										   <button class="cancelCommentButton">취소</button>
+										   <button class="saveCommentButton">저장</button>
+										</div>
 	          						</div>
 	          						<div>
 	          							<span class= "comment-createDate">${comment.commentCreateDate}</span>
@@ -99,7 +100,6 @@
 	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
 	          							<div>
 	          								<button id="updateCommentButton">수정</button>&nbsp;
-	          										          								
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
 	          									<input type="hidden" name="boardNo" value="${board.boardNo}">
