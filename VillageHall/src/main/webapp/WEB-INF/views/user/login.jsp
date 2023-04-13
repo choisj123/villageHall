@@ -16,13 +16,20 @@
 
     <script src="https://kit.fontawesome.com/a2e8ca0ae3.js" crossorigin="anonymous"></script>
 
+	<style>
+		header > section:nth-child(1){
+			boarder: none;
+		}
+	
+	</style>
+
+	
 </head>
 <body>
     <main>
         <!-- hedaer include -->
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
       
-     		 
             <section class="login-content">
            
             
