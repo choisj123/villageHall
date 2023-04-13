@@ -28,7 +28,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <!-- 회원가입  -->
       <section class="signUp-content">
         <form
-          action="signUP"
+          action="signUp"
           method="POST"
           name="signUp-form"
 
