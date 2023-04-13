@@ -153,6 +153,38 @@
 				<%-- 여기부터 faq영역 --%>
 				<c:otherwise>
 				
+				<!--FAQ 질문 검색 부분-->
+          <article class="FAQ-search">
+            <!--FAQ 질문 검색창-->
+            <form action="#" name="FAQ-search-form">
+              <h3 class="FAQ-text">FAQ 자주 묻는 질문</h3>
+
+              <fieldset class="FAQ-search-fieldset">
+                <input
+                  type="search"
+                  id="query"
+                  name="query"
+                  autocomplete="off"
+                  placeholder="무엇이 궁금하실까요?"
+                />
+
+                <!--FAQ 질문 검색버튼-->
+                <button
+                  id="FAQ-search-btn"
+                  class="fa-solid fa-magnifying-glass"
+                ></button>
+              </fieldset>
+            </form>
+
+            <!--FAQ 카테고리-->
+          </article>
+
+          <article class="category-article">
+            <a href="#" class="category" data-tab="signUp"> 회원가입 </a>
+            <a href="#" class="category" data-tab="logIn"> 로그인 </a>
+            <a href="#" class="category" data-tab="content"> 게시글 </a>
+            <a href="#" class="category" data-tab="etc"> 기타 </a>
+          </article>
           <hr>
           
 					<div class=faqSection>

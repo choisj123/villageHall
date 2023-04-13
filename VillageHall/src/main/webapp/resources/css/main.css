@@ -179,14 +179,12 @@ header > section:nth-of-type(3) {
 	
 }
 
-/* 샘플 */
-@media (max-width:600px){ /*가로 너비가 600px 이하일 때 아래 스타일 적용*/
-  main{
-      display: block;
-      flex-direction: column;
-  }
+/* 반응형 웹 */
+@media (max-width:1100px){ /*가로 너비가 1100px 이하일 때 아래 스타일 적용*/
+  .left-body {
+    display: none;
 }
-
+}
 
 /* 프로필 이미지 */
 #left-profile-image{
