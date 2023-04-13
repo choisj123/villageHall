@@ -83,8 +83,7 @@
 .FAQ-text {
   display: flex;
   color:rgba(32, 33, 36, .28);
-  padding-top: 50px;
-  margin-left: 180px;
+  margin-left: 150px;
   color: black;
   font-weight: 700;
   font-size: x-large;
@@ -95,7 +94,7 @@
   border: 2px solid rgba(32, 33, 36, .28);
   border-radius: 20px;
   width: 600px;
-  margin-left: 180px;
+  margin-left: 150px;
   padding: 2px;
 
   display: flex;
@@ -116,6 +115,10 @@
   outline: 0;
 
   width: 92%;
+}
+
+#search-btn{
+  display: none;
 }
 
 #FAQ-search-btn {
@@ -139,7 +142,7 @@
   border-left: 9px solid var(--cr-primary-text-color);
   border-right: 9px solid var(--cr-primary-text-color);
   border-bottom: 9px solid var(--cr-primary-text-color);
-	margin: 40px;
+	margin: 40px 70px;
 }
 
 .FAQTitle {
@@ -173,8 +176,6 @@ div.contents {
 	  color: white;
 	  
 	  font-size:12px;
-/* 	  padding: 3px 10px;
-	  margin-top : 6px; */
 	  width: 50px;
 	  height: 25px;
 	  

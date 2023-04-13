@@ -157,7 +157,7 @@
           <article class="FAQ-search">
             <!--FAQ 질문 검색창-->
             <form action="${contextPath}/board/list" name="FAQ-search-form" method="get" id="boardSearch" onsubmit="return searchValidate()">
-              <h3 class="FAQ-text">FAQ 자주 묻는 질문</h3>
+              <h3 class="FAQ-text">자주 묻는 질문</h3>
 
               <fieldset class="FAQ-search-fieldset">
 
@@ -265,29 +265,6 @@
                     <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
 
                 </ul>
-            </div>
-            
-            
-            <!-- /board/list?type=1&cp=3 -->
-
-            <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
-
-            <div id="search-area">
-				<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
-	                <input type="hidden" name="type" value="${param.type}">
-	                <input type="hidden" name="categoryNo" value="0">
-	
-	                <select name="key" id="search-key">
-	                    <option value="t">제목</option>
-	                  	<option value="c">내용</option>
-	                    <option value="tc">제목+내용</option>
-	                    <option value="w">작성자</option>
-	                </select>
-	
-	                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
-	
-	                <button id="search-btn">검색</button>
-	            </form>
             </div>
  
           </section>

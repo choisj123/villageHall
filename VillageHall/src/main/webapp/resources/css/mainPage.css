@@ -16,6 +16,18 @@
  */
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
+
+@media (max-width: 1020px) { /* 화면이 768px 이하일 때 */
+  header section:nth-of-type(1){
+    height: auto; /* 높이를 자동으로 조절 */
+    border-right: none; /* 보더 라인 제거 */
+  }
+  #home-logo {
+    display: none; /* 검색창 숨기기 */
+  }
+}
+
+
 * {
   box-sizing: border-box;
   font-family: "IBM Plex Sans KR", sans-serif;
