@@ -36,7 +36,7 @@
 					background-color: #55710f;
   					color: white;
   					text-decoration: none;
- 					border-radius: 15px;
+ 					border-radius: 10px;
 				}
     		</style>
     	</c:when>

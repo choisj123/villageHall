@@ -56,14 +56,16 @@
 
 
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-          		<c:if test="${loginUser.userNickname == board.userNickname || loginUser.administer == 'Y'}">
-          			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
-          			<button type="button" id="deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
-          		</c:if>
+	          		<c:if test="${loginUser != null && board.categoryNo != 1 && board.categoryNo != 2}"> 
+	          			<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like"><i class="fa-regular fa-heart fa-lg"></i> 좋아요 ${board.likeCount}</a>				
+	          		</c:if>
+            	<div class="board-btn-area">
+	          		<c:if test="${loginUser.userNickname == board.userNickname || loginUser.administer == 'Y'}">
+	          			<button type="button" id="updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+	          			<button type="button" id="deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
+	          		</c:if>
+            	</div>
             
-          		<c:if test="${loginUser != null && board.categoryNo != 1 && board.categoryNo != 2}"> 
-          			<a href="${contextPath}/board/like?boardNo=${board.boardNo}" id="like"><i class="fa-regular fa-heart fa-lg"></i></a>				
-          		</c:if>
           	</div>
           	
           	
@@ -88,10 +90,11 @@
 	          						</div>
 	          						<div id="commentContent">
 	          							<span class= "comment-content">${comment.commentContent}</span><br>		          								          							          							
-	          							
-                          <c:if test="${loginUser.userNickname == comment.userNickname}">
-	          							 <textarea>${comment.commentContent}</textarea>
-	          							 </c:if>	
+	          							   <div class="commentEditForm" style="display:none;">
+										   <textarea style= resize:none id="updateCommentContent">${comment.commentContent}</textarea>
+										   <button class="cancelCommentButton">취소</button>
+										   <button class="saveCommentButton">저장</button>
+										</div>
 	          						</div>
 	          						<div>
 	          							<span class= "comment-createDate">${comment.commentCreateDate}</span>
@@ -99,7 +102,6 @@
 	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
 	          							<div>
 	          								<button id="updateCommentButton">수정</button>&nbsp;
-	          										          								
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
 	          									<input type="hidden" name="boardNo" value="${board.boardNo}">
