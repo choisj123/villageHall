@@ -101,7 +101,10 @@
   display: flex;
 }
 #search-key{
-  display: none;
+  display: block;
+  height: 0;
+  width: 0;
+  margin-left: 20px;
 }
 
 #search-query {
@@ -140,18 +143,16 @@
 }
 
 .FAQTitle {
-            width: 300px;
             height: 30px;
             color: #666;
             margin: 16px 16px;
             border-radius: 10px;
             font: normal 16px/1.7 '굴림',Gulim, '돋움', Dotum, AppleGothic, Sans-serif;
-            text-align: center;
             line-height: 30px;
             cursor: pointer;
 }
 
-p.contents {
+div.contents {
             display: none; /* 화면에서 보이지 않음 */
             border-top: 2.5px solid lightgray;
             height: 200px;

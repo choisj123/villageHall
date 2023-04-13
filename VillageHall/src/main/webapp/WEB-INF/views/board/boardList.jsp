@@ -208,21 +208,16 @@
 					</div>
 					
 					<script>
-        				$(function() {
-            				$("FAQTitle").on("click", function() {
-
-                				if($(this).next("div").css("display") == 'none') {
-
-                    				$(this).siblings("div.contents").slideUp();
-                    				// 다음 요소는 내려라
-                    				$(this).next().slideDown();
-
-                				} else {
-                    				$(this).next().slideUp();
-                				}
-                
-            				});
-        				});
+					$(function() {
+						  $("div.contents").prev("div.FAQTitle").on("click", function() {
+						    if($(this).next("div.contents").css("display") == 'none') {
+						      $("div.contents").slideUp();
+						      $(this).next("div.contents").slideDown();
+						    } else {
+						      $(this).next("div.contents").slideUp();
+						    }
+						  });
+						});
     				</script>			
 				</c:otherwise>
 				<%-- 여기까 faq영역 --%>
