@@ -1090,9 +1090,8 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, comment.getUserNo());
-			pstmt.setInt(2, comment.getBoardNo());
-			pstmt.setInt(3, comment.getCommentNo());
+			pstmt.setInt(1, comment.getBoardNo());
+			pstmt.setInt(2, comment.getCommentNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -1123,8 +1122,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, comment.getCommentContent());
-			pstmt.setInt(2, comment.getUserNo());
-			pstmt.setInt(3, comment.getCommentNo());
+			pstmt.setInt(2, comment.getCommentNo());
 			
 			result = pstmt.executeUpdate();
 			

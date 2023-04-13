@@ -86,7 +86,11 @@
 	          							<span>${comment.userNickname}</span>
 	          						</div>
 	          						<div id="commentContent">
-	          							<span>${comment.commentContent}</span><br>		          								          							          							
+	          							<span>${comment.commentContent}</span><br>	
+	          							<c:if test="${loginUser.userNickname == comment.userNickname}">
+	          							 <textarea>${comment.commentContent}</textarea>
+	          							 </c:if>	
+	          							       								          							          							
 	          						</div>
 	          						<div>
 	          							<span>${comment.commentCreateDate}</span>
@@ -97,7 +101,6 @@
 	          										          								
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
-	          									<input type="hidden" name="userNo" value="${loginUser.userNo}">
 	          									<input type="hidden" name="boardNo" value="${board.boardNo}">
 	          									<button id="deleteCommentButton">삭제</button>
 	          								</form>
