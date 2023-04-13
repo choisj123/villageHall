@@ -29,6 +29,13 @@
       VALUES(?, ? , ? , ? , DEFAULT, NULL, NULL, DEFAULT, DEFAULT)   
    </entry>
    
+   <!-- 카카오회원가입 -->
+    <entry key="kakaoSignUp">
+  	  INSERT INTO "USER"(USER_EMAIL, USER_PW, USER_NICKNAME, USER_TEL,ENROLL_DATE, PROFILE_IMG,KAKAO_USER_KEY,USER_DELETE_FG,ADMINISTER) 
+      VALUES(?, ? , ? , NULL , DEFAULT, NULL, ? , DEFAULT, DEFAULT)
+   </entry>
+   
+   
    <!-- 인증번호 생성 -->
    <entry key="insertCertification">
       INSERT INTO CERTIFICATION VALUES(?, ?, SYSDATE)
@@ -125,12 +132,7 @@
 	
 
 	
-	<entry key="kakaoSignUp">
 	
-   INSERT INTO "USER"(USER_EMAIL, USER_PW, USER_NICKNAME, USER_TEL,ENROLL_DATE, PROFILE_IMG,KAKAO_USER_KEY,USER_DELETE_FG,ADMINISTER)
-      VALUES(?,?,?,NULL,DEFAULT,NULL,?,DEFAULT,?)  
-	
-	</entry>
 	
 
 	

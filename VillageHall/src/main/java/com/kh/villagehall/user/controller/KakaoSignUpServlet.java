@@ -31,27 +31,23 @@ public class KakaoSignUpServlet extends HttpServlet {
 		
 		String path = null;
 		
-		String userEmail = req.getParameter("userEmail");
-		String userNickname = req.getParameter("userNickname");
+		String kakaoEmail = req.getParameter("kakaoEmail");
+		String kakaoNickname = req.getParameter("kakaoNickname");
 		String kakaoUserKey = req.getParameter("kakaoUserKey");
 		
 		
-		userEmail = userEmail.replaceAll("\"","");
-		userNickname = userNickname.replaceAll("\"","");
+		kakaoEmail = kakaoEmail.replaceAll("\"","");
+		kakaoNickname = kakaoNickname.replaceAll("\"","");
 		
 		
 		User user = new User();
 		
-		user.setUserEmail(userEmail);
+		user.setUserEmail(kakaoEmail);
 		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
-		user.setUserNickname(userNickname);
+		user.setUserNickname(kakaoNickname);
 		user.setKakaoUserKey(kakaoUserKey);
 		
-
-		System.out.println(userEmail);
-		System.out.println(userNickname);
-		System.out.println(kakaoUserKey);
-		
+	
 try {
 			
 			UserService service = new UserService();
@@ -59,11 +55,13 @@ try {
 			// 회원가입 서비스 호출 후 결과 반환 받기
 			int result = service.kakaoSignUp(user);
 			
+			System.out.println("유저"+ user);
+			
 		
 			HttpSession session = req.getSession();	
 			
-			/*resp.setContentType("text/html; charset=UTF-8");
-	 		PrintWriter out = resp.getWriter();*/
+			resp.setContentType("text/html; charset=UTF-8");
+	 		PrintWriter out = resp.getWriter();
 			
 			 //Member m = new MemberService().memberLogin(id);
 		
@@ -82,7 +80,7 @@ try {
 			
 			}
 			
-			resp.sendRedirect( req.getContextPath() );
+			//resp.sendRedirect( req.getContextPath() );
 			
 		}catch (Exception e) {
 			
@@ -91,6 +89,7 @@ try {
 			
 			HttpSession session = req.getSession();	
 			session.setAttribute("message", "이미 가입된 회원입니다. 로그인을 해주시기 바랍니다.");
+			
 			
 		}
 				
