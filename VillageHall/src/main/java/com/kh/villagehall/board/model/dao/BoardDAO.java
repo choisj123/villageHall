@@ -1021,6 +1021,12 @@ public class BoardDAO {
 
 
 
+	/** 게시글 수정 dao
+	 * @param conn
+	 * @param map
+	 * @return result
+	 * @throws Exception
+	 */
 	public int updateBoard(Connection conn, Map<String, Object> map) throws Exception {
 
 		int result = 0;
@@ -1033,8 +1039,7 @@ public class BoardDAO {
 			pstmt.setString(1, (String)map.get("boardTitle"));
 			pstmt.setString(2, (String)map.get("boardContent"));
 			pstmt.setInt(3, (int)map.get("categoryNo"));
-			pstmt.setString(4, (String)map.get("boardImg"));
-			pstmt.setInt(5, (int)map.get("boardNo"));
+			pstmt.setInt(4, (int)map.get("boardNo"));
 			
 			result = pstmt.executeUpdate();
 			

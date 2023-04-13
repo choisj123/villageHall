@@ -227,7 +227,7 @@
   
 	<!-- 게시글 수정 -->
 	<entry key="updateBoard">
-		UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, CATEGORY_NO = ?, BOARD_IMG = ?
+		UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, CATEGORY_NO = ?
 		WHERE BOARD_NO = ?
 	</entry>
 	

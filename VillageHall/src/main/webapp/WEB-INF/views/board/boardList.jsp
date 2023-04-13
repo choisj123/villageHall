@@ -57,7 +57,7 @@
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
           
-			<h2>${boardName}</h2>
+			<h2><a href="${contextPath}/board/list?type=${param.type}&categoryNo=${param.categoryNo}" style="padding-left: 30px;">${boardName}</a></h2>
 			
 			<c:if test="${!empty param.key}">
                 <h3 style="margin-left:30px;"> "${param.query}" 검색 결과  </h3>
@@ -159,9 +159,14 @@
 				
 					<c:forEach var="board" items="${boardList}">
 						<div class="FAQTitle">${board.boardTitle}</div>
-                    		<p class="contents">${board.boardContent}</p>
+                    	<p class="contents">${board.boardContent}</p>
+                    	
+                    	<c:if test="${loginUser.administer == 'Y'}">
+          					<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          					<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
+          				</c:if>
                     			
-						</c:forEach>
+					</c:forEach>
 					</div>
 					
 					<script>

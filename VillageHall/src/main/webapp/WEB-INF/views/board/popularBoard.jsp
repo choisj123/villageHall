@@ -50,7 +50,7 @@
   
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
-          	<h2>인기게시판</h2>
+          	<h2><a href="${contextPath}/board/popularBoard?sortBy=like" style="text-decoration: none; color: black; padding-left: 30px;">인기게시판</a></h2>
             
             <% String sortBy = (String)request.getAttribute("sortBy"); %>
                 
