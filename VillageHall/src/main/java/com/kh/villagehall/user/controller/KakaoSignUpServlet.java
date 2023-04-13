@@ -47,11 +47,7 @@ public class KakaoSignUpServlet extends HttpServlet {
 		user.setUserNickname(kakaoNickname);
 		user.setKakaoUserKey(kakaoUserKey);
 		
-
-		System.out.println(kakaoEmail);
-		System.out.println(kakaoNickname);
-		System.out.println(kakaoUserKey);
-		
+	
 try {
 			
 			UserService service = new UserService();
@@ -59,11 +55,13 @@ try {
 			// 회원가입 서비스 호출 후 결과 반환 받기
 			int result = service.kakaoSignUp(user);
 			
+			System.out.println("유저"+ user);
+			
 		
 			HttpSession session = req.getSession();	
 			
-			/*resp.setContentType("text/html; charset=UTF-8");
-	 		PrintWriter out = resp.getWriter();*/
+			resp.setContentType("text/html; charset=UTF-8");
+	 		PrintWriter out = resp.getWriter();
 			
 			 //Member m = new MemberService().memberLogin(id);
 		
@@ -82,7 +80,7 @@ try {
 			
 			}
 			
-			resp.sendRedirect( req.getContextPath() );
+			//resp.sendRedirect( req.getContextPath() );
 			
 		}catch (Exception e) {
 			
@@ -91,6 +89,7 @@ try {
 			
 			HttpSession session = req.getSession();	
 			session.setAttribute("message", "이미 가입된 회원입니다. 로그인을 해주시기 바랍니다.");
+			
 			
 		}
 				
