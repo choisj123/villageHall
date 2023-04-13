@@ -32,29 +32,25 @@ public class KakaoLoginServelet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String kakaoUserKey = req.getParameter("kakaoUserKey");
-		
+
 	
 		try {  
-								
-			 
+
 			UserService service = new UserService();
 			
 			User loginUser = service.kakaoLogin(kakaoUserKey);
 			
 			HttpSession session = req.getSession();
 			
-			resp.setContentType("text/html; charset=UTF-8");
-	 		PrintWriter out = resp.getWriter();
-			
-		
 			System.out.println("로그인" + loginUser);
-			
+
 			if(loginUser != null) {
 				int userNo = loginUser.getUserNo();
 				
 				session.setAttribute("loginUser", loginUser);
 				
 				session.setMaxInactiveInterval(3600);
+
 				
 				new Gson().toJson(userNo, resp.getWriter());
 			} else {
@@ -65,8 +61,10 @@ public class KakaoLoginServelet extends HttpServlet {
 				new Gson().toJson(userNo, resp.getWriter());
 			}
 			
-			
 
+			// redirect
+			//resp.sendRedirect(req.getContextPath());
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

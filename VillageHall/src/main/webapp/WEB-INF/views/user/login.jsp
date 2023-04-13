@@ -111,7 +111,7 @@
 
 	var userEmail;
 	var userNickname;
-	var kakaoUserKey;
+	var userUserKey;
 		
 	//카카오로그인
 	function kakaoLogin() {
@@ -153,7 +153,7 @@
 		}
 	});
 			
-	function process(userEmail, userNickname, kakaoUserKey){
+	function process(userEmail, userNickname, userUserKey){
 			
 		$.ajax({
 	           url:"kakaoLogin",

@@ -28,10 +28,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <!-- 회원가입  -->
       <section class="signUp-content">
         <form
-          action="signUp"
+          action="signUP"
           method="POST"
           name="signUp-form"
-          enctype="multipart/form-data"
+
           onsubmit="return signUpValidate()"
         >
           <div class="villageHall">마을회관</div>
@@ -91,11 +91,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               maxlength="30"
             />
           </div>
-
+          
+          
           <div class="signUp-input-area">
             <input
               type="password"
               id="userPwConfirm"
+              name="userPw"
               placeholder="비밀번호 확인"
               maxlength="30"
             />
@@ -139,86 +141,113 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <span class="signUp-message"></span>프로필 사진
           </label>
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
-          -->
-
+          --> 
+                     
           <button type="submit" id="signUp-btn">일반 회원가입</button>
-
-          <a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
-            <img
-              src="${contextPath}/resources/images/kakao_login_medium_wide.png"
-            />
-          </a>
-
-          <!-- 카카오 스크립트 -->
-          <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
+          
           <script>
-            Kakao.init("f05c8b2913faad9659a18a205defef9c"); //발급받은 키 중 javascript키를 사용해준다.
-            console.log(Kakao.isInitialized()); // sdk초기화여부판단
+          const btn = document.getElementI
+          </script>  
+                  
+                  
+   		<a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
+        	 <img src="${contextPath}/resources/images/kakao_login_medium_wide.png">
+    	</a>
+     
+        <!-- 카카오 스크립트 -->
+		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		
+		
+	
+		<script>
+		
+		Kakao.init('f05c8b2913faad9659a18a205defef9c'); //발급받은 키 중 javascript키를 사용해준다.
+		console.log(Kakao.isInitialized()); // sdk초기화여부판단
 
-            var kakaoEmail;
-            var kakaoNickname;
-            var kakaoUserKey;
+		var kakaoEmail;
+		var kakaoNickname;
+		var kakaoUserKey;
+			
+		//카카오로그인
+		function kakaoLogin() {
+		
+			   
+			Kakao.Auth.login({
+			    success: function (response) {
+				    Kakao.API.request({
+			  	     url: '/v2/user/me',
+			  	     success: function (response) {
+			            //console.log(response)
+			           
+			           
+			            kakaoEmail = JSON.stringify(response.kakao_account.email);
+			            kakaoNickname = JSON.stringify(response.properties.nickname);
+			            kakaoUserKey = response.id;
+			            
+			            console.log("kakaoEmail",kakaoEmail);
+			            console.log("kakaoNickname", kakaoNickname);
+			            console.log("kakaoUserKey", kakaoUserKey);
+			            
+			           	process(kakaoEmail, kakaoNickname, kakaoUserKey);
+				            
+			
+				          
+			          		
+			         //접속된 회원의 토큰값 출력됨
+			        //alert(JSON.stringify(authObj));
+			        
+			      },
+					fail: function(error) {
+						
+			    		console.log(error);
+			      }
+			      
+			    });
+				
+			}
+		});
+				
+		function process(kakaoEmail, kakaoNickname, kakaoUserKey){
+				
+			$.ajax({
+		           url:"kakaoSignUp",
+		           data:{"kakaoEmail": kakaoEmail, "kakaoNickname":kakaoNickname, "kakaoUserKey":kakaoUserKey },
+		           type:"post",
+		           //dataType:"JSON",
+		           success:function(data){
+		           //성공적으로 하고나면 이동할 url
+		           	
+		                
+		              console.log("data",data);  
+		              console.log("aJax",kakaoEmail);
+		              console.log("aJax",kakaoNickname);   
+		              console.log("aJax",kakaoUserKey);   
+		                   
+		              
+		              location.href='login';
+		              
+		            },                            
+		                   
+		            error: function(error,status) {
+		                		
+		                console.log(error, status);
+		            }
+		            
+		     	});
+				
+				
+			}
+			
+				
+				
+		}
+		
+		</script> 
+		
+		
+		
+		
 
-            //카카오로그인
-            function kakaoLogin() {
-              Kakao.Auth.login({
-                success: function (response) {
-                  Kakao.API.request({
-                    url: "/v2/user/me",
-                    success: function (response) {
-                      //console.log(response)
-
-                      kakaoEmail = JSON.stringify(response.kakao_account.email);
-                      kakaoNickname = JSON.stringify(
-                        response.properties.nickname
-                      );
-                      kakaoUserKey = response.id;
-
-                      console.log("kakaoEmail", kakaoEmail);
-                      console.log("kakaoNickname", kakaoNickname);
-                      console.log("kakaoUserKey", kakaoUserKey);
-
-                      process(kakaoEmail, kakaoNickname, kakaoUserKey);
-
-                      //접속된 회원의 토큰값 출력됨
-                      //alert(JSON.stringify(authObj));
-                    },
-                    fail: function (error) {
-                      console.log(error);
-                    },
-                  });
-                },
-              });
-
-              function process(kakaoEmail, kakaoNickname, kakaoUserKey) {
-                $.ajax({
-                  url: "kakaoSignUp",
-                  data: {
-                    kakaoEmail: kakaoEmail,
-                    kakaoNickname: kakaoNickname,
-                    kakaoUserKey: kakaoUserKey,
-                  },
-                  type: "post",
-                  //dataType:"JSON",
-                  success: function (data) {
-                    //성공적으로 하고나면 이동할 url
-
-                    console.log("data", data);
-                    console.log("aJax", kakaoEmail);
-                    console.log("aJax", kakaoNickname);
-                    console.log("aJax", kakaoUserKey);
-
-                    location.href = "login";
-                  },
-
-                  error: function (error, status) {
-                    console.log(error, status);
-                  },
-                });
-              }
-            }
-          </script>
         </form>
       </section>
     </main>
