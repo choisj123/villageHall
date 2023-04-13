@@ -1,25 +1,24 @@
 // servlet에서 json 객체 불러오기
 $.ajax({
         url : "board/kakaoMap",
-        dataType : "json",    //  응답 데이터의 형식을 "json"으로 지정
-                              // -> 자동으로 JS 객체로 변환됨
+        dataType : "json",   
         success : function( kakaoMapList ){
 	      console.log(kakaoMapList);
 
 $.ajax({
         url : "board/kakaoMapBoardRecent",
         dataType : "json", 
-
         success : function(kakaoBoardRecent){
           console.log(kakaoBoardRecent);
 
-// map 함수 정의 
+// map 함수 기본 정의 
 var mapContainer = document.getElementById('map'),
     mapOption = { 
-        center: new kakao.maps.LatLng("37.578743", "127.003588"), 
+        center: new kakao.maps.LatLng("37.511643", "126.976631"), 
         level: 8
     }; 
 // kakao library 메서드
+// kakao.maps.Map은 카카오맵 생성자 함수
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 
@@ -29,11 +28,13 @@ var markers = [];
 // 데이터를 담을 배열추가
 var markersData = [];
 
+// 데이터를 담을 바열 추가
 var navData = [];
 
 
 // DB데이터를 배열에 삽입
 for (var i = 0; i < kakaoMapList.length; i++) {
+	// .push를 이용해 markersData 배열 안에 데이터 삽입
   markersData.push({
     marker : null,  
     name : kakaoMapList[i].userNickname,
@@ -44,12 +45,12 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     category : kakaoMapList[i].categoryName,
     like : kakaoMapList[i].likeCount,
     photoUrl : kakaoMapList[i].profileImg ? kakaoMapList[i].profileImg.substr(1) : ""
+    // 여기서 ? 는 조건연산자로 null일경우 value1, 아닐경우 value2 반환 
   });
 }
 
 for(var i = 0; i < kakaoBoardRecent.length; i++){
 	navData.push({
-		
 		name : kakaoBoardRecent[i].userNickname,
 		title : kakaoBoardRecent[i].boardTitle,
 		createAt : kakaoBoardRecent[i].boardCreateDate,
@@ -57,10 +58,12 @@ for(var i = 0; i < kakaoBoardRecent.length; i++){
 		boardNo : kakaoBoardRecent[i].boardNo,
 		photoUrl : kakaoBoardRecent[i].profileImg ? kakaoBoardRecent[i].profileImg.substr(1) : ""
 	});
+	
 }
 
 // marker에 위치 , 맵, 카테고리 삽입
 for (var i = 0; i < markersData.length; i++) {
+	// kakao.maps.Marker는 kakao라이브러리로 marker 생성 함수
   var marker = new kakao.maps.Marker({
     position: markersData[i].location,
     map: map,
@@ -74,9 +77,12 @@ for (var i = 0; i < markersData.length; i++) {
 
 // 열려있는 인포윈도우를 담을 변수 설정
 var openedInfowindow = null;
+
 // 배열에 담은 데이터를 정의하는 인포윈도우 이벤트 리스너
   kakao.maps.event.addListener(marker, 'click', (function(marker ,i) {
+	// 여기서 marker는 마커객체, i는 마커의 인덱스 반환
       return function() {
+	// kakao.maps.InfoWindow는 kakao라이브러리로 인포윈도우 생성 함수
           var infowindow = new kakao.maps.InfoWindow({
               content: 
               '<div class="infowindow-container">' +
@@ -100,18 +106,22 @@ var openedInfowindow = null;
              '</div>'
 
           });
+          // 다른 마커를 클릭했을때 이전에 클릭한 마커를 닫히게 하는 기능
           // 인포윈도우가 null이 아닐때 인포윈도우를 닫음
           if(openedInfowindow !== null){
 			openedInfowindow.close();
 		  }
           // 인포윈도우 이벤트 리스너
+          // 인포윈도우의 marker가 위치한 map위에 띄우는 코드
           infowindow.open(map, marker);
           openedInfowindow = infowindow;
+          // map을 클릭했을때 인포윈도우가 닫히는 함수
           map.addListener('click',  function() {
             infowindow.close();
             openedInfowindow = null;
           });
       }
+      // 클로저 함수로 
   })(marker, i));
 }
 

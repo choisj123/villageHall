@@ -171,7 +171,7 @@ public class WriteBoardServlet extends HttpServlet {
 				
 				req.setAttribute("board", board);
 //							req.getRequestDispatcher(path).forward(req, resp);
-					resp.sendRedirect(path);
+				resp.sendRedirect(path);
 //							resp.getWriter().print(result);
 			}
 		
@@ -189,7 +189,8 @@ public class WriteBoardServlet extends HttpServlet {
 				String path = null;
 				
 				if(result > 0) {
-					path = req.getContextPath() + "/board/boardDetail?boardNo=" + boardNo;
+					
+					 path = req.getContextPath() + "/board/boardDetail?boardNo=" + boardNo;
 				} else {
 					
 					session.setAttribute("message", "게시글 수정에 실패했습니다. 잠시 후 다시 시도해주세요." );
@@ -200,7 +201,7 @@ public class WriteBoardServlet extends HttpServlet {
 				
 				req.setAttribute("board", board);
 //							req.getRequestDispatcher(path).forward(req, resp);
-				//resp.sendRedirect(path);
+				resp.sendRedirect(path);
 //							resp.getWriter().print(result);
 				
 			}

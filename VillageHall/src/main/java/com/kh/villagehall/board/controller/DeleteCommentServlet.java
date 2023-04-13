@@ -19,13 +19,12 @@ public class DeleteCommentServlet extends HttpServlet {
 
 		int boardNo = Integer.parseInt(req.getParameter("boardNo"));
 		int commentNo = Integer.parseInt(req.getParameter("commentNo"));
-		int userNo = Integer.parseInt(req.getParameter("userNo"));
 		
 		Comment comment = new Comment();
 		
 		comment.setBoardNo(boardNo);
 		comment.setCommentNo(commentNo);
-		comment.setUserNo(userNo);
+
 		
 		try {
 			

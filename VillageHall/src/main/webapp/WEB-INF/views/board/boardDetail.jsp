@@ -56,9 +56,9 @@
 
 
             <%--여기까지!!!!!!!!!!!!!!!!!!!!!!!!! --%>
-          		<c:if test="${loginUser.userNickname == board.userNickname}">
+          		<c:if test="${loginUser.userNickname == board.userNickname || loginUser.administer == 'Y'}">
           			<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
-          			<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
+          			<button type="button" id="deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
           		</c:if>
             
           		<c:if test="${loginUser != null && board.categoryNo != 1 && board.categoryNo != 2}"> 
@@ -88,6 +88,10 @@
 	          						</div>
 	          						<div id="commentContent">
 	          							<span class= "comment-content">${comment.commentContent}</span><br>		          								          							          							
+	          							
+                          <c:if test="${loginUser.userNickname == comment.userNickname}">
+	          							 <textarea>${comment.commentContent}</textarea>
+	          							 </c:if>	
 	          						</div>
 	          						<div>
 	          							<span class= "comment-createDate">${comment.commentCreateDate}</span>
@@ -98,7 +102,6 @@
 	          										          								
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
-	          									<input type="hidden" name="userNo" value="${loginUser.userNo}">
 	          									<input type="hidden" name="boardNo" value="${board.boardNo}">
 	          									<button id="deleteCommentButton">삭제</button>
 	          								</form>

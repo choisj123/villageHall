@@ -238,7 +238,7 @@
   
 	<!-- 게시글 수정 -->
 	<entry key="updateBoard">
-		UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, CATEGORY_NO = ?, BOARD_IMG = ?
+		UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, CATEGORY_NO = ?
 		WHERE BOARD_NO = ?
 	</entry>
 	
@@ -366,13 +366,13 @@
 	<!-- 댓글 삭제 -->
 	<entry key="deleteComment">
 		UPDATE "COMMENT" SET COMMENT_DELETE_FG = 'Y'
-		WHERE USER_NO = ? AND BOARD_NO = ? AND COMMENT_NO = ?
+		WHERE BOARD_NO = ? AND COMMENT_NO = ?
 	</entry>
 	
 	<!-- 댓글 수 -->
 	<entry key="updateComment">
 		UPDATE "COMMENT" SET COMMENT_CONTENT = ?
-		WHERE USER_NO = ? AND COMMENT_NO = ?
+		WHERE COMMENT_NO = ?
 	</entry>
 
 

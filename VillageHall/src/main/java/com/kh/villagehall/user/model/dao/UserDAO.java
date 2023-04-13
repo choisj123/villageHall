@@ -65,6 +65,7 @@ public class UserDAO {
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
 				loginUser.setKakaoUserKey(rs.getString("KAKAO_USER_KEY"));
+				loginUser.setAdminister(rs.getString("ADMINISTER"));
 				
 				
 				
@@ -107,6 +108,7 @@ public class UserDAO {
 				loginUser.setEnrollDate(rs.getString("ENROLL_DATE"));
 				loginUser.setProfileImg(rs.getString("PROFILE_IMG"));
 				loginUser.setKakaoUserKey(rs.getString("KAKAO_USER_KEY"));
+				loginUser.setAdminister(rs.getString("ADMINISTER"));
 				
 				
 				
@@ -515,7 +517,7 @@ public class UserDAO {
 		int result = 0; // 결과 저장용 변수
 	      
 	      try {
-	    	  String sql = prop.getProperty("signUp");
+	    	  String sql = prop.getProperty("kakaoSignUp");
 		         
 		         pstmt = conn.prepareStatement(sql);
 		         
@@ -523,7 +525,7 @@ public class UserDAO {
 		         pstmt.setString(2, user.getUserPw());
 		         pstmt.setString(3, user.getUserNickname());         
 		         pstmt.setString(4, user.getKakaoUserKey());
-		         //pstmt.setString(5, user.getProfileImg());
+		         
 		         
 		      
 		         result = pstmt.executeUpdate();

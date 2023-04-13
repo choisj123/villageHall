@@ -19,13 +19,11 @@ public class UpdateCommentServlet extends HttpServlet {
 		
 		String commentContent = req.getParameter("commentContent");
 		int commentNo = Integer.parseInt(req.getParameter("commentNo"));
-		int userNo = Integer.parseInt(req.getParameter("userNo"));
 		int boardNo = Integer.parseInt(req.getParameter("boardNo"));
 		
 		Comment comment = new Comment();
 		
 		comment.setCommentContent(commentContent);
-		comment.setUserNo(userNo);
 		comment.setCommentNo(commentNo);
 		
 		try {

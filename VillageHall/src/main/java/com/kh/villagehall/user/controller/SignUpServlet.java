@@ -64,8 +64,9 @@ public class SignUpServlet extends HttpServlet{
 					
 					resp.setContentType("text/html; charset=UTF-8");
 			 		PrintWriter out = resp.getWriter();
-					
-					
+			 		
+			 		
+						
 					
 					
 					if(result > 0) { // 성공
@@ -82,6 +83,8 @@ public class SignUpServlet extends HttpServlet{
 						out.println("<script>alert('가입이 실패하였습니다.') location.href='signUp';</script>");
 						 
 						out.flush();
+						
+				
 					
 					}
 					
