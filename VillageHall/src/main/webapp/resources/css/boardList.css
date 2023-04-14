@@ -112,12 +112,16 @@
 
   display: flex;
 }
-#search-key{
-  /* display: block;
-  height: 0;
-  width: 0;
-  margin-left: 20px; */
+
+#quickSearchArea {
+	display:flex;
+	justify-content: center;
+	padding-top: 20px;
 }
+.quickSearchArea {
+	padding-left: 20px;
+}
+
 
 #search-query {
   padding: 10px;

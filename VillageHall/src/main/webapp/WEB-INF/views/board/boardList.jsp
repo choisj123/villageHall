@@ -59,7 +59,7 @@
           
 			<h2><a href="${contextPath}/board/list?type=${param.type}&categoryNo=${param.categoryNo}" style="padding-left: 30px;">${boardName}</a></h2>
 			
-			<c:if test="${!empty param.key}">
+			<c:if test="${!empty param.key && param.type == 3}">
                 <h3 style="margin-left:30px;"> "${param.query}" 검색 결과  </h3>
             </c:if>
             
@@ -174,7 +174,7 @@
 
                  
                  <input type="hidden" name="type" value="${param.type}">
-                 <input type="hidden" name="categoryNo" value="0">
+                 <input type="hidden" name="categoryNo" value="2">
 				 <input type="hidden" name="key" value="t">
 
                 <input
@@ -191,13 +191,15 @@
                   class="fa-solid fa-magnifying-glass"
                 ></button>
               </fieldset>
-              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=게시글">게시글</a>
-              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=회원">회원</a>
-              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=로그인">로그인</a>
-              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=가입">가입</a>
-              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=인증">인증</a>
-              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=기타">기타</a>
-              
+              <div id="quickSearchArea">
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2" class="quickSearchArea">전체</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=게시글" class="quickSearchArea">게시글</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=회원" class="quickSearchArea">회원</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=로그인" class="quickSearchArea">로그인</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=가입" class="quickSearchArea">가입</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=인증" class="quickSearchArea">인증</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=기타" class="quickSearchArea">기타</a>
+              </div>
             </form>
 
             <!--FAQ 카테고리-->
