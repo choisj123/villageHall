@@ -31,7 +31,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           action="signUp"
           method="POST"
           name="signUp-form"
-
           onsubmit="return signUpValidate()"
         >
           <div class="villageHall">마을회관</div>

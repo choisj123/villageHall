@@ -51,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             >&nbsp;로그인</a
           >
         </div>
-        <a href="${contextPath}/user/signUp" id="signup">회원가입</a>
+        <a href="${contextPath}/user/termsOfUse" id="signup">회원가입</a>
       </section>
     </c:when>
     <c:otherwise>

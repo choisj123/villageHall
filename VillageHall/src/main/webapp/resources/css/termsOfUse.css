@@ -1,0 +1,18 @@
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
+ .terms-of-use-area{
+    display: flex;
+    justify-content: center;
+}
+
+.villageHall{
+    color: #55710F;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 35px;
+    padding-bottom: 70px;
+}
+  
