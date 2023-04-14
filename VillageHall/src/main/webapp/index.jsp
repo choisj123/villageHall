@@ -228,6 +228,5 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <script src="${contextPath}/resources/js/mainPage-MapAPI.js"></script>
     <script src="${contextPath}/resources/js/mainPage.js"></script>
-    <script src="${contextPath}/resources/js/weather.js"></script>
   </body>
 </html>

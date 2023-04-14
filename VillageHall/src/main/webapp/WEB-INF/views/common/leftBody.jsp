@@ -106,7 +106,7 @@ pageEncoding="UTF-8"%>
             
             </div>
          </section>
-  
+      <script src="${contextPath}/resources/js/weather.js"></script>
   
   
 </section>
