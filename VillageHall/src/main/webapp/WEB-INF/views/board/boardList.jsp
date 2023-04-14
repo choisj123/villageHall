@@ -186,7 +186,7 @@
 					<div class=faqSection>
 				
 					<c:forEach var="board" items="${boardList}">
-						<div class="FAQTitle">${board.boardTitle}</div>
+						<div class="FAQTitle">▷ ${board.boardTitle}</div>
                     	<div class="contents">${board.boardContent}</div>
                     	
                     	<c:if test="${loginUser.administer == 'Y'}">
@@ -215,7 +215,7 @@
           	
 	          	
 	            <c:if test ="${param.type == '3' && !empty loginUser}">
-	            	<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
+	            	<button type="button" id="boardWriteBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
 	            </c:if>
           	
           	</div>

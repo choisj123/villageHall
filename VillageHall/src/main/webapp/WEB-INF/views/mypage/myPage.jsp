@@ -32,7 +32,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <jsp:include page="/WEB-INF/views/common/leftBody.jsp" />
 
         <section class="right-body">
-          <h3>마이페이지</h3>
+          <h2 class="mypageH2"> 마이페이지</h2>
           <div class="myPage-box">
             <div>내 정보 수정</div>
             <form action="${contextPath}/mypage/myPage" method="post">

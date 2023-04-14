@@ -145,7 +145,6 @@
 /* FAQ 게시판 스타일*/
 
 .faqSection {
-	border: 1px solid black;
 	margin-left:50px;
 	width: 850px;
 }
@@ -171,7 +170,7 @@ div.contents {
 }
 
 #boardSearch{
- margin-bottom: 35px;
+ margin-bottom: 40px;
 }
 
 #faq-search-area{
@@ -201,11 +200,18 @@ div.contents {
 }
 
 
-#writeBtn{
-	width: 64px;
-	position : absolute;
-	bottom: -30px;
-    right: 23px;
+#boardWriteBtn{
+
+    margin: 20px 0 0 750px;    
+    text-decoration: none;
+    border: 0;
+    border-radius: 10px;
+    background-color: #55710f;
+    color: white;
+    font-size: 20px;
+    padding: 3px 10px;
+    width: 80px;
+
 }
 
 #updateBtn, #deleteBtn{
