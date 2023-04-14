@@ -98,7 +98,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <!-- 공지사항 -->
             <div class="notice-box">
               <div><p><i class="fa-regular fa-bell"></i> 공지사항
-               <a href="${contextPath}/board/list?type=1"><i class="fa-solid fa-angles-right" id="link"></i></a></p>
+               <a href="${contextPath}/board/list?type=1&categoryNo=1"><i class="fa-solid fa-angles-right" id="link"></i></a></p>
               </div>
               <div>
                 <table class="notice-content">
