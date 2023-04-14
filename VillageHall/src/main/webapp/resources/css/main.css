@@ -97,7 +97,7 @@ header > section:nth-of-type(3) {
 }
 
 #login {
-  margin-right: 20px;
+  margin-right: 15px;
   text-decoration: none;
   color: #55710f;
   border: 2px solid #55710f;
@@ -135,7 +135,7 @@ header > section:nth-of-type(3) {
 }
 
 #logout {
-  margin-right: 5px;
+
   text-decoration: none;
   color: #55710f;
   border: 2px solid #55710f;
@@ -145,16 +145,6 @@ header > section:nth-of-type(3) {
   height: 35px;
   line-height: 33px;
   text-align: center;
-}
-
-#user-name {
-  border: 1px solid #55710f;
-  border-radius: 50px;
-  background-color: #55710f;
-  color: white;
-  padding: 5px 10px 5px 10px;
-  height: 35px;
-  margin-right: 20px;
 }
 
 #logout:hover {
@@ -168,6 +158,23 @@ header > section:nth-of-type(3) {
   line-height: 33px;
   text-align: center;
 }
+
+#user-name {
+	
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #55710f;
+  border-radius: 50px;
+  background-color: #55710f;
+  color: white;
+  height: 35px;
+  line-height: 33px;
+  text-align: center;
+  padding: 0 5px 0 5px;
+  margin-right: 10px;
+}
+
+
 
 /* 큰 바디부분 */
 
@@ -380,7 +387,7 @@ footer a {
   margin-left: 35px;
   /*   margin: 7px 50px; */
   border-radius: 10px;
-  background-color: rgb(237, 245, 241);
+  /* background-color: rgb(237, 245, 241); */
 }
 
 .ctemp {
