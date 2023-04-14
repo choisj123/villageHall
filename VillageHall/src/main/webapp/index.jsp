@@ -14,7 +14,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <link rel="stylesheet" href="resources/css/main.css" />
     <link rel="stylesheet" href="resources/css/mainPage.css" />
-    <link rel="stylesheet" href="resources/css/weather.css" />
     
     <!-- 글꼴 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

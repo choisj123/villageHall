@@ -206,7 +206,6 @@
 }
 
 .info-title {
-  border-bottom: 1px dotted #ccc;
   padding: 5px 0 0 5px;
   font-size: 14px;
   font-weight: bold;
@@ -406,7 +405,7 @@ notice-content tbody td {
 }
 
 .weather {
-  padding-top: 110px;
+/* 	padding-top: 50px; */
   flex-basis: 20%;
 }
 
