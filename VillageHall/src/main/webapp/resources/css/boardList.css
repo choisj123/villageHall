@@ -151,6 +151,11 @@
 .faqSection {
 	margin-left:50px;
 	width: 850px;
+
+}
+.icon{
+	float: right;
+	margin-right: 110px;
 }
 
 .FAQTitle {
@@ -160,15 +165,18 @@
             border-radius: 10px;
             line-height: 30px;
             cursor: pointer;
-            font-weight: 500;
+            /* font-weight: 500; */
             font-size: 20px;
+            	margin-bottom: 25px;
             
 }
+
 
 div.contents {
             display: none; /* 화면에서 보이지 않음 */
             border-top: 2.5px solid lightgray;
             height: 200px;
+            width: 750px;
             padding: 40px;
             font-size: 18px;
 }
