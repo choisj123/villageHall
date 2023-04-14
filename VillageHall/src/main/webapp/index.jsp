@@ -165,10 +165,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           
           
           
-
+       <%--
           <section class="weather">
             <div class="box">
-              <!-- 첫번째 상자 -->
+              <!-- 첫번째 사장 -->
               <div class="FirstBox">
                 <h1 class="date"></h1>
               </div>
@@ -207,6 +207,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
              
             </div>
           </section>
+          --%>
+        </section>
       </section>
     </main>
 
@@ -220,8 +222,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
-   <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
-    
 
     <!-- main.js 연결 -->
     <!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->
