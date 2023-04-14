@@ -28,6 +28,12 @@
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
     ></script>
+          <!-- jQuery 라이브러리 추가 -->
+      <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"
+      ></script>
     
     <c:choose>
     	<c:when test="${param.type == 1}">
@@ -264,11 +270,7 @@
     <!-- 내부 접근 절대 경로 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
   
-	<!-- jQuery 라이브러리 추가 -->
-	<script
-		src="https://code.jquery.com/jquery-3.6.0.js"
-		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-		crossorigin="anonymous"></script>
+
   
 	<!-- main.js 연결 -->
 	<!-- <script src="${pageContext.request.contextPath}/resources/js/main.js"></script> -->

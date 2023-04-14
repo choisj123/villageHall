@@ -17,6 +17,8 @@ var mapContainer = document.getElementById('map'),
         center: new kakao.maps.LatLng("37.511643", "126.976631"), 
         level: 8
     }; 
+    
+ 
 // kakao library 메서드
 // kakao.maps.Map은 카카오맵 생성자 함수
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -174,6 +176,7 @@ function showMarkersByCategory(newCategory) {
   window.location.href = boardUrl;
 }
 
+
   
   for (var i = 0; i < markersData.length; i++) {
     if (category === "전체" || markersData[i].category === category) {
@@ -193,9 +196,6 @@ document.getElementsByName("category").forEach(function (element) {
   });
   
   showMarkersByCategory("전체"); // 초기값 설정
-
-
-
 
 
   },
