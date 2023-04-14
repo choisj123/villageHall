@@ -7,6 +7,10 @@
   	height:auto;
   }
 
+  .right-body{
+    height: auto;
+  }
+
 /* a태그 공통 설정 */
 .right-body a{
     text-decoration: none;
@@ -18,13 +22,8 @@
 }
 
 #boardList{
-    padding: 6px 12px;
-    border: 1px solid white;
-    border-top: none;
-    width: 800px;
-    height: 595px;
-   	margin: auto;
-}
+   display: flex;
+} 
 
 .boardListTable {
     width: 100%;
@@ -104,10 +103,10 @@
   display: flex;
 }
 #search-key{
-  display: block;
+  /* display: block;
   height: 0;
   width: 0;
-  margin-left: 20px;
+  margin-left: 20px; */
 }
 
 #search-query {
@@ -119,10 +118,6 @@
   outline: 0;
 
   width: 92%;
-}
-
-#search-btn{
-  display: none;
 }
 
 #FAQ-search-btn {
@@ -140,7 +135,7 @@
 /* FAQ 게시판 스타일*/
 
 .faqSection {
-	margin: 40px 70px;
+	/* margin: 40px 70px; */
 }
 
 .FAQTitle {
@@ -160,14 +155,17 @@ div.contents {
             padding: 40px;
 }
 
-
-#search-area{
-	padding: 50px 0 20px 0;
-	text-align: center;
-	margin:auto;
+#boardSearch{
+  /* display: flex; */
 }
 
-#search-btn{
+#faq-search-area{
+	display: flex;
+	margin:auto;
+  height: 25px;
+}
+
+#faq-search-btn{
 	  border: 0;
 	  border-radius: 5px;
 	  background-color: #55710f;
@@ -179,11 +177,11 @@ div.contents {
 	  
 	  cursor: pointer;
 	
-}
+} 
 
 #boardListOutBox{
 	width: 800px;
-    height: 595px;
+    /* height: 595px; */
     position: relative;
 }
 
@@ -193,4 +191,15 @@ div.contents {
 	position : absolute;
 	bottom: -30px;
     right: 23px;
+}
+
+#updateBtn, #deleteBtn{
+	background-color: #55710f;
+    color : white;
+    border-radius: 5px;
+    border: 0;
+    width: 40px;
+    height: 25px;
+    float: right;
+    margin-right:10px;
 }
