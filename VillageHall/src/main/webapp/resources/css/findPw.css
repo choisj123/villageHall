@@ -6,6 +6,14 @@
 .confirm{ color : green;}
 .error{  color : red;  }
 
+#logo{
+	
+	width: 120px;
+    height: 100px;
+    margin-left: 425%;
+    
+}
+
 .main{
 	
 	display: flex;

@@ -2,10 +2,22 @@
   * {
     font-family: 'IBM Plex Sans KR', sans-serif;
   }
+  
+#logo{
+	
+	width: 120px;
+    height: 100px;
+    margin-left: 720px;
+    
+}
 
 .terms-of-use-area{
-    display: flex;
-    justify-content: center;
+
+    width: 900px;
+    padding-left: 170px;
+    margin-left: 350px;
+    border: none;
+   
 }
 
 .villageHall{
@@ -17,11 +29,13 @@
     padding-left: 200px;
 }
 
+
+
 #table{
 
 border:1px solid lightgray;
-}
 
+}
 
 
 .td{
@@ -48,7 +62,7 @@ border:1px solid lightgray;
 
 
 #nextBtn{
-    width: 100%;
+    width: 500px;
     height: 50px;
     background-color: #55710F;
     border-radius: 5px;

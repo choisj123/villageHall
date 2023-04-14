@@ -22,8 +22,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
   <body>
     <main>
-      <!-- hedaer include -->
-      <jsp:include page="/WEB-INF/views/common/header.jsp" />
+      <!--헤더 영역 시작-->
+        <header>
+            <!--로고 영역(클릭하면 메인페이지로 넘어감)-->
+           
+                <a href="${contextPath}">
+                    <img src="${contextPath}/resources/images/logo.png" id="logo">
+                </a>
+
+        </header>
 
       <!-- 회원가입  -->
       <section class="signUp-content">
