@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.villagehall.board.model.service.BoardService;
 import com.kh.villagehall.comment.model.vo.Comment;
 
@@ -31,9 +32,10 @@ public class UpdateCommentServlet extends HttpServlet {
 			BoardService service = new BoardService();
 			
 			int result = service.updateComment(comment);
+			System.out.println(result);
 			
 			if(result > 0) {
-				resp.sendRedirect("/VillageHall/board/boardDetail?boardNo=" + boardNo);
+				new Gson().toJson(result, resp.getWriter() );
 			}
 			
 		} catch(Exception e) {

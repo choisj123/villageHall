@@ -6,7 +6,7 @@ font-family: 'IBM Plex Sans KR', sans-serif;;
 
 html{
 	position: relative;
-	min-height: 600px;;
+	min-height: 600px;
 }
 
 body {
@@ -98,51 +98,72 @@ header > section:nth-of-type(3) {
 }
 
 #login {
-  padding-right: 5px;
+  margin-right: 5px;
   text-decoration: none;
   color: #55710f;
+  border: 2px solid #55710f;
+    border-radius: 15px;
+      padding: 5px;
+   width: 75px;
+  height: 30px;
 }
 
 #login:hover{
   text-decoration: none;
-  font-weight: bold;
-  border: 7px solid #55710f;
+/*   font-weight: bold; */
+  border: 1px solid #55710f;
   border-radius: 15px;
   background-color: #55710f;
   color: white;
+  padding: 5px;
+   width: 75px;
+  height: 30px;
+  
 	
 }
 
 #signup {
-  border: 5px solid #55710f;
+	text-decoration: none;
+  border: 1px solid #55710f;
   border-radius: 15px;
   background-color: #55710f;
   color: white;
-  text-decoration: none;
+  width: 75px;
+  height: 30px;
+  padding: 2px 1px 0 6px ;
 }
 
 
 #logout {
-  padding-right: 5px;
+  margin-right: 5px;
   text-decoration: none;
   color: #55710f;
+    border: 2px solid #55710f;
+      border-radius: 15px;
+          padding: 5px 5px 5px 5px;
+     /*  padding: 5px; */
+   width: 90px;
+  height: 30px;
+}
+
+#user-name {
+  border: 1px solid #55710f;
+  border-radius: 15px;
+  background-color: #55710f;
+  color: white;
+  padding: 2px 5px 2px 5px;
 }
 
 #logout:hover {
   text-decoration: none;
   font-weight: bold;
-  border: 7px solid #55710f;
+  border: 1px solid #55710f;
   border-radius: 15px;
   background-color: #55710f;
   color: white;
+    padding: 5px 5px 5px 5px;
 }
 
-#user-name {
-  border: 6px solid #55710f;
-  border-radius: 15px;
-  background-color: #55710f;
-  color: white;
-}
 
 /* 큰 바디부분 */
 
@@ -259,6 +280,7 @@ nav ul li table td {
   height: auto;
   flex-basis: 80%;
   border: none;
+  min-height: 1000px;
 
 
   display: flex;

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c"  uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%> <%@ taglib prefix = "c"
+uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" /> 
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마을회관</title>
@@ -14,35 +14,31 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css" />
 
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/2f1bf0eac7.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/2f1bf0eac7.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
-    <main>   
+    <main>
       <!-- hedaer include -->
       <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
       <!-- 회원가입  -->
-  <section class="signUp-content">
-
-         
-
+      <section class="signUp-content">
         <form
           action="signUp"
           method="POST"
           name="signUp-form"
-          enctype="multipart/form-data" 
           onsubmit="return signUpValidate()"
         >
+          <div class="villageHall">마을회관</div>
 
-
-        
-            <div class="villageHall">
-                마을회관
-             </div>
-        
           <label for="userEmail">
-            아이디(이메일)<span class="fa-thick fa-asterisk fa-sm required"></span>
+            아이디(이메일)<span
+              class="fa-thick fa-asterisk fa-sm required"
+            ></span>
           </label>
 
           <div class="signUp-input-area">
@@ -59,17 +55,15 @@
             &nbsp;<button type="button" id="sendBtn">인증번호</button>
           </div>
 
-          <span class="signUp-message" id="emailMessage"
-            ></span>
+          <span class="signUp-message" id="emailMessage"></span>
 
-		<!--  
+          <!--  
           <label for="emailCheck">
             인증번호<span class="required">•</span>
           </label> 
           -->
 
           <div class="signUp-input-area">
-     
             <input
               type="text"
               id="cNumber"
@@ -81,10 +75,11 @@
             &nbsp;<button type="button" id="cBtn">인증하기</button>
           </div>
 
-         
           <span class="signUp-message" id="cMessage"></span>
 
-          <label for="userPw">  비밀번호 <span class="fa-thick fa-asterisk fa-sm required"></span></label>
+          <label for="userPw">
+            비밀번호 <span class="fa-thick fa-asterisk fa-sm required"></span
+          ></label>
 
           <div class="signUp-input-area">
             <input
@@ -95,22 +90,24 @@
               maxlength="30"
             />
           </div>
-
+          
+          
           <div class="signUp-input-area">
             <input
               type="password"
               id="userPwConfirm"
+              name="userPw"
               placeholder="비밀번호 확인"
               maxlength="30"
             />
           </div>
 
-          <span class="signUp-message" id="pwMessage"
-            ></span
-          >
+          <span class="signUp-message" id="pwMessage"></span>
 
           <label for="userNickname">
-            닉네임<span class="required"><span class="fa-thick fa-asterisk fa-sm required"></span></span>
+            닉네임<span class="required"
+              ><span class="fa-thick fa-asterisk fa-sm required"></span
+            ></span>
           </label>
 
           <div class="signUp-input-area">
@@ -123,13 +120,9 @@
             />
           </div>
 
-          <span class="signUp-message" id="nicknameMessage"
-            ></span
-          >
+          <span class="signUp-message" id="nicknameMessage"></span>
 
-          <label for="userTel">
-            전화번호<span class="required"></span>
-          </label>
+          <label for="userTel"> 전화번호<span class="required"></span> </label>
 
           <div class="signUp-input-area">
             <input
@@ -141,8 +134,7 @@
             />
           </div>
 
-          <span class="signUp-message" id="telMessage"
-            ></span>
+          <span class="signUp-message" id="telMessage"></span>
           <!--  
           <label for="profile">
             <span class="signUp-message"></span>프로필 사진
@@ -150,7 +142,11 @@
           <input type="file" name="profileImage" id="input-image" accept="image/*"> 
           --> 
                      
-          <button type="submit" id="signUp-btn">일반 회원가입</button>  
+          <button type="submit" id="signUp-btn">일반 회원가입</button>
+          
+          <script>
+          const btn = document.getElementI
+          </script>  
                   
                   
    		<a href="javascript:void(0)" id="kakao-btn" onclick="kakaoLogin()">
@@ -250,15 +246,10 @@
 		
 		
 		
-		
+
         </form>
       </section>
-
     </main>
-    
- 
-
-
 
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -272,8 +263,5 @@
 
     <!-- signUp.js 연결 -->
     <script src="${contextPath}/resources/js/signUp.js"></script>
-
-    
-    
   </body>
 </html>

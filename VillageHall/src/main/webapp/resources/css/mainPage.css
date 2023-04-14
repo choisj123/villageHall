@@ -57,6 +57,21 @@ align-items: center;
   list-style-type: none;
 }
 
+
+
+#categorySelect{
+	padding-left: 200px;
+	padding-bottom: 10px;
+}
+
+#categorySelect label {
+  margin-right: 20px;
+  color:#55710f;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
 /* 핀게시글 */
 
 .infowindow-contaioner {
@@ -282,9 +297,6 @@ align-items: center;
 fave-content tbody td, notice-content tbody td {
 	text-align: left;
 }
-
-
-
 
 
 #popularTbody {
