@@ -18,7 +18,7 @@
     border: 1px solid white;
     border-top: none;
     width: 800px;
-    height: 500px;
+    height: 595px;
    	margin: auto;
 }
 
@@ -179,4 +179,18 @@ p.contents {
 	  
 	  cursor: pointer;
 	
+}
+
+#boardListOutBox{
+	width: 800px;
+    height: 595px;
+    position: relative;
+}
+
+
+#writeBtn{
+	width: 64px;
+	position : absolute;
+	bottom: -30px;
+    right: 23px;
 }
