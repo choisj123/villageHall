@@ -1,20 +1,19 @@
 * {
   box-sizing: border-box;
-font-family: 'IBM Plex Sans KR', sans-serif;;
-
+  font-family: "IBM Plex Sans KR", sans-serif;
 }
 
-html{
-	position: relative;
-	min-height: 600px;
+html {
+  position: relative;
+  min-height: 600px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  
+
   height: calc(100vh -150px);
-  
+
   margin-bottom: 150px;
 }
 
@@ -22,7 +21,7 @@ main {
   width: 1140px;
   height: auto;
   margin: auto;
-  min-height: 100%
+  min-height: 100%;
 }
 
 header {
@@ -98,80 +97,83 @@ header > section:nth-of-type(3) {
 }
 
 #login {
-    margin-right: 20px;
+  margin-right: 15px;
   text-decoration: none;
   color: #55710f;
   border: 2px solid #55710f;
-   border-radius: 50px;
-   width: 80px;
+  border-radius: 50px;
+  width: 80px;
   height: 30px;
   height: 35px;
-    line-height:33px;
-    text-align: center;
+  line-height: 33px;
+  text-align: center;
 }
 
-#login:hover{
+#login:hover {
   text-decoration: none;
-/*   font-weight: bold; */
+  /*   font-weight: bold; */
   border: 1px solid #55710f;
-   border-radius: 50px;
+  border-radius: 50px;
   background-color: #55710f;
   color: white;
-   width: 80px;
+  width: 80px;
   height: 35px;
-    line-height:33px;
-    text-align: center;
-  
-	
+  line-height: 33px;
+  text-align: center;
 }
 
 #signup {
   text-decoration: none;
   border: 1px solid #55710f;
-   border-radius: 50px;
+  border-radius: 50px;
   background-color: #55710f;
   color: white;
   width: 75px;
   height: 35px;
-    line-height:33px;
-    text-align: center;
+  line-height: 33px;
+  text-align: center;
 }
-
 
 #logout {
-  margin-right: 5px;
+
   text-decoration: none;
   color: #55710f;
-    border: 2px solid #55710f;
-   border-radius: 50px;
-     /*  padding: 5px; */
-   width: 100px;
+  border: 2px solid #55710f;
+  border-radius: 50px;
+  /*  padding: 5px; */
+  width: 100px;
   height: 35px;
-    line-height:33px;
-    text-align: center;
-}
-
-#user-name {
-  border: 1px solid #55710f;
-   border-radius: 50px;
-  background-color: #55710f;
-  color: white;
-  padding: 5px 10px 5px 10px;
-    height: 35px;
-    margin-right: 20px
+  line-height: 33px;
+  text-align: center;
 }
 
 #logout:hover {
   text-decoration: none;
   font-weight: bold;
   border: 1px solid #55710f;
-   border-radius: 50px;
+  border-radius: 50px;
   background-color: #55710f;
   color: white;
   height: 35px;
-    line-height:33px;
-    text-align: center;
+  line-height: 33px;
+  text-align: center;
 }
+
+#user-name {
+	
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #55710f;
+  border-radius: 50px;
+  background-color: #55710f;
+  color: white;
+  height: 35px;
+  line-height: 33px;
+  text-align: center;
+  padding: 0 5px 0 5px;
+  margin-right: 10px;
+}
+
 
 
 /* 큰 바디부분 */
@@ -179,17 +181,14 @@ header > section:nth-of-type(3) {
 .body {
   display: flex;
   height: auto;
-  
 }
 
-
 .left-body {
-	height: auto;
-	position: relative;	
+  height: auto;
+  position: relative;
   flex-basis: 20%;
   border-right: 1px solid #55710f;
   flex-direction: column;
-  
 }
 
 .left-body article {
@@ -200,23 +199,22 @@ header > section:nth-of-type(3) {
   padding-top: 30px;
 }
 
-
 .left-body a {
   text-decoration: none;
   color: #55710f;
 }
 
-.profile-area{
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-  	align-items: center;
-	
+.profile-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 반응형 웹 */
 
-@media (max-width:1020px){ /*가로 너비가 1100px 이하일 때 아래 스타일 적용*/
+@media (max-width: 1020px) {
+  /*가로 너비가 1100px 이하일 때 아래 스타일 적용*/
   header {
     display: flex;
     border: none;
@@ -224,11 +222,10 @@ header > section:nth-of-type(3) {
     justify-content: space-between;
   }
 
-  header section:nth-of-type(1){
+  header section:nth-of-type(1) {
     margin-left: 100px;
     border: none;
   }
-
 
   #home-logo {
     margin-left: 120px;
@@ -263,37 +260,32 @@ header > section:nth-of-type(3) {
     height: 100%;
   }
 
-  .login-signup-area{
+  .login-signup-area {
     width: 100%;
     height: 8vh;
     margin-right: 150px;
     flex: auto;
   }
-  
+
   .left-body {
     display: none;
-}
-
+  }
 }
 
 /* 프로필 이미지 */
-#left-profile-image{
-    width: 150px;
-    height: 150px;
-    border : 1px solid #55710f;
-    border-radius: 50%;
+#left-profile-image {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #55710f;
+  border-radius: 50%;
 }
 
-#profile-info-area{
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-  	align-items: center;
-  	
-  	
+#profile-info-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-
 
 #writeBtn {
   text-decoration: none;
@@ -301,15 +293,13 @@ header > section:nth-of-type(3) {
   border-radius: 10px;
   background-color: #55710f;
   color: white;
-  
-  font-size:16px;
-  padding: 3px 10px;
-  margin-top : 6px;
-  
-  cursor: pointer;
-	
-}
 
+  font-size: 16px;
+  padding: 3px 10px;
+  margin-top: 6px;
+
+  cursor: pointer;
+}
 
 /* 네비 */
 
@@ -340,25 +330,23 @@ nav ul li table td {
 }
 
 .right-body {
-  width : 912px;
+  width: 912px;
   height: auto;
   flex-basis: 80%;
   border: none;
   min-height: 1000px;
-
 
   display: flex;
   flex-direction: column;
   padding: 20px 0px 10px 30px;
   position: relative;
   margin: auto;
-  
 }
 
 /* ----------------- 푸터----------------- */
 
 footer {
-	position: static;
+  position: static;
   background-color: #d0d3c6;
   height: 150px;
 
@@ -366,14 +354,12 @@ footer {
   align-content: center;
   text-align: center;
   padding-top: 30px;
-  
+
   bottom: 0;
-  left:0;
+  left: 0;
   width: 100%;
-  
+
   position: absolute;
-  
-  
 }
 
 footer p {
@@ -384,119 +370,84 @@ footer a {
   color: black;
 }
 
-
-
 /* weather */
-
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap");
 * {
   font-family: "IBM Plex Sans KR", sans-serif;
 }
-.weather{
-	margin-bottom: 100px;
+.weather {
+  margin-bottom: 100px;
 }
 
 .box {
-  border: 1px solid black;
-  width: 150px;
+  border: 1px solid #55710f;
+  width: 180px;
   height: auto;
-  margin: auto;
+  margin-left: 35px;
   /*   margin: 7px 50px; */
-  border-radius: 20px;
-  
-
-  /*background-image : url(../images/sunny.jpg);*/
+  border-radius: 10px;
+  /* background-color: rgb(237, 245, 241); */
 }
-/* .date{
- 	margin-top: auto;
-    font-size: 30px;
-    text-align: center;
-    padding: 10px 10px 10px 10px;
-}
-
-.FirstBox{
-  height: 30px;
-} */
-
-/* .SecondBox{
-  width: 700px;
-  height: 110px;
-  display: flex;
-} */
-
-/* .secondBox-1{
-	margin : 0px 150px;
-}
-
-.secondBox-2{
-	margin : 0px 250px;
-	
-	
-} */
-/* .thirdBox{
-  display: flex;
-
-} */
 
 .ctemp {
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   font-weight: bold;
   display: block;
 }
 
 .main {
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   display: block;
 }
 .name {
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   display: block;
 }
 
 .cicon > img {
-  width: 170px;
-  height: 170px;
+  width: 70px;
+  height: 70px;
 }
 
 #wind-logo {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   /* margin: 0px 50px; */
 }
 #humidity-logo {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   /* margin: 0px 150px; */
 }
 
 #aqi-logo {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .speed {
   text-align: center;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .humidity {
   text-align: center;
-  font-size: 20px;
+  font-size: 10px;
 }
 .aqi {
   text-align: center;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .firstBox {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #55710f;
   /* background-color: rgb(0,0,0); */
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 
   display: flex;
   flex-direction: row;
@@ -509,7 +460,7 @@ footer a {
 .right {
   display: flex;
   flex-direction: column;
-  padding: 30px 50px 0 0;
+  padding: 5px 10px 0 0;
 }
 
 .secondBox {
@@ -518,5 +469,3 @@ footer a {
   justify-content: space-around;
   padding-top: 10px;
 }
-
-
