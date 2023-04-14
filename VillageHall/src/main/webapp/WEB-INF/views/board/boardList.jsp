@@ -96,7 +96,7 @@
             	</form>
             </c:if>
 
-			
+			<div id='boardListOutBox'>
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
 					<div id="boardList">
@@ -157,7 +157,7 @@
           <article class="FAQ-search">
             <!--FAQ 질문 검색창-->
             <form action="${contextPath}/board/list" name="FAQ-search-form" method="get" id="boardSearch" onsubmit="return searchValidate()">
-              <h3 class="FAQ-text">FAQ 자주 묻는 질문</h3>
+              <h3 class="FAQ-text">자주 묻는 질문</h3>
 
               <fieldset class="FAQ-search-fieldset">
 
@@ -208,29 +208,31 @@
 					</div>
 					
 					<script>
-        				$(function() {
-            				$("FAQTitle").on("click", function() {
-
-                				if($(this).next("div").css("display") == 'none') {
-
-                    				$(this).siblings("div.contents").slideUp();
-                    				// 다음 요소는 내려라
-                    				$(this).next().slideDown();
-
-                				} else {
-                    				$(this).next().slideUp();
-                				}
-                
-            				});
-        				});
+					$(function() {
+						  $("div.contents").prev("div.FAQTitle").on("click", function() {
+						    if($(this).next("div.contents").css("display") == 'none') {
+						      $("div.contents").slideUp();
+						      $(this).next("div.contents").slideDown();
+						    } else {
+						      $(this).next("div.contents").slideUp();
+						    }
+						  });
+						});
     				</script>			
 				</c:otherwise>
 				<%-- 여기까 faq영역 --%>
           	</c:choose>
-          
-            
-            
-         <div class="pagination-area">
+          	
+	          	
+	            <c:if test ="${param.type == '3' && !empty loginUser}">
+	            	<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
+	            </c:if>
+          	
+          	</div>
+          	
+          	
+          	
+         <div class="pagination-area" style="margin-top: 100px;">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
                 
@@ -271,7 +273,6 @@
 
                 </ul>
             </div>
-            
             
             <!-- /board/list?type=1&cp=3 -->
 

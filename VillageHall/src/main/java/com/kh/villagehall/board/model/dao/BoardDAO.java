@@ -161,6 +161,7 @@ public class BoardDAO {
 				boardList.setUserNickname(rs.getString(8));
 				boardList.setProfileImg(rs.getString(9));
 				boardList.setLikeCount(rs.getInt(10));
+				boardList.setCommentCount(rs.getInt(11));
 				
 				kakaoMapList.add(boardList);
 			}

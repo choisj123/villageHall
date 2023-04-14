@@ -10,6 +10,7 @@ insertCommentBtn.addEventListener("click", function(event) {
 		event.preventDefault();
 	}
 });
+<<<<<<< HEAD
 document.querySelectorAll('#updateCommentButton').forEach(function(button) {
   button.addEventListener('click', function() {
 	console.log("버튼이 클릭됨");
@@ -69,3 +70,27 @@ document.querySelectorAll('.saveCommentButton').forEach(function(button){
     });
 	})
 })
+=======
+
+const updateCommentBtns = document.querySelectorAll('.updateCommentButton');
+
+updateCommentBtns.forEach((updateCommentBtn) => {
+    updateCommentBtn.addEventListener("click", e => {
+        const commentDetail = e.target.closest('.commentDetail');
+        commentDetail.querySelector('.comment-content').style.display = 'none';
+        commentDetail.querySelector('.commentEditForm').style.display = 'block';
+        commentDetail.querySelector('#updateCommentContent').value = commentDetail.querySelector('.comment-content').innerText;
+    });
+});
+
+const cancelCommentBtns = document.querySelectorAll('.cancelCommentButton');
+
+cancelCommentBtns.forEach((cancelCommentBtn) => {
+    cancelCommentBtn.addEventListener("click", e => {
+        const commentDetail = e.target.closest('.commentDetail');
+        commentDetail.querySelector('.comment-content').style.display = 'block';
+        commentDetail.querySelector('.commentEditForm').style.display = 'none';
+    });
+});
+
+>>>>>>> 4432cc950f6f24a263388fafbc0eb05e29322526

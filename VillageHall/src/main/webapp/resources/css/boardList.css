@@ -18,7 +18,7 @@
     border: 1px solid white;
     border-top: none;
     width: 800px;
-    height: 500px;
+    height: 595px;
    	margin: auto;
 }
 
@@ -83,8 +83,7 @@
 .FAQ-text {
   display: flex;
   color:rgba(32, 33, 36, .28);
-  padding-top: 50px;
-  margin-left: 180px;
+  margin-left: 150px;
   color: black;
   font-weight: 700;
   font-size: x-large;
@@ -95,13 +94,16 @@
   border: 2px solid rgba(32, 33, 36, .28);
   border-radius: 20px;
   width: 600px;
-  margin-left: 180px;
+  margin-left: 150px;
   padding: 2px;
 
   display: flex;
 }
 #search-key{
-  display: none;
+  display: block;
+  height: 0;
+  width: 0;
+  margin-left: 20px;
 }
 
 #search-query {
@@ -113,6 +115,10 @@
   outline: 0;
 
   width: 92%;
+}
+
+#search-btn{
+  display: none;
 }
 
 #FAQ-search-btn {
@@ -130,28 +136,20 @@
 /* FAQ 게시판 스타일*/
 
 .faqSection {
-  border-radius: 2px;
-  box-shadow : 7px 8px 10px 0px #666;
-	border-top: 22px solid #55710f;
-  border-left: 9px solid var(--cr-primary-text-color);
-  border-right: 9px solid var(--cr-primary-text-color);
-  border-bottom: 9px solid var(--cr-primary-text-color);
-	margin: 40px;
+	margin: 40px 70px;
 }
 
 .FAQTitle {
-            width: 300px;
             height: 30px;
             color: #666;
             margin: 16px 16px;
             border-radius: 10px;
             font: normal 16px/1.7 '굴림',Gulim, '돋움', Dotum, AppleGothic, Sans-serif;
-            text-align: center;
             line-height: 30px;
             cursor: pointer;
 }
 
-p.contents {
+div.contents {
             display: none; /* 화면에서 보이지 않음 */
             border-top: 2.5px solid lightgray;
             height: 200px;
@@ -172,11 +170,23 @@ p.contents {
 	  color: white;
 	  
 	  font-size:12px;
-/* 	  padding: 3px 10px;
-	  margin-top : 6px; */
 	  width: 50px;
 	  height: 25px;
 	  
 	  cursor: pointer;
 	
+}
+
+#boardListOutBox{
+	width: 800px;
+    height: 595px;
+    position: relative;
+}
+
+
+#writeBtn{
+	width: 64px;
+	position : absolute;
+	bottom: -30px;
+    right: 23px;
 }

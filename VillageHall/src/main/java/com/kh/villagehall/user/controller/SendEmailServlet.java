@@ -53,7 +53,7 @@ public class SendEmailServlet extends HttpServlet{
    
       String inputEmail = req.getParameter("inputEmail"); // 입력 받은 이메일
    
-      String subject = "[마을회관] 회원 가입 이메일 인증번호"; // 제목
+      String subject = "[마을회관] 이메일 인증번호 확인"; // 제목
       
       String fromEmail = "administrator@villagehall.com"; // 보내는 사람으로 표시될 이메일 (이메일 따라서 안될수도 있음)
       String fromUsername = "마을회관"; // 보내는 사람 이름
@@ -136,8 +136,14 @@ public class SendEmailServlet extends HttpServlet{
          
          // 메일에 출력할 텍스트
          StringBuffer sb = new StringBuffer(); // 가변성 문자열 저장 객체
-         sb.append("<h3>[마을회관] 회원 가입 인증 번호입니다.</h3>\n");
+         
+         sb.append("<p>안녕하십니까.</p>\n");
+         sb.append("<p>요청하신 마을회관의 이메일 인증번호를 안내 드립니다.</p>\n");
+         sb.append("<p>아래 번호를 입력하여 인증 절차를 완료해 주세요.</p>\n");
+         sb.append("<h3>[마을회관] 이메일 인증 번호입니다.</h3>\n");
          sb.append("<h3>인증 번호 : <span style='color:red'>"+ cNumber +"</span></h3>\n");
+         sb.append("<p>본 인증번호는 5분 후에 만료됩니다.</p>\n");
+        
          
          //sb.append("<img src='https://cdn.wikifarmer.com/wp-content/uploads/2022/02/%ED%94%8C%EB%9F%BC%EB%B0%94%EA%B3%A0.jpg'>");
          
