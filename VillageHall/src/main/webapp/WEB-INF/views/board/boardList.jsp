@@ -205,17 +205,16 @@
             <!--FAQ 카테고리-->
           </article>
           
-          <hr>
-          
 					<div class=faqSection>				
 						<c:forEach var="board" items="${boardList}">
 							<div class="FAQTitle">
-								${board.boardTitle}
+								${board.boardTitle} <div class="icon">▼</div>
 								<c:if test="${loginUser.administer == 'Y'}">
           							<button type="button" id= "updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
           							<button type="button" id= "deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
           						</c:if>
 							</div>
+							
                     		<div class="contents">${board.boardContent}</div>                    			
 						</c:forEach>
 
