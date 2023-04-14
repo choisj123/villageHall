@@ -80,7 +80,7 @@ header > section:nth-child(2) {
 }
 
 #search-btn {
-  width: 8%;
+  width: 100px;
   cursor: pointer;
   font-size: 1.2em;
   color: #55710f;
@@ -272,11 +272,7 @@ header > section:nth-of-type(3) {
   .left-body {
     display: none;
 }
-footer{
-  top: 1300px;
-  margin-left: 80px;
-    
-}
+
 }
 
 /* 프로필 이미지 */
