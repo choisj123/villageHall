@@ -136,12 +136,6 @@
 /* FAQ 게시판 스타일*/
 
 .faqSection {
-  border-radius: 2px;
-  box-shadow : 7px 8px 10px 0px #666;
-	border-top: 22px solid #55710f;
-  border-left: 9px solid var(--cr-primary-text-color);
-  border-right: 9px solid var(--cr-primary-text-color);
-  border-bottom: 9px solid var(--cr-primary-text-color);
 	margin: 40px 70px;
 }
 
