@@ -80,7 +80,7 @@ header > section:nth-child(2) {
 }
 
 #search-btn {
-  width: 8%;
+  width: 100px;
   cursor: pointer;
   font-size: 1.2em;
   color: #55710f;
@@ -98,7 +98,7 @@ header > section:nth-of-type(3) {
 }
 
 #login {
-  margin-right: 5px;
+    margin-right: 20px;
   text-decoration: none;
   color: #55710f;
   border: 2px solid #55710f;
@@ -158,6 +158,7 @@ header > section:nth-of-type(3) {
   color: white;
   padding: 5px 10px 5px 10px;
     height: 35px;
+    margin-right: 20px
 }
 
 #logout:hover {
@@ -272,11 +273,7 @@ header > section:nth-of-type(3) {
   .left-body {
     display: none;
 }
-footer{
-  top: 1300px;
-  margin-left: 80px;
-    
-}
+
 }
 
 /* 프로필 이미지 */
