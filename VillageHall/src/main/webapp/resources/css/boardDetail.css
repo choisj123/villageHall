@@ -128,13 +128,13 @@
 	
 }
 
+
 .cancelCommentButton {
 	color: #55710f;
 	border: 1px solid #55710f;
 	border-radius: 5px;
 	width: 40px;
     height: 25px;
-	
 	
 }
 
@@ -157,6 +157,13 @@
     height: 25px;
 	
 	
+}
+
+#updateCommentContent {
+	width: 600px;
+	border-color:#ccc;
+	height:100%;
+	padding: 10px 0px 10px 0px; 
 }
 
 

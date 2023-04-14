@@ -1,38 +1,37 @@
 
-var weatherIcon = {
-    '01' : 'fas fa-sun',
-    '02' : 'fas fa-cloud-sun',
-    '03' : 'fas fa-cloud',
-    '04' : 'fas fa-cloud-meatball',
-    '09' : 'fas fa-cloud-sun-rain',
-    '10' : 'fas fa-cloud-showers-heavy',
-    '11' : 'fas fa-poo-storm',
-    '13' : 'far fa-snowflake',
-    '50' : 'fas fa-smog'
-};
-
-    var apiURI = 'http://api.openweathermap.org/data/2.5/weather?id=1835848&appid=7401ee2987d021037ece4c98b2baf927&units=metric';
-     $.ajax({
-    url: apiURI,
+  
+ $.ajax({
+    url : 'http://api.openweathermap.org/data/2.5/weather?id=1835848&appid=7401ee2987d021037ece4c98b2baf927&units=metric',
     dataType: "json",
     type: "GET",
-    async: "false",
-    success: function(resp) {
-
+    success:function(data){
+	
+	  $(document).ready(function() {
+      var weatherIcon = {
+        '01' : 'fas fa-sun',
+        '02' : 'fas fa-cloud-sun',
+        '03' : 'fas fa-cloud',
+        '04' : 'fas fa-cloud-meatball',
+        '09' : 'fas fa-cloud-sun-rain',
+        '10' : 'fas fa-cloud-showers-heavy',
+        '11' : 'fas fa-poo-storm',
+        '13' : 'far fa-snowflake',
+        '50' : 'fas fa-smog'
+      };
+	
         var $minTemp = Math.floor(data.main.temp_min) + "℃";
+        var $cTemp = Math.floor(data.main.temp) + "℃";
         var $main = data.weather[0].main;
+        var $humidity = data.main.humidity + '%';.
         var $now = new Date($.now());
         var $speed = Math.floor(data.wind.speed) + 'm/s';
-        var $cDate = $now.getMonth() + 1 + '월' + " " + $now.getDate() + '일';
+        var $cDate = $now.getMonth() + 1 + '월' + $now.getDate() + '일';
         //  + $now.getHours()+ '시간' + $now.getMinutes() + '분';
+        var $Icon = data.weather[0].icon;
         var $name = data.name;
 
-		var $Icon = (resp.weather[0].icon).substr(0,2);
-        var $cTemp = Math.floor(resp.main.temp- 273.15) + 'º';
-        var $humidity = '습도&nbsp;&nbsp;&nbsp;&nbsp;' + resp.main.humidity+ ' %';
-       
-       // var box = document.querySelector(".box");
 
+       // var box = document.querySelector(".box");
         
         const main = document.querySelector(".main");
         
@@ -63,11 +62,10 @@ var weatherIcon = {
         $('.humidity').append($humidity);
         $('.speed').append($speed);
         $('.name').append($name);
-        $('.weather_icon').append('<i class="' + weatherIcon[$Icon] +' fa-5x" style="height : 150px; width : 150px;"></i>');
+        $('.cicon').append('<i class="' + weatherIcon[$Icon] +'style="height : 150px; width : 150px;"></i>');
          
-    }    
+   		 } 
     });
-    
     $.getJSON 
     ('http://api.openweathermap.org/data/2.5/air_pollution?lat=37.5683&lon=126.9778&appid=7401ee2987d021037ece4c98b2baf927&units=metric&lang=kr',function(data){
         var $aqi = data.list[0].main.aqi;
@@ -84,5 +82,4 @@ var weatherIcon = {
         } else if($aqi == 5){
         aqi.innerText = "매우 나쁨";
         } 
-    });
-
+       });

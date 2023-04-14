@@ -565,6 +565,19 @@ public class BoardService {
 	}
 
 
+	public int saveComment(Comment comment) {
+		Connection conn = getConnection();
+		
+		int result = dao.saveComment(conn, comment);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		return result;
+	}
+
+
 
 
 

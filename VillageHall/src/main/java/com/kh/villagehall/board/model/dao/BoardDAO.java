@@ -1139,6 +1139,29 @@ public class BoardDAO {
 	}
 
 
+	public int saveComment(Connection conn, Comment comment) {
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("saveComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comment.getCommentContent());
+			pstmt.setInt(2, comment.getCommentNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		return 0;
+	}
+
+
 
 
 
