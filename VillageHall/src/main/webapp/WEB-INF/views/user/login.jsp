@@ -170,11 +170,7 @@
 	            	  location.href='${contextPath}/user/signUp';
 	              }
 	              
-	              
-	            			              
-	            	  
-	         
-	        
+	     
 	              
 	            },                            
 	                   
