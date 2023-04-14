@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이메일로 찾기</title>
+    <title>마을회관</title>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/findPw.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/main.css">
@@ -123,11 +123,9 @@
 
 </fieldset> 
 
-</section>     
- 
+</section>    
 
-    	
-    	
+
    	 	<!-- 푸터 -->
     	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
    	

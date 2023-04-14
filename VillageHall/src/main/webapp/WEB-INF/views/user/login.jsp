@@ -169,11 +169,7 @@
 	            	  location.href='${contextPath}/user/signUp';
 	              }
 	              
-	              
-	            			              
-	            	  
-	         
-	        
+	     
 	              
 	            },                            
 	                   
@@ -200,8 +196,9 @@
             		</c:when>
             
             	</c:choose>
-                
+            	  
             </section>
+           
             
             <!-- footer include -->
    			 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
