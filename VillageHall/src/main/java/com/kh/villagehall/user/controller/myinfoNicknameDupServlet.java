@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.villagehall.user.model.service.UserService;
 
 //닉네임 중복 검사(AJAX)
-@WebServlet("/user/nicknameDupCheck")
-public class NicknameDupCheckServlet extends HttpServlet{
+@WebServlet("/mypage/newNicknameDup")
+public class myinfoNicknameDupServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		
 		// 파라미터 얻어오기(data 속성의 값)
 		String userNickname = req.getParameter("userNickname");
@@ -35,7 +36,7 @@ public class NicknameDupCheckServlet extends HttpServlet{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+				
 	
 	}
 	

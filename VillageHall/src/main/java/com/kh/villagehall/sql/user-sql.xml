@@ -139,6 +139,13 @@
 		WHERE USER_EMAIL = ? 
 	</entry>
 	
+	<!-- 마이인포 닉네임 수정  -->
+	<entry key="myinfoNicknameDupCheck">
+		SELECT COUNT(*) FROM "USER" 
+		WHERE USER_NICKNAME= ? 
+		AND USER_DELETE_FG = 'N' 
+	</entry>
+	
 
 	
 	
