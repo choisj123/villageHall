@@ -17,16 +17,71 @@
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
 
-@media (max-width: 1020px) { /* 화면이 768px 이하일 때 */
-  header section:nth-of-type(1){
-    height: auto; /* 높이를 자동으로 조절 */
-    border-right: none; /* 보더 라인 제거 */
-  }
-  #home-logo {
-    display: none; /* 검색창 숨기기 */
-  }
-}
 
+@media only screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-area,
+  .login-signup-area {
+    margin-top: 20px;
+  }
+
+      /* 기본 스타일 */
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh;
+    background-color: red;
+  }
+
+  #home-logo {
+    width: 100%;
+  }
+
+  .search-area {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  fieldset {
+    position: relative;
+    width: 100%;
+  }
+
+  #query {
+    width: 100%;
+    padding-right: 60px;
+  }
+
+  #search-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+  }
+
+  .login-signup-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  #login,
+  #signup {
+    margin: 0 10px;
+  }
+
+}
 
 * {
   box-sizing: border-box;
