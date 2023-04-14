@@ -57,7 +57,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <c:otherwise>
       <%-- 회원이름 / 로그아웃 --%>
       <section class="logout-area">
-        <span id="user-name">${loginUser.userNickname}님</span>&nbsp;&nbsp;
+        <span id="user-name">${loginUser.userNickname}님</span>
         <div>
           <%-- 자물쇠 아이콘 --%>
           <a

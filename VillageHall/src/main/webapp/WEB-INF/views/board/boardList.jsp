@@ -161,15 +161,10 @@
 
               <fieldset class="FAQ-search-fieldset">
 
-                <select name="key" id="search-key">
-                  <option value="t">제목</option>
-                  <option value="c">내용</option>
-                  <option value="tc">제목+내용</option>
-                  <option value="w">작성자</option>
-                 </select>
                  
                  <input type="hidden" name="type" value="${param.type}">
                  <input type="hidden" name="categoryNo" value="0">
+				 <input type="hidden" name="key" value="t">
 
                 <input
                   type="text"
@@ -177,7 +172,6 @@
                   name="query"
                   autocomplete="off"
                   placeholder="무엇이 궁금하실까요?"
-                  value="${param.type}"
                 />
 
                 <!--FAQ 질문 검색버튼-->
@@ -200,8 +194,8 @@
                     	<div class="contents">${board.boardContent}</div>
                     	
                     	<c:if test="${loginUser.administer == 'Y'}">
-          					<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
-          					<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
+          					<button type="button" id= "updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          					<button type="button" id= "deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
           				</c:if>
                     			
 					</c:forEach>
@@ -277,25 +271,28 @@
             <!-- /board/list?type=1&cp=3 -->
 
             <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
+			<c:if test="${param.type != 2}">
+				<div id="faq-search-area">
+					<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
+						<input type="hidden" name="type" value="${param.type}">
+						<input type="hidden" name="categoryNo" value="0">
+						<!-- <input type="hidden" name="key" value="t"> -->
+		
+						<select name="key" id="search-key">
+							<option value="t">제목</option>
+							  <option value="c">내용</option>
+							<option value="tc">제목+내용</option>
+							<option value="w">작성자</option>
+						</select>
+		
+						<input type="text" name="query"  id="faq-search-query" placeholder="검색어를 입력해주세요.">
+		
+						<button id="faq-search-btn">검색</button>
+					</form>
+				</div>
+	 
 
-            <div id="search-area">
-				<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
-	                <input type="hidden" name="type" value="${param.type}">
-	                <input type="hidden" name="categoryNo" value="0">
-	
-	                <select name="key" id="search-key">
-	                    <option value="t">제목</option>
-	                  	<option value="c">내용</option>
-	                    <option value="tc">제목+내용</option>
-	                    <option value="w">작성자</option>
-	                </select>
-	
-	                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
-	
-	                <button id="search-btn">검색</button>
-	            </form>
-            </div>
- 
+			</c:if>
           </section>
         </section>
         

@@ -82,7 +82,7 @@
 	          				<c:forEach var="comment" items="${commentList}">
 	          					
 	          					<div class="commentDetail" id="commentDetail-${comment.commentNo}">	          						
-	          						<div>
+	          						<div class="profile-area">
 	          							<div class="profile-image-area">
 	          								<img class ="profile-img" src="${contextPath}${comment.profileImg}"><br>
 	          							</div>
@@ -95,19 +95,24 @@
 	          								<form action="${contextPath}/comment/updateComment">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
 	          									<input type="hidden" name="boardNo" value="${board.boardNo}">	          								
-										   		<textarea style= resize:none id="updateCommentContent" name="commentContent">${comment.commentContent}</textarea>
-										   		<button class="saveCommentButton">저장</button>
+										   		<textarea style= "resize:none; width: 650px; height: 60px;" id="updateCommentContent" name="commentContent">${comment.commentContent}</textarea>
+										   		
+										   		<div class= "btn-area">
+											   		<button class="saveCommentButton">저장</button>
+											   		<button type="button" id="cancelCommentButton" class="cancelCommentButton">취소</button>
+										   		
+										   		</div>
+										   		
 										   </form>
 										   
-										   <button id="cancelCommentButton" class="cancelCommentButton">취소</button>
 										</div>
 											
 	          						</div>
-	          						<div>
+	          						<div class= "createDate">
 	          							<span class= "comment-createDate">${comment.commentCreateDate}</span>
 	          						</div>
 	          						<c:if test="${loginUser.userNickname == comment.userNickname || loginUser.administer == 'Y'}">
-	          							<div>
+	          							<div class="editButton">
 	          								<button id="updateCommentButton" class="updateCommentButton">수정</button>&nbsp;
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
 	          									<input type="hidden" name="commentNo" value="${comment.commentNo}">
