@@ -165,10 +165,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           
           
           
-       <%--
+
           <section class="weather">
             <div class="box">
-              <!-- 첫번째 사장 -->
+              <!-- 첫번째 상자 -->
               <div class="FirstBox">
                 <h1 class="date"></h1>
               </div>
@@ -207,8 +207,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
              
             </div>
           </section>
-          --%>
-        </section>
       </section>
     </main>
 
