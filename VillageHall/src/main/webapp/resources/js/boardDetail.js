@@ -19,6 +19,10 @@ updateCommentBtns.forEach((updateCommentBtn) => {
         commentDetail.querySelector('.comment-content').style.display = 'none';
         commentDetail.querySelector('.commentEditForm').style.display = 'block';
         commentDetail.querySelector('#updateCommentContent').value = commentDetail.querySelector('.comment-content').innerText;
+    	commentDetail.querySelector('.createDate').style.display = 'none';
+        commentDetail.querySelector('.editButton').style.display = 'none';
+
+    
     });
 });
 
@@ -29,6 +33,10 @@ cancelCommentBtns.forEach((cancelCommentBtn) => {
         const commentDetail = e.target.closest('.commentDetail');
         commentDetail.querySelector('.comment-content').style.display = 'block';
         commentDetail.querySelector('.commentEditForm').style.display = 'none';
+    	commentDetail.querySelector('.createDate').style.display = 'block';
+        commentDetail.querySelector('.editButton').style.display = 'flex';
+
+    
     });
 });
 
