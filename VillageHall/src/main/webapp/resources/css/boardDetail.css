@@ -313,10 +313,11 @@
 }
 
 #like{
-	
 	float: left;
 	margin-left: 10px;	
 	margin-top: 15px;
+	text-decoration: none;
+	cursor: pointer;
 	
 }
 
