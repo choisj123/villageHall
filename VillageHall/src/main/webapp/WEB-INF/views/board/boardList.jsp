@@ -96,7 +96,7 @@
             	</form>
             </c:if>
 
-			
+			<div id='boardListOutBox'>
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
 					<div id="boardList">
@@ -222,10 +222,17 @@
 				</c:otherwise>
 				<%-- 여기까 faq영역 --%>
           	</c:choose>
-          
-            
-            
-         <div class="pagination-area">
+          	
+	          	
+	            <c:if test ="${param.type == '3' && !empty loginUser}">
+	            	<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
+	            </c:if>
+          	
+          	</div>
+          	
+          	
+          	
+         <div class="pagination-area" style="margin-top: 100px;">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
                 
@@ -265,6 +272,28 @@
                     <li><a href="${url}${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
 
                 </ul>
+            </div>
+            
+            <!-- /board/list?type=1&cp=3 -->
+
+            <!-- /board/list?type=1&cp=10 &key=t&query=안녕 -->
+
+            <div id="search-area">
+				<form action="${contextPath}/board/list" method="get" id="boardSearch" onsubmit="return searchValidate()">
+	                <input type="hidden" name="type" value="${param.type}">
+	                <input type="hidden" name="categoryNo" value="0">
+	
+	                <select name="key" id="search-key">
+	                    <option value="t">제목</option>
+	                  	<option value="c">내용</option>
+	                    <option value="tc">제목+내용</option>
+	                    <option value="w">작성자</option>
+	                </select>
+	
+	                <input type="text" name="query"  id="search-query" placeholder="검색어를 입력해주세요.">
+	
+	                <button id="search-btn">검색</button>
+	            </form>
             </div>
  
           </section>
