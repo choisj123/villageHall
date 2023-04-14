@@ -95,7 +95,7 @@
             		</select>
             	</form>
             </c:if>
-
+	
 			<div id='boardListOutBox'>
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
@@ -169,7 +169,6 @@
           <article class="FAQ-search">
             <!--FAQ 질문 검색창-->
             <form action="${contextPath}/board/list" name="FAQ-search-form" method="get" id="boardSearch" onsubmit="return searchValidate()">
-              <h3 class="FAQ-text">자주 묻는 질문</h3>
 
               <fieldset class="FAQ-search-fieldset">
 
@@ -217,6 +216,7 @@
 							</div>
                     		<div class="contents">${board.boardContent}</div>                    			
 						</c:forEach>
+
 					</div>
 					
 					<script>
@@ -237,7 +237,7 @@
           	
 	          	
 	            <c:if test ="${param.type == '3' && !empty loginUser}">
-	            	<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
+	            	<button type="button" id="boardWriteBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
 	            </c:if>
           	
           	</div>

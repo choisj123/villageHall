@@ -16,10 +16,8 @@
  */
 /* ************ 지도 API SECTION 가급적 건들지 말아주세요 ㅠㅠㅠ ************* */
 
-
-
 @media only screen and (max-width: 1020px) {
-   /* 기본 스타일 */
+  /* 기본 스타일 */
   header {
     display: flex;
     border: none;
@@ -27,11 +25,10 @@
     justify-content: space-between;
   }
 
-  header section:nth-of-type(1){
+  header section:nth-of-type(1) {
     margin-left: 100px;
     border: none;
   }
-
 
   #home-logo {
     margin-left: 120px;
@@ -66,14 +63,12 @@
     height: 100%;
   }
 
-  .login-signup-area{
+  .login-signup-area {
     width: 100%;
     height: 8vh;
     margin-right: 150px;
     flex: auto;
   }
-
-
 }
 
 * {
@@ -85,17 +80,17 @@
   position: relative;
 }
 .spin-container {
-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fa-10x {
-    animation: spin 3s linear infinite;
-    width: 80px;
-    height: 80px;
+  animation: spin 3s linear infinite;
+  width: 80px;
+  height: 80px;
 }
 
 .map-nav {
@@ -117,28 +112,24 @@ align-items: center;
   list-style-type: none;
 }
 
-
-
-#categorySelect{
-	padding-left: 200px;
-	padding-bottom: 10px;
+#categorySelect {
+  padding-left: 200px;
+  padding-bottom: 10px;
 }
 
 #categorySelect label {
   margin-right: 20px;
-  color:#55710f;
+  color: #55710f;
   font-size: 17px;
   font-weight: bold;
 }
-
 
 /* 핀게시글 */
 
 .infowindow-contaioner {
   border: none;
-/*   border-radius: 15px;
+  /*   border-radius: 15px;
   background-color: red; */
-
 }
 
 .infowindow-header {
@@ -203,7 +194,6 @@ align-items: center;
   text-align: end;
   font-size: 13px;
   padding-right: 10px;
-  
 }
 
 /* 핀게시글 내용 */
@@ -217,11 +207,10 @@ align-items: center;
 
 .info-title {
   border-bottom: 1px dotted #ccc;
-    padding: 5px 0 0 5px;
-    font-size: 14px;
-    font-weight: bold;
+  padding: 5px 0 0 5px;
+  font-size: 14px;
+  font-weight: bold;
 }
-
 
 .info-content {
   padding: 5px 0 0 5px;
@@ -237,44 +226,39 @@ align-items: center;
   flex-direction: row;
 }
 
-.info-like{
-	flex-basis: 13%;
-	
+.info-like {
+  flex-basis: 13%;
 }
-.info-count{
-	flex-basis: 20%;
-	font-size: 14px;
-	
+.info-count {
+  flex-basis: 20%;
+  font-size: 14px;
 }
 
 .option {
   margin-left: 20px;
 }
 
-.move{
-	flex-basis: 57%;
-	margin-left: 45px;
-	font-size: 14px;
+.move {
+  flex-basis: 57%;
+  margin-left: 45px;
+  font-size: 14px;
 }
-
 
 /* 핀게시글 리스트 */
-.listCategory{
-	text-align: center;
-	font-size: 12px;
+.listCategory {
+  text-align: center;
+  font-size: 12px;
 }
 
-.listTitle{
-	text-align: center;
-	font-weight: bold;
+.listTitle {
+  text-align: center;
+  font-weight: bold;
 }
 
-.listCreateDate{
-	text-align: center;
-	font-size: 12px;
-	
+.listCreateDate {
+  text-align: center;
+  font-size: 12px;
 }
-
 
 /* 커스텀 오버레이 스타일링 */
 .overlay {
@@ -329,22 +313,22 @@ align-items: center;
 .map {
   height: 40%;
   border: 1px solid rgb(207, 41, 41);
-  
+
   height: 50%;
 }
 
 .notice-fave {
   justify-content: space-around;
   height: 30%;
-  
+
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: center;
   border-radius: 5px;
-  
-  padding-top : 50px;
-  
+
+  padding-top: 50px;
+
   flex-basis: 30%;
 }
 
@@ -370,12 +354,10 @@ align-items: center;
   /* height: 280px; */
 }
 
-
-
-fave-content tbody td, notice-content tbody td {
-	text-align: left;
+fave-content tbody td,
+notice-content tbody td {
+  text-align: left;
 }
-
 
 #popularTbody {
   text-align: left;
@@ -423,20 +405,16 @@ fave-content tbody td, notice-content tbody td {
   text-decoration: underline;
 }
 
-.weather{
-	padding-top: 50px;
-	flex-basis: 20%;
+.weather {
+  padding-top: 110px;
+  flex-basis: 20%;
 }
 
-.right-body{
-	
-	display:flex;
-	flex-direction: column;
-	
+.right-body {
+  display: flex;
+  flex-direction: column;
 }
 
-.main-container{
-	flex-basis: 50%;
-	
+.main-container {
+  flex-basis: 50%;
 }
-
