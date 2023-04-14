@@ -57,11 +57,11 @@ document.querySelectorAll('.saveCommentButton').forEach(function(button){
           $(".commentDetail#" + commentNo).find(".commentEditForm").hide(); // 수정 폼 숨기기
           $(".commentDetail#" + commentNo).find(".updateCommentContent").show(); // 댓글 내용 보여주기
         } else { // 수정이 실패한 경우   
-          alert("댓글 수정에 실패했습니다.");
+          alert("댓글 수정에성공했습니다.");
         }
       },
       error: function() { // 요청이 실패한 경우
-        alert("댓글 수정에 실패했습니다.");
+        alert("댓글 수정에 패했습니다.");
       }
     });
    })

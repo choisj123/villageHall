@@ -28,7 +28,7 @@
        		 onsubmit="return pwFindValidate()">
     
         
-   
+<section class="main">
   <fieldset id="pwFind-field"> 
   <div class="pwFind-content">
 
@@ -121,7 +121,9 @@
 
 </div>
 
-</fieldset>   
+</fieldset> 
+
+</section>     
  
 
     	

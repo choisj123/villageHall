@@ -55,7 +55,7 @@ form[name="signUp-form"] > label{
 /* :focus-within  : 내부 input에 포커스가 맞춰졌을 때  */
 .signUp-input-area > input:focus-within  {
 	
-    border: 2px solid #55710F; 
+    border: 2px solid forestgreen;
 }
 
 /* input태그 */

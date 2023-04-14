@@ -36,6 +36,26 @@ public class UserService {
 		return loginUser;
 	}
 	
+	/** 카카오 로그인 서비스
+	 * @param kakaoUserKey
+	 * @return loginUser
+	 * @throws Exception 
+	 */
+	public User kakaoLogin(String kakaoUserKey) throws Exception{
+		
+		// Connection 얻어오기
+		Connection conn = getConnection();
+		
+		// DAO 수행
+		User loginUser = dao.kakaoLogin(conn, kakaoUserKey);
+		
+		// Connection 반환
+		close(conn);
+		
+		// 결과 반환
+		return loginUser;
+	}
+	
 	
 	/** 회원가입 Service
 	 * @param user
@@ -50,8 +70,6 @@ public class UserService {
 				
 		// 2) DAO 메소드 호출 후 결과 반환 받기
 		int result = dao.signUp(conn, user);
-		
-		System.out.println("Service" + user);
 				 
 		// 3) 트랜잭션 처리
 		// result가 0인 경우 -> DAO return 구문 잘못 작성
@@ -301,12 +319,6 @@ public class UserService {
 	}
 
 
-	public User kakaologin(User user) throws Exception {
-		
-		// TODO Auto-generated method stub
-		return null;
-		
-	}
 
 
 

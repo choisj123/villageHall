@@ -57,7 +57,7 @@
           <!-- 메인 콘텐츠 -->
           <section class="right-body">
           
-			<h2>${boardName}</h2>
+			<h2><a href="${contextPath}/board/list?type=${param.type}&categoryNo=${param.categoryNo}" style="padding-left: 30px;">${boardName}</a></h2>
 			
 			<c:if test="${!empty param.key}">
                 <h3 style="margin-left:30px;"> "${param.query}" 검색 결과  </h3>
@@ -66,8 +66,8 @@
 			<% int categoryNo = (int)request.getAttribute("categoryNo"); %>
             <c:if test="${param.type == 3 && param.query == null}">
             	<form id="category">
-            		<input type="hidden" name="type" value="3">
-            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()">
+            		<input type="hidden" name="type" value="3" >
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()" style="margin-left: 30px;">
               			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
               			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
               			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
@@ -80,11 +80,11 @@
             </c:if>
             
             <c:if test="${param.type == 3 && param.query != null}">
-            	<form id="category">
+            	<form id="category" >
             		<input type="hidden" name="type" value="3">
             		<input type="hidden" name="key" value="${param.key}">
             		<input type="hidden" name="query" value="${param.query}">
-            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()">
+            		<select name="categoryNo" id="categoryNo" onchange="this.form.submit()" style="margin-left: 30px;">
               			<option value="0" <% if(categoryNo == 0) { %> selected <% } %> >전체글</option>
               			<option value="3" <% if(categoryNo == 3) { %> selected <% } %> id="issue">이슈 🔍️</option>
               			<option value="4" <% if(categoryNo == 4) { %> selected <% } %> id="delicious">맛집 🍽️</option>
@@ -153,15 +153,52 @@
 				<%-- 여기부터 faq영역 --%>
 				<c:otherwise>
 				
+				<!--FAQ 질문 검색 부분-->
+          <article class="FAQ-search">
+            <!--FAQ 질문 검색창-->
+            <form action="#" name="FAQ-search-form">
+              <h3 class="FAQ-text">FAQ 자주 묻는 질문</h3>
+
+              <fieldset class="FAQ-search-fieldset">
+                <input
+                  type="search"
+                  id="query"
+                  name="query"
+                  autocomplete="off"
+                  placeholder="무엇이 궁금하실까요?"
+                />
+
+                <!--FAQ 질문 검색버튼-->
+                <button
+                  id="FAQ-search-btn"
+                  class="fa-solid fa-magnifying-glass"
+                ></button>
+              </fieldset>
+            </form>
+
+            <!--FAQ 카테고리-->
+          </article>
+
+          <article class="category-article">
+            <a href="#" class="category" data-tab="signUp"> 회원가입 </a>
+            <a href="#" class="category" data-tab="logIn"> 로그인 </a>
+            <a href="#" class="category" data-tab="content"> 게시글 </a>
+            <a href="#" class="category" data-tab="etc"> 기타 </a>
+          </article>
           <hr>
           
 					<div class=faqSection>
 				
 					<c:forEach var="board" items="${boardList}">
 						<div class="FAQTitle">${board.boardTitle}</div>
-                    		<p class="contents">${board.boardContent}</p>
+                    	<p class="contents">${board.boardContent}</p>
+                    	
+                    	<c:if test="${loginUser.administer == 'Y'}">
+          					<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          					<a href="${contextPath}/board/deleteBoard?boardNo=${board.boardNo}" id="deleteBoard">삭제</a>
+          				</c:if>
                     			
-						</c:forEach>
+					</c:forEach>
 					</div>
 					
 					<script>

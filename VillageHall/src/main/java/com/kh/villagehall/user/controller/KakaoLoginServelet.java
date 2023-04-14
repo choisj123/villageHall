@@ -1,6 +1,7 @@
 package com.kh.villagehall.user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,8 @@ import com.kh.villagehall.user.model.vo.User;
 @WebServlet("/user/kakaoLogin")
 public class KakaoLoginServelet extends HttpServlet {
 	
+	
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,29 +30,35 @@ public class KakaoLoginServelet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String userEmail = req.getParameter("userEmail");
+		String kakaoUserKey = req.getParameter("kakaoUserKey");
 		
-		userEmail = userEmail.replaceAll("\"","");
-		
-		
-		
-
-		User user = new User();
-		user.setUserEmail(userEmail);
-		user.setUserPw("z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg==");
-		
-		
+	
 		try {  
-		
+			
+			String path = "";
+					
 			 
 			UserService service = new UserService();
 			
-			User loginUser = service.login(user);
+			User loginUser = service.kakaoLogin(kakaoUserKey);
 			
 			HttpSession session = req.getSession();
 			
+			resp.setContentType("text/html; charset=UTF-8");
+	 		PrintWriter out = resp.getWriter();
+			
 		
-			System.out.println("로그인2" + loginUser);
+			System.out.println("로그인" + loginUser);
+			
+			
+			if(loginUser == null) {
+				
+				
+				out.println("<script>alert('가입된 회원이 아닙니다. 회원가입을 해주시기 바랍니다.');location.href='signUp';</script>");
+				 
+				out.flush();
+								
+			}
 			
 			if(loginUser != null) {
 				
@@ -61,10 +70,17 @@ public class KakaoLoginServelet extends HttpServlet {
 				
 				
 				
+				
+				
+				
 				 
 			} else {
 	
-				session.setAttribute("message", "실패");
+				session.setAttribute("message", "가입된 회원이 아닙니다. 회원가입을 해주시기 바랍니다");
+				
+							
+				
+			
 			}
 			
 			

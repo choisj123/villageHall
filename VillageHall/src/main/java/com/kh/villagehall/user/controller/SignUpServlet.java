@@ -34,85 +34,69 @@ public class SignUpServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		
-		//int maxSize = 1024 * 1024 * 20;
-		
-		
-		HttpSession session = req.getSession(); 
-		//String root = session.getServletContext().getRealPath("/");
-		
-		//String folderPath = "/resources/images/userProfile/";
-		
-		//String filePath = root + folderPath;
-		
-		//String encoding = "UTF-8";
-		
-		//MultipartRequest mpReq = new MultipartRequest(req, filePath, maxSize, encoding, new MyRenamePolicy());
-		
-		//System.out.println( mpReq.getOriginalFileName("profileImage")  );
-		//System.out.println( mpReq.getFilesystemName("profileImage") );
-		
-		
 		// 파라미터를 모두 변수에 저장
-		String userEmail = req.getParameter("userEmail");
-		System.out.println(userEmail);
-		String userPw = req.getParameter("userPw");
-		System.out.println(userPw);
-		String userNickname = req.getParameter("userNickname");
-		String userTel = req.getParameter("userTel");
-		
-		//String profileImg = folderPath + mpReq.getFilesystemName("profileImage");
-		
-		// 파라미터를 하나의 User 객체에 저장
-		User user = new User();
-		
-		user.setUserEmail(userEmail);
-		user.setUserPw(userPw);
-		user.setUserNickname(userNickname);
-		user.setUserTel(userTel);
-		//user.setProfileImg(profileImg);
-		
+				String userEmail = req.getParameter("userEmail");
+				String userPw = req.getParameter("userPw");
+				String userNickname = req.getParameter("userNickname");
+				String userTel = req.getParameter("userTel");
+			
+				
+				// 파라미터를 하나의 Member 객체에 저장
+				User user = new User();
+				
+				user.setUserEmail(userEmail);
+				user.setUserPw(userPw);
+				user.setUserNickname(userNickname);
+				user.setUserTel(userTel);
+				
+			
 
-		try {
-			
-			UserService service = new UserService();
-			
-			// 회원가입 서비스 호출 후 결과 반환 받기
-			int result = service.signUp(user);
-			
-			// 서비스 결과에 따라서 message를 다르게하여 메인 페이지 재요청(redirect)
-			
-			//HttpSession session = req.getSession();	
-			
-			resp.setContentType("text/html; charset=UTF-8");
-	 		PrintWriter out = resp.getWriter();
-			
-			
-			if(result > 0) { // 성공
-				
-				out.println("<script>alert('가입이 완료되었습니다. 환영합니다!');location.href='login';</script>");
-				out.flush();
+				try {
+					
+					UserService service = new UserService();
+					
+					// 회원가입 서비스 호출 후 결과 반환 받기
+					int result = service.signUp(user);
+					
+					// 서비스 결과에 따라서 message를 다르게하여 메인 페이지 재요청(redirect)
+					
+					//HttpSession session = req.getSession();	
+					
+					resp.setContentType("text/html; charset=UTF-8");
+			 		PrintWriter out = resp.getWriter();
+			 		
+			 		
+						
+					
+					
+					if(result > 0) { // 성공
+						
+						 
+						out.println("<script>alert('가입이 완료되었습니다. 환영합니다!');location.href='login';</script>");
+						 
+						out.flush();
 
+					
+						
+					}else { // 실패
+						
+						out.println("<script>alert('가입이 실패하였습니다.') location.href='signUp';</script>");
+						 
+						out.flush();
+						
 				
-			}else { // 실패
+					
+					}
+					
+					resp.sendRedirect( req.getContextPath() );
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 				
-				out.println("<script>alert('가입이 실패하였습니다.') location.href='signUp';</script>");
-				out.flush();
 			
 			}
 			
-			resp.sendRedirect( req.getContextPath() );
-			
-		}catch (Exception e) {
-			System.out.println("SignUpServlet에서 예외 발생");
-			e.printStackTrace();
-		}
-		
-	
-	}
-	
-	
-	
 	
 	
 }
-

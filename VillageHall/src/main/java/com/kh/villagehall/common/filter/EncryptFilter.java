@@ -43,6 +43,10 @@ public class EncryptFilter extends HttpFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest)request;
 		
+		
+		
+		
+		
 		// 파라미터를 다시 세팅하는 방법은 필터에서 불가능함
 		// -> Servlet의 Wrapper 클래스를 이용해서
 		//    HttpServletRequest의 메서드를 오버라이딩 할 수 있다.

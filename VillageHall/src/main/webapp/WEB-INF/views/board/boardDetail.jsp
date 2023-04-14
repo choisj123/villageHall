@@ -88,10 +88,10 @@
                                </div>
                                <div id="commentContent">
                                   <span class= "comment-content">${comment.commentContent}</span><br>                                                                                                      
-                                     <div class="commentEditForm" style="display:none;">
-                                 <textarea style= resize:none id="updateCommentContent">${comment.commentContent}</textarea>
-                                 <button class="cancelCommentButton">취소</button>
+                                     <div class="commentEditForm" style="display: none;">
+                                 <textarea style= width:500px;height:100px resize:none id="updateCommentContent">${comment.commentContent}</textarea>
                                  <button class="saveCommentButton">수정</button>
+                                 <button class="cancelCommentButton">취소</button>
                               </div>
                                </div>
                                <div>

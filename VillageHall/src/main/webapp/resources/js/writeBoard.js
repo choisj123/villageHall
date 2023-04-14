@@ -28,8 +28,6 @@ $(document).ready(function() {
 		   /* 이미지 삽입 후 서버에 저장을 위한 callback */
 		  callbacks: {
 	        			onImageUpload : function(files, editor, welEditable) {
-							
-							console.log("callback");
 			            for (var i = files.length - 1; i >= 0; i--) {
 			            	sendFile(files[i], this);
 			            }
@@ -56,12 +54,13 @@ $(document).ready(function() {
 		   	success: function(image) {
 	  		//filePath == url : 서버에 업로드된 url을 반환받아 <img> 태그 src에 저장
 	  			var imageUrl = image.filePath + image.fileName
-	     		$(el).summernote('editor.insertImage', imageUrl);
+	  			var image = $("<img>").attr({src: imageUrl, width:"100%", height:"100%"})
+	     		$(el).summernote('editor.insertImage', imageUrl );
+	  			
+	  			
+	  			
 	  			console.log("서버 업로드 성공");
-	  			console.log(image);
-	  			console.log(imageUrl);
-	  			console.log(image.filePath);
-	  			console.log(image.fileName);
+	  
 	   		}
 	 	});
 	} 
