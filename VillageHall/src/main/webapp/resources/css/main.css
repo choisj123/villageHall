@@ -6,7 +6,7 @@ font-family: 'IBM Plex Sans KR', sans-serif;;
 
 html{
 	position: relative;
-	min-height: 600px;;
+	min-height: 600px;
 }
 
 body {
@@ -280,6 +280,7 @@ nav ul li table td {
   height: auto;
   flex-basis: 80%;
   border: none;
+  min-height: 1000px;
 
 
   display: flex;

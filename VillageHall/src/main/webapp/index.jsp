@@ -57,7 +57,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <!-- <div style="margin: 0  0 10px 15px; "> -->
             <form onchange="showMarkersByCategory(this.value)"
                 id="categorySelect">
-            	<input type="radio" name="category"id="all" value="전체" checked style="display: none;"><label for="all">#전체글</label>
+            	<input type="radio" name="category"id="all" value="전체" checked style="display: none;"><label for="all">#전체</label>
             	<input type="radio" name="category" id="issue" value="이슈" style="display: none;"><label for="issue">#이슈</label>
             	<input type="radio" name="category" id="eat" value="맛집" style="display: none;"><label for="eat">#맛집</label>
             	<input type="radio" name="category" id="hobby" value="취미" style="display: none;"><label for="hobby">#취미</label>
