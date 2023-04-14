@@ -82,6 +82,7 @@ var openedInfowindow = null;
   kakao.maps.event.addListener(marker, 'click', (function(marker ,i) {
 	// 여기서 marker는 마커객체, i는 마커의 인덱스 반환
       return function() {
+	const contentWithoutImg = markersData[i].content.replace(/<img[^>]*>/g, '');
 	// kakao.maps.InfoWindow는 kakao라이브러리로 인포윈도우 생성 함수
           var infowindow = new kakao.maps.InfoWindow({
               content: 
@@ -100,7 +101,7 @@ var openedInfowindow = null;
               	'</div>' +
             	  '<div class="infowindow-content">' +
               		'<div class="info-title">' + markersData[i].title + '</div>' +
-              		'<div class="info-content">' + markersData[i].content + '</div>' +
+              		'<div class="info-content">' + contentWithoutImg + '</div>' +
                '</div>'+
                '<div class="infowindow-footer">❤️' + markersData[i].like + '</div>'+
              '</div>'
