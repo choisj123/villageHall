@@ -9,6 +9,7 @@
 
   .right-body{
     height: auto;
+    margin:auto;
   }
 
 /* a태그 공통 설정 */
@@ -27,6 +28,7 @@
 
 .boardListTable {
     width: 100%;
+    margin:auto;
   }
   
 .boardListTable tr{
