@@ -75,5 +75,39 @@ pageEncoding="UTF-8"%>
       </li>
     </ul>
   </nav>
+  
+  <section class="weather">
+            <div class="box">
+            	<div class="firstBox">
+            		<div class="left">
+            			<div class="cicon"></div>
+            		</div>
+            		<div class = "right">
+		                <div class="ctemp"></div>
+		                <div class="main"></div>
+		                <div class="name"></div>
+               		</div>
+            	</div>
+            	<div class="secondBox">
+	            	<div class="wi">
+		            	<img src="${contextPath}/resources/images/wind.png" id="wind-logo" />
+	            		 <div class="speed"></div>
+	            	</div>
+	            	<div class = "hu">
+		            	<img src="${contextPath}/resources/images/humidity.png" id="humidity-logo" />
+		            	<div class="humidity"></div>
+	            	</div>
+	            	<div class="mi">
+		            	<img src="${contextPath}/resources/images/dust.png" id="aqi-logo" />
+		            	<div class="aqi"></div>	
+	            	</div>
+            	
+            	</div>
+            
+            </div>
+         </section>
+  
+  
+  
 </section>
 
