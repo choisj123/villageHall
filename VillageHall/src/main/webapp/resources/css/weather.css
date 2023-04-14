@@ -103,7 +103,9 @@
 
 .firstBox {
   border-bottom: 1px solid black;
-/*   background-color: rgb(230, 243, 235); */
+  /* background-color: rgb(0,0,0); */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
   display: flex;
   flex-direction: row;

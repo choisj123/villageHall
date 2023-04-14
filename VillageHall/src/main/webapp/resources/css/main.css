@@ -6,7 +6,7 @@ font-family: 'IBM Plex Sans KR', sans-serif;;
 
 html{
 	position: relative;
-	min-height: 600px;;
+	min-height: 600px;
 }
 
 body {
@@ -101,6 +101,11 @@ header > section:nth-of-type(3) {
   margin-right: 5px;
   text-decoration: none;
   color: #55710f;
+  border: 2px solid #55710f;
+    border-radius: 15px;
+      padding: 5px;
+   width: 75px;
+  height: 30px;
 }
 
 #login:hover{
@@ -133,6 +138,12 @@ header > section:nth-of-type(3) {
   margin-right: 5px;
   text-decoration: none;
   color: #55710f;
+    border: 2px solid #55710f;
+      border-radius: 15px;
+          padding: 5px 5px 5px 5px;
+     /*  padding: 5px; */
+   width: 90px;
+  height: 30px;
 }
 
 #user-name {
@@ -269,6 +280,7 @@ nav ul li table td {
   height: auto;
   flex-basis: 80%;
   border: none;
+  min-height: 1000px;
 
 
   display: flex;

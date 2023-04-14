@@ -174,11 +174,13 @@ function showMarkersByCategory(newCategory) {
    showMarkersByCategory("전체");
 
 // option 이벤트 리스너
-document.getElementById("categorySelect").addEventListener("change", function () {
-  const newCategory = this.value;
-  showMarkersByCategory(newCategory);
+document.getElementsByName("category").forEach(function (element) {
+    element.addEventListener("change", function () {
+      showMarkersByCategory(this.value);
+    });
+  });
   
-});
+  showMarkersByCategory("전체"); // 초기값 설정
 
 
 
