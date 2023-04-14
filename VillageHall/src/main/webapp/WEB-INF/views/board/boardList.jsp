@@ -59,7 +59,7 @@
           
 			<h2><a href="${contextPath}/board/list?type=${param.type}&categoryNo=${param.categoryNo}" style="padding-left: 30px;">${boardName}</a></h2>
 			
-			<c:if test="${!empty param.key}">
+			<c:if test="${!empty param.key && param.type == 3}">
                 <h3 style="margin-left:30px;"> "${param.query}" 검색 결과  </h3>
             </c:if>
             
@@ -95,7 +95,7 @@
             		</select>
             	</form>
             </c:if>
-
+	
 			<div id='boardListOutBox'>
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
@@ -133,8 +133,20 @@
 	                				<c:otherwise>
 	                					<c:forEach var="board" items="${boardList}">
 	                						<tr>
-	                							<td>${board.categoryName}</td>	                				
-	                							<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a></td>
+	                							<td>${board.categoryName}</td>	
+	                							<c:choose>
+	                								<c:when test="${board.commentCount > 0 && param.type == 3}">
+	                									<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">
+	                										${board.boardTitle}<span style="color: #55710f;"> [${board.commentCount}]</span>
+	                									</a></td>
+	                								</c:when>
+	                								<c:otherwise>
+	                									<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">
+	                										${board.boardTitle}
+	                									</a></td>
+	                								</c:otherwise>
+	                							</c:choose>                				
+	                							
 	                							<td>${board.userNickname}</td>
 	                							<td>${board.boardCreateDate}</td>	                				
 	                							<td>${board.readCount}</td>
@@ -157,13 +169,12 @@
           <article class="FAQ-search">
             <!--FAQ 질문 검색창-->
             <form action="${contextPath}/board/list" name="FAQ-search-form" method="get" id="boardSearch" onsubmit="return searchValidate()">
-              <h3 class="FAQ-text">자주 묻는 질문</h3>
 
               <fieldset class="FAQ-search-fieldset">
 
                  
                  <input type="hidden" name="type" value="${param.type}">
-                 <input type="hidden" name="categoryNo" value="0">
+                 <input type="hidden" name="categoryNo" value="2">
 				 <input type="hidden" name="key" value="t">
 
                 <input
@@ -180,25 +191,33 @@
                   class="fa-solid fa-magnifying-glass"
                 ></button>
               </fieldset>
+              <div id="quickSearchArea">
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2" class="quickSearchArea">전체</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=게시글" class="quickSearchArea">게시글</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=회원" class="quickSearchArea">회원</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=로그인" class="quickSearchArea">로그인</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=가입" class="quickSearchArea">가입</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=인증" class="quickSearchArea">인증</a>
+              	<a href="${contextPath}/board/list?type=2&categoryNo=2&key=t&query=기타" class="quickSearchArea">기타</a>
+              </div>
             </form>
 
             <!--FAQ 카테고리-->
           </article>
           
-          <hr>
-          
-					<div class=faqSection>
-				
-					<c:forEach var="board" items="${boardList}">
-						<div class="FAQTitle">${board.boardTitle}</div>
-                    	<div class="contents">${board.boardContent}</div>
-                    	
-                    	<c:if test="${loginUser.administer == 'Y'}">
-          					<button type="button" id= "updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
-          					<button type="button" id= "deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
-          				</c:if>
-                    			
-					</c:forEach>
+					<div class=faqSection>				
+						<c:forEach var="board" items="${boardList}">
+							<div class="FAQTitle">
+								${board.boardTitle} <div class="icon">▼</div>
+								<c:if test="${loginUser.administer == 'Y'}">
+          							<button type="button" id= "updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          							<button type="button" id= "deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
+          						</c:if>
+							</div>
+							
+                    		<div class="contents">${board.boardContent}</div>                    			
+						</c:forEach>
+
 					</div>
 					
 					<script>
@@ -219,7 +238,7 @@
           	
 	          	
 	            <c:if test ="${param.type == '3' && !empty loginUser}">
-	            	<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
+	            	<button type="button" id="boardWriteBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
 	            </c:if>
           	
           	</div>

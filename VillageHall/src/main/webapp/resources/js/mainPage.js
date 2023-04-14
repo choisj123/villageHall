@@ -14,7 +14,12 @@ function selectMainPagePopularBoard() {
 			for(let item of boardList) {
 				const tr = document.createElement("tr");
 				const td1 = document.createElement("td");
-				td1.innerHTML = '<a href="/VillageHall/board/boardDetail?boardNo=' + item.boardNo + '">' + item.boardTitle + '</a>';
+				if(item.commentCount > 0) {
+					td1.innerHTML = '<a href="/VillageHall/board/boardDetail?boardNo=' + item.boardNo + '">' + item.boardTitle + '<span style="color: #55710f;"> [' + item.commentCount + ']</span></a>';
+				} else {
+					td1.innerHTML = '<a href="/VillageHall/board/boardDetail?boardNo=' + item.boardNo + '">' + item.boardTitle + '</a>';
+				}
+				
 				const td2 = document.createElement("td");
 				td2.innerHTML = item.readCount;
 				

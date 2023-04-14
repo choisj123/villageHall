@@ -78,6 +78,7 @@ public class BoardDAO {
 				board.setReadCount(rs.getInt(6));
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
+				board.setCommentCount(rs.getInt(9));
 						
 				boardList.add(board);
 			}
@@ -529,6 +530,7 @@ public class BoardDAO {
 				board.setBoardNo(rs.getInt(2));
 				board.setBoardTitle(rs.getString(3));
 				board.setReadCount(rs.getInt(4));
+				board.setCommentCount(rs.getInt(5));
 				
 				boardList.add(board);
 			}
@@ -780,6 +782,7 @@ public class BoardDAO {
 				board.setLikeCount(rs.getInt(7));
 				board.setCategoryName(rs.getString(8));
 				board.setBoardContent(rs.getString(9));
+				board.setCommentCount(rs.getInt(10));
 				
 				boardList.add(board);
 			}
@@ -831,6 +834,7 @@ public class BoardDAO {
 					board.setReadCount(rs.getInt(5));
 					board.setLikeCount(rs.getInt(6));
 					board.setCategoryName(rs.getString(7));
+					board.setCommentCount(rs.getInt(8));
 					
 					list.add(board);	
 				}
@@ -882,6 +886,7 @@ public class BoardDAO {
 					board.setReadCount(rs.getInt(6));
 					board.setLikeCount(rs.getInt(7));
 					board.setCategoryName(rs.getString(8));
+					board.setCommentCount(rs.getInt(9));
 									
 					list.add(board);
 				}

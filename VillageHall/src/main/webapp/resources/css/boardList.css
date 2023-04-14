@@ -24,6 +24,10 @@
 
 #boardList{
    display: flex;
+   
+    width: 800px;
+    height: auto;
+    margin-left: 50px;
 } 
 
 .boardListTable {
@@ -51,6 +55,11 @@
 }
 
 
+#categoryNo{
+		float: right;
+	margin-right: 50px;	
+	margin-bottom: 10px;
+}
 
 /* 페이지네이션(Pagination) */
 .pagination{
@@ -87,7 +96,7 @@
   
 .FAQ-text {
   display: flex;
-  color:rgba(32, 33, 36, .28);
+  color:black;
   margin-left: 150px;
   color: black;
   font-weight: 700;
@@ -96,20 +105,23 @@
 }
 
 .FAQ-search-fieldset {
-  border: 2px solid rgba(32, 33, 36, .28);
+  border: 2px solid #55710F ;
   border-radius: 20px;
   width: 600px;
   margin-left: 150px;
-  padding: 2px;
 
   display: flex;
 }
-#search-key{
-  /* display: block;
-  height: 0;
-  width: 0;
-  margin-left: 20px; */
+
+#quickSearchArea {
+	display:flex;
+	justify-content: center;
+	padding-top: 20px;
 }
+.quickSearchArea {
+	padding-left: 20px;
+}
+
 
 #search-query {
   padding: 10px;
@@ -137,28 +149,40 @@
 /* FAQ 게시판 스타일*/
 
 .faqSection {
-	/* margin: 40px 70px; */
+	margin-left:50px;
+	width: 850px;
+
+}
+.icon{
+	float: right;
+	margin-right: 110px;
 }
 
 .FAQTitle {
             height: 30px;
-            color: #666;
+            color: black;
             margin: 16px 16px;
             border-radius: 10px;
-            font: normal 16px/1.7 '굴림',Gulim, '돋움', Dotum, AppleGothic, Sans-serif;
             line-height: 30px;
             cursor: pointer;
+            /* font-weight: 500; */
+            font-size: 20px;
+            	margin-bottom: 25px;
+            
 }
+
 
 div.contents {
             display: none; /* 화면에서 보이지 않음 */
             border-top: 2.5px solid lightgray;
             height: 200px;
+            width: 750px;
             padding: 40px;
+            font-size: 18px;
 }
 
 #boardSearch{
-  /* display: flex; */
+ margin-bottom: 40px;
 }
 
 #faq-search-area{
@@ -188,11 +212,18 @@ div.contents {
 }
 
 
-#writeBtn{
-	width: 64px;
-	position : absolute;
-	bottom: -30px;
-    right: 23px;
+#boardWriteBtn{
+
+    margin: 20px 0 0 750px;    
+    text-decoration: none;
+    border: 0;
+    border-radius: 10px;
+    background-color: #55710f;
+    color: white;
+    font-size: 20px;
+    padding: 3px 10px;
+    width: 80px;
+
 }
 
 #updateBtn, #deleteBtn{
