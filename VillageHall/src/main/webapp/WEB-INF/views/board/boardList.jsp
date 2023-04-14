@@ -96,7 +96,7 @@
             	</form>
             </c:if>
 
-			
+			<div id='boardListOutBox'>
           	<c:choose>
 				<c:when test="${param.type == 1 || param.type == 3}">
 					<div id="boardList">
@@ -227,10 +227,17 @@
 				</c:otherwise>
 				<%-- 여기까 faq영역 --%>
           	</c:choose>
-          
-            
-            
-         <div class="pagination-area">
+          	
+	          	
+	            <c:if test ="${param.type == '3' && !empty loginUser}">
+	            	<button type="button" id="writeBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=insert'"  >글쓰기</button>
+	            </c:if>
+          	
+          	</div>
+          	
+          	
+          	
+         <div class="pagination-area" style="margin-top: 100px;">
 
                 <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
                 
@@ -271,6 +278,7 @@
 
                 </ul>
             </div>
+            
             
             
             <!-- /board/list?type=1&cp=3 -->
