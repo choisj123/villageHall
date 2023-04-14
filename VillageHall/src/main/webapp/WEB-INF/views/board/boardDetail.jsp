@@ -99,7 +99,7 @@
 	          						<div>
 	          							<span class= "comment-createDate">${comment.commentCreateDate}</span>
 	          						</div>
-	          						<c:if test="${loginUser.userNickname == comment.userNickname}">
+	          						<c:if test="${loginUser.userNickname == comment.userNickname || loginUser.administer == 'Y'}">
 	          							<div>
 	          								<button id="updateCommentButton">수정</button>&nbsp;
 	          								<form action="${contextPath}/comment/deleteComment" method="get">
