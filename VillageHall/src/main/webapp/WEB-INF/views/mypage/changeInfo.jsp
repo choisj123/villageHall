@@ -112,6 +112,8 @@
 	                
 	               <button type="submit" id="info-update-btn">변경</button>
 	            </form>
+	            
+	     
 
          </div>
        </section>

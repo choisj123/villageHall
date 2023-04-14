@@ -35,7 +35,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <h2 class="mypageH2"> 마이페이지</h2>
           <div class="myPage-box">
             <div>내 정보 수정</div>
-            <form action="${contextPath}/mypage/myPage" method="post">
+            <form action="${contextPath}/mypage/myPage" method="post" >
               <div id="box-body">
                 비밀번호
                 <input type="password" name="inputPw" id="inputPw" autofocus />
