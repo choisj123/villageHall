@@ -48,7 +48,6 @@
 		                    <div class="villageHall">
                 				마을회관
             				</div>
-		                    
 		        
 		                        <section>
 		                            <input type="text" id="input-area" name="userEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}"><br>
