@@ -18,24 +18,35 @@
 </head>
 <body>
 
-    	<!-- header -->
-     	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<section class="termsOfUse-content">
+
+    	<!--헤더 영역 시작-->
+        <header>
+            <!--로고 영역(클릭하면 메인페이지로 넘어감)-->
+           
+                <a href="${contextPath}">
+                    <img src="${contextPath}/resources/images/logo.png" id="logo">
+                </a>
+           
+
+        </header>
      	
-          <fieldset class="terms-of-use-area">
+         <form
+    action="termsOfUse"
+    method="Post"
+    name="TermsOfUse-form"
+    onsubmit= "return termsOfUserValidate()"
+    >
+        <fieldset class="terms-of-use-area">
     	
-        <form
-        action="termsOfUse"
-        method="Post"
-        name="TermsOfUse-form"
-        onsubmit= "return termsOfUserValidate()"
-        >
+
           
                 <div class="villageHall">
                     마을회관
                 </div>
 
                 <h4>개인정보 수집·이용 (필수)</h4>
-                <table border="1" id="table">
+                <table id="table">
 
                     <tr>   <!-- 1행 -->
                         <th class="th">구분</th>   <!-- 1행 1열 -->
@@ -48,19 +59,20 @@
                         <td class="td1">필수정보</td> <!-- 2행 1열 -->
                         <td class="td">회원제 서비스 이용 / 본인확인</td> <!-- 2행 2열 -->
                         <td class="td">이메일(아이디), 비밀번호, 닉네임</td> <!-- 2행 3열 -->
-                        <td class="tdCheck">
+                        <td class="tdBtn">
                         	<div id="required">
                 				&nbsp;<input type="checkbox" id="required1">
                 			</div>  
                         </td>
                     </tr>
-				</table>
-				<p class="p">*서비스 제공을 위한 최소한의 개인정보이므로 동의를 해주셔야 서비스를 이용하실 수 있습니다.<p>
-                
+
+
+                </table>
+                <p class="p">*서비스 제공을 위한 최소한의 개인정보이므로 동의를 해주셔야 서비스를 이용하실 수 있습니다.<p>
 
 
                 <h4>위치기반 서비스 수집·이용 (필수)</h4>
-                <table border="1" id="table">
+                <table  id="table">
 
                    <tr>   <!-- 1행 -->
                        <th class="th">구분</th>   <!-- 1행 1열 -->
@@ -73,7 +85,7 @@
                        <td class="td1">필수정보</td> <!-- 2행 1열 -->
                        <td class="td">이동기기의 위치정보를 이용한 검색결과, 주변결과(맛집, 주변업체, 교통수단 등)제시</td> <!-- 2행 2열 -->
                        <td class="td">위치를 활용한 정보 수신</td> <!-- 2행 3열 -->
-                       <td class="tdCheck">
+                       <td class="tdBtn">
                            <div id="required">
                                &nbsp;<input type="checkbox" id="required2">
                            </div> <!-- 2행 4열 --> 
@@ -85,7 +97,7 @@
                <p class="p">*위치기반 서비스 이용약관에 동의를 해주셔야 서비스를 이용하실 수 있습니다.<p>
 
                <h4>개인정보 수집·이용 (선택)</h4>
-                 <table border="1" id="table">
+                 <table id="table">
 
                     <tr>   <!-- 1행 -->
                         <th class="th">구분</th>   <!-- 1행 1열 -->
@@ -98,20 +110,20 @@
                         <td class="td1">선택정보</td> <!-- 2행 1열 -->
                         <td class="td">마케팅 활용(이벤트, 맞춤형 광고)</td> <!-- 2행 2열 -->
                         <td class="td">휴대폰 번호, 쿠키정보</td> <!-- 2행 3열 -->
-                        <td class="tdCheck">
-                        	<div id="option">
-                				&nbsp;<input type="checkbox" id="option1"> 
+                        <td class="tdBtn">
+                        	<div id="required">
+                				&nbsp;<input type="checkbox" id="required2">
                 			</div> <!-- 2행 4열 --> 
                         </td>
                     </tr>
 
 
                 </table>
-                 <p class="p">*동의하지 않으셔도 서비스는 이용하실 수 있습니다.<p>
+                <p class="p">*동의하지 않으셔도 서비스는 이용하실 수 있습니다.<p>
 
 
                 <h4>광고성 정보 수신 (선택)</h4>
-                <table border="1" id="table">
+                <table id="table">
 
                     <tr>   <!-- 1행 -->
                         <th class="th">수신</th>   <!-- 1행 1열 -->
@@ -126,9 +138,9 @@
                             마케팅 및 광고 활용을 위한 정보 수신 동의
                         </td> <!--2행 2열 -->
                         <td class="td">이메일(아이디)</td> <!-- 2행 3열 -->
-                        <td class="tdCheck">
-                        	 <div id="option">
-                    			&nbsp;<input type="checkbox" id="option2"> 
+                        <td class="tdBtn">
+                        	 <div id="option1">
+                    			&nbsp;<input type="checkbox" id="option1"> 
                 			</div>
                         </td>
                      
@@ -140,9 +152,9 @@
                             마케팅 및 광고 활용을 위한 정보 수신 동의
                         </td> <!-- 3행 2열 -->
                         <td class="td">전화번호</td> <!-- 3행 3열 -->
-                        <td class="tdCheck">
-                        	<div id="option">
-                    			&nbsp;<input type="checkbox" id="option3"> 
+                        <td class="tdBtn">
+                        	<div id="option2">
+                    			&nbsp;<input type="checkbox" id="option1">
                 			</div>
                 		</td class="td"> <!-- 3행 4열 -->
                     </tr>
@@ -155,9 +167,10 @@
                 <br>
                 
                 <button  id="nextBtn" >동의하고 가입하기</button>
-        </form>
-        
-</fieldset>
+        </fieldset>
+    
+    </form>
+</section>
         
         <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

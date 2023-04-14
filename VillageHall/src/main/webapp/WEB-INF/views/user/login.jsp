@@ -27,8 +27,17 @@
 </head>
 <body>
     <main>
-        <!-- hedaer include -->
-      <jsp:include page="/WEB-INF/views/common/header.jsp" />
+       
+        <!--헤더 영역 시작-->
+        <header>
+            <!--로고 영역(클릭하면 메인페이지로 넘어감)-->
+           
+                <a href="${contextPath}">
+                    <img src="${contextPath}/resources/images/logo.png" id="logo">
+                </a>
+
+        </header>
+
       
             <section class="login-content">
            
@@ -70,7 +79,7 @@
         
                     <span class="signUp-pwFind-btn">
       
-                        <a href="${contextPath}/user/signUp" class="a">회원가입</a> 
+                        <a href="${contextPath}/user/termsOfUse" class="a">회원가입</a> 
                         <span>|</span>
                         <a href="${contextPath}/user/pwFindEmail" class="a">비밀번호 찾기</a>
 

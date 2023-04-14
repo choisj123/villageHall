@@ -3,6 +3,14 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
   }
   
+#logo{
+	
+	width: 120px;
+    height: 100px;
+    margin-left: 425%;
+    
+}
+  
   
 .login-content{
 	

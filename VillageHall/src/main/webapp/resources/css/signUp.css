@@ -1,9 +1,19 @@
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
   * {
     font-family: 'IBM Plex Sans KR', sans-serif;
+    color: rgb(19, 18, 18);
+    
   }
 
 /* 회원가입 영역 */
+
+#logo{
+	
+	width: 120px;
+    height: 100px;
+    margin-left: 425%;
+    
+}
 
 
 .signUp-content{

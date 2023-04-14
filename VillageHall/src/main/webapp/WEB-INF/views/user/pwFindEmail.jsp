@@ -19,8 +19,15 @@
 <body>
     <main>	
     
-    	<!-- header -->
-     	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+        <header>
+            <!--로고 영역(클릭하면 메인페이지로 넘어감)-->
+           
+                <a href="${contextPath}">
+                    <img src="${contextPath}/resources/images/logo.png" id="logo">
+                </a>
+           
+
+        </header>
      	
     <form action="pwFindEmail"
        		 method="POST"
