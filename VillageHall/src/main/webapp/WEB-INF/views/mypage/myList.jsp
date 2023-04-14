@@ -114,7 +114,15 @@
 	                						<c:forEach var="board" items="${list}">
 	                							<tr>
 	                								<td>${board.categoryName}</td>
-	                								<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
+	                								<c:choose>
+	                									<c:when test="${board.commentCount > 0}">
+	                										<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}<span style="color: #55710f;"> [${board.commentCount}]</span></a></td>
+	                									</c:when>
+	                									<c:otherwise>
+	                										<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
+	                									</c:otherwise>
+	                								</c:choose>
+	                								
 	                								<td>${board.boardCreateDate}</td>
 	                								<td>${board.readCount}</td>
 	                								<td>${board.likeCount}</td>
@@ -187,8 +195,15 @@
                 						<c:otherwise>
                 							<c:forEach var="board" items="${list}">
                 								<tr>
-                									<td>${board.categoryName}</td>
-                									<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
+                									<td>${board.categoryName}</td>                									
+                									<c:choose>
+	                									<c:when test="${board.commentCount > 0}">
+	                										<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}<span style="color: #55710f;"> [${board.commentCount}]</span></a></td>
+	                									</c:when>
+	                									<c:otherwise>
+	                										<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}">${board.boardTitle}</a></td>
+	                									</c:otherwise>
+	                								</c:choose>
                 									<td>${board.boardCreateDate}</td>
                 									<td>${board.userNickname}</td>
                 									<td>${board.readCount}</td>
