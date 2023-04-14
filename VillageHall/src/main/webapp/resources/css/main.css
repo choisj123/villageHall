@@ -102,35 +102,39 @@ header > section:nth-of-type(3) {
   text-decoration: none;
   color: #55710f;
   border: 2px solid #55710f;
-    border-radius: 15px;
-      padding: 5px;
+   border-radius: 50px;
    width: 80px;
   height: 30px;
+  height: 35px;
+    line-height:33px;
+    text-align: center;
 }
 
 #login:hover{
   text-decoration: none;
 /*   font-weight: bold; */
   border: 1px solid #55710f;
-  border-radius: 15px;
+   border-radius: 50px;
   background-color: #55710f;
   color: white;
-  padding: 5px;
-   width: 75px;
-  height: 30px;
+   width: 80px;
+  height: 35px;
+    line-height:33px;
+    text-align: center;
   
 	
 }
 
 #signup {
-	text-decoration: none;
+  text-decoration: none;
   border: 1px solid #55710f;
-  border-radius: 15px;
+   border-radius: 50px;
   background-color: #55710f;
   color: white;
   width: 75px;
-  height: 30px;
-  padding: 2px 1px 0 6px ;
+  height: 35px;
+    line-height:33px;
+    text-align: center;
 }
 
 
@@ -139,29 +143,33 @@ header > section:nth-of-type(3) {
   text-decoration: none;
   color: #55710f;
     border: 2px solid #55710f;
-      border-radius: 15px;
-          padding: 5px 5px 5px 5px;
+   border-radius: 50px;
      /*  padding: 5px; */
-   width: 95px;
-  height: 30px;
+   width: 100px;
+  height: 35px;
+    line-height:33px;
+    text-align: center;
 }
 
 #user-name {
   border: 1px solid #55710f;
-  border-radius: 15px;
+   border-radius: 50px;
   background-color: #55710f;
   color: white;
-  padding: 2px 5px 2px 5px;
+  padding: 5px 10px 5px 10px;
+    height: 35px;
 }
 
 #logout:hover {
   text-decoration: none;
   font-weight: bold;
   border: 1px solid #55710f;
-  border-radius: 15px;
+   border-radius: 50px;
   background-color: #55710f;
   color: white;
-    padding: 5px 5px 5px 5px;
+  height: 35px;
+    line-height:33px;
+    text-align: center;
 }
 
 
