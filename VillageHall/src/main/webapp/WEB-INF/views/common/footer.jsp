@@ -7,13 +7,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <p>Copyright &copy; 2023. Village Hall Community. All rights reserved</p>
 
   <article>
-    <a href="#">프로젝트 소개</a>
+    <a href="https://github.com/choisj123/villageHall/blob/main/README.md" target="_blank" >프로젝트 소개</a>
     <span>|</span>
     <a href="#">이용약관</a>
     <span>|</span>
     <a href="#">개인정보처리방침</a>
     <span>|</span>
-    <a href="#">고객센터</a>
+    <a href="https://github.com/choisj123/villageHall" target="_blank">고객센터</a>
   </article>
 </footer>
 

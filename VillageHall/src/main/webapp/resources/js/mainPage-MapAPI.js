@@ -43,9 +43,11 @@ for (var i = 0; i < kakaoMapList.length; i++) {
     location: new kakao.maps.LatLng(kakaoMapList[i].latitude, kakaoMapList[i].longtitude),
     content : kakaoMapList[i].boardContent,
     category : kakaoMapList[i].categoryName,
+    boardNo: kakaoMapList[i].boardNo,
     like : kakaoMapList[i].likeCount,
-    photoUrl : kakaoMapList[i].profileImg ? kakaoMapList[i].profileImg.substr(1) : ""
+    photoUrl : kakaoMapList[i].profileImg ? kakaoMapList[i].profileImg.substr(1) : "",
     // 여기서 ? 는 조건연산자로 null일경우 value1, 아닐경우 value2 반환 
+    comment : kakaoMapList[i].commentCount
   });
 }
 
@@ -102,7 +104,16 @@ var openedInfowindow = null;
               		'<div class="info-title">' + markersData[i].title + '</div>' +
               		'<div class="info-content">' + markersData[i].content + '</div>' +
                '</div>'+
-               '<div class="infowindow-footer">❤️' + markersData[i].like + '</div>'+
+               '<div class="infowindow-footer">' +
+               		'<div class="info-like">❤️ ️' + markersData[i].like + '</div>' +
+               		'<div class="info-count">댓글(' + markersData[i].comment + ')</div>' +
+			  		"<div class='move'><a class='move' href='http://localhost:8080/VillageHall/board/boardDetail?boardNo=" +
+				      markersData[i].boardNo +
+				      "&cp=1&type=3' onclick ='clickBoardFunction(" +
+				      markersData[i].boardNo +
+				      "); '> 게시글로 이동 >>" + 
+				      "</a></div>" +
+			   '</div>' +
              '</div>'
 
           });

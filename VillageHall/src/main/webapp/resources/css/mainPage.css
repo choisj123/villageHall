@@ -173,10 +173,28 @@ align-items: center;
   height: 50px;
   width: 300px;
   padding: 5px 0px 0px 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.info-like{
+	flex-basis: 13%;
+	
+}
+.info-count{
+	flex-basis: 20%;
+	font-size: 14px;
+	
 }
 
 .option {
   margin-left: 20px;
+}
+
+.move{
+	flex-basis: 57%;
+	margin-left: 45px;
+	font-size: 14px;
 }
 
 
