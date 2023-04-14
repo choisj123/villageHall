@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
 			<a href="${contextPath}/mypage/myPage"><img src="${contextPath}${loginUser.profileImg}" id="left-profile-image"></a>
         </c:if>
         <div id="profile-info-area">
-	        <span id="left-user-name"><strong>${loginUser.userNickname}님</strong></span>
+	        <span id="left-user-name" style="font-size:17px; font-weight: bold;">${loginUser.userNickname}님</span>
 	        
 	        <c:choose>
 	        	<c:when test="${sessionScope.loginUser.kakaoUserKey == null}">
