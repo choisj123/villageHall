@@ -133,8 +133,20 @@
 	                				<c:otherwise>
 	                					<c:forEach var="board" items="${boardList}">
 	                						<tr>
-	                							<td>${board.categoryName}</td>	                				
-	                							<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">${board.boardTitle}</a></td>
+	                							<td>${board.categoryName}</td>	
+	                							<c:choose>
+	                								<c:when test="${board.commentCount > 0 && param.type == 3}">
+	                									<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">
+	                										${board.boardTitle}<span style="color: #55710f;"> [${board.commentCount}]</span>
+	                									</a></td>
+	                								</c:when>
+	                								<c:otherwise>
+	                									<td><a href="${contextPath}/board/boardDetail?boardNo=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}${sURL}">
+	                										${board.boardTitle}
+	                									</a></td>
+	                								</c:otherwise>
+	                							</c:choose>                				
+	                							
 	                							<td>${board.userNickname}</td>
 	                							<td>${board.boardCreateDate}</td>	                				
 	                							<td>${board.readCount}</td>
@@ -180,6 +192,13 @@
                   class="fa-solid fa-magnifying-glass"
                 ></button>
               </fieldset>
+              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=게시글">게시글</a>
+              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=회원">회원</a>
+              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=로그인">로그인</a>
+              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=가입">가입</a>
+              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=인증">인증</a>
+              <a href="${contextPath}/board/list?type=2&categoryNo=0&key=t&query=기타">기타</a>
+              
             </form>
 
             <!--FAQ 카테고리-->
@@ -187,18 +206,17 @@
           
           <hr>
           
-					<div class=faqSection>
-				
-					<c:forEach var="board" items="${boardList}">
-						<div class="FAQTitle">${board.boardTitle}</div>
-                    	<div class="contents">${board.boardContent}</div>
-                    	
-                    	<c:if test="${loginUser.administer == 'Y'}">
-          					<button type="button" id= "updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
-          					<button type="button" id= "deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
-          				</c:if>
-                    			
-					</c:forEach>
+					<div class=faqSection>				
+						<c:forEach var="board" items="${boardList}">
+							<div class="FAQTitle">
+								${board.boardTitle}
+								<c:if test="${loginUser.administer == 'Y'}">
+          							<button type="button" id= "updateBtn" onclick="location.href='${contextPath}/board/writeBoard?mode=update&boardNo=${board.boardNo}'" >수정</button>
+          							<button type="button" id= "deleteBtn" onclick="location.href='${contextPath}/board/deleteBoard?boardNo=${board.boardNo}'" >삭제</button>
+          						</c:if>
+							</div>
+                    		<div class="contents">${board.boardContent}</div>                    			
+						</c:forEach>
 					</div>
 					
 					<script>
