@@ -125,11 +125,7 @@
 
 </section>    
 
-<a href="${contextPath}/user/termsOfUse">이용약관TEST</a> 
- 
 
-    	
-    	
    	 	<!-- 푸터 -->
     	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
    	
