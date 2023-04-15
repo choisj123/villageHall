@@ -439,7 +439,7 @@ footer a {
 
 .speed {
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
   display:inline;
     line-height: 33px;
     padding-bottom:10px;
@@ -447,13 +447,13 @@ footer a {
 
 .humidity {
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
     display:inline;
       line-height: 33px;
 }
 .aqi {
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
     display:inline;
       line-height: 33px;
 }
