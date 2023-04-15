@@ -19,7 +19,7 @@ public class myinfoNicknameDupServlet extends HttpServlet{
 		
 		
 		// 파라미터 얻어오기(data 속성의 값)
-		String userNickname = req.getParameter("userNickname");
+		String userNickname = req.getParameter("newNickname");
 		
 		try {
 			UserService service = new UserService();
