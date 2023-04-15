@@ -39,6 +39,7 @@ public class MyinfoNicknameDupServlet extends HttpServlet{
 				
 				// 닉네임 중복 검사 Service 호출 후 결과 반환 받기
 				result = service.nicknameDupCheck(userNickname);
+				System.out.println(result);
 				
 				// 동기식   -> forward 또는 redirect로 응답 (화면 전환)
 				// 비동기식 -> 응답용 스트림을 이용해 데이터 전달 (데이터가 현재 화면 추가)
