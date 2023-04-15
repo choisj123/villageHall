@@ -53,24 +53,35 @@ public class ChangeInfoServlet extends HttpServlet {
 				
 				User user = new User();
 				
-				user.setUserNo(userNo);
-				user.setUserNickname(newNickname);
-				
 				UserService service = new UserService();
 				
-				result = service.updateUser(user);
+				int dupResult = service.nicknameDupCheck(newNickname);
 				
+				if(dupResult == 0) {
+					user.setUserNo(userNo);
+					user.setUserNickname(newNickname);
+					result = service.updateUser(user);
+				}				
 				
 			}else {
 				User user = new User();	
 				
-				user.setUserNo(userNo);
-				user.setUserNickname(newNickname);
-				user.setUserTel(newTel);
-				
 				UserService service = new UserService();
 				
-				result = service.updateUser(user);
+				int dupResult = service.nicknameDupCheck(newNickname);
+				
+				if(dupResult == 0) {
+					user.setUserNo(userNo);
+					user.setUserNickname(newNickname);
+					user.setUserTel(newTel);
+					result = service.updateUser(user);
+				}
+				
+				
+				
+				
+				
+				
 		
 				
 			}
@@ -86,7 +97,7 @@ public class ChangeInfoServlet extends HttpServlet {
 				loginUser.setUserTel(newTel);
 
 			} else { // 실패
-				session.setAttribute("message", "회원 정보 수정 실패");
+				session.setAttribute("message", "중복된 닉네임입니다.");
 
 			}
 			System.out.println(result);

@@ -23,15 +23,15 @@ newNickname.addEventListener("input", function(){
             data : { "newNickname" : newNickname.value }, // 서버로 전달할 값(파라미터)
             type : "GET", // 데이터 전달 방식(기본값 GET)
 
-            success : function(res){ // 비동기 통신 성공 시(에러 발생 X)
+            success : function(result){ // 비동기 통신 성공 시(에러 발생 X)
 
                 // 매개변수 res : Servlet에서 응답으로 출력된 데이터가 저장
 
-                if(res == 0){ // 닉네임 중복 X
+                if(result == 0){ // 닉네임 중복 X
                     //nicknameMessage.innerText = "중복X";
                     checkObj.newNickname = true; // 유효 O 기록
 
-                } else { // 닉네임 중복 O
+                } else if(result == 1) { // 닉네임 중복 O
                     //nicknameMessage.innerText = "중복O";
                     checkObj.newNickname = false; // 유효 O 기록
                 }
@@ -68,7 +68,7 @@ function infoValidate(){
 
 // 닉네임 중복검사
 
-	if(!checkObj.newNickname){
+	if(checkObj.newNickname){
 		
 		alert("중복된 닉네임입니다.");
 		return false;
