@@ -21,6 +21,13 @@
       crossorigin="anonymous"
     ></script>
     
+        <!-- jQuery 라이브러리 추가 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    
     <style>
     	.tab > a:nth-of-type(1) {
 			background-color: #55710f;
@@ -127,10 +134,5 @@
 
     <script src="${contextPath}/resources/js/myPage-myInfo.js"></script>
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

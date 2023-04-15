@@ -1,82 +1,15 @@
-const checkObj = {
-	
-    "newNickname" : false,
-
-}
-
-// 닉네임 유효성 검사
-const newNickname = document.getElementById("newNickname");
-const nicknameMessage = document.getElementById("nicknameMessage");
-
-newNickname.addEventListener("input", function(){
-
-  
-    const regExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
-
-    if( regExp.test(newNickname.value) ){ // 유효한 경우
-        
-
-        // ****** 닉네임 중복 검사(ajax) 진행 예정 ******
-
-        $.ajax({
-            url : "newNicknameDup",  // 필수 작성 속성
-            data : { "newNickname" : newNickname.value }, // 서버로 전달할 값(파라미터)
-            type : "GET", // 데이터 전달 방식(기본값 GET)
-
-            success : function(res){ // 비동기 통신 성공 시(에러 발생 X)
-
-                // 매개변수 res : Servlet에서 응답으로 출력된 데이터가 저장
-
-                if(res == 0){ // 닉네임 중복 X
-                    //nicknameMessage.innerText = "중복X";
-                    checkObj.newNickname = true; // 유효 O 기록
-
-                } else { // 닉네임 중복 O
-                    //nicknameMessage.innerText = "중복O";
-                    checkObj.newNickname = false; // 유효 O 기록
-                }
-            },
-
-            error : function(){ // 비동기 통신 중 에러가 발생한 경우
-                console.log("에러 발생");
-            }
-        });
-
-
-
-    }else{
-        //nicknameMessage.innerText = "닉네임 형식X";
-        checkObj.newNickname = false; // 유효 X 기록
-    }
-
-});
-
-
 
 // 내 정보 수정 유효성 검사
 function infoValidate(){
 	console.log("js loaded..")
-	
-	const userNickname = document.getElementById("newNickname");
+
+    const userNickname = document.getElementById("newNickname");
     const userTel = document.getElementById("newTel");
-    
 
-
-    const regExp1 = /^[a-zA-Z0-9가-힣]{2,10}$/;       // 닉네임 정규식
+    const regExp1 = /^[a-zA-Z0-9가-힣]{2,10}$/;        // 닉네임 정규식
     const regExp2 = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/; // 전화번호 정규식
-	
-
-// 닉네임 중복검사
-
-	if(!checkObj.newNickname){
-		
-		alert("중복된 닉네임입니다.");
-		return false;
-
-	}
 
     // 닉네임 유효성 검사
-
     if(userNickname.value.length == 0){ // 미작성 시 : 닉네임을 입력해주세요.
         
         return printAlert(userNickname, "닉네임을 입력해주세요.");
@@ -86,8 +19,6 @@ function infoValidate(){
         
         return printAlert(userNickname, "닉네임은 영어/숫자/한글 2~10 글자 사이로 작성해주세요.");
     }
-    
- 
 
     // 전화번호 유효성 검사
     if(userTel.value.length == 0){ // 미작성 시
@@ -101,13 +32,13 @@ function infoValidate(){
 
         return printAlert(userTel, "전화번호 형식이 올바르지 않습니다.");
     }
+
+        
+    return true; // true를 반환해서 form 제출 수행
+
+
     
-
-    return true; // form태그 기본 이벤트 수행
-
 }
-
-
 
 
 // 경고 출력 + 포커스 + false 반환  함수
@@ -116,6 +47,10 @@ function printAlert(el, message){ // 매개변수 el은 요소
     el.focus();
     return false;
 }
+
+
+
+
 
 
 // 회원 프로필 이미지 변경(미리보기)
@@ -212,7 +147,3 @@ document.getElementById("delete-image").addEventListener("click", function(){
     }
 
 });
-
-
-
-
