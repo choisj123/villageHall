@@ -17,6 +17,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       src="https://kit.fontawesome.com/2f1bf0eac7.js"
       crossorigin="anonymous"
     ></script>
+    
+        <!-- jQuery 라이브러리 추가 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    
     <style>
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap");
       * {
@@ -58,12 +66,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <!-- jQuery 라이브러리 추가 -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
+
 
     <!-- <script src="resources/js/myPage.js"></script> -->
   </body>
