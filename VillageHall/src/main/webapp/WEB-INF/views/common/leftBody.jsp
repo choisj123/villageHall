@@ -70,9 +70,6 @@ pageEncoding="UTF-8"%>
         <i class="fa-regular fa-circle-question" id="nav-faq"></i>
         <a href="${contextPath}/board/list?type=2&categoryNo=2">FAQ</a>
       </li>
-      <li>
-        <a href="${contextPath}/user/test">테스트로그인용</a>
-      </li>
     </ul>
   </nav>
   
