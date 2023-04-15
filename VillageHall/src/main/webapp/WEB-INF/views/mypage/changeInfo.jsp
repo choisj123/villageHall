@@ -104,10 +104,12 @@
 	                <div class="myPage-row">
 	                    <label>닉네임</label>
 	                    <input type="text" name="newNickname" id="newNickname" value="${loginUser.userNickname}" maxlength="10" autofocus></input>
+	                    <span id ="nicknameMessage"></span>
 	                </div>
 	                 <div class="myPage-row">
 	                    <label>전화번호</label>
 	                    <input type="tel" name="newTel" id="newTel" value="${loginUser.userTel}" maxlength="11"></input>
+	               		<span id ="telMessage"></span>
 	                </div>
 	                
 	               <button type="submit" id="info-update-btn">변경</button>

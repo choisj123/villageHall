@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 					 
 				} else {
 		
-					session.setAttribute("message", "아이디 혹은 비밀번호를 확인해주세요.");
+					session.setAttribute("message", "아이디 또는 비밀번호를 확인해주세요.");
 					String path = "/user/login";
 					resp.sendRedirect(req.getContextPath() + path);
 				}
