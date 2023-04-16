@@ -397,14 +397,39 @@ public class UserDAO {
 		int result = 0;
 		
 		try {
-			String sql = prop.getProperty("updateUser");
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUserNickname());
-			pstmt.setString(2, user.getUserTel());
-			pstmt.setInt(3, user.getUserNo());
+			if(user.getUserNickname() == null) {
+				
+				String sql = prop.getProperty("updateUserTel");
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, user.getUserTel());
+				pstmt.setInt(2, user.getUserNo());
+				
+				result = pstmt.executeUpdate();
+				
+				
+			} else if(user.getUserTel() == null) {
+				String sql = prop.getProperty("updateUserNickname");
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, user.getUserNickname());
+				pstmt.setInt(2, user.getUserNo());
+				
+				result = pstmt.executeUpdate();
+				
+			}else {
+				String sql = prop.getProperty("updateUser");
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, user.getUserNickname());
+				pstmt.setString(2, user.getUserTel());
+				pstmt.setInt(3, user.getUserNo());
+				
+				result = pstmt.executeUpdate();
+				
+			}
 			
-			result = pstmt.executeUpdate();
 			
 		}finally {
 			close(pstmt);

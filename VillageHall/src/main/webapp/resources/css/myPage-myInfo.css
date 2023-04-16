@@ -191,6 +191,11 @@ form[name="myPage-form"]{
     margin-top: 30px;
 }
 
+#changePw{
+	margin-top: 80px;
+}
+
+
 /* 회원 탈퇴 약관 */
 #deleteUser-terms{
     width : 500px;

@@ -18,11 +18,11 @@ pageEncoding="UTF-8"%>
       <c:otherwise>
       	<%-- 프로필사진 설정 안한 경우 --%>
       	<c:if test="${empty loginUser.profileImg}">
-			<a href="${contextPath}/mypage/myPage"><img src="${contextPath}/resources/images/profile.png" id="left-profile-image"></a>
+			<img src="${contextPath}/resources/images/profile.png" id="left-profile-image">
 		</c:if>
 		<%-- 프로필사진 설정 한 경우 --%>
 		<c:if test="${!empty loginUser.profileImg}">
-			<a href="${contextPath}/mypage/myPage"><img src="${contextPath}${loginUser.profileImg}" id="left-profile-image"></a>
+			<img src="${contextPath}${loginUser.profileImg}" id="left-profile-image">
         </c:if>
         <div id="profile-info-area">
 	        <span id="left-user-name" style="font-size:17px; font-weight: bold;">${loginUser.userNickname}님</span>
