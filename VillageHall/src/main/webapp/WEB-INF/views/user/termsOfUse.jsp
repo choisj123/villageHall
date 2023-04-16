@@ -58,7 +58,7 @@
                     <tr> <!-- 2행 -->
                         <td class="td1">필수정보</td> <!-- 2행 1열 -->
                         <td class="td">회원제 서비스 이용 / 본인확인</td> <!-- 2행 2열 -->
-                        <td class="td">이메일(아이디), 비밀번호, 닉네임</td> <!-- 2행 3열 -->
+                        <td class="td">이메일(아이디), 비밀번호, 닉네임, &nbsp;&nbsp;&nbsp;휴대폰 번호</td> <!-- 2행 3열 -->
                         <td class="tdBtn">
                         	<div id="required">
                 				&nbsp;<input type="checkbox" id="required1">
