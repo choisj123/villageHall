@@ -37,6 +37,7 @@ public class DeleteUserServlet extends HttpServlet {
 
 		if (kakaoUserKey == null) {
 			kakaoUserKey = "0";
+			userPw = "0";
 
 		}
 		// 카카오 유저 여부
