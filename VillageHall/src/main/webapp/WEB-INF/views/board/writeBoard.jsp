@@ -24,11 +24,11 @@
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
-      rel="stylesheet"
-    />
+    
+    <!-- 썸머노트 라이브러리 연결 -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    
   </head>
   <body>
     <main>
@@ -102,10 +102,9 @@
               placeholder="제목을 입력해주세요"
               size="125px" value="${board.boardTitle}"
             />
-       
-
+       		<!-- 내용 영역 -->
             <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
-            
+
             <!-- 버튼 영역 -->
             <div class="board-btn-area">
 				<c:if test="${param.mode == 'insert'}">
@@ -121,8 +120,6 @@
             
             <input type="hidden" name="mode" value="${param.mode}">
           </form>
-
-          
         </section>
       </section>
     </main>

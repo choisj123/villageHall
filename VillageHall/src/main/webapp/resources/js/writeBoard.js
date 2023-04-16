@@ -2,7 +2,6 @@ console.log("js loaded");
  
 
 // 썸머노트 호출
-
 $(document).ready(function() {
 	$("#summernote").summernote({
 	    placeholder: "내용을 입력해주세요",
@@ -25,18 +24,20 @@ $(document).ready(function() {
 	    ],
 	      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 		  fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		   
 		   /* 이미지 삽입 후 서버에 저장을 위한 callback */
+		   
 		  callbacks: {
-	        			onImageUpload : function(files, editor, welEditable) {
+        			onImageUpload : function(files, editor, welEditable) {
 			            for (var i = files.length - 1; i >= 0; i--) {
 			            	sendFile(files[i], this);
-			            }
-								} 
+		            	}
+					} 
 	        	}
-	  });
+	 });
 	  
 	  
-	    /* 이미지 서버 저장 후 url 반환 받는 함수 */  
+	/* 이미지 서버 저장 후 url 반환 받는 함수 */  
 	function sendFile(file, el) {
 		var form_data = new FormData();
 		form_data.append('file', file);
@@ -57,26 +58,19 @@ $(document).ready(function() {
 	  			var image = $("<img>").attr({src: imageUrl, width:"100%", height:"100%"})
 	     		$(el).summernote('editor.insertImage', imageUrl );
 	  			
-	  			
-	  			
 	  			console.log("서버 업로드 성공");
-	  
 	   		}
 	 	});
 	} 
-	  
- });
+});
   
 
  
- 	let latitude = 0;
-	let longitude = 0;
-
+let latitude = 0;
+let longitude = 0;
 
 (function() {
-	
-
-	
+	// 현재 내 위치(위도, 경도) 받아오는 api 호출
 	if (navigator.geolocation) {
 	  navigator.geolocation.getCurrentPosition(
 	    function(position) {
@@ -99,8 +93,6 @@ $(document).ready(function() {
 	    }
 	  );
 	}  
-	
-	
 	
 })();
 

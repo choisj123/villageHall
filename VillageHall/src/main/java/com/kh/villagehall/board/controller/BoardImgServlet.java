@@ -27,7 +27,7 @@ public class BoardImgServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("imgServlet");
-		// 컨트롤러 내에서 공용으로 사용할 변수 미리 선언
+		
 		String path = null; // forward 또는 redirect 경로를 저장할 변수
 		RequestDispatcher dispatcher = null; // 요청 위임 객체
 
@@ -44,16 +44,13 @@ public class BoardImgServlet extends HttpServlet {
 			// ..webapp/
 			String root = req.getSession().getServletContext().getRealPath("/");
 
-			// 배포되고 있는 최상위 경로의 실제 경로(WebContent)
-			// 화면에 보여지는 주소는 .....semiProject/
+			// 배포되고 있는 최상위 경로의 실제 경로(webapp)
+			// 화면에 보여지는 주소는 .....resources/
 			String filePath = root + "resources/images/boardImg/";
 			System.out.println("root: " + root);
 			System.out.println(filePath);
 
-			// 3) 파일명 변환을 위한 클래스 사용
-			// MyFileRenamePolicy()
-
-			// 4) MultipartRequest 객체 생성
+			// 3) MultipartRequest 객체 생성
 			MultipartRequest multiRequest = new MultipartRequest(req, filePath, maxSize,
 					"UTF-8", new MyRenamePolicy());
 			// 매개변수 (request, 파일주소, 최대용량, 텍스트파일 첨부시 문자인코딩, 새로운파일명이 담긴 file객체)
@@ -69,10 +66,8 @@ public class BoardImgServlet extends HttpServlet {
 				// name에는 파일의 name 속성이 담겨있고
 				// 파일의 name 속성을 알면 파일의 정보를 다 구할 수 있음
 				String name = files.nextElement();// img0
-				System.out.println("name!!!!! " + name);
 				if (multiRequest.getFilesystemName(name) != null) {
 					fileName = multiRequest.getFilesystemName(name);
-					System.out.println("파일명 가져오기");
 					System.out.println(fileName);
 				}
 			}
@@ -88,12 +83,9 @@ public class BoardImgServlet extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			// 예외 발생 시 errorPage.jsp로 요청 위임
 
 			message = "파일 서버 업로드 과정에서 에러 발생";
 
-			// path = "/WEB-INF/views/common/errorPage.jsp";
-			// request.setAttribute("errorMsg", errorMsg);
 			dispatcher = req.getRequestDispatcher(path);
 			dispatcher.forward(req, resp);
 		}
