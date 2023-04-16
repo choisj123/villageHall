@@ -129,7 +129,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
           <span class="signUp-message" id="nicknameMessage"></span>
 
-          <label for="userTel"> 전화번호<span class="required"></span> </label>
+          <label for="userTel"> 전화번호<span class="required"
+              ><span class="fa-thick fa-asterisk fa-sm required"></span
+            ></span> </label>
 
           <div class="signUp-input-area">
             <input

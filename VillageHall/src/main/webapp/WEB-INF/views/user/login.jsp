@@ -175,7 +175,7 @@
 	              if(userNo != 0) {
 	            	  location.href='${contextPath}';
 	              } else {
-	            	  location.href='${contextPath}/user/signUp';
+	            	  location.href='${contextPath}/user/termsOfUse';
 	              }
 	              
 	     
