@@ -18,14 +18,17 @@
 	
 	display: flex;
     justify-content: center;
+    
 	
 }
 
 #pwFind-field {
 	height: 700px;
+	width:450px;
 	border: 1px solid lightgray;
 	margin-top: 60px;
-	margin-bottom: 100px;
+	margin-bottom: 300px;
+	margin-left:350px;
 }
 
 .pwFind-message{
@@ -45,6 +48,7 @@
     font-size: 17px;
     padding-top:50px;
     
+    
 }
 
 .pwFind > span{
@@ -59,7 +63,7 @@
     color:#55710F;
     margin-top: 70px;
     padding-bottom: 10px;
-    padding-left: 70px;
+   
 }
 
 
@@ -99,6 +103,8 @@
 
 .pwFind-message{
     font-size: small;
+    display:flex;
+    padding-left:15px;
 
 }
 
