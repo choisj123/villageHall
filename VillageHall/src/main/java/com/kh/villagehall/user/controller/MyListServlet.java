@@ -69,9 +69,8 @@ public class MyListServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			} else {
-				String path = "/WEB-INF/views/user/login.jsp";
 				session.setAttribute("message","로그인 후 이용해주세요");
-				req.getRequestDispatcher(path).forward(req, resp);
+				resp.sendRedirect("/VillageHall/user/login");
 			}
 		}
 }
