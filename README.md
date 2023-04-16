@@ -8,59 +8,23 @@
 2. 프로젝트 개요
 3. 개발환경
 4. 주요기능
-5. Document
-6.
+
 
 ## 1️⃣ 팀 소개
 
-<img width="1160" alt="image" src="#">
+<img width="1546" alt="개발하조 팀소개" src="https://user-images.githubusercontent.com/108768958/232320310-acb7fbec-2f6c-4fed-b9e5-748ac9a000fe.png">
 
 ## 2️⃣ 프로젝트 개요
 
-** 지금 우리 동네 어디에서 무슨 일이?? **
+<img width="1433" alt="스크린샷 2023-04-16 오후 11 36 54" src="https://user-images.githubusercontent.com/108768958/232320413-664ac889-7514-4d67-9f1d-a6207955a53e.png">
 
--
 
 ## 3️⃣ 개발환경
+<img width="1435" alt="스크린샷 2023-04-16 오후 11 37 27" src="https://user-images.githubusercontent.com/108768958/232320439-3bc65193-5ee5-4635-a1bd-f33c96efeb52.png">
 
-<img width="962" alt="image" src="#>
 
 ## 4️⃣ 주요기능
 
-## 1. 메인페이지
-
-<img src="#">
-
-- 위치 기반 글 조회(kakao Map API 사용)
-- 지도에서 태그별 글 조회
-- 공지사항
-- 전체글
-- 인기글
-- 실시간 날씨 조회(기상청 날씨 API 사용)
-
-## 2. 회원 가입 / 로그인
-
-<details>
-<summary><h3>📌회원가입</h3></summary>
-<div markdown="1">
-
-## 3. 전체글
-
-## 4. 인기글
-
-## 5️⃣ Document
-
-## 1. 개발 일정
-
-<img width="1126" alt="image" src="#">
-
-## 2. 유스케이스
-
-<img width="1201" alt="image" src="#">
-
-<img width="1201" alt="image" src="#">
-
-<img width="1199" alt="image" src="#">
 
 ## 3. ERD
 
@@ -76,16 +40,5 @@
 
 [화면설계서 전체 보기](#)
 
-## 6. 시퀀스 다이어그램
 
-[시퀀스 다이어그램 전체 보기](#)
 
-## 7. 클래스 다이어그램
-
-**메인 컨트롤러, JDBC**
-![메인컨트롤러, JDBC](#)
-
-**회원**
-![회원MVC1](#)
-![회원MVC2](#)
-![회원MVC3](#)
