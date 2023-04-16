@@ -142,7 +142,7 @@
 		AND USER_PW = ? 
 	</entry>
 	
-	<entry key="deleteKakadoUser">
+	<entry key="deleteKakaoUser">
 		UPDATE "USER" SET 
 		USER_DELETE_FG = 'Y' 
 		WHERE USER_NO = ? 

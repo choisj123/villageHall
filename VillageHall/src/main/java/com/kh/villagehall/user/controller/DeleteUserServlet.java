@@ -24,28 +24,31 @@ public class DeleteUserServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String userPw = req.getParameter("userPw");
-
+		
 		// 회원번호
 		HttpSession session = req.getSession(); // 세션 얻어오기
 
 		User loginUser = (User) (session.getAttribute("loginUser"));
-
-		int userNo = loginUser.getUserNo(); // 로그인 회원 번호
+		
 		String kakaoUserKey = loginUser.getKakaoUserKey();
+		int userNo = loginUser.getUserNo(); // 로그인 회원 번호
+		
+		
 
-		if (kakaoUserKey == null) {
-			kakaoUserKey = "0";
-			userPw = "0";
-
-		}
 		// 카카오 유저 여부
 
 		try {
 			UserService service = new UserService();
-
-			int result = service.deleteUser(userNo, userPw, kakaoUserKey);
+			
+			int result = 0;
+			
+			if(kakaoUserKey == null) {
+				String userPw = req.getParameter("userPw");
+				result = service.deleteUser(userNo, userPw);
+			} else {
+				result = service.deleteKakaoUser(userNo, kakaoUserKey);
+			}
+			
 
 			String path = null; // 리다이렉트 경로
 
