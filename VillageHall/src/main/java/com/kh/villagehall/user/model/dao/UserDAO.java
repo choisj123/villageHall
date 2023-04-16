@@ -512,7 +512,7 @@ public class UserDAO {
 		
 		try {
 			
-			String sql = prop.getProperty("deleteKakadoUser");
+			String sql = prop.getProperty("deleteKakaoUser");
 			
 			pstmt = conn.prepareStatement(sql);
 			
