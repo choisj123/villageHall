@@ -95,8 +95,6 @@ public class WriteBoardServlet extends HttpServlet {
 
 			if (!imgUrl.isEmpty()) {// imgUrl 있을 때 == 이미지가 첨부되었을 때
 
-				int level = 0; // 사진 레벨 -> 사진 순서(레벨 0은 썸네일)
-
 				for (String url : imgUrl) {
 					int slash = url.lastIndexOf('/');
 					// src에서 뒤에서부터 첫번째 '/'인 index 뽑기
