@@ -11,16 +11,16 @@
 
 
 ## 1️⃣ 팀 소개
+<img width="1429" alt="팀 소개" src="https://user-images.githubusercontent.com/108768958/232320535-99ce83ac-1dee-45d0-85fb-26f0977bc938.png">
 
-<img width="1546" alt="개발하조 팀소개" src="https://user-images.githubusercontent.com/108768958/232320310-acb7fbec-2f6c-4fed-b9e5-748ac9a000fe.png">
 
 ## 2️⃣ 프로젝트 개요
 
-<img width="1433" alt="스크린샷 2023-04-16 오후 11 36 54" src="https://user-images.githubusercontent.com/108768958/232320413-664ac889-7514-4d67-9f1d-a6207955a53e.png">
+<img width="1433" alt="프로젝트 개요" src="https://user-images.githubusercontent.com/108768958/232320413-664ac889-7514-4d67-9f1d-a6207955a53e.png">
 
 
 ## 3️⃣ 개발환경
-<img width="1435" alt="스크린샷 2023-04-16 오후 11 37 27" src="https://user-images.githubusercontent.com/108768958/232320439-3bc65193-5ee5-4635-a1bd-f33c96efeb52.png">
+<img width="1435" alt="개발 환경" src="https://user-images.githubusercontent.com/108768958/232320439-3bc65193-5ee5-4635-a1bd-f33c96efeb52.png">
 
 
 ## 4️⃣ 주요기능
