@@ -1,0 +1,98 @@
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
+  * {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+  
+#logo{
+	
+	width: 120px;
+    height: 100px;
+    margin-left: 426%;
+    
+}
+  
+  
+.login-content{
+	
+    display: flex;
+    justify-content: center;
+}
+
+#id-pw-area{
+	
+	padding-top: 35px; 
+	margin-top: 60px;
+	margin-bottom: 100px; 
+	padding-left: 30px; 
+	padding-right: 30px; 
+    height: 500px;
+    border: 1px solid lightgray;
+   
+    
+}
+
+.villageHall{
+    font-size : 30px;
+    font-weight: bold;
+    color:#55710F;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 35px; 
+    padding-top: 35px; 
+    
+}
+
+#input-area {
+    width: 350px;
+    height: 40px;
+    background-color: rgb(240, 244, 240);
+    border: 1px  rgb(240, 244, 240);
+    margin-bottom: 10px;
+    outline-color: forestgreen;
+    border-radius: 5px;
+}
+
+.loginBtn{
+    width: 350px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #55710F;
+    border: 1px solid #55710F;
+    color: white;
+    letter-spacing: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+
+.saveId{
+    font-size: small;
+}
+
+.signUp-pwFind-btn{ 
+	
+    padding-left: 120px;
+    font-size: small;
+    color: gray;
+   
+}
+
+.a{
+    text-decoration: none;
+    color: black;
+    
+}
+
+#kakao-btn{
+
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+
+}
+
+
+
