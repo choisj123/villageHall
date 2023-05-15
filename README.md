@@ -1,44 +1,52 @@
-# 🛖 마을회관 - 세미프로젝트
-
-세미프로젝트 - 지도기반 동네 커뮤니티(마을회관)
-
-## Contents
-
-1. 팀 소개
-2. 프로젝트 개요
-3. 개발환경
-4. 주요기능
 
 
-## 1️⃣ 팀 소개
-<img width="1429" alt="팀 소개" src="https://user-images.githubusercontent.com/108768958/232320535-99ce83ac-1dee-45d0-85fb-26f0977bc938.png">
+![logo](https://github.com/choisj123/villageHall/assets/108768958/dab2136c-63d2-47c1-ba3f-7c887adbc4ee)
+
+## 마을회관
+
+###### _KH정보교육원 개발하조 Semi Project_            
+[최수진](https://github.com/choisj123), [김민수](https://github.com/mskim9097), [김정윤](https://github.com/kim-jeongyoon), [류정훈](https://github.com/FORMEEEEE), [김민성](https://github.com/kimmin-gif), [이동준](https://github.com/Apsalus)
+
+  > 문서: 2023.3.14. ~ 2023.3.27.
+  
+  > 개발: 2023.3.28. ~ 2022.4.17.
 
 
-## 2️⃣ 프로젝트 개요
-
+## Purpose
 <img width="1433" alt="프로젝트 개요" src="https://user-images.githubusercontent.com/108768958/232320413-664ac889-7514-4d67-9f1d-a6207955a53e.png">
+- 사용자들이 마을회관에 모이듯 자유롭게 소통할 수 있는 지도 기반의 동네 커뮤니티 공간
+
+## Features
+* **카카오 MAP** API 적용
+* **HTML5 geolocation** API 적용
+* **SummerNote** 게시판 적용
+* **Javax Mail** 인증번호 메일 발송
+* **카카오 소셜로그인** API 적용
+* **OpenWeatherMap** API 적용
 
 
-## 3️⃣ 개발환경
-<img width="1435" alt="개발 환경" src="https://user-images.githubusercontent.com/108768958/232320439-3bc65193-5ee5-4635-a1bd-f33c96efeb52.png">
 
 
-## 4️⃣ 주요기능
-
-
-## 3. ERD
-
-<img width="1001" alt="image" src="#">
-
-[테이블 기술서 전체보기](#)
-
-## 4. 요구사항 정의서
-
-[요구사항 정의서 전체보기](#1️⃣-팀-소개)
-
-## 5. 화면설계서
-
-[화면설계서 전체 보기](#)
-
+## Tech
+<div> 
+  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
+  <br>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+  <br>
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+  <br>
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+  <br>
+  <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> 
+  <br>
+  <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
+  <br>
+  <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+  <br>
+</div>
 
 
